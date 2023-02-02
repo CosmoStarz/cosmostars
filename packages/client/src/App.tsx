@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import { ColorModeContext } from "./features/ThemeToggler/ThemeToggler";
 import { useBasicTheme } from "./shared/hooks/useBasicTheme";
-import { MainPage } from "./pages/Main";
 import "./App.css";
 
 function App() {

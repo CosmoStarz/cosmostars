@@ -5,7 +5,10 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ThemeNames } from "../../shared/constants";
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({
+  // eslint-disable-next-line
+  toggleColorMode: () => {},
+});
 
 export const ThemeToggler: FC = () => {
   const theme = useTheme();
