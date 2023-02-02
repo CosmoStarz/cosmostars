@@ -21,7 +21,7 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <div className="App"></div>
+        <div className="App">{`Вот тут будет жить ваше приложение :)`}</div>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
