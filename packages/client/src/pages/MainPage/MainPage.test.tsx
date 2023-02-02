@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
+import { MainPage } from './MainPage';
 
-describe('Main Page', () => {
+describe.only('Main Page', () => {
   it('should have correct header', () => {
     const header = 'Galaxy Spaceship';
 
