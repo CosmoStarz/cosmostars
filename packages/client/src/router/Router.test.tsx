@@ -1,13 +1,14 @@
 import { render } from '@testing-library/react';
 import { Router } from './Router';
 
-describe.only('Router', () => {
+// TODO Сделать queries через screen
+describe('Router', () => {
   it('should direct to leaderboard page', () => {
     const path = '/leaderboard';
     const testId = 'leaderboard-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -17,7 +18,7 @@ describe.only('Router', () => {
     const testId = 'forum-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -27,7 +28,7 @@ describe.only('Router', () => {
     const testId = 'profile-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -37,7 +38,7 @@ describe.only('Router', () => {
     const testId = 'auth-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -47,7 +48,7 @@ describe.only('Router', () => {
     const testId = 'reg-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -57,7 +58,7 @@ describe.only('Router', () => {
     const testId = 'main-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
@@ -67,7 +68,7 @@ describe.only('Router', () => {
     const testId = 'not-found-page';
 
     const { getByTestId } = render(<Router />);
-    location.pathname = path;
+    window.history.pushState({}, '', path);
 
     expect(getByTestId(testId)).toBeDefined();
   });
