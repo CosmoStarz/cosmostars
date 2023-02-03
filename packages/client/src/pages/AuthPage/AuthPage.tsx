@@ -1,5 +1,9 @@
 import { FC } from 'react';
 
 export const AuthPage: FC = () => {
-  return <h1>Login</h1>;
+  return (
+    <main data-testid="auth-page">
+      <h1>Login</h1>
+    </main>
+  );
 };

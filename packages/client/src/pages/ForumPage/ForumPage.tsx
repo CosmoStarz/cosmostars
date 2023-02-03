@@ -1,5 +1,9 @@
 import { FC } from 'react';
 
 export const ForumPage: FC = () => {
-  return <h1>Forum</h1>;
+  return (
+    <main data-testid="forum-page">
+      <h1>Forum</h1>
+    </main>
+  );
 };
