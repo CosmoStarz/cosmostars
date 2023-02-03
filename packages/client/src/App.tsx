@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import { ColorModeContext } from "./features/ThemeToggler/ThemeToggler";
 import { useBasicTheme } from "./shared/hooks/useBasicTheme";
+import { baseUrl } from "./shared/constants";
 import "./App.css";
 
 function App() {
@@ -9,8 +10,7 @@ function App() {
 
   useEffect(() => {
     const fetchServerData = async () => {
-      const url = `http://localhost:${__SERVER_PORT__}`;
-      const response = await fetch(url);
+      const response = await fetch(baseUrl);
       const data = await response.json();
       console.log(data);
     };
