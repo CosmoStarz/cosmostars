@@ -33,9 +33,19 @@ describe("Router", () => {
     expect(screen.getByTestId(testId)).toBeDefined();
   });
 
-  it("should direct to forum detail page", () => {
+  it("should direct to forum topic page", () => {
     const path = RoutesName.FORUM_DETAIL;
-    const testId = "forum-detail-page";
+    const testId = "forum-topic-page";
+
+    renderRouterWithLink(path);
+    fireEvent.click(screen.getByTestId("link"));
+
+    expect(screen.getByTestId(testId)).toBeDefined();
+  });
+
+  it("should direct to game page", () => {
+    const path = RoutesName.GAME;
+    const testId = "game-page";
 
     renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
