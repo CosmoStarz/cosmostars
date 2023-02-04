@@ -65,7 +65,7 @@ describe("Router", () => {
 
   it("should direct to authorization page", () => {
     const path = RoutesName.LOGIN;
-    const testId = "auth-page";
+    const testId = "login-page";
 
     renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));

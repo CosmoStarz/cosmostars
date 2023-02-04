@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-export const AuthPage: FC = () => {
+export const LoginPage: FC = () => {
   return (
-    <main data-testid="auth-page">
+    <main data-testid="login-page">
       <h1>Login</h1>
     </main>
   );
