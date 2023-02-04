@@ -5,6 +5,7 @@ import { useBasicTheme } from "./shared/hooks/useBasicTheme";
 import { baseUrl } from "./shared/constants";
 import "./App.css";
 import { Router } from "./router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
@@ -22,8 +23,10 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        {/* <div className="App">{`Вот тут будет жить ваше приложение :)`}</div> */}
-        <Router />
+        <BrowserRouter>
+          {/* <div className="App">{`Вот тут будет жить ваше приложение :)`}</div> */}
+          <Router />
+        </BrowserRouter>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
