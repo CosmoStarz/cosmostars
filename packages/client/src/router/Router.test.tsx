@@ -3,18 +3,21 @@ import { BrowserRouter, Link } from "react-router-dom";
 import { RoutesName } from "../shared/constants";
 import { Router } from "./Router";
 
+const renderRouterWithLink = (path: string) =>
+  render(
+    <BrowserRouter>
+      <Link data-testid="link" to={path}></Link>
+      <Router />
+    </BrowserRouter>
+  );
+
 // TODO Сделать queries через screen
 describe("Router", () => {
   it("should direct to leaderboard page", () => {
     const path = RoutesName.LEADERBOARD;
     const testId = "leaderboard-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -24,12 +27,7 @@ describe("Router", () => {
     const path = RoutesName.FORUM;
     const testId = "forum-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -39,12 +37,7 @@ describe("Router", () => {
     const path = RoutesName.FORUM_DETAIL;
     const testId = "forum-detail-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -54,12 +47,7 @@ describe("Router", () => {
     const path = RoutesName.PROFILE;
     const testId = "profile-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -69,12 +57,7 @@ describe("Router", () => {
     const path = RoutesName.LOGIN;
     const testId = "auth-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -84,12 +67,7 @@ describe("Router", () => {
     const path = RoutesName.REGISTRATION;
     const testId = "reg-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -99,12 +77,7 @@ describe("Router", () => {
     const path = RoutesName.MAIN;
     const testId = "main-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
@@ -114,12 +87,7 @@ describe("Router", () => {
     const path = "/blabla";
     const testId = "not-found-page";
 
-    render(
-      <BrowserRouter>
-        <Link data-testid="link" to={path}></Link>
-        <Router />
-      </BrowserRouter>
-    );
+    renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
 
     expect(screen.getByTestId(testId)).toBeDefined();
