@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter, Link } from "react-router-dom";
+import { logIn, logOut } from "../features/auth";
 import { RoutesName } from "../shared/constants";
 import { Router } from "./Router";
 
@@ -13,49 +14,9 @@ const renderRouterWithLink = (path: string) =>
 
 // TODO Сделать queries через screen
 describe("Router", () => {
-  it.skip("should direct to leaderboard page", () => {
-    const path = RoutesName.LEADERBOARD;
-    const testId = "leaderboard-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it.skip("should direct to forum page", () => {
-    const path = RoutesName.FORUM;
-    const testId = "forum-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it.skip("should direct to forum topic page", () => {
-    const path = RoutesName.FORUM_DETAIL;
-    const testId = "forum-topic-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
   it("should direct to game page", () => {
     const path = RoutesName.GAME;
     const testId = "game-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it.skip("should direct to profile page", () => {
-    const path = RoutesName.PROFILE;
-    const testId = "profile-page";
 
     renderRouterWithLink(path);
     fireEvent.click(screen.getByTestId("link"));
@@ -102,15 +63,89 @@ describe("Router", () => {
 
     expect(screen.getByTestId(testId)).toBeDefined();
   });
+});
 
-  it("should redirect unauthorized users from private page to login page", () => {
-    const path = RoutesName.PROFILE;
-    const testId = "login-page";
+describe("Private router", () => {
+  describe("if unauthorize", () => {
+    it("should redirect from private page to login page", () => {
+      const path = RoutesName.PROFILE;
+      const testId = "login-page";
 
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
 
-    expect(screen.getByTestId(testId)).toBeDefined();
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+  });
+
+  describe("if authorize", () => {
+    beforeEach(() => {
+      logIn();
+    });
+
+    afterEach(() => {
+      logOut();
+    });
+
+    it("should direct to leaderboard page", () => {
+      const path = RoutesName.LEADERBOARD;
+      const testId = "leaderboard-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should direct to forum page", () => {
+      const path = RoutesName.FORUM;
+      const testId = "forum-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should direct to forum topic page", () => {
+      const path = RoutesName.FORUM_DETAIL;
+      const testId = "forum-topic-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should direct to profile page", () => {
+      const path = RoutesName.PROFILE;
+      const testId = "profile-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should redirect from login page", () => {
+      const path = RoutesName.LOGIN;
+      const testId = "login-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).not.toBeDefined();
+    });
+
+    it("should redirect from registration page", () => {
+      const path = RoutesName.REGISTRATION;
+      const testId = "reg-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).not.toBeDefined();
+    });
   });
 
   it.todo("should not reload browser page");
