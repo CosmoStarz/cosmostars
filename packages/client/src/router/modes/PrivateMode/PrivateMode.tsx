@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { logOut } from "../../../features/auth";
 import { RoutesName } from "../../../shared/constants";
 import { useAuth } from "../../../shared/hooks/useAuth";
 
@@ -9,11 +10,19 @@ export type PrivateModeProps = {
 
 export const PrivateMode: FC<PrivateModeProps> = ({ children }) => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isLogged = useAuth();
 
+  const onLogoutButtonClick = () => {
+    logOut();
+    navigate(RoutesName.LOGIN);
+  };
+
   return isLogged ? (
-    <>{children}</>
+    <>
+      {children}
+      <button onClick={onLogoutButtonClick}>Log out</button>
+    </>
   ) : (
     <Navigate
       to={RoutesName.LOGIN}
