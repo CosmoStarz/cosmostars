@@ -24,7 +24,6 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          {/* <div className="App">{`Вот тут будет жить ваше приложение :)`}</div> */}
           <Router />
         </BrowserRouter>
       </ThemeProvider>
