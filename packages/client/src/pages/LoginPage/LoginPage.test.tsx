@@ -1,11 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { LoginPage } from "./LoginPage";
+import { BrowserRouter } from "react-router-dom";
+
 
 describe("Auth Page", () => {
   it("should have correct header", () => {
     const header = "Login";
 
-    render(<LoginPage />);
+    render(
+      <BrowserRouter>
+        <LoginPage />
+      </BrowserRouter>
+    );
     const headerElem = screen.getByText(header, { exact: false });
 
     expect(headerElem).toBeDefined();
