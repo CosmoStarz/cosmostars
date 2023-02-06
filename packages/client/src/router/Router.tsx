@@ -9,6 +9,7 @@ import { NotFoundPage } from "../pages/NotFoundPage";
 import { ProfilePage } from "../pages/ProfilePage";
 import { RegPage } from "../pages/RegPage";
 import { RoutesName } from "../shared/constants";
+import { GuestMode } from "./modes/GuestMode";
 import { PrivateMode } from "./modes/PrivateMode";
 
 export const Router = () => {
@@ -48,8 +49,22 @@ export const Router = () => {
         }
       />
       <Route path={RoutesName.GAME} element={<GamePage />} />
-      <Route path={RoutesName.LOGIN} element={<LoginPage />} />
-      <Route path={RoutesName.REGISTRATION} element={<RegPage />} />
+      <Route
+        path={RoutesName.LOGIN}
+        element={
+          <GuestMode>
+            <LoginPage />
+          </GuestMode>
+        }
+      />
+      <Route
+        path={RoutesName.REGISTRATION}
+        element={
+          <GuestMode>
+            <RegPage />
+          </GuestMode>
+        }
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
