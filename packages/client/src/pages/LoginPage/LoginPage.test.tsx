@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { LoginPage } from "./LoginPage";
 
-describe.only("Auth Page", () => {
+describe("Auth Page", () => {
   it("should have correct header", () => {
     const header = "Login";
 

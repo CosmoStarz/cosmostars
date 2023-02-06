@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { ForumTopicPage } from "./ForumTopicPage";
 
-describe.only("Forum Topic Page", () => {
+describe("Forum Topic Page", () => {
   it("should have correct header", () => {
     const header = "Topic";
 

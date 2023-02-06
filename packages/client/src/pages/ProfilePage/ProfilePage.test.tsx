@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { ProfilePage } from './ProfilePage';
 
-describe.only('Profile Page', () => {
-  it('should have correct header', () => {
-    const header = 'Profile';
+describe("Profile Page", () => {
+  it("should have correct header", () => {
+    const header = "Profile";
 
     render(<ProfilePage />);
     const headerElem = screen.getByText(header, { exact: false });
 
     expect(headerElem).toBeDefined();
-    expect(headerElem).toHaveProperty('tagName', 'H1');
+    expect(headerElem).toHaveProperty("tagName", "H1");
   });
 });

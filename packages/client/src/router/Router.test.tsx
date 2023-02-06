@@ -134,7 +134,7 @@ describe("Private router", () => {
       renderRouterWithLink(path);
       fireEvent.click(screen.getByTestId("link"));
 
-      expect(screen.getByTestId(testId)).not.toBeDefined();
+      expect(() => screen.getByTestId(testId)).toThrow();
     });
 
     it("should redirect from registration page", () => {
@@ -144,9 +144,7 @@ describe("Private router", () => {
       renderRouterWithLink(path);
       fireEvent.click(screen.getByTestId("link"));
 
-      expect(screen.getByTestId(testId)).not.toBeDefined();
+      expect(() => screen.getByTestId(testId)).toThrow();
     });
   });
-
-  it.todo("should not reload browser page");
 });
