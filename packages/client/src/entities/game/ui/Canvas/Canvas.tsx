@@ -1,4 +1,5 @@
 import { initialCoords } from "../../../../shared/constants";
+import { GameObjectColor } from "../../controller/types";
 import { basicSize } from "../../model/BaseObject/types";
 import { elementCoords } from "./types";
 
@@ -7,8 +8,8 @@ export class Canvas {
   public canvas: HTMLCanvasElement;
   public context: CanvasRenderingContext2D;
 
-  constructor(canvasEL: HTMLCanvasElement) {
-    this.canvas = canvasEL;
+  constructor(canvasElement: HTMLCanvasElement) {
+    this.canvas = canvasElement;
     this.context = this.canvas.getContext("2d")!;
 
     this.canvas.width = this.width;
@@ -23,12 +24,20 @@ export class Canvas {
     return window.innerHeight;
   }
 
-  public drawRect(color: string, position: elementCoords, size: basicSize) {
+  public drawRect(
+    color: GameObjectColor,
+    position: elementCoords,
+    size: basicSize
+  ) {
     this.context!.fillStyle = color;
     this.context?.fillRect(position.x, position.y, size.width, size.height);
   }
 
-  public drawRound(color: string, position: elementCoords, radius: number) {
+  public drawRound(
+    color: GameObjectColor,
+    position: elementCoords,
+    radius: number
+  ) {
     this.context.beginPath();
     this.context.arc(position.x, position.y, radius, 0, Math.PI * 2);
     this.context.fillStyle = color;
@@ -50,7 +59,7 @@ export class Canvas {
     );
   }
 
-  public fillCanvas(color: string) {
+  public fillCanvas(color: GameObjectColor) {
     const size = {
       width: this.width,
       height: this.height,

@@ -14,6 +14,12 @@ export const baseSpeed = 10;
 
 export const projectileRadius = 3;
 
+export enum BaseGameColors {
+  RED = "#ff0000",
+  YELLOW = "#ffff00",
+  BLACK = "#000000",
+}
+
 export enum ThemeNames {
   LIGHT = "light",
   DARK = "dark",

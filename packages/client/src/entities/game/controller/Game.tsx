@@ -1,4 +1,8 @@
-import { baseSpeed, GameKeyboard } from "../../../shared/constants";
+import {
+  BaseGameColors,
+  baseSpeed,
+  GameKeyboard,
+} from "../../../shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
 
@@ -7,8 +11,8 @@ class Game {
   private scene: Canvas;
   private player: Player;
 
-  constructor(canvasEl: HTMLCanvasElement) {
-    this.canvas = canvasEl;
+  constructor(canvasElement: HTMLCanvasElement) {
+    this.canvas = canvasElement;
     this.scene = this.mainScene;
     this.player = this.createPlayer;
 
@@ -21,7 +25,7 @@ class Game {
 
   get createPlayer() {
     return new Player({
-      color: "red",
+      color: BaseGameColors.RED,
       scene: this.scene,
     });
   }
@@ -33,14 +37,18 @@ class Game {
 
   private initListeners() {
     window.addEventListener("keydown", ({ keyCode }) => {
-      if (keyCode === GameKeyboard.LEFT) {
-        this.player.velocity.dx = -baseSpeed;
-      }
-      if (keyCode === GameKeyboard.RIGHT) {
-        this.player.velocity.dx = baseSpeed;
-      }
-      if (keyCode === GameKeyboard.SHOOT) {
-        this.player.shoot();
+      switch (keyCode) {
+        case GameKeyboard.LEFT:
+          this.player.velocity.dx = -baseSpeed;
+          break;
+        case GameKeyboard.RIGHT:
+          this.player.velocity.dx = baseSpeed;
+          break;
+        case GameKeyboard.SHOOT:
+          this.player.shoot();
+          break;
+        default:
+          break;
       }
     });
 
@@ -59,9 +67,13 @@ class Game {
     });
   }
 
+  protected drawCanvas() {
+    this.scene.fillCanvas(BaseGameColors.BLACK);
+  }
+
   private update() {
     requestAnimationFrame(this.update.bind(this));
-    this.scene.fillCanvas("black");
+    this.drawCanvas();
     this.player.update();
   }
 }

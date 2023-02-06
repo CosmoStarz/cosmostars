@@ -1,11 +1,12 @@
-import { baseSpeed } from "../../../../shared/constants";
+import { BaseGameColors, baseSpeed } from "../../../../shared/constants";
+import { GameObjectColor } from "../../controller/types";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { Projectile } from "../Projectile/Projectile";
 import { playerProps } from "./types";
 
 export class Player extends BaseObject {
   // TODO: реализовать передачу картинки (скорее всего отдельным классом)
-  private color: string;
+  private color: GameObjectColor;
   public projectiles: Projectile[];
 
   constructor(props: playerProps) {
@@ -16,9 +17,11 @@ export class Player extends BaseObject {
   }
 
   protected get initPosition() {
+    const sceneRatio = 1.5;
+
     return {
       x: this.scene.width / 2,
-      y: this.scene.height - this.size.width * 1.5,
+      y: this.scene.height - this.size.width * sceneRatio,
     };
   }
 
@@ -35,7 +38,7 @@ export class Player extends BaseObject {
 
   public shoot() {
     const projectile = new Projectile({
-      color: "yellow",
+      color: BaseGameColors.YELLOW,
       scene: this.scene,
       position: {
         x: this.position.x + this.size.width / 2,
@@ -63,7 +66,9 @@ export class Player extends BaseObject {
     this.projectiles.forEach((proj, index) => {
       if (proj.position.y + proj.size.width <= 0) {
         setTimeout(() => {
-          this.projectiles.splice(index, 1);
+          this.projectiles = this.projectiles.filter(
+            (item, idx) => idx !== index
+          );
         }, 0);
       } else {
         proj.update();
