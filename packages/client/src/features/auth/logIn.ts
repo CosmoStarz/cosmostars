@@ -1,1 +1,3 @@
-export const logIn = () => localStorage.setItem("isLogged", "1");
+import { LS_isLogged } from "./types";
+
+export const logIn = () => localStorage.setItem("isLogged", LS_isLogged.YES);
