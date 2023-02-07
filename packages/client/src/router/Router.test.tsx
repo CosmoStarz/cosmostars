@@ -14,46 +14,6 @@ const renderRouterWithLink = (path: string) =>
 
 // TODO Сделать queries через screen
 describe("Router", () => {
-  it("should direct to game page", () => {
-    const path = RoutesName.GAME;
-    const testId = "game-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it("should direct to authorization page", () => {
-    const path = RoutesName.LOGIN;
-    const testId = "login-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it("should direct to registration page", () => {
-    const path = RoutesName.REGISTRATION;
-    const testId = "reg-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
-  it("should direct to main page", () => {
-    const path = RoutesName.MAIN;
-    const testId = "main-page";
-
-    renderRouterWithLink(path);
-    fireEvent.click(screen.getByTestId("link"));
-
-    expect(screen.getByTestId(testId)).toBeDefined();
-  });
-
   it("should direct to not found page", () => {
     const path = "/blabla";
     const testId = "not-found-page";
@@ -76,6 +36,26 @@ describe("Private router", () => {
 
       expect(screen.getByTestId(testId)).toBeDefined();
     });
+
+    it("should direct to authorization page", () => {
+      const path = RoutesName.LOGIN;
+      const testId = "login-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should direct to registration page", () => {
+      const path = RoutesName.REGISTRATION;
+      const testId = "reg-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
   });
 
   describe("if authorize", () => {
@@ -85,6 +65,26 @@ describe("Private router", () => {
 
     afterEach(() => {
       logOut();
+    });
+
+    it("should direct to main page", () => {
+      const path = RoutesName.MAIN;
+      const testId = "main-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
+    });
+
+    it("should direct to game page", () => {
+      const path = RoutesName.GAME;
+      const testId = "game-page";
+
+      renderRouterWithLink(path);
+      fireEvent.click(screen.getByTestId("link"));
+
+      expect(screen.getByTestId(testId)).toBeDefined();
     });
 
     it("should direct to leaderboard page", () => {
