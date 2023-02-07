@@ -15,7 +15,14 @@ import { PrivateMode } from "./modes/PrivateMode";
 export const Router = () => {
   return (
     <Routes>
-      <Route path={RoutesName.MAIN} element={<MainPage />} />
+      <Route
+        path={RoutesName.MAIN}
+        element={
+          <PrivateMode>
+            <MainPage />
+          </PrivateMode>
+        }
+      />
       <Route
         path={RoutesName.PROFILE}
         element={
@@ -48,7 +55,14 @@ export const Router = () => {
           </PrivateMode>
         }
       />
-      <Route path={RoutesName.GAME} element={<GamePage />} />
+      <Route
+        path={RoutesName.GAME}
+        element={
+          <PrivateMode>
+            <GamePage />
+          </PrivateMode>
+        }
+      />
       <Route
         path={RoutesName.LOGIN}
         element={
