@@ -4,6 +4,7 @@ import { ColorModeContext } from "./features/ThemeToggler/ThemeToggler";
 import { useBasicTheme } from "./shared/hooks/useBasicTheme";
 import { baseUrl } from "./shared/constants";
 import "./App.css";
+import { GamePage } from "./pages/Game";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
@@ -21,7 +22,8 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <div className="App">{`Вот тут будет жить ваше приложение :)`}</div>
+        {/* <div className="App">{`Вот тут будет жить ваше приложение :)`}</div> */}
+        <GamePage />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

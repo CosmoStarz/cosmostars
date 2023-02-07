@@ -5,6 +5,7 @@ import {
 } from "../../../shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
+import { Grid } from "../model/Grid/Grid";
 
 class Game {
   private canvas: HTMLCanvasElement;
@@ -15,8 +16,12 @@ class Game {
     this.canvas = canvasElement;
     this.scene = this.mainScene;
     this.player = this.createPlayer;
+    this.grids = [];
+    this.frames = 0;
+    this.randomInterval = Math.floor(Math.random() * 500 + 500);
 
     this.init(); // TODO: после реализации экрана начала игры - вызывать после нажатия кнопки
+    this.createEnemies();
   }
 
   get mainScene() {
@@ -27,6 +32,21 @@ class Game {
     return new Player({
       color: BaseGameColors.RED,
       scene: this.scene,
+    });
+  }
+
+  createEnemies() {
+    if (this.frames % this.randomInterval === 0) {
+      this.grids.push(new Grid({ scene: this.scene }));
+      this.frames = 0;
+      this.randomInterval = Math.floor(Math.random() * 500 + 500);
+    }
+    this.frames++;
+  }
+
+  updateEnemies() {
+    this.grids.forEach(grid => {
+      grid.update();
     });
   }
 
@@ -75,6 +95,7 @@ class Game {
     requestAnimationFrame(this.update.bind(this));
     this.drawCanvas();
     this.player.update();
+    this.updateEnemies();
   }
 }
 
