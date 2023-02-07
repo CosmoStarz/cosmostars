@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { RegPage } from './RegPage';
+import { render, screen } from "@testing-library/react";
+import { RegPage } from "./RegPage";
 
 describe("Reg Page", () => {
   it("should have correct header", () => {

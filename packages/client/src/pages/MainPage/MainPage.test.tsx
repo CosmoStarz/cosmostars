@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import { MainPage } from './MainPage';
+import { render, screen } from "@testing-library/react";
+import { MainPage } from "./MainPage";
 import { BrowserRouter } from "react-router-dom";
-
 
 describe("Main Page", () => {
   it("should have correct header", () => {

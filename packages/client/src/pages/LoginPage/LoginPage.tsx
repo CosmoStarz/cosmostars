@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { logIn } from "../../features/auth";
 import { RoutesName } from "../../shared/constants";

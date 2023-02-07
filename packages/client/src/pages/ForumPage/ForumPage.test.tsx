@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { ForumPage } from './ForumPage';
+import { render, screen } from "@testing-library/react";
+import { ForumPage } from "./ForumPage";
 
 describe("Forum Page", () => {
   it("should have correct header", () => {

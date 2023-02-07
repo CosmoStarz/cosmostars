@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { LeaderboardPage } from './LeaderboardPage';
+import { render, screen } from "@testing-library/react";
+import { LeaderboardPage } from "./LeaderboardPage";
 
 describe("Leaderboard Page", () => {
   it("should have correct header", () => {

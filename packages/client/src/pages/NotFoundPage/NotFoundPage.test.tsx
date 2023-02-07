@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { NotFoundPage } from './NotFoundPage';
+import { render, screen } from "@testing-library/react";
+import { NotFoundPage } from "./NotFoundPage";
 
 describe("NotFound Page", () => {
   it("should have correct header", () => {
