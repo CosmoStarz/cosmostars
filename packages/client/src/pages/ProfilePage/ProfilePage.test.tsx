@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { ProfilePage } from "./ProfilePage";
 
 describe("Profile Page", () => {
+  it("should render without error", () => {
+    expect(() => render(<ProfilePage />)).not.toThrowError();
+  });
+
   it("should have correct header", () => {
     const header = "Profile";
 

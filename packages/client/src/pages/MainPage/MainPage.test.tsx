@@ -3,6 +3,16 @@ import { MainPage } from "./MainPage";
 import { BrowserRouter } from "react-router-dom";
 
 describe("Main Page", () => {
+  it("should render without error", () => {
+    expect(() =>
+      render(
+        <BrowserRouter>
+          <MainPage />
+        </BrowserRouter>
+      )
+    ).not.toThrowError();
+  });
+
   it("should have correct header", () => {
     const header = "Galaxy Spaceship";
 

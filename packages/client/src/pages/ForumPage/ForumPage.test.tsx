@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { ForumPage } from "./ForumPage";
 
 describe("Forum Page", () => {
+  it("should render without error", () => {
+    expect(() => render(<ForumPage />)).not.toThrowError();
+  });
+
   it("should have correct header", () => {
     const header = "Forum";
 

@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { LeaderboardPage } from "./LeaderboardPage";
 
 describe("Leaderboard Page", () => {
+  it("should render without error", () => {
+    expect(() => render(<LeaderboardPage />)).not.toThrowError();
+  });
+
   it("should have correct header", () => {
     const header = "Leader Board";
 

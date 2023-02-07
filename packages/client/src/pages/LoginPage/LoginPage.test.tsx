@@ -3,6 +3,16 @@ import { LoginPage } from "./LoginPage";
 import { BrowserRouter } from "react-router-dom";
 
 describe("Auth Page", () => {
+  it("should render without error", () => {
+    expect(() =>
+      render(
+        <BrowserRouter>
+          <LoginPage />
+        </BrowserRouter>
+      )
+    ).not.toThrowError();
+  });
+
   it("should have correct header", () => {
     const header = "Login";
 
