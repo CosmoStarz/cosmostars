@@ -13,6 +13,6 @@ export const GuestMode: FC<PrivateModeProps> = ({ children }) => {
   return !isLogged ? (
     <>{children}</>
   ) : (
-    <Navigate to={RoutesName.PROFILE} replace={true} />
+    <Navigate to={RoutesName.MAIN} replace={true} />
   );
 };
