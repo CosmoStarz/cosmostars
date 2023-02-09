@@ -21,10 +21,10 @@ export class Enemy extends BaseObject {
     this.scene.drawRect(this.color, this.position, this.size);
   }
 
-  public update() {
+  public update({ velocity }) {
     this.draw();
-    this.position.x += this.velocity.dx;
-    this.position.y += this.velocity.dy;
+    this.position.x += velocity.dx;
+    this.position.y += velocity.dy;
   }
 
   public shoot() {

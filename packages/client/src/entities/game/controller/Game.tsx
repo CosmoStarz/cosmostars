@@ -38,7 +38,9 @@ class Game {
   }
 
   createEnemies() {
-    this.grids.push(new Grid({ scene: this.scene }));
+    this.grids.push(
+      new Grid({ scene: this.scene, velocity: { dx: 5, dy: 0 } })
+    );
     // if (this.frames % this.randomInterval === 0) {
     //   this.grids.push(new Grid({ scene: this.scene }));
     //   this.frames = 0;
@@ -48,7 +50,7 @@ class Game {
   }
 
   updateEnemies() {
-    this.grids.forEach(grid => grid.update({ velocity: { x: 5, y: 0 } }));
+    this.grids.forEach(grid => grid.update());
     // this.grids.forEach(grid => {
     //   grid.update();
     // });
