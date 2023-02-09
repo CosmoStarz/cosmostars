@@ -6,7 +6,12 @@ import {
   basicVelocity,
 } from "../../entities/game/model/BaseObject/types";
 import { elementCoords } from "../../entities/game/ui/Canvas/types";
+import { GameModalProps, GameModalTypes } from "../../widgets/GameModal/types";
 import { MenuLinkType } from "../../features/MenuLink/types";
+import WinRight from "../../assets/images/win-ribbon.png";
+import WinLeft from "../../assets/images/win-firework.png";
+import LooseRight from "../../assets/images/loose-ufo.png";
+import LooseLeft from "../../assets/images/loose-enemy.png";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
@@ -18,7 +23,46 @@ export enum BaseGameColors {
   RED = "#ff0000",
   YELLOW = "#ffff00",
   BLACK = "#000000",
+  PURPLE = "#ba68c8",
 }
+
+export enum GameStatuses {
+  NOT_ACTIVE = 0,
+  ACTIVE = 1,
+  START = 2,
+  LOOSE = 3,
+  WIN = 4,
+  PAUSED = 5,
+};
+
+export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
+  [GameStatuses.START]: {
+    title: "Start",
+    startButton: "Start",
+    rulesVisibility: true,
+  },
+  [GameStatuses.LOOSE]: {
+    title: "Looser!",
+    startButton: "Try again",
+    scoreVisibility: true,
+    rightImg: LooseRight,
+    leftImg: LooseLeft,
+  },
+  [GameStatuses.WIN]: {
+    title: "Winner!",
+    startButton: "Try again",
+    scoreVisibility: true,
+    rightImg: WinRight,
+    leftImg: WinLeft,
+  },
+  [GameStatuses.PAUSED]: {
+    title: "Pause",
+    startButton: "Resume",
+    scoreVisibility: true,
+    canBeResumed: true,
+    rulesVisibility: true,
+  },
+};
 
 export enum ThemeNames {
   LIGHT = "light",
