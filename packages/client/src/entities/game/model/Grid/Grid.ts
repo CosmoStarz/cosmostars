@@ -11,6 +11,7 @@ export class Grid extends BaseObject {
 
   constructor(props: baseObjectProps) {
     super(props);
+    this.position = this.initPosition;
     this.enemies = [];
     this.columns = Math.floor(Math.random() * 10 + 5);
     this.rows = Math.floor(Math.random() * 5 + 2);
@@ -20,6 +21,7 @@ export class Grid extends BaseObject {
       for (let y = 0; y < this.rows; y++) {
         this.enemies.push(
           new Enemy({
+            scene: props.scene,
             color: BaseGameColors.YELLOW,
             position: {
               x: x * 30,
@@ -31,16 +33,29 @@ export class Grid extends BaseObject {
     }
   }
 
-  public update() {
-    this.position.x += this.velocity.dx;
-    this.position.y += this.velocity.dy;
+  protected get initPosition() {
+    return {
+      x: 0,
+      y: 0,
+    };
+  }
+
+  protected draw() {
+    this.enemies.forEach(enemy => enemy.update());
+  }
+
+  public update({ velocity }) {
+    this.draw();
+
+    this.position.x += velocity.dx;
+    this.position.y += velocity.dy;
     this.velocity.dy = 0;
 
     if (
       this.position.x + this.width >= this.scene.width ||
       this.position.x <= 0
     ) {
-      this.velocity.dx = -this.velocity.dx;
+      this.velocity.dx = -velocity.dx;
       this.velocity.dy = 30;
     }
   }

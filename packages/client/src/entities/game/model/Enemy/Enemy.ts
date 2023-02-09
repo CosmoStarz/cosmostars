@@ -10,9 +10,9 @@ export class Enemy extends BaseObject {
 
   constructor(props: enemyProps) {
     super(props);
+    this.scene = props.scene;
     this.color = props.color;
-    this.position.x = props.x;
-    this.position.x = props.y;
+    this.position = props.position;
     this.projectiles = [];
   }
 
@@ -46,10 +46,12 @@ export class Enemy extends BaseObject {
   private watchWallsProtection() {
     if (this.position.x < 0) {
       this.position.x = 0;
+      this.color = BaseGameColors.RED;
     }
 
     if (this.position.x > this.scene.width - this.size.width) {
       this.position.x = this.scene.width - this.size.width;
+      this.color = BaseGameColors.BLUE;
     }
   }
 

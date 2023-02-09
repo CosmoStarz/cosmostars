@@ -18,6 +18,7 @@ export enum BaseGameColors {
   RED = "#ff0000",
   YELLOW = "#ffff00",
   BLACK = "#000000",
+  BLUE = "blue",
 }
 
 export enum ThemeNames {

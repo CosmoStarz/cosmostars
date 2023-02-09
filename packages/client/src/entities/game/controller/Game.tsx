@@ -6,11 +6,13 @@ import {
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
 import { Grid } from "../model/Grid/Grid";
+import { Enemy } from "../model/Enemy/Enemy";
 
 class Game {
   private canvas: HTMLCanvasElement;
   private scene: Canvas;
   private player: Player;
+  private frames: number;
 
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
@@ -36,18 +38,20 @@ class Game {
   }
 
   createEnemies() {
-    if (this.frames % this.randomInterval === 0) {
-      this.grids.push(new Grid({ scene: this.scene }));
-      this.frames = 0;
-      this.randomInterval = Math.floor(Math.random() * 500 + 500);
-    }
-    this.frames++;
+    this.grids.push(new Grid({ scene: this.scene }));
+    // if (this.frames % this.randomInterval === 0) {
+    //   this.grids.push(new Grid({ scene: this.scene }));
+    //   this.frames = 0;
+    //   this.randomInterval = Math.floor(Math.random() * 500 + 500);
+    // }
+    // this.frames++;
   }
 
   updateEnemies() {
-    this.grids.forEach(grid => {
-      grid.update();
-    });
+    this.grids.forEach(grid => grid.update({ velocity: { x: 5, y: 0 } }));
+    // this.grids.forEach(grid => {
+    //   grid.update();
+    // });
   }
 
   private init() {
