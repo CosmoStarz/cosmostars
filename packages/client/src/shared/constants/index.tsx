@@ -32,7 +32,7 @@ export enum RoutesName {
   FORUM = "/forum",
   GAME = "/game",
   LOGIN = "/login",
-  REGISRTATION = "/registration",
+  REGISTRATION = "/registration",
   FORUM_DETAIL = "/forum/:id",
 }
 
