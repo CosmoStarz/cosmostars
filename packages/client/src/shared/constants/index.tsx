@@ -33,7 +33,7 @@ export enum GameStatuses {
   LOOSE = 3,
   WIN = 4,
   PAUSED = 5,
-};
+}
 
 export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
   [GameStatuses.START]: {
