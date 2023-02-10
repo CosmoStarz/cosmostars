@@ -4,13 +4,17 @@ import {
   Button,
   Dialog,
   DialogTitle,
-  Box,
   Typography,
   DialogActions,
   DialogContentText,
 } from "@mui/material";
-import { BaseGameColors, RoutesName } from "../../shared/constants";
+import {
+  BaseGameColors,
+  GameModalImageAlign,
+  RoutesName,
+} from "../../shared/constants";
 import { GameModalProps } from "./types";
+import { GameModalImage } from "../../features/GameModalImage/GameModalImage";
 
 export const GameModal: FC<
   GameModalProps & { onStart: () => void }
@@ -64,16 +68,7 @@ export const GameModal: FC<
         {title}
       </DialogTitle>
       {rightImg && (
-        <Box
-          sx={{
-            background: `no-repeat center/contain url(${rightImg})`,
-            position: "absolute",
-            top: "-30%",
-            right: "-15%",
-            width: "250px",
-            height: "250px",
-          }}
-        />
+        <GameModalImage image={rightImg} type={GameModalImageAlign.RIGHT} />
       )}
       {scoreVisibility && (
         <Typography variant="h5" component="p" color={BaseGameColors.PURPLE}>
@@ -91,16 +86,7 @@ export const GameModal: FC<
         </DialogContentText>
       )}
       {leftImg && (
-        <Box
-          sx={{
-            background: `no-repeat center/contain url(${leftImg})`,
-            position: "absolute",
-            bottom: "-30%",
-            left: "-15%",
-            width: "250px",
-            height: "250px",
-          }}
-        />
+        <GameModalImage image={leftImg} type={GameModalImageAlign.LEFT} />
       )}
       <DialogActions
         sx={{

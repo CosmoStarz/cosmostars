@@ -8,10 +8,10 @@ import {
 import { elementCoords } from "../../entities/game/ui/Canvas/types";
 import { GameModalProps, GameModalTypes } from "../../widgets/GameModal/types";
 import { MenuLinkType } from "../../features/MenuLink/types";
-import WinRight from "../../assets/images/win-ribbon.png";
-import WinLeft from "../../assets/images/win-firework.png";
-import LooseRight from "../../assets/images/loose-ufo.png";
-import LooseLeft from "../../assets/images/loose-enemy.png";
+import WinRight from "../../assets/images/win-modal-top-right.png";
+import WinLeft from "../../assets/images/win-modal-bottom-left.png";
+import LooseRight from "../../assets/images/loose-modal-top-right.png";
+import LooseLeft from "../../assets/images/loose-modal-bottom-left.png";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
@@ -61,6 +61,22 @@ export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
     scoreVisibility: true,
     canBeResumed: true,
     rulesVisibility: true,
+  },
+};
+
+export enum GameModalImageAlign {
+  RIGHT = 0,
+  LEFT = 1,
+}
+
+export const GameModalImageProps = {
+  [GameModalImageAlign.RIGHT]: {
+    top: "-30%",
+    right: "-15%",
+  },
+  [GameModalImageAlign.LEFT]: {
+    bottom: "-30%",
+    left: "-15%",
   },
 };
 
