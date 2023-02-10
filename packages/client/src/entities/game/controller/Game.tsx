@@ -6,7 +6,7 @@ import {
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
 
-class Game {
+export class Game {
   private canvas: HTMLCanvasElement;
   private scene: Canvas;
   private player: Player;
@@ -16,7 +16,7 @@ class Game {
     this.scene = this.mainScene;
     this.player = this.createPlayer;
 
-    this.init(); // TODO: после реализации экрана начала игры - вызывать после нажатия кнопки
+    this.drawCanvas();
   }
 
   get mainScene() {
@@ -30,7 +30,7 @@ class Game {
     });
   }
 
-  private init() {
+  public init() {
     this.initListeners();
     this.update();
   }
