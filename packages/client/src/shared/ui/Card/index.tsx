@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, FocusEvent, ReactElement } from 'react';
+import React, { useState, ChangeEvent, FocusEvent, ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Card,
@@ -10,12 +11,12 @@ import {
   Button,
   Link,
 } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { SvgIconProps } from "@mui/material";
-
+import { RoutesName } from "../../constants";
 
 type FieldsType = {
   id: string;
@@ -35,6 +36,7 @@ type Props = {
   linkName?: string;
   handleSubmit?: () => void;
   icon?: ReactElement<SvgIconProps>;
+  linkHref?: string;
 };
 
 const CardView = ({
@@ -45,6 +47,7 @@ const CardView = ({
   buttonName,
   linkName,
   icon,
+  linkHref,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -53,6 +56,7 @@ const CardView = ({
   ) => {
     event.preventDefault();
   };
+  const navigate = useNavigate();
   return (
     <Box
       className={className}
@@ -84,7 +88,12 @@ const CardView = ({
               pl: "14px",
               width: "100%",
             }}>
-            <IconButton>{icon}</IconButton>
+            <IconButton
+              onClick={() => {
+                navigate(RoutesName.LOGIN);
+              }}>
+              {icon}
+            </IconButton>
           </Box>
         )}
         <CardHeader
@@ -145,7 +154,7 @@ const CardView = ({
               {buttonName}
             </Button>
             {linkName && (
-              <Link href="#">
+              <Link href={linkHref ? linkHref : "#"}>
                 <Typography>{linkName}</Typography>
               </Link>
             )}

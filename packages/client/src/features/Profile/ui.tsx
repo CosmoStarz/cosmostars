@@ -45,7 +45,8 @@ export const Profile = () => {
             pl: "14px",
             width: "100%",
             border: "1px dashed grey",
-          }}/>
+          }}
+        />
         <CardHeader
           title="Profile"
           sx={{

@@ -1,9 +1,14 @@
+import { PropsWithChildren } from "react";
 import { useFormik } from "formik";
 import { CardView } from "../../../shared/ui";
-import { authSchema } from "../schemas";
+import { signUpSchema } from "../schemas/sign-up";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
-export const SignUp = () => {
+export type SignUpProps = PropsWithChildren<{
+  handleSignUp: () => void;
+}>;
+
+export const SignUp = ({ handleSignUp }: SignUpProps) => {
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
       email: "",
@@ -13,11 +18,12 @@ export const SignUp = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: authSchema,
+    validationSchema: signUpSchema,
     onSubmit: () => {
-      console.log("sign-up");
+      handleSignUp();
     },
   });
+
   const props = {
     className: "sign-up",
     title: "Sign up",

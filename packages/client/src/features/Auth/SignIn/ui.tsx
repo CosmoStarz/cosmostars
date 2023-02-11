@@ -1,18 +1,25 @@
+import { PropsWithChildren } from "react";
 import { useFormik } from "formik";
 import { CardView } from "../../../shared/ui";
-import { authSchema } from "../schemas";
+import { signInSchema } from "../schemas/sign-in";
+import { RoutesName } from "../../../shared/constants";
 
-export const SignIn = () => {
+export type SignInProps = PropsWithChildren<{
+  handleSignIn: () => void;
+}>;
+
+export const SignIn = ({ handleSignIn }: SignInProps) => {
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
       login: "",
       password: "",
     },
-    validationSchema: authSchema,
+    validationSchema: signInSchema,
     onSubmit: () => {
-      console.log("sign-in");
+      handleSignIn();
     },
   });
+  console.log(errors);
   const props = {
     className: "sign-in",
     title: "Login",
@@ -50,6 +57,7 @@ export const SignIn = () => {
       fields={props.fields}
       buttonName={props.btn}
       linkName={props.link}
+      linkHref={RoutesName.REGISTRATION}
     />
   );
 };
