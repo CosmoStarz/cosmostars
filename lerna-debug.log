@@ -1,0 +1,16 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   scope: 'client',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '5.4.3',
+0 silly argv   '$0': '/home/alexander/ya.practicum/cosmostars/node_modules/.bin/lerna',
+0 silly argv   pkg: '@mui-treasury'
+0 silly argv }
+1 notice cli v5.4.3
+2 verbose rootPath /home/alexander/ya.practicum/cosmostars
+3 error Error: Invalid tag name "@mui-treasury": Tags may not have any characters that encodeURIComponent encodes.
+3 error     at invalidTagName (/home/alexander/ya.practicum/cosmostars/node_modules/npm-package-arg/npa.js:94:15)
+3 error     at fromRegistry (/home/alexander/ya.practicum/cosmostars/node_modules/npm-package-arg/npa.js:299:13)
+3 error     at resolve (/home/alexander/ya.practicum/cosmostars/node_modules/npm-package-arg/npa.js:84:12)
+3 error     at npa (/home/alexander/ya.practicum/cosmostars/node_modules/npm-package-arg/npa.js:55:10)
+3 error     at AddCommand.initialize (/home/alexander/ya.practicum/cosmostars/node_modules/@lerna/add/index.js:39:17)

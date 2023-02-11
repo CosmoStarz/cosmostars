@@ -20,7 +20,7 @@ export const MainPage: FC = () => {
           width: "100%",
         }}>
         <Typography
-          variant="h1"
+          component="h1"
           className="main-page__name"
           sx={{
             fontSize: "144px",
