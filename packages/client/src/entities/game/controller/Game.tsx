@@ -7,7 +7,7 @@ import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 
-class Game {
+export class Game {
   private canvas: HTMLCanvasElement;
   private scene: Canvas;
   private player: Player;
@@ -23,7 +23,7 @@ class Game {
     this.frames = 0;
     this.randomInterval = Math.floor(Math.random() * 500 + 500);
 
-    this.init(); // TODO: после реализации экрана начала игры - вызывать после нажатия кнопки
+    this.drawCanvas();
   }
 
   get mainScene() {
@@ -36,6 +36,7 @@ class Game {
       scene: this.scene,
     });
   }
+
 
   get createOneEnemy() {
     return new EnemyGrid({
