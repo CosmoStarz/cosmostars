@@ -1,18 +1,15 @@
 import { FC } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { MainLayout } from "../shared/layouts/MainLayout";
-import { RoutesName } from "../shared/constants";
+import { MainLayout } from "../../shared/layouts/MainLayout";
+import { RoutesName } from "../../shared/constants";
+import { Link } from "react-router-dom";
 
 export const MainPage: FC = () => {
-  const handleClick = () => {
-    // TODO: после внедрения react-router сделать переход на страницу игры через useNavigate
-    console.log(`Переход на ${RoutesName.GAME}`);
-  };
-
   return (
     <MainLayout>
       <Box
+        data-testid="main-page"
         className="main-page"
         sx={{
           display: "flex",
@@ -42,7 +39,8 @@ export const MainPage: FC = () => {
           variant="contained"
           endIcon={<PlayArrowIcon />}
           size="large"
-          onClick={handleClick}>
+          component={Link}
+          to={RoutesName.GAME}>
           Play
         </Button>
       </Box>
