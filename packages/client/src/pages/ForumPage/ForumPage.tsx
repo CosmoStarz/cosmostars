@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import {
@@ -6,7 +6,7 @@ import {
   CardActionArea, CardHeader,
   IconButton, InputAdornment,
   List,
-  Paper,
+  Paper, TablePagination,
   TextField,
   Typography
 } from "@mui/material";
@@ -16,8 +16,14 @@ import { topicMock } from "../../shared/constants/mocks";
 import { MainLayout } from "../../shared/layouts/MainLayout";
 import { ArrowForward, Search } from "@mui/icons-material";
 import { AddTopic } from "../../features/AddTopic/AddTopic";
+import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 
 export const ForumPage: FC = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(1);
+  const rowsOffset = page * rowsPerPage;
+  const filtredTopics = topicMock.slice(rowsOffset, rowsOffset + rowsPerPage);
+
   const formikSearch = useFormik({
     initialValues: {
       search: ""
@@ -27,6 +33,19 @@ export const ForumPage: FC = () => {
       console.log(values);
     }
   });
+  const onChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const onChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <MainLayout>
@@ -117,7 +136,7 @@ export const ForumPage: FC = () => {
             width: "100%",
             overflowY: "scroll"
           }}>
-          {topicMock.map(item => (
+          {filtredTopics.map(item => (
             <TopicItem key={item.id} bordered {...item} header={() => (
               <CardActionArea component={Link} to={`/forum/${item.id}`}>
                 <CardHeader
@@ -127,6 +146,22 @@ export const ForumPage: FC = () => {
             )} />
           ))}
         </List>
+        <TablePagination
+          rowsPerPageOptions={[1, 2, 3]}
+          colSpan={4}
+          count={topicMock.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          SelectProps={{
+            inputProps: {
+              "aria-label": "rows per page",
+            },
+            native: true,
+          }}
+          onPageChange={onChangePage}
+          onRowsPerPageChange={onChangeRowsPerPage}
+          ActionsComponent={TablePaginationActions}
+        />
       </Paper>
     </MainLayout>
   );
