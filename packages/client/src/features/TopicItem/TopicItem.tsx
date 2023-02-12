@@ -14,7 +14,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const TopicItem: FC<TopicItemType> = props => {
-  const { id, author, avatar, comments, content, likes, bordered } = props;
+  const { id, author, avatar, comments, content, likes, bordered, header = () => null} = props;
   const [favourite, setFavourite] = useState(false);
   const [likesCount, setLikesCount] = useState(likes ?? 0);
 
@@ -39,6 +39,7 @@ export const TopicItem: FC<TopicItemType> = props => {
       }}
       key={id}
       variant={bordered ? "outlined" : "elevation"}>
+      {header()}
       <CardHeader
         avatar={
           <Avatar sx={{ width: 48, height: 48 }} alt={author} src={avatar} />
