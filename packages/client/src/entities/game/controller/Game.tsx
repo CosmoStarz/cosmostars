@@ -5,25 +5,25 @@ import {
 } from "../../../shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
-import { Grid } from "../model/Grid/Grid";
-import { Enemy } from "../model/Enemy/Enemy";
+import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 
 class Game {
   private canvas: HTMLCanvasElement;
   private scene: Canvas;
   private player: Player;
   private frames: number;
+  private enemies: EnemyGrid[];
+  private randomInterval: number;
 
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
     this.scene = this.mainScene;
     this.player = this.createPlayer;
-    this.grids = [];
+    this.enemies = [];
     this.frames = 0;
     this.randomInterval = Math.floor(Math.random() * 500 + 500);
 
     this.init(); // TODO: после реализации экрана начала игры - вызывать после нажатия кнопки
-    this.createEnemies();
   }
 
   get mainScene() {
@@ -37,23 +37,36 @@ class Game {
     });
   }
 
-  createEnemies() {
-    this.grids.push(
-      new Grid({ scene: this.scene, velocity: { dx: 5, dy: 0 } })
-    );
-    // if (this.frames % this.randomInterval === 0) {
-    //   this.grids.push(new Grid({ scene: this.scene }));
-    //   this.frames = 0;
-    //   this.randomInterval = Math.floor(Math.random() * 500 + 500);
-    // }
-    // this.frames++;
+  get createOneEnemy() {
+    return new EnemyGrid({
+      scene: this.scene,
+    });
   }
 
-  updateEnemies() {
-    this.grids.forEach(grid => grid.update());
-    // this.grids.forEach(grid => {
-    //   grid.update();
-    // });
+  createEnemies() {
+    if (this.frames % this.randomInterval === 0) {
+      this.enemies.push(this.createOneEnemy);
+      this.frames = 0;
+      this.randomInterval = Math.floor(Math.random() * 500 + 500);
+    }
+    this.frames += 1;
+  }
+
+  watchEnemiesGone() {
+    this.enemies.forEach((enemy, index) => {
+      if (enemy.position.y >= this.scene.height) {
+        setTimeout(() => {
+          this.enemies = this.enemies.filter((item, idx) => idx !== index);
+        }, 0);
+      } else {
+        enemy.update();
+        if (this.frames % 100 === 0 && enemy.enemies.length > 0) {
+          enemy.enemies[
+            Math.floor(Math.random() * enemy.enemies.length)
+          ].shoot();
+        }
+      }
+    });
   }
 
   private init() {
@@ -101,7 +114,8 @@ class Game {
     requestAnimationFrame(this.update.bind(this));
     this.drawCanvas();
     this.player.update();
-    this.updateEnemies();
+    this.watchEnemiesGone();
+    this.createEnemies();
   }
 }
 

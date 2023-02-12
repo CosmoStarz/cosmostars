@@ -1,0 +1,76 @@
+import {
+  BaseGameColors,
+  initialObjectSize,
+} from "../../../../shared/constants";
+import { BaseObject } from "../BaseObject/BaseObject";
+import { baseObjectProps } from "../BaseObject/types";
+import { Enemy } from "../Enemy/Enemy";
+
+export class EnemyGrid extends BaseObject {
+  private columns: number;
+  private rows: number;
+  public enemies: Enemy[];
+
+  constructor(props: baseObjectProps) {
+    super(props);
+    this.enemies = [];
+    this.columns = Math.floor(Math.random() * 10 + 5);
+    this.rows = Math.floor(Math.random() * 5 + 2);
+    this.size = {
+      width: this.columns * initialObjectSize.width,
+      height: this.rows * initialObjectSize.height,
+    };
+    this.position = this.initPosition;
+    this.velocity = {
+      dx: 3,
+      dy: 0,
+    };
+    this.draw();
+  }
+
+  protected get initPosition() {
+    return {
+      x: 0,
+      y: 0,
+    };
+  }
+
+  draw() {
+    for (let x = 0; x < this.columns; x++) {
+      for (let y = 0; y < this.rows; y++) {
+        this.enemies.push(
+          new Enemy({
+            color: BaseGameColors.YELLOW,
+            scene: this.scene,
+            position: {
+              x: x * initialObjectSize.width,
+              y: y * initialObjectSize.width,
+            },
+            velocity: this.velocity,
+          })
+        );
+      }
+    }
+  }
+
+  public update() {
+    this.enemies.forEach(item => {
+      item.update();
+    });
+    this.position.x += this.velocity.dx;
+    this.position.y += this.velocity.dy;
+    this.watchWallsProtection();
+  }
+
+  private watchWallsProtection() {
+    this.velocity.dy = 0;
+
+    if (
+      this.position.x + this.size.width >= this.scene.width ||
+      this.position.x <= 0
+    ) {
+      this.velocity.dx = -this.velocity.dx;
+      this.velocity.dy = initialObjectSize.height;
+    }
+  }
+}

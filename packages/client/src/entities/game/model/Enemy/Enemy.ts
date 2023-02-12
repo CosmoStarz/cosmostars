@@ -1,35 +1,44 @@
-import { BaseGameColors, baseSpeed } from "../../../../shared/constants";
+import {
+  BaseGameColors,
+  baseSpeed,
+  initialCoords,
+  initialVelocity,
+} from "../../../../shared/constants";
 import { GameObjectColor } from "../../controller/types";
+import { elementCoords } from "../../ui/Canvas/types";
 import { BaseObject } from "../BaseObject/BaseObject";
+import { basicVelocity } from "../BaseObject/types";
 import { Projectile } from "../Projectile/Projectile";
 import { enemyProps } from "./types";
 
 export class Enemy extends BaseObject {
   private color: GameObjectColor;
   public projectiles: Projectile[];
+  public position: elementCoords;
+  public velocity: basicVelocity;
 
   constructor(props: enemyProps) {
     super(props);
-    this.scene = props.scene;
     this.color = props.color;
-    this.position = props.position;
+    this.position = props.position ?? initialCoords;
+    this.velocity = props.velocity ?? initialVelocity;
     this.projectiles = [];
   }
 
   protected draw() {
-    this.watchWallsProtection();
     this.scene.drawRect(this.color, this.position, this.size);
   }
 
-  public update({ velocity }) {
+  public update() {
     this.draw();
-    this.position.x += velocity.dx;
-    this.position.y += velocity.dy;
+    this.position.x += this.velocity.dx;
+    this.position.y += this.velocity.dy;
+    this.watchProjectilesGone();
   }
 
   public shoot() {
     const projectile = new Projectile({
-      color: BaseGameColors.RED,
+      color: BaseGameColors.YELLOW,
       scene: this.scene,
       position: {
         x: this.position.x + this.size.width / 2,
@@ -43,21 +52,9 @@ export class Enemy extends BaseObject {
     this.projectiles.push(projectile);
   }
 
-  private watchWallsProtection() {
-    if (this.position.x < 0) {
-      this.position.x = 0;
-      this.color = BaseGameColors.RED;
-    }
-
-    if (this.position.x > this.scene.width - this.size.width) {
-      this.position.x = this.scene.width - this.size.width;
-      this.color = BaseGameColors.BLUE;
-    }
-  }
-
   private watchProjectilesGone() {
     this.projectiles.forEach((proj, index) => {
-      if (proj.position.y + proj.size.width <= 0) {
+      if (proj.position.y + proj.size.height >= this.scene.height) {
         setTimeout(() => {
           this.projectiles = this.projectiles.filter(
             (item, idx) => idx !== index
