@@ -54,7 +54,7 @@ export class Enemy extends BaseObject {
 
   private watchProjectilesGone() {
     this.projectiles.forEach((proj, index) => {
-      if (proj.position.y + proj.size.height >= this.scene.height) {
+      if (proj.position.y >= this.scene.height) {
         setTimeout(() => {
           this.projectiles = this.projectiles.filter(
             (item, idx) => idx !== index

@@ -1,5 +1,9 @@
 import {
   BaseGameColors,
+  basicGridSpeed,
+  gridColumns,
+  gridRows,
+  initialCoords,
   initialObjectSize,
 } from "../../../../shared/constants";
 import { BaseObject } from "../BaseObject/BaseObject";
@@ -14,25 +18,15 @@ export class EnemyGrid extends BaseObject {
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = Math.floor(Math.random() * 10 + 5);
-    this.rows = Math.floor(Math.random() * 5 + 2);
+    this.columns = gridColumns;
+    this.rows = gridRows;
     this.size = {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,
     };
-    this.position = this.initPosition;
-    this.velocity = {
-      dx: 3,
-      dy: 0,
-    };
+    this.position = initialCoords;
+    this.velocity = basicGridSpeed;
     this.draw();
-  }
-
-  protected get initPosition() {
-    return {
-      x: 0,
-      y: 0,
-    };
   }
 
   draw() {

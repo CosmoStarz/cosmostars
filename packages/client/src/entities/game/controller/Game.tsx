@@ -37,7 +37,6 @@ export class Game {
     });
   }
 
-
   get createOneEnemy() {
     return new EnemyGrid({
       scene: this.scene,
@@ -70,7 +69,7 @@ export class Game {
     });
   }
 
-  private init() {
+  public init() {
     this.initListeners();
     this.update();
   }

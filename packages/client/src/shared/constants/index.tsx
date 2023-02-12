@@ -26,7 +26,6 @@ export enum BaseGameColors {
   BLUE = "#23A9F2",
   GREEN = "#3AD900",
   PURPLE = "#ba68c8",
-
 }
 
 export enum GameStatuses {
@@ -135,6 +134,14 @@ export const initialObjectSize: basicSize = {
   width: 45,
   height: 45,
 };
+
+export const basicGridSpeed: basicVelocity = {
+  dx: 3,
+  dy: 0,
+};
+
+export const gridColumns: number = Math.floor(Math.random() * 10 + 5);
+export const gridRows: number = Math.floor(Math.random() * 5 + 2);
 
 export enum GameKeyboard {
   LEFT = 37,
