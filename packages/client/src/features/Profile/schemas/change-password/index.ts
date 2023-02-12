@@ -1,13 +1,17 @@
 import * as yup from "yup";
 import { ERROR_MESSAGES } from "../../../../shared/constants/error-messages";
 
-export const signInSchema = yup.object().shape({
+export const ChangePasswordSchema = yup.object().shape({
+  oldPassword: yup
+    .string()
+    .min(5, ERROR_MESSAGES.PASSWORD_ERROR_MSG)
+    .required(ERROR_MESSAGES.REQUIRED_MSG),
   password: yup
     .string()
     .min(5, ERROR_MESSAGES.PASSWORD_ERROR_MSG)
     .required(ERROR_MESSAGES.REQUIRED_MSG),
-  login: yup
+  confirmPassword: yup
     .string()
-    .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
+    .oneOf([yup.ref("password"), null], ERROR_MESSAGES.CONFIRM_ERROR_MSG)
     .required(ERROR_MESSAGES.REQUIRED_MSG),
 });
