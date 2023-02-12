@@ -1,13 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
-import { RowData, Table } from "./ui";
+import { RowData, Status, Table } from "./ui";
 
 const leaderboardData: RowData[] = [
   {
     name: "Esthera Jackson",
     email: "esthera@simmmple.com",
     score: 10000,
-    status: "online",
+    status: Status.ONLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -15,7 +15,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -23,7 +23,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -31,7 +31,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -39,7 +39,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -47,7 +47,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -55,7 +55,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -63,7 +63,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -71,7 +71,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -79,7 +79,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -87,7 +87,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -95,7 +95,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
   {
@@ -103,7 +103,7 @@ const leaderboardData: RowData[] = [
     email: "alexa@simmmple.com",
     img: "https://via.placeholder.com/40",
     score: 10000,
-    status: "offline",
+    status: Status.OFFLINE,
     lastGameDate: "14/06/21",
   },
 ];
@@ -118,8 +118,7 @@ export const Leaderboard: FC = () => {
           "linear-gradient(126.97deg, rgba(6, 11, 40, 0.26) 28.26%, rgba(10, 14, 35, 0.42) 91.2%)",
         backdropFilter: "blur(60px)",
         borderRadius: "20px",
-        pr: "18px",
-        pl: "18px",
+        px: "18px",
         pt: "36px",
         pb: "75px",
       }}>
@@ -127,7 +126,6 @@ export const Leaderboard: FC = () => {
         component="h1"
         sx={{
           mb: "23px",
-          fontFamily: "Bubblegum Sans",
           fontStyle: "normal",
           fontWeight: "400",
           fontSize: "45px",

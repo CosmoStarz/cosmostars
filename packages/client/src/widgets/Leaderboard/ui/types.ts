@@ -1,3 +1,8 @@
+export enum Status {
+  ONLINE = "online",
+  OFFLINE = "offline",
+}
+
 export type PlayerData = {
   name: string;
   img?: string;
@@ -6,6 +11,6 @@ export type PlayerData = {
 
 export type RowData = PlayerData & {
   score: number;
-  status: "online" | "offline";
+  status: Status;
   lastGameDate: string;
 };
