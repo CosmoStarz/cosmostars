@@ -26,9 +26,9 @@ export const Router = () => {
       <Route
         path={RoutesName.PROFILE}
         element={
-          <PrivateMode>
+          <GuestMode>
             <ProfilePage />
-          </PrivateMode>
+          </GuestMode>
         }
       />
       <Route
