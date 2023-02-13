@@ -14,13 +14,13 @@ import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const TopicItem: FC<TopicItemType> = props => {
-  const { id, author, avatar, comments, content, likes, bordered } = props;
+  const { id, author, avatar, commentsCount, content, likesCount, isBordered } = props;
   const [favourite, setFavourite] = useState(false);
-  const [likesCount, setLikesCount] = useState(likes ?? 0);
+  const [likesNumber, setLikesCount] = useState(likesCount ?? 0);
 
   const handleChangeIsLike = () => {
     setFavourite(!favourite);
-    setLikesCount(favourite ? likesCount - 1 : likesCount + 1);
+    setLikesCount(favourite ? likesNumber - 1 : likesNumber + 1);
   };
 
   return (
@@ -38,7 +38,7 @@ export const TopicItem: FC<TopicItemType> = props => {
         boxShadow: "none",
       }}
       key={id}
-      variant={bordered ? "outlined" : "elevation"}>
+      variant={isBordered ? "outlined" : "elevation"}>
       <CardHeader
         avatar={
           <Avatar sx={{ width: 48, height: 48 }} alt={author} src={avatar} />
@@ -49,11 +49,11 @@ export const TopicItem: FC<TopicItemType> = props => {
       <CardActions>
         <TypographyButton
           icon={<CommentIcon color="disabled" />}
-          title={`${comments ?? 0} Comments`}
+          title={`${commentsCount ?? 0} Comments`}
         />
         <TypographyButton
           icon={<FavoriteIcon color={favourite ? "error" : "disabled"} />}
-          title={`${likesCount} Likes`}
+          title={`${likesNumber} Likes`}
           onClick={handleChangeIsLike}
         />
       </CardActions>

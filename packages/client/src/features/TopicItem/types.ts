@@ -1,9 +1,9 @@
 export type TopicItemType = {
   id: number;
-  bordered?: boolean;
+  isBordered?: boolean;
   author: string;
   avatar?: string;
   content: string;
-  comments?: number;
-  likes?: number;
+  commentsCount?: number;
+  likesCount?: number;
 };
