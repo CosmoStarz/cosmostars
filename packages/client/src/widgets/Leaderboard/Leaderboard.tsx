@@ -118,14 +118,14 @@ export const Leaderboard: FC = () => {
           "linear-gradient(126.97deg, rgba(6, 11, 40, 0.26) 28.26%, rgba(10, 14, 35, 0.42) 91.2%)",
         backdropFilter: "blur(60px)",
         borderRadius: "20px",
-        px: "18px",
-        pt: "36px",
-        pb: "75px",
+        px: "1.35%",
+        pt: "2.69%",
+        pb: "5.61%",
       }}>
       <Typography
         component="h1"
         sx={{
-          mb: "23px",
+          mb: "1.72%",
           fontStyle: "normal",
           fontWeight: "400",
           fontSize: "45px",
