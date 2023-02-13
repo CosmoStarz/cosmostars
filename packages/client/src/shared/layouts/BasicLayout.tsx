@@ -17,7 +17,7 @@ export const BasicLayout: FC<PropsWithChildren> = props => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "100vh",
+        minHeight: "100vh",
         width: "100%",
         backgroundImage: `url(${background})`,
         backgroundRepeat: "repeat",
