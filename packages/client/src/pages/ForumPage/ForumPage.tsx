@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { TopicItem } from "../../features/TopicItem/TopicItem";
 import { searchValidation } from "../../shared/constants/validationShemas";
-import { topicMock } from "../../shared/constants/mocks";
+import { forumApi } from "../../shared/constants/mocks";
 import { MainLayout } from "../../shared/layouts/MainLayout";
 import { ArrowForward, Search } from "@mui/icons-material";
 import { AddTopic } from "../../features/AddTopic/AddTopic";
@@ -22,7 +22,7 @@ export const ForumPage: FC = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(1);
   const rowsOffset = page * rowsPerPage;
-  const filtredTopics = topicMock.slice(rowsOffset, rowsOffset + rowsPerPage);
+  const filtredTopics = forumApi.getTopic().slice(rowsOffset, rowsOffset + rowsPerPage);
 
   const formikSearch = useFormik({
     initialValues: {
@@ -137,7 +137,7 @@ export const ForumPage: FC = () => {
             overflowY: "scroll"
           }}>
           {filtredTopics.map(item => (
-            <TopicItem key={item.id} bordered {...item} header={() => (
+            <TopicItem key={item.id} isBordered {...item} header={() => (
               <CardActionArea component={Link} to={`/forum/${item.id}`}>
                 <CardHeader
                   title={<Typography variant="h5" component="h2">Topic {item.id}</Typography>}
@@ -146,22 +146,31 @@ export const ForumPage: FC = () => {
             )} />
           ))}
         </List>
-        <TablePagination
-          rowsPerPageOptions={[1, 2, 3]}
-          colSpan={4}
-          count={topicMock.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          SelectProps={{
-            inputProps: {
-              "aria-label": "rows per page",
-            },
-            native: true,
-          }}
-          onPageChange={onChangePage}
-          onRowsPerPageChange={onChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%"
+          }}>
+
+          <TablePagination
+            component="div"
+            rowsPerPageOptions={[1, 2, 3]}
+            colSpan={4}
+            count={forumApi.getTopic().length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            SelectProps={{
+              inputProps: {
+                "aria-label": "rows per page",
+              },
+              native: true,
+            }}
+            onPageChange={onChangePage}
+            onRowsPerPageChange={onChangeRowsPerPage}
+            ActionsComponent={TablePaginationActions}
+          />
+        </Box>
       </Paper>
     </MainLayout>
   );
