@@ -3,11 +3,14 @@ import { Alert } from "@mui/material";
 
 type ErrorBoundaryState = {
   hasError: boolean;
-}
+};
 type ErrorBoundaryProps = {
   children?: ReactNode;
-}
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+};
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
