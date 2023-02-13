@@ -16,6 +16,7 @@ export const MainPage: FC = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          my: "auto",
           height: "70%",
           width: "100%",
         }}>
