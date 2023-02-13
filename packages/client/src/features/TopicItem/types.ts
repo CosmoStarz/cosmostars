@@ -1,10 +1,10 @@
 export type TopicItemType = {
   id: number;
-  bordered?: boolean;
+  isBordered?: boolean;
   header?: () => JSX.Element | null;
   author: string;
   avatar?: string;
   content: string;
-  comments?: number;
-  likes?: number;
+  commentsCount?: number;
+  likesCount?: number;
 };

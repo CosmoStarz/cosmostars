@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { TopicItem } from "../../features/TopicItem/TopicItem";
 import { commentValidation } from "../../shared/constants/validationShemas";
-import { authorMock, topicMock } from "../../shared/constants/mocks";
+import { forumApi } from "../../shared/constants/mocks";
 import { MainLayout } from "../../shared/layouts/MainLayout";
 import { RoutesName } from "../../shared/constants";
 import ReplyIcon from "@mui/icons-material/Reply";
@@ -28,6 +28,8 @@ export const ForumTopicPage: FC = () => {
       console.log(values);
     },
   });
+  const comments = forumApi.getTopic();
+  const authorTopic = forumApi.getAuthor();
 
   const handleNavigateForum = () => {
     navigate(RoutesName.FORUM);
@@ -44,7 +46,8 @@ export const ForumTopicPage: FC = () => {
           alignItems: "center",
           height: "80%",
           width: "80%",
-          margin: "auto",
+          my: 2,
+          mx: "auto",
           padding: 3,
         }}>
         <Box
@@ -65,10 +68,10 @@ export const ForumTopicPage: FC = () => {
             component="h1"
             className="topic-page__name"
             m={"auto"}>
-            {authorMock.title}
+            {authorTopic.title}
           </Typography>
         </Box>
-        <TopicItem {...authorMock} />
+        <TopicItem {...authorTopic} />
         <Box
           component="form"
           onSubmit={formik.handleSubmit}
@@ -100,10 +103,10 @@ export const ForumTopicPage: FC = () => {
         <List
           sx={{
             width: "100%",
-            overflowY: "scroll",
+            overflowY: "auto",
           }}>
-          {topicMock.map(item => (
-            <TopicItem key={item.id} bordered {...item} />
+          {comments.map(item => (
+            <TopicItem key={item.id} isBordered {...item} />
           ))}
         </List>
       </Paper>
