@@ -41,7 +41,6 @@ export const AddTopic: FC = () => {
                  left: "50%",
                  transform: "translate(-50%, -50%)",
                  width: "400px",
-                 border: "2px solid #000",
                  padding: "16px"
                }}>
           <Typography id="modal-title" variant="h6" component="h3" align="center">
