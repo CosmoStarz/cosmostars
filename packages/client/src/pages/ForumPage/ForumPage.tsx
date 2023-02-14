@@ -52,10 +52,10 @@ export const ForumPage: FC = () => {
       <Paper
         variant="outlined"
         sx={{
-          backgroundColor: "rgb(0 0 0 / 80%)",
+          opacity: ".8",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center",
           height: "80%",
           width: "80%",
@@ -76,7 +76,6 @@ export const ForumPage: FC = () => {
             Forum
           </Typography>
         </Box>
-
         <Box
           sx={{
             boxSizing: "border-box",
@@ -93,7 +92,7 @@ export const ForumPage: FC = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "end",
-              width: "80%",
+              flex: 1,
               my: 2,
               mr: 5
             }}>
@@ -118,23 +117,20 @@ export const ForumPage: FC = () => {
                       edge="end"
                       type="submit"
                     >
-                      <ArrowForward></ArrowForward>
+                      <ArrowForward/>
                     </IconButton>
                   </InputAdornment>
                 )
-              }}
-              sx={{
-                mb: 2
               }}
             />
           </Box>
           <AddTopic/>
         </Box>
-
         <List
           sx={{
+            flex: 1,
             width: "100%",
-            overflowY: "scroll"
+            overflowY: "auto"
           }}>
           {filtredTopics.map(item => (
             <TopicItem key={item.id} isBordered {...item} header={() => (
@@ -152,7 +148,6 @@ export const ForumPage: FC = () => {
             justifyContent: "flex-end",
             width: "100%"
           }}>
-
           <TablePagination
             component="div"
             rowsPerPageOptions={[1, 2, 3]}
