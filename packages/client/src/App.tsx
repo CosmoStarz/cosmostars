@@ -7,7 +7,6 @@ import "./App.css";
 import { Router } from "./router";
 import { BrowserRouter } from "react-router-dom";
 
-
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
@@ -24,11 +23,9 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-
         <BrowserRouter>
           <Router />
         </BrowserRouter>
-
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

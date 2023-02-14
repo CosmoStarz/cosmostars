@@ -1,7 +1,9 @@
 import {
   BaseGameColors,
   baseSpeed,
+  framesPerShoot,
   GameKeyboard,
+  randomIntervalGenerator,
 } from "../../../shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
@@ -21,7 +23,7 @@ export class Game {
     this.player = this.createPlayer;
     this.enemies = [];
     this.frames = 0;
-    this.randomInterval = Math.floor(Math.random() * 500 + 500);
+    this.randomInterval = randomIntervalGenerator;
 
     this.drawCanvas();
   }
@@ -47,7 +49,7 @@ export class Game {
     if (this.frames % this.randomInterval === 0) {
       this.enemies.push(this.createOneEnemy);
       this.frames = 0;
-      this.randomInterval = Math.floor(Math.random() * 500 + 500);
+      this.randomInterval = randomIntervalGenerator;
     }
     this.frames += 1;
   }
@@ -60,7 +62,7 @@ export class Game {
         }, 0);
       } else {
         enemy.update();
-        if (this.frames % 100 === 0 && enemy.enemies.length > 0) {
+        if (this.frames % framesPerShoot === 0 && enemy.enemies.length > 0) {
           enemy.enemies[
             Math.floor(Math.random() * enemy.enemies.length)
           ].shoot();

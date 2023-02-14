@@ -140,6 +140,10 @@ export const basicGridSpeed: basicVelocity = {
   dy: 0,
 };
 
+export const randomIntervalGenerator: number = Math.floor(
+  Math.random() * 500 + 500
+);
+export const framesPerShoot = 100;
 export const gridColumns: number = Math.floor(Math.random() * 10 + 5);
 export const gridRows: number = Math.floor(Math.random() * 5 + 2);
 
