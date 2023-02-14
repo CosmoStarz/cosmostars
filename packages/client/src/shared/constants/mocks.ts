@@ -1,5 +1,5 @@
 export const forumApi = {
-  getTopic: () => ([
+  getTopic: () => [
     {
       id: 1,
       author: "Petr Petrov",
@@ -11,7 +11,7 @@ export const forumApi = {
       author: "Ivan Ivanov",
       content: "good topic",
     },
-  ]),
+  ],
   getAuthor: () => ({
     id: 3,
     title: "Topic example",

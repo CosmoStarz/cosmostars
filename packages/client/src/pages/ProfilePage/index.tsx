@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { BasicLayout } from "../../shared/layouts/BasicLayout";
+import { MainLayout } from "../../shared/layouts/MainLayout";
 import { ProfileWidget } from "../../widgets/Profile/Profile";
 import { RoutesName } from "../../shared/constants";
 
@@ -11,8 +11,8 @@ export const ProfilePage = () => {
     navigate(location?.state?.from ?? RoutesName.PROFILE);
   };
   return (
-    <BasicLayout>
+    <MainLayout>
       <ProfileWidget handleProfile={handleProfile} />
-    </BasicLayout>
+    </MainLayout>
   );
 };

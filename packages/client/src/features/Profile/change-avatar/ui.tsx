@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
-
 export type ChangeAvatarProps = PropsWithChildren<{
   handleChangeAvatar: () => void;
 }>;
@@ -54,7 +53,6 @@ export const ChangeAvatar = () => {
         sx={{
           my: "2rem",
           background: "transparent",
-          height: "510px",
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -65,7 +63,7 @@ export const ChangeAvatar = () => {
           titleTypographyProps={{ variant: "h3" }}
           title={props.title}
           sx={{
-            padding: "0px",
+            padding: "0",
             textAlign: "center",
           }}
         />
@@ -82,6 +80,7 @@ export const ChangeAvatar = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
+              mb: "1rem",
             }}>
             <Avatar alt="avatar" sx={{ width: 202, height: 188 }} />
           </Box>
@@ -91,18 +90,22 @@ export const ChangeAvatar = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              maxHeight: "152px",
+              height: "152px",
               maxWidht: "452px",
               width: "100%",
-              height: "100%",
               border: "1px dashed #E0E0E0",
               borderRadius: "4px",
             }}>
-            <UploadFileIcon></UploadFileIcon>
+            <UploadFileIcon />
             <Box>
               <Typography>
                 <Link component="label">
-                  Click to upload <input type="file" hidden />
+                  Click to upload{" "}
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg, image/svg, image/gif"
+                    hidden
+                  />
                 </Link>{" "}
                 or drag and drop
               </Typography>
@@ -114,6 +117,9 @@ export const ChangeAvatar = () => {
 
           <CardActions
             sx={{
+              mt: "1.5rem",
+              padding: "0",
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

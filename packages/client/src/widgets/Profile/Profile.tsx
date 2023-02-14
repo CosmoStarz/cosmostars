@@ -1,6 +1,5 @@
 import { useState, PropsWithChildren } from "react";
-import { Tab, Tabs } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Tab, Tabs, Box } from "@mui/material";
 import { ChangeProfile } from "../../features/Profile/change-profile";
 import { ChangePassword } from "../../features/Profile/change-password";
 import { ChangeAvatar } from "../../features/Profile/change-avatar";
@@ -43,26 +42,26 @@ export function ProfileWidget({ handleProfile }: ProfileProps) {
           indicatorColor="secondary"
           aria-label="secondary tabs example">
           <Tab
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ flexDirection: "row" }}
             label="Profile"
             icon={<PersonRoundedIcon />}
           />
           <Tab
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ flexDirection: "row" }}
             label="Pasword"
             icon={<HttpsRoundedIcon />}
           />
           <Tab
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ flexDirection: "row" }}
             label="Avatar"
             icon={<InsertPhotoRoundedIcon />}
           />
         </Tabs>
       </Box>
       <Box>
-        {value === 0 && <ChangeProfile/>}
-        {value === 1 && <ChangePassword/>}
-        {value === 2 && <ChangeAvatar/>}
+        {value === 0 && <ChangeProfile />}
+        {value === 1 && <ChangePassword />}
+        {value === 2 && <ChangeAvatar />}
       </Box>
     </Box>
   );

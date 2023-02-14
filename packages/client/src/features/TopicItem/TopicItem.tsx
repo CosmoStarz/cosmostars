@@ -14,7 +14,8 @@ import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const TopicItem: FC<TopicItemType> = props => {
-  const { id, author, avatar, commentsCount, content, likesCount, isBordered } = props;
+  const { id, author, avatar, commentsCount, content, likesCount, isBordered } =
+    props;
   const [favourite, setFavourite] = useState(false);
   const [likesNumber, setLikesCount] = useState(likesCount ?? 0);
 

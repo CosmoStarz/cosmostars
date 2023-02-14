@@ -10,9 +10,9 @@ export type ChangePasswordProps = PropsWithChildren<{
 export const ChangePassword = () => {
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
-      oldPassword: "1231123",
-      password: "1231123",
-      confirmPassword: "1231123",
+      oldPassword: "",
+      password: "",
+      confirmPassword: "",
     },
     validationSchema: ChangePasswordSchema,
     onSubmit: () => {
