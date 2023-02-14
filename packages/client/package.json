@@ -11,6 +11,11 @@
     "test": "jest ./ --passWithNoTests"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.7",
+    "@mui/x-data-grid": "^5.17.23",
     "dotenv": "^16.0.2",
     "eslint-config-prettier": "^8.5.0",
     "formik": "^2.2.9",
@@ -22,10 +27,6 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.7",
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.8",
     "@types/react": "^18.0.17",
