@@ -56,20 +56,12 @@ export const Forum: FC = () => {
         alignItems: "center",
         padding: 3
       }}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%"
-        }}>
         <Typography
           variant="h2"
           component="h1"
-          className="topic-page__name"
-          m={"auto"}>
+          textAlign="center">
           Forum
         </Typography>
-      </Box>
       <Box
         sx={{
           boxSizing: "border-box",
