@@ -135,17 +135,15 @@ export const initialObjectSize: basicSize = {
   height: 45,
 };
 
-export const basicGridSpeed: basicVelocity = {
-  dx: 3,
-  dy: 0,
-};
+export const basicGridSpeed = 3;
 
-export const randomIntervalGenerator: number = Math.floor(
-  Math.random() * 500 + 500
-);
+export const randomInterval = 500;
+
 export const framesPerShoot = 100;
-export const gridColumns: number = Math.floor(Math.random() * 10 + 5);
-export const gridRows: number = Math.floor(Math.random() * 5 + 2);
+export const maxColumns = 10;
+export const minColumns = 5;
+export const maxRows = 5;
+export const minRows = 2;
 
 export enum GameKeyboard {
   LEFT = 37,

@@ -1,10 +1,12 @@
 import {
   BaseGameColors,
   basicGridSpeed,
-  gridColumns,
-  gridRows,
   initialCoords,
   initialObjectSize,
+  maxColumns,
+  maxRows,
+  minColumns,
+  minRows,
 } from "../../../../shared/constants";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
@@ -18,14 +20,17 @@ export class EnemyGrid extends BaseObject {
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = gridColumns;
-    this.rows = gridRows;
+    this.columns = Math.floor(Math.random() * maxColumns + minColumns);
+    this.rows = Math.floor(Math.random() * maxRows + minRows);
     this.size = {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,
     };
     this.position = initialCoords;
-    this.velocity = basicGridSpeed;
+    this.velocity = {
+      dx: basicGridSpeed,
+      dy: 0,
+    };
     this.draw();
   }
 
