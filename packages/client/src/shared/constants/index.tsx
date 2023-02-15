@@ -23,6 +23,8 @@ export enum BaseGameColors {
   RED = "#ff0000",
   YELLOW = "#ffff00",
   BLACK = "#000000",
+  BLUE = "#23A9F2",
+  GREEN = "#3AD900",
   PURPLE = "#ba68c8",
 }
 
@@ -132,6 +134,16 @@ export const initialObjectSize: basicSize = {
   width: 45,
   height: 45,
 };
+
+export const basicGridSpeed = 3;
+
+export const randomInterval = 500;
+
+export const framesPerShoot = 100;
+export const maxColumns = 10;
+export const minColumns = 5;
+export const maxRows = 5;
+export const minRows = 2;
 
 export enum GameKeyboard {
   LEFT = 37,
