@@ -26,7 +26,7 @@ export class EnemyGrid extends BaseObject {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,
     };
-    this.position = initialCoords;
+    this.position = this.initPosition;
     this.velocity = {
       dx: basicGridSpeed,
       dy: 0,
@@ -50,6 +50,13 @@ export class EnemyGrid extends BaseObject {
         );
       }
     }
+  }
+
+  protected get initPosition() {
+    return {
+      x: 0,
+      y: 0,
+    };
   }
 
   public update() {
