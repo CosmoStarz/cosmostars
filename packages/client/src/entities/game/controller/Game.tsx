@@ -1,20 +1,31 @@
 import {
   BaseGameColors,
   baseSpeed,
+  framesPerShoot,
   GameKeyboard,
+  randomInterval,
 } from "../../../shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
+import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 
 export class Game {
   private canvas: HTMLCanvasElement;
   private scene: Canvas;
   private player: Player;
+  private frames: number;
+  private enemies: EnemyGrid[];
+  private randomInterval: number;
 
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
     this.scene = this.mainScene;
     this.player = this.createPlayer;
+    this.enemies = [];
+    this.frames = 0;
+    this.randomInterval = Math.floor(
+      Math.random() * randomInterval + randomInterval
+    );
 
     this.drawCanvas();
   }
@@ -27,6 +38,40 @@ export class Game {
     return new Player({
       color: BaseGameColors.RED,
       scene: this.scene,
+    });
+  }
+
+  get createOneEnemy() {
+    return new EnemyGrid({
+      scene: this.scene,
+    });
+  }
+
+  createEnemies() {
+    if (this.frames % this.randomInterval === 0) {
+      this.enemies.push(this.createOneEnemy);
+      this.frames = 0;
+      this.randomInterval = Math.floor(
+        Math.random() * randomInterval + randomInterval
+      );
+    }
+    this.frames += 1;
+  }
+
+  watchEnemiesGone() {
+    this.enemies.forEach((enemy, index) => {
+      if (enemy.position.y >= this.scene.height) {
+        setTimeout(() => {
+          this.enemies = this.enemies.filter((item, idx) => idx !== index);
+        }, 0);
+      } else {
+        enemy.update();
+        if (this.frames % framesPerShoot === 0 && enemy.enemies.length > 0) {
+          enemy.enemies[
+            Math.floor(Math.random() * enemy.enemies.length)
+          ].shoot();
+        }
+      }
     });
   }
 
@@ -75,6 +120,8 @@ export class Game {
     requestAnimationFrame(this.update.bind(this));
     this.drawCanvas();
     this.player.update();
+    this.watchEnemiesGone();
+    this.createEnemies();
   }
 }
 
