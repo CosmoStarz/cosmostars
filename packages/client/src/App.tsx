@@ -3,9 +3,9 @@ import { ThemeProvider } from "@mui/material";
 import { ColorModeContext } from "./features/ThemeToggler/ThemeToggler";
 import { useBasicTheme } from "./shared/hooks/useBasicTheme";
 import { baseUrl } from "./shared/constants";
-import "./App.css";
 import { Router } from "./router";
 import { BrowserRouter } from "react-router-dom";
+import "./App.css";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
