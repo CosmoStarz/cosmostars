@@ -1,9 +1,14 @@
 import { FC } from "react";
+import { Container } from "@mui/material";
+import { MainLayout } from "../../shared/layouts/MainLayout";
+import { Forum } from "../../widgets/Forum/Forum";
 
 export const ForumPage: FC = () => {
   return (
-    <main data-testid="forum-page">
-      <h1>Forum</h1>
-    </main>
+    <MainLayout>
+      <Container sx={{ mt: "9.375%", mb: "6.45%" }}>
+        <Forum />
+      </Container>
+    </MainLayout>
   );
 };
