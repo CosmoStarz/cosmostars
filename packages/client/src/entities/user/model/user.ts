@@ -3,15 +3,15 @@ import { User } from "./types";
 import { API_URL } from "../../../shared/config";
 
 export const authApi = createApi({
-  reducerPath: 'user',
+  reducerPath: "user",
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_URL}/auth`,
     credentials: "include",
   }),
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getUserInfo: builder.query<User, void>({
-      query: () => '/user',
+      query: () => "/user",
     }),
   }),
-})
+});
 export const { useGetUserInfoQuery } = authApi;

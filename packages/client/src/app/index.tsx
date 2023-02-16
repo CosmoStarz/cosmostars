@@ -9,13 +9,13 @@ import "./index.css";
 import { useGetUserInfoQuery } from "../entities/user/model";
 
 function App() {
-
-  // пример использования хука rtk query. он получит
-  // пользователя и результат сохранит в стор
-  useGetUserInfoQuery();
   const [theme, colorMode] = useBasicTheme();
 
   useEffect(() => {
+    // пример использования хука rtk query. он получит
+    // пользователя и результат сохранит в стор
+    useGetUserInfoQuery();
+
     const fetchServerData = async () => {
       const response = await fetch(baseUrl);
       const data = await response.json();
