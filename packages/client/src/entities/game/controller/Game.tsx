@@ -78,7 +78,9 @@ export class Game {
           enemyGrid.enemies.length > 0
         ) {
           const randomIndex = getRandomNumber(enemyGrid.enemies.length, 0);
-          enemyGrid.enemies[randomIndex].shoot();
+          if (enemyGrid.enemies[randomIndex]) {
+            enemyGrid.enemies[randomIndex].shoot();
+          }
         }
       }
     });
