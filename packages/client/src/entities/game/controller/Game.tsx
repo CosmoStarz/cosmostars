@@ -27,7 +27,7 @@ export class Game {
     this.player = this.createPlayer;
     this.enemyGrids = [];
     this.frames = 0;
-    this.randomInterval = getRandomNumber(randomInterval, randomInterval);
+    this.randomInterval = getRandomNumber(randomInterval * 2, randomInterval);
     this.gameActive = false;
 
     this.drawCanvas();
@@ -54,7 +54,7 @@ export class Game {
     if (this.frames % this.randomInterval === 0) {
       this.enemyGrids.push(this.createOneEnemyGrid);
       this.frames = 0;
-      this.randomInterval = getRandomNumber(randomInterval, randomInterval);
+      this.randomInterval = getRandomNumber(randomInterval * 2, randomInterval);
     }
     this.frames += 1;
   }
