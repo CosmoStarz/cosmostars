@@ -1,4 +1,4 @@
-import { GameStatuses } from "../../shared/constants";
+import { GameStatuses } from "@/shared/constants";
 
 export type GameModalTypes =
   | GameStatuses.START

@@ -4,11 +4,12 @@ import {
   framesPerShoot,
   GameKeyboard,
   randomInterval,
-} from "../../../shared/constants";
-import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
-import { BaseObject } from "../model/BaseObject/BaseObject";
+} from "@/shared/constants";
+
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
+import { BaseObject } from "../model/BaseObject/BaseObject";
 import { Player } from "../model/Player/Player";
+import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { getRandomNumber } from "./utils";
 
 export class Game {

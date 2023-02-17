@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
-import { leaderboardData } from "../../data/leaderboard";
+
+import { leaderboardData } from "@/data/leaderboard";
+
 import { Table } from "./ui";
 
 export const Leaderboard: FC = () => {

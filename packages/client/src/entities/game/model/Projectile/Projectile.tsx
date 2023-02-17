@@ -1,4 +1,5 @@
-import { projectileRadius } from "../../../../shared/constants";
+import { projectileRadius } from "@/shared/constants";
+
 import { GameObjectColor } from "../../controller/types";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { projectileProps } from "./types";

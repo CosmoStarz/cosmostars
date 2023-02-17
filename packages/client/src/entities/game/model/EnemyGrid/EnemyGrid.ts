@@ -6,7 +6,8 @@ import {
   maxRows,
   minColumns,
   minRows,
-} from "../../../../shared/constants";
+} from "@/shared/constants";
+
 import { getRandomNumber } from "../../controller/utils";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
