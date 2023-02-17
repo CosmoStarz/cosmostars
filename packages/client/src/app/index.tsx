@@ -16,15 +16,6 @@ function App() {
   // пример использования хука rtk query. он получит
   // пользователя и результат сохранит в стор
   useGetUserInfoQuery();
-  useEffect(() => {
-    const fetchServerData = async () => {
-      const response = await fetch(baseUrl);
-      const data = await response.json();
-      console.log(data);
-    };
-
-    fetchServerData();
-  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
