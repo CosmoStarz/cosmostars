@@ -1,13 +1,13 @@
 import {
   BaseGameColors,
   basicGridSpeed,
-  initialCoords,
   initialObjectSize,
   maxColumns,
   maxRows,
   minColumns,
   minRows,
 } from "../../../../shared/constants";
+import { getRandomNumber } from "../../controller/utils";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
 import { Enemy } from "../Enemy/Enemy";
@@ -20,8 +20,8 @@ export class EnemyGrid extends BaseObject {
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = Math.floor(Math.random() * maxColumns + minColumns);
-    this.rows = Math.floor(Math.random() * maxRows + minRows);
+    this.columns = getRandomNumber(maxColumns, minColumns);
+    this.rows = getRandomNumber(maxRows, minRows);
     this.size = {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,

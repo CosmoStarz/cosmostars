@@ -9,6 +9,14 @@ export class Projectile extends BaseObject {
   constructor(props: projectileProps) {
     super(props);
     this.color = props.color;
+    this.size = this.getSize;
+  }
+
+  get getSize() {
+    return {
+      width: projectileRadius * 2,
+      height: projectileRadius * 2,
+    };
   }
 
   protected draw() {
