@@ -8,7 +8,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { addTopicValidation } from "../../shared/constants/validationShemas";
+import { addTopicValidation } from "@/shared/constants/validationShemas";
 
 export const AddTopic: FC = () => {
   const [open, setOpen] = useState(false);

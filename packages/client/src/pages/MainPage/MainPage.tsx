@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { MainLayout } from "../../shared/layouts/MainLayout";
-import { RoutesName } from "../../shared/constants";
+import { MainLayout } from "@/shared/layouts/MainLayout";
+import { RoutesName } from "@/shared/constants";
 import { Link } from "react-router-dom";
 
 export const MainPage: FC = () => {

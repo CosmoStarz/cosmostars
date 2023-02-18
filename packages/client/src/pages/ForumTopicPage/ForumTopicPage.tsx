@@ -10,11 +10,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { TopicItem } from "../../features/TopicItem/TopicItem";
-import { commentValidation } from "../../shared/constants/validationShemas";
-import { forumApi } from "../../shared/constants/mocks";
-import { MainLayout } from "../../shared/layouts/MainLayout";
-import { RoutesName } from "../../shared/constants";
+import { TopicItem } from "@/features/TopicItem/TopicItem";
+import { commentValidation } from "@/shared/constants/validationShemas";
+import { forumApi } from "@/shared/constants/mocks";
+import { MainLayout } from "@/shared/layouts/MainLayout";
+import { RoutesName } from "@/shared/constants";
 import ReplyIcon from "@mui/icons-material/Reply";
 
 export const ForumTopicPage: FC = () => {

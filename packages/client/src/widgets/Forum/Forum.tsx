@@ -10,11 +10,11 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { TopicItem } from "../../features/TopicItem/TopicItem";
-import { searchValidation } from "../../shared/constants/validationShemas";
-import { forumApi } from "../../shared/constants/mocks";
+import { TopicItem } from "@/features/TopicItem/TopicItem";
+import { searchValidation } from "@/shared/constants/validationShemas";
+import { forumApi } from "@/shared/constants/mocks";
 import { ArrowForward, Search } from "@mui/icons-material";
-import { AddTopic } from "../../features/AddTopic/AddTopic";
+import { AddTopic } from "@/features/AddTopic/AddTopic";
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 
 export const Forum: FC = () => {

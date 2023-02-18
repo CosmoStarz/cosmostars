@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { useFormik } from "formik";
 import { CardView } from "../../../shared/ui";
 import { signInSchema } from "../schemas/sign-in";
-import { RoutesName } from "../../../shared/constants";
+import { RoutesName } from "@/shared/constants";
 
 export type SignInProps = PropsWithChildren<{
   handleSignIn: () => void;

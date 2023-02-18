@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, List, Paper } from "@mui/material";
-import { ThemeToggler } from "../../features/ThemeToggler/ThemeToggler";
-import { MenuLink } from "../../features/MenuLink/MenuLink";
-import { MenuItems } from "../../shared/constants";
+import { ThemeToggler } from "@/features/ThemeToggler/ThemeToggler";
+import { MenuLink } from "@/features/MenuLink/MenuLink";
+import { MenuItems } from "@/shared/constants";
 
 export const MainMenu: FC = () => {
   return (

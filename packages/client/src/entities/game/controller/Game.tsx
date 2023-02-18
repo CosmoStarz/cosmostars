@@ -4,7 +4,7 @@ import {
   framesPerShoot,
   GameKeyboard,
   randomInterval,
-} from "../../../shared/constants";
+} from "@/shared/constants";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { Player } from "../model/Player/Player";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";

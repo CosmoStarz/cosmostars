@@ -1,4 +1,4 @@
-import { initialCoords } from "../../../../shared/constants";
+import { initialCoords } from "@/shared/constants";
 import { GameObjectColor } from "../../controller/types";
 import { basicSize } from "../../model/BaseObject/types";
 import { elementCoords } from "./types";

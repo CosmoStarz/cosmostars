@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { ERROR_MESSAGES } from "../../../../shared/constants/error-messages";
+import { ERROR_MESSAGES } from "@/shared/constants/error-messages";
 
 export const ChangePasswordSchema = yup.object().shape({
   oldPassword: yup

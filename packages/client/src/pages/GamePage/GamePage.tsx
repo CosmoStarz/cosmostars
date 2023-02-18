@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from "react";
-import { GameModalConfig, GameStatuses } from "../../shared/constants";
-import { Game, initGame } from "../../entities/game/controller/Game";
-import { GameModal } from "../../widgets/GameModal/GameModal";
+import { GameModalConfig, GameStatuses } from "@/shared/constants";
+import { Game, initGame } from "@/entities/game/controller/Game";
+import { GameModal } from "@/widgets/GameModal/GameModal";
 
 export const GamePage: FC = () => {
   const canvasElement = useRef<HTMLCanvasElement>(null);

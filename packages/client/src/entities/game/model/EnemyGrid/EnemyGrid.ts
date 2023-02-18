@@ -7,7 +7,7 @@ import {
   maxRows,
   minColumns,
   minRows,
-} from "../../../../shared/constants";
+} from "@/shared/constants";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
 import { Enemy } from "../Enemy/Enemy";

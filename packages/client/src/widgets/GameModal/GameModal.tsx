@@ -12,9 +12,9 @@ import {
   BaseGameColors,
   GameModalImageAlign,
   RoutesName,
-} from "../../shared/constants";
+} from "@/shared/constants";
 import { GameModalProps } from "./types";
-import { GameModalImage } from "../../features/GameModalImage/GameModalImage";
+import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
 
 export const GameModal: FC<
   GameModalProps & { onStart: () => void }

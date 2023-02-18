@@ -4,14 +4,14 @@ import StarIcon from "@mui/icons-material/Star";
 import {
   basicSize,
   basicVelocity,
-} from "../../entities/game/model/BaseObject/types";
-import { elementCoords } from "../../entities/game/ui/Canvas/types";
-import { GameModalProps, GameModalTypes } from "../../widgets/GameModal/types";
-import { MenuLinkType } from "../../features/MenuLink/types";
-import WinRight from "../../assets/images/win-modal-top-right.png";
-import WinLeft from "../../assets/images/win-modal-bottom-left.png";
-import LooseRight from "../../assets/images/loose-modal-top-right.png";
-import LooseLeft from "../../assets/images/loose-modal-bottom-left.png";
+} from "@/entities/game/model/BaseObject/types";
+import { elementCoords } from "@/entities/game/ui/Canvas/types";
+import { GameModalProps, GameModalTypes } from "@/widgets/GameModal/types";
+import { MenuLinkType } from "@/features/MenuLink/types";
+import WinRight from "@/assets/images/win-modal-top-right.png";
+import WinLeft from "@/assets/images/win-modal-bottom-left.png";
+import LooseRight from "@/assets/images/loose-modal-top-right.png";
+import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 

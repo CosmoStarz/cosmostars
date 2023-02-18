@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
-import { ColorModeContext } from "../features/ThemeToggler/ThemeToggler";
-import { useBasicTheme } from "../shared/hooks/useBasicTheme";
-import { baseUrl } from "../shared/constants";
-import { Router } from "../router";
+import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
+import { useBasicTheme } from "@/shared/hooks/useBasicTheme";
+import { baseUrl } from "@/shared/constants";
+import { Router } from "@/router";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import { useGetUserInfoQuery } from "../entities/user/model";
+import { useGetUserInfoQuery } from "@/entities/user/model";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
