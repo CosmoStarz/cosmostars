@@ -4,6 +4,7 @@ import {
   initialCoords,
   initialVelocity,
 } from "@/shared/constants";
+
 import { GameObjectColor } from "../../controller/types";
 import { elementCoords } from "../../ui/Canvas/types";
 import { BaseObject } from "../BaseObject/BaseObject";

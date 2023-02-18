@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { RoutesName } from "@/shared/constants";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 import { ProfileWidget } from "@/widgets/Profile/Profile";
-import { RoutesName } from "@/shared/constants";
 
 export const ProfilePage = () => {
   const location = useLocation();

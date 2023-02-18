@@ -1,6 +1,4 @@
-import { FC, useState } from "react";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
+import { ArrowForward, Search } from "@mui/icons-material";
 import {
   Box,
   CardActionArea, CardHeader,
@@ -10,12 +8,15 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { TopicItem } from "@/features/TopicItem/TopicItem";
-import { searchValidation } from "@/shared/constants/validationShemas";
-import { forumApi } from "@/shared/constants/mocks";
-import { ArrowForward, Search } from "@mui/icons-material";
-import { AddTopic } from "@/features/AddTopic/AddTopic";
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
+import { useFormik } from "formik";
+import { FC, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { AddTopic } from "@/features/AddTopic/AddTopic";
+import { TopicItem } from "@/features/TopicItem/TopicItem";
+import { forumApi } from "@/shared/constants/mocks";
+import { searchValidation } from "@/shared/constants/validationShemas";
 
 export const Forum: FC = () => {
   const [page, setPage] = useState(0);

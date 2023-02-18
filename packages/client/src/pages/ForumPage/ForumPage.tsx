@@ -1,5 +1,6 @@
-import { FC } from "react";
 import { Container } from "@mui/material";
+import { FC } from "react";
+
 import { MainLayout } from "@/shared/layouts/MainLayout";
 import { Forum } from "@/widgets/Forum/Forum";
 

@@ -1,4 +1,5 @@
 import { initialCoords } from "@/shared/constants";
+
 import { GameObjectColor } from "../../controller/types";
 import { basicSize } from "../../model/BaseObject/types";
 import { elementCoords } from "./types";
@@ -11,7 +12,6 @@ export class Canvas {
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
     this.context = this.canvas.getContext("2d")!;
-
     this.canvas.width = this.width;
     this.canvas.height = this.height;
   }

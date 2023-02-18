@@ -1,6 +1,4 @@
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
+import ReplyIcon from "@mui/icons-material/Reply";
 import {
   Box,
   Button,
@@ -10,12 +8,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useFormik } from "formik";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { TopicItem } from "@/features/TopicItem/TopicItem";
-import { commentValidation } from "@/shared/constants/validationShemas";
-import { forumApi } from "@/shared/constants/mocks";
-import { MainLayout } from "@/shared/layouts/MainLayout";
 import { RoutesName } from "@/shared/constants";
-import ReplyIcon from "@mui/icons-material/Reply";
+import { forumApi } from "@/shared/constants/mocks";
+import { commentValidation } from "@/shared/constants/validationShemas";
+import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const ForumTopicPage: FC = () => {
   const navigate = useNavigate();

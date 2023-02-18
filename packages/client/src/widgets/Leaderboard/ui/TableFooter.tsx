@@ -1,10 +1,10 @@
-import React, { FC } from "react";
 import {
   TableFooter as MuiTableFooter,
   TablePagination,
   TableRow,
 } from "@mui/material";
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
+import React, { FC } from "react";
 
 type TableFooterProps = {
   pagesCount: number;

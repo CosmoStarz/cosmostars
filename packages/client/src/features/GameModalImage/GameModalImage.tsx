@@ -1,6 +1,8 @@
-import { FC } from "react";
 import { Box } from "@mui/material";
+import { FC } from "react";
+
 import { GameModalImageProps } from "@/shared/constants";
+
 import { GameModalImageTypes } from "./types";
 
 export const GameModalImage: FC<GameModalImageTypes> = props => {

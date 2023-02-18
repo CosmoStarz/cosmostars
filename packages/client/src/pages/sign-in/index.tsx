@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { BasicLayout } from "@/shared/layouts/BasicLayout";
+
 import { SignIn } from "@/features/Auth/SignIn";
 import { RoutesName } from "@/shared/constants";
+import { BasicLayout } from "@/shared/layouts/BasicLayout";
 
 export const SignInPage = () => {
   const location = useLocation();

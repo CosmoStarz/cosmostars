@@ -3,6 +3,7 @@ import {
   initialObjectSize,
   initialVelocity,
 } from "@/shared/constants";
+
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 import { baseObjectProps, basicSize, basicVelocity } from "./types";

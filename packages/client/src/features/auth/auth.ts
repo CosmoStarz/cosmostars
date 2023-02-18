@@ -1,4 +1,5 @@
 import { LS_IS_LOGGED_KEY } from "@/shared/constants/auth";
+
 import { LS_isLoggedValues } from "./types";
 
 export const logIn = () =>

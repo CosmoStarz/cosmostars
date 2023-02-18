@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 import { FC } from "react";
+
 import { MainLayout } from "@/shared/layouts/MainLayout";
 import { Leaderboard } from "@/widgets/Leaderboard";
 

@@ -1,11 +1,12 @@
-import { useState, PropsWithChildren } from "react";
-import { Tab, Tabs, Box } from "@mui/material";
-import { ChangeProfile } from "@/features/Profile/change-profile";
-import { ChangePassword } from "@/features/Profile/change-password";
-import { ChangeAvatar } from "@/features/Profile/change-avatar";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
 import InsertPhotoRoundedIcon from "@mui/icons-material/InsertPhotoRounded";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import { Box,Tab, Tabs } from "@mui/material";
+import { PropsWithChildren,useState } from "react";
+
+import { ChangeAvatar } from "@/features/Profile/change-avatar";
+import { ChangePassword } from "@/features/Profile/change-password";
+import { ChangeProfile } from "@/features/Profile/change-profile";
 
 export type ProfileProps = PropsWithChildren<{
   handleProfile: () => void;
