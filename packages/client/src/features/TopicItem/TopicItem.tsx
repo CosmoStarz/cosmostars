@@ -15,7 +15,16 @@ import { TypographyButton } from "../TypographyButton/TypographyButton";
 import { TopicItemType } from "./types";
 
 export const TopicItem: FC<TopicItemType> = props => {
-  const { id, author, avatar, commentsCount, content, likesCount, isBordered, header = () => null } = props;
+  const {
+    id,
+    author,
+    avatar,
+    commentsCount,
+    content,
+    likesCount,
+    isBordered,
+    header = () => null,
+  } = props;
   const [favourite, setFavourite] = useState(false);
   const [likesNumber, setLikesCount] = useState(likesCount ?? 0);
 

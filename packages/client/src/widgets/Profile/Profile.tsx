@@ -1,8 +1,8 @@
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
 import InsertPhotoRoundedIcon from "@mui/icons-material/InsertPhotoRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Box,Tab, Tabs } from "@mui/material";
-import { PropsWithChildren,useState } from "react";
+import { Box, Tab, Tabs } from "@mui/material";
+import { PropsWithChildren, useState } from "react";
 
 import { ChangeAvatar } from "@/features/Profile/change-avatar";
 import { ChangePassword } from "@/features/Profile/change-password";
