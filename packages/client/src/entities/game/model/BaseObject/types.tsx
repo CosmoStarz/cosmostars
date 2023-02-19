@@ -1,5 +1,5 @@
-import { elementCoords } from "../../ui/Canvas/types";
 import { Canvas } from "../../ui/Canvas/Canvas";
+import { elementCoords } from "../../ui/Canvas/types";
 
 export type basicVelocity = {
   dx: number;

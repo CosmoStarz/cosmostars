@@ -1,4 +1,5 @@
-import { BaseGameColors, baseSpeed } from "../../../../shared/constants";
+import { BaseGameColors, baseSpeed } from "@/shared/constants";
+
 import { GameObjectColor } from "../../controller/types";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { Projectile } from "../Projectile/Projectile";

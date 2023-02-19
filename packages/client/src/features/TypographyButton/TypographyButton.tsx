@@ -1,5 +1,6 @@
-import { FC } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
+import { FC } from "react";
+
 import { TypographyButtonType } from "./types";
 
 export const TypographyButton: FC<TypographyButtonType> = props => {

@@ -1,8 +1,10 @@
-import { FC, PropsWithChildren, useMemo } from "react";
 import { Box, useTheme } from "@mui/material";
+import { FC, PropsWithChildren, useMemo } from "react";
+
+import BackgroundDark from "@/assets/images/bg-dark.png";
+import BackgroundLight from "@/assets/images/bg-light.jpg";
+
 import { ThemeNames } from "../constants";
-import BackgroundDark from "../../assets/images/bg-dark.png";
-import BackgroundLight from "../../assets/images/bg-light.jpg";
 
 export const BasicLayout: FC<PropsWithChildren> = props => {
   const theme = useTheme();

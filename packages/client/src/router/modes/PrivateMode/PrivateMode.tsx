@@ -1,8 +1,9 @@
 import { FC, ReactNode } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { logOut } from "../../../features/auth";
-import { RoutesName } from "../../../shared/constants";
-import { useAuth } from "../../../shared/hooks/useAuth";
+
+import { logOut } from "@/features/auth";
+import { RoutesName } from "@/shared/constants";
+import { useAuth } from "@/shared/hooks/useAuth";
 
 export type PrivateModeProps = {
   children: ReactNode;

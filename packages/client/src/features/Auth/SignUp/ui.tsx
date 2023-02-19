@@ -1,8 +1,10 @@
-import { PropsWithChildren } from "react";
-import { useFormik } from "formik";
-import { CardView } from "../../../shared/ui";
-import { signUpSchema } from "../schemas/sign-up";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import { useFormik } from "formik";
+import { PropsWithChildren } from "react";
+
+import { CardView } from "@/shared/ui";
+
+import { signUpSchema } from "../schemas/sign-up";
 
 export type SignUpProps = PropsWithChildren<{
   handleSignUp: () => void;

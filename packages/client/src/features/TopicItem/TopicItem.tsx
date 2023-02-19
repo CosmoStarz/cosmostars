@@ -1,3 +1,5 @@
+import CommentIcon from "@mui/icons-material/Comment";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   Avatar,
   Card,
@@ -8,13 +10,21 @@ import {
   Typography,
 } from "@mui/material";
 import { FC, useState } from "react";
+
 import { TypographyButton } from "../TypographyButton/TypographyButton";
 import { TopicItemType } from "./types";
-import CommentIcon from "@mui/icons-material/Comment";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export const TopicItem: FC<TopicItemType> = props => {
-  const { id, author, avatar, commentsCount, content, likesCount, isBordered, header = () => null } = props;
+  const {
+    id,
+    author,
+    avatar,
+    commentsCount,
+    content,
+    likesCount,
+    isBordered,
+    header = () => null,
+  } = props;
   const [favourite, setFavourite] = useState(false);
   const [likesNumber, setLikesCount] = useState(likesCount ?? 0);
 

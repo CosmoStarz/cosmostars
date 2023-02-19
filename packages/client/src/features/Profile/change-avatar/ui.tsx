@@ -1,17 +1,17 @@
-import { PropsWithChildren } from "react";
-import { useFormik } from "formik";
-import {
-  Box,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Typography,
-  Link,
-  Button,
-  Avatar,
-} from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Link,
+  Typography,
+} from "@mui/material";
+import { useFormik } from "formik";
+import { PropsWithChildren } from "react";
 
 export type ChangeAvatarProps = PropsWithChildren<{
   handleChangeAvatar: () => void;
@@ -19,7 +19,7 @@ export type ChangeAvatarProps = PropsWithChildren<{
 
 // { handleChangeAvatar }: ChangeAvatarProps
 export const ChangeAvatar = () => {
-  const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
+  const { values, handleSubmit } = useFormik({
     initialValues: {
       avatar: "",
     },

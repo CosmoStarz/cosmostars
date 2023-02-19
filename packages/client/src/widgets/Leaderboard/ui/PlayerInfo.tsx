@@ -1,5 +1,6 @@
-import { Avatar, Card, CardHeader, Typography } from "@mui/material";
+import { Avatar, Card, CardHeader } from "@mui/material";
 import { FC } from "react";
+
 import { PlayerData } from "./types";
 
 type PlayerInfoProps = PlayerData;

@@ -4,10 +4,11 @@ import {
   framesPerShoot,
   GameKeyboard,
   randomInterval,
-} from "../../../shared/constants";
-import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
-import { Player } from "../model/Player/Player";
+} from "@/shared/constants";
+
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
+import { Player } from "../model/Player/Player";
+import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 
 export class Game {
   private canvas: HTMLCanvasElement;
