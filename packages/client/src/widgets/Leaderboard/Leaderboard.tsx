@@ -1,9 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import { leaderboardData } from "../../data/leaderboard";
+import { useGetLeaderboardQuery } from "../../entities/leaderboard/api";
 import { Table } from "./ui";
 
 export const Leaderboard: FC = () => {
+  const leaderboardQueryData = useGetLeaderboardQuery({
+    offset: 0,
+    perPage: 10,
+  });
+  console.log(leaderboardQueryData);
+
   return (
     <Box
       sx={{
