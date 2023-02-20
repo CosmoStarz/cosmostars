@@ -1,3 +1,4 @@
+import { GameObjectColor } from "../../controller/types";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 
@@ -16,4 +17,5 @@ export type baseObjectProps = {
   velocity?: basicVelocity;
   position?: elementCoords;
   size?: basicSize;
+  color?: GameObjectColor;
 };
