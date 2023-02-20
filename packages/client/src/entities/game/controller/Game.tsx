@@ -11,7 +11,6 @@ import { BaseObject } from "../model/BaseObject/BaseObject";
 import { Player } from "../model/Player/Player";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { getRandomNumber } from "./utils";
-import { Projectile } from "../model/Projectile/Projectile";
 
 export class Game {
   private canvas: HTMLCanvasElement;
