@@ -15,7 +15,7 @@ export const GamePage: FC = () => {
   }, [canvasElement]);
 
   const startNewGame = () => {
-    game.current?.init();
+    game.current?.start();
   };
 
   return (
