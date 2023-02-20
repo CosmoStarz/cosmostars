@@ -21,8 +21,8 @@ export class EnemyGrid extends BaseObject {
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = getRandomNumber(maxColumns, minColumns);
-    this.rows = getRandomNumber(maxRows, minRows);
+    this.columns = getRandomNumber(minColumns, maxColumns);
+    this.rows = getRandomNumber(minRows, maxRows);
     this.size = {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,

@@ -11,6 +11,7 @@ import { BaseObject } from "../model/BaseObject/BaseObject";
 import { Player } from "../model/Player/Player";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { getRandomNumber } from "./utils";
+import { Projectile } from "../model/Projectile/Projectile";
 
 export class Game {
   private canvas: HTMLCanvasElement;
@@ -27,7 +28,7 @@ export class Game {
     this.player = this.createPlayer;
     this.enemyGrids = [];
     this.frames = 0;
-    this.randomInterval = getRandomNumber(randomInterval * 2, randomInterval);
+    this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     this.gameActive = false;
 
     this.drawCanvas();
@@ -44,7 +45,7 @@ export class Game {
     });
   }
 
-  get createOneEnemyGrid() {
+  private createOneEnemyGrid() {
     return new EnemyGrid({
       scene: this.scene,
     });
@@ -52,9 +53,9 @@ export class Game {
 
   private createEnemies() {
     if (this.frames % this.randomInterval === 0) {
-      this.enemyGrids.push(this.createOneEnemyGrid);
+      this.enemyGrids.push(this.createOneEnemyGrid());
       this.frames = 0;
-      this.randomInterval = getRandomNumber(randomInterval * 2, randomInterval);
+      this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     }
     this.frames += 1;
   }
@@ -77,7 +78,7 @@ export class Game {
           this.frames % framesPerShoot === 0 &&
           enemyGrid.enemies.length > 0
         ) {
-          const randomIndex = getRandomNumber(enemyGrid.enemies.length, 0);
+          const randomIndex = getRandomNumber(0, enemyGrid.enemies.length);
           if (enemyGrid.enemies[randomIndex]) {
             enemyGrid.enemies[randomIndex].shoot();
           }
@@ -104,46 +105,35 @@ export class Game {
     grid.position.x = firstEnemy.position.x;
   }
 
-  private checkCollisions() {
+  private checkCollision(projectiles: BaseObject[], collidingObject: BaseObject, collidingMethod: () => void) {
+    projectiles = projectiles.filter((projectile) => {
+      if (this.isIntersect(collidingObject, projectile)) {
+        collidingMethod();
+        return false;
+      }
+      return true;
+    });
+  }
+
+  private checkAllCollisions() {
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
         this.loose();
       }
 
-      enemyGrid.enemies = enemyGrid.enemies.filter(enemy => {
+      enemyGrid.enemies = enemyGrid.enemies.filter((enemy) => {
         let isEnemyAlive = true;
-        this.player.projectiles = this.player.projectiles.filter(
-          playerProjectile => {
-            let isFly = true;
-            enemy.projectiles = enemy.projectiles.filter(enemyProjectile => {
-              // Выстрелы столкнулись
-              if (this.isIntersect(playerProjectile, enemyProjectile)) {
-                isFly = false;
-                return false;
-              }
-              return true;
-            });
+        this.checkCollision(this.player.projectiles, enemy, () => { isEnemyAlive = false });
+        this.checkCollision(enemy.projectiles, this.player, () => { this.loose() });
 
-            // Выстрел попал во врага
-            if (this.isIntersect(enemy, playerProjectile)) {
-              isEnemyAlive = false;
-              return false;
-            }
-            return isFly;
-          }
-        );
-
-        enemy.projectiles = enemy.projectiles.filter(enemyProjectile => {
-          // Выстрел попал в игрока
-          if (this.isIntersect(this.player, enemyProjectile)) {
-            this.loose();
-            return false;
-          }
-          return true;
+        this.player.projectiles = this.player.projectiles.filter((playerProjectile) => {
+          let isFly = true;
+          this.checkCollision(enemy.projectiles, playerProjectile, () => { isFly = false });
+          return isFly;
         });
 
         return isEnemyAlive;
-      });
+      })
     });
   }
 
@@ -209,7 +199,7 @@ export class Game {
       requestAnimationFrame(this.update.bind(this));
       this.drawCanvas();
       this.player.update();
-      this.checkCollisions();
+      this.checkAllCollisions();
       this.watchEnemiesGone();
       this.createEnemies();
     }
