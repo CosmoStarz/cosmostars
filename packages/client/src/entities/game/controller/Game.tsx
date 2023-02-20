@@ -6,9 +6,10 @@ import {
   randomInterval,
 } from "@/shared/constants";
 
-import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { BaseObject } from "../model/BaseObject/BaseObject";
+import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
+import { Projectile } from "../model/Projectile/Projectile";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { getRandomNumber } from "./utils";
 
@@ -104,14 +105,18 @@ export class Game {
     grid.position.x = firstEnemy.position.x;
   }
 
-  private checkCollision(projectiles: BaseObject[], collidingObject: BaseObject, collidingMethod: () => void) {
-    projectiles = projectiles.filter((projectile) => {
+  private checkCollision(projectiles: Projectile[], collidingObject: BaseObject, collidingMethod: () => void) {
+    let isAlive = true;
+    const newProjectiles = projectiles.filter((projectile) => {
       if (this.isIntersect(collidingObject, projectile)) {
         collidingMethod();
+        isAlive = false;
         return false;
       }
       return true;
     });
+
+    return { isAlive, newProjectiles };
   }
 
   private checkAllCollisions() {
@@ -121,17 +126,26 @@ export class Game {
       }
 
       enemyGrid.enemies = enemyGrid.enemies.filter((enemy) => {
-        let isEnemyAlive = true;
-        this.checkCollision(this.player.projectiles, enemy, () => { isEnemyAlive = false });
-        this.checkCollision(enemy.projectiles, this.player, () => { this.loose() });
+        const hitEnemy = this.checkCollision(this.player.projectiles, enemy, () => {
+          // TODO: добавить взрыв (COS-53)
+          console.log("BOOM");
+        });
+        this.player.projectiles = hitEnemy.newProjectiles;
+
+        const hitPlayer = this.checkCollision(enemy.projectiles, this.player, () => { this.loose() });
+        enemy.projectiles = hitPlayer.newProjectiles;
 
         this.player.projectiles = this.player.projectiles.filter((playerProjectile) => {
-          let isFly = true;
-          this.checkCollision(enemy.projectiles, playerProjectile, () => { isFly = false });
-          return isFly;
+          const hitProjectiles = this.checkCollision(enemy.projectiles, playerProjectile, () => {
+            // TODO: добавить взрыв (COS-53)
+            console.log("BOOM");
+          });
+          enemy.projectiles = hitProjectiles.newProjectiles;
+
+          return hitProjectiles.isAlive;
         });
 
-        return isEnemyAlive;
+        return hitEnemy.isAlive;
       })
     });
   }
