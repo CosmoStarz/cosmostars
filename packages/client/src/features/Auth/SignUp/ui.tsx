@@ -3,9 +3,10 @@ import { useFormik } from "formik";
 import { CardView } from "../../../shared/ui";
 import { signUpSchema } from "../schemas/sign-up";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import { authTypes } from "../../../shared/api";
 
 export type SignUpProps = PropsWithChildren<{
-  handleSignUp: () => void;
+  handleSignUp: (userForm: authTypes.SignUpRequest) => void;
 }>;
 
 export const SignUp = ({ handleSignUp }: SignUpProps) => {
@@ -20,7 +21,16 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
     },
     validationSchema: signUpSchema,
     onSubmit: () => {
-      handleSignUp();
+      //TODO мне не нравится как это выглядит, принимаю предложение на улучшение
+      const userForm: authTypes.SignUpRequest = {
+        first_name: values.name,
+        second_name: "forYandexApi",
+        login: values.login,
+        email: values.email,
+        password: values.password,
+        phone: values.phone,
+      };
+      handleSignUp(userForm);
     },
   });
 
