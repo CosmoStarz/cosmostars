@@ -22,7 +22,7 @@ export class ShootingObject extends BaseObject {
     const projectile = new BaseObject({
       scene: this.scene,
       position: {
-        x: this.position.x + this.size.width / 2.2,
+        x: this.position.x + this.size.width / 2.5,
         y: this.position.y,
       },
       velocity: {

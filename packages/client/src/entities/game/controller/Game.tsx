@@ -42,10 +42,6 @@ export class Game {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       src: "game-model-player",
-      size: {
-        width: 120,
-        height: 60,
-      },
     });
   }
 

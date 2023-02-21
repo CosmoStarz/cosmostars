@@ -29,6 +29,15 @@ export enum GameStatuses {
   PAUSED = 5,
 }
 
+export enum BaseGameColors {
+  RED = "#ff0000",
+  YELLOW = "#ffff00",
+  BLACK = "#000000",
+  BLUE = "#23A9F2",
+  GREEN = "#3AD900",
+  PURPLE = "#ba68c8",
+}
+
 export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
   [GameStatuses.START]: {
     title: "Start",
