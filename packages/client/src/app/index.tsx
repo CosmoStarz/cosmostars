@@ -6,7 +6,6 @@ import { baseUrl } from "../shared/constants";
 import { Router } from "../router";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import { useGetUserInfoQuery } from "../entities/user/model";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
@@ -14,7 +13,7 @@ function App() {
   useEffect(() => {
     // пример использования хука rtk query. он получит
     // пользователя и результат сохранит в стор
-    useGetUserInfoQuery();
+    // useGetUserInfoQuery();
 
     const fetchServerData = async () => {
       const response = await fetch(baseUrl);
