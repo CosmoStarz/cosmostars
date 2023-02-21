@@ -4,6 +4,8 @@ export type GetTeamLeaderboardQuery = {
   perPage: number;
 };
 
+export type AddLeaderboardEntryMutation = LeaderData;
+
 // Object that will add as leaderboard entry
 export type LeaderData = {
   playerId: number;

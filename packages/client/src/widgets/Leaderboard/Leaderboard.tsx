@@ -1,14 +1,37 @@
-import { Box, Typography } from "@mui/material";
-import { FC } from "react";
-import { useGetLeaderboardQuery } from "../../entities/leaderboard/api";
+import { Box, Button, Typography } from "@mui/material";
+import { MouseEvent, FC, useCallback } from "react";
+import {
+  useAddLeaderboardEntryMutation,
+  useGetLeaderboardQuery,
+} from "../../entities/leaderboard/api";
 import { Table } from "./ui";
 
+const generateRandomUserInfo = () => {
+  const num = Math.floor(Math.random() * 1000);
+
+  return { playerId: num, name: `User${num}`, email: `user${num}@email.com` };
+};
+
 export const Leaderboard: FC = () => {
+  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
+
   const { data } = useGetLeaderboardQuery({
     offset: 0,
     perPage: 10,
   });
   console.log(data);
+
+  // * Временно для добавления / обновления записей пока не реализован соответствующий функционал
+  const onAddScoreButtonClick = useCallback(
+    (evt: MouseEvent) => {
+      evt.preventDefault();
+
+      const score = Number(prompt("Enter player score:", "0"));
+
+      addLeaderboardEntry({ ...generateRandomUserInfo(), score });
+    },
+    [addLeaderboardEntry]
+  );
 
   return (
     <Box
@@ -35,6 +58,11 @@ export const Leaderboard: FC = () => {
         }}>
         Leader Board
       </Typography>
+      {/* Временно для добавления / обновления записей пока не реализован соответствующий функционал */}
+      <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
+        Добавить / обновить очки
+      </Button>
+      {/* ---------------------------- */}
       <Box sx={{ width: "100%" }}>{data && <Table data={data} />}</Box>
     </Box>
   );

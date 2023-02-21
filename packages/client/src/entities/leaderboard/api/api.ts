@@ -5,6 +5,7 @@ import {
   RATING_FIELD,
 } from "../../../shared/constants/leaderboard";
 import {
+  AddLeaderboardEntryMutation,
   GetTeamLeaderboardQuery,
   LeaderboardResponse,
   LeaderData,
@@ -25,8 +26,26 @@ const leaderboardApi = yandexApi.injectEndpoints({
       transformResponse(response: LeaderboardResponse) {
         return response.map(item => item.data);
       },
+      providesTags: ["Leaderboard"],
+    }),
+
+    addLeaderboardEntry: builder.mutation<
+      undefined,
+      AddLeaderboardEntryMutation
+    >({
+      query: leaderData => ({
+        url: `/${LEADERBOARD_API_ENDPOINT}`,
+        method: "POST",
+        body: {
+          data: leaderData,
+          ratingFieldName: RATING_FIELD,
+          teamName: TEAM_NAME,
+        },
+      }),
+      invalidatesTags: ["Leaderboard"],
     }),
   }),
 });
 
-export const { useGetLeaderboardQuery } = leaderboardApi;
+export const { useGetLeaderboardQuery, useAddLeaderboardEntryMutation } =
+  leaderboardApi;
