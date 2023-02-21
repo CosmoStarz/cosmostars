@@ -9,7 +9,6 @@ import {
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
-import { Projectile } from "../model/Projectile/Projectile";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 import { getRandomNumber } from "./utils";
 
@@ -42,6 +41,7 @@ export class Game {
     return new Player({
       color: BaseGameColors.RED,
       scene: this.scene,
+      projectileSpeed: -baseSpeed,
     });
   }
 
@@ -106,7 +106,7 @@ export class Game {
   }
 
   private checkCollision(
-    projectiles: Projectile[],
+    projectiles: BaseObject[],
     collidingObject: BaseObject,
     collidingMethod: () => void
   ) {

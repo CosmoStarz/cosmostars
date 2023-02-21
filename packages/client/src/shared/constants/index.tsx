@@ -18,7 +18,7 @@ export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заме�
 
 export const baseSpeed = 10;
 
-export const projectileRadius = 3;
+export const projectileSize = 6;
 
 export enum BaseGameColors {
   RED = "#ff0000",
@@ -141,10 +141,13 @@ export const basicGridSpeed = 3;
 export const randomInterval = 500;
 
 export const framesPerShoot = 100;
-export const maxColumns = 10;
-export const minColumns = 5;
-export const maxRows = 5;
-export const minRows = 2;
+
+export enum EnemyGridSizes {
+  MAX_COLUMNS = 10,
+  MIN_COLUMNS = 5,
+  MAX_ROWS = 5,
+  MIN_ROWS = 2,
+};
 
 export enum GameKeyboard {
   LEFT = 37,
