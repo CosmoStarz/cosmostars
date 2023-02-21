@@ -18,16 +18,7 @@ export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заме�
 
 export const baseSpeed = 10;
 
-export const projectileSize = 6;
-
-export enum BaseGameColors {
-  RED = "#ff0000",
-  YELLOW = "#ffff00",
-  BLACK = "#000000",
-  BLUE = "#23A9F2",
-  GREEN = "#3AD900",
-  PURPLE = "#ba68c8",
-}
+export const projectileSize = 15;
 
 export enum GameStatuses {
   NOT_ACTIVE = 0,
@@ -132,8 +123,8 @@ export const initialCoords: elementCoords = {
 };
 
 export const initialObjectSize: basicSize = {
-  width: 45,
-  height: 45,
+  width: 50,
+  height: 50,
 };
 
 export const basicGridSpeed = 3;
@@ -147,7 +138,7 @@ export enum EnemyGridSizes {
   MIN_COLUMNS = 5,
   MAX_ROWS = 5,
   MIN_ROWS = 2,
-};
+}
 
 export enum GameKeyboard {
   LEFT = 37,

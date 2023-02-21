@@ -39,9 +39,13 @@ export class Game {
 
   get createPlayer() {
     return new Player({
-      color: BaseGameColors.RED,
       scene: this.scene,
       projectileSpeed: -baseSpeed,
+      src: "game-model-player",
+      size: {
+        width: 120,
+        height: 60,
+      },
     });
   }
 
