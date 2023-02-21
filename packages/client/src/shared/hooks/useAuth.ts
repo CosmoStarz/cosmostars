@@ -1,5 +1,5 @@
-import { LS_IS_LOGGED_KEY } from "./../constants/auth";
-
+import { useSelector } from "react-redux";
+import { selectIsLogged } from "../../entities/auth/model/auth";
 export const useAuth = () => {
-  return Boolean(Number(localStorage.getItem(LS_IS_LOGGED_KEY)));
+  return useSelector(selectIsLogged);
 };
