@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import {
   Box,
-  CardActionArea, CardHeader,
-  IconButton, InputAdornment,
+  CardActionArea,
+  CardHeader,
+  IconButton,
+  InputAdornment,
   List,
-  Paper, TablePagination,
+  Paper,
+  TablePagination,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { TopicItem } from "../../features/TopicItem/TopicItem";
 import { searchValidation } from "../../shared/constants/validationShemas";
@@ -21,16 +24,18 @@ export const Forum: FC = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(1);
   const rowsOffset = page * rowsPerPage;
-  const filtredTopics = forumApi.getTopic().slice(rowsOffset, rowsOffset + rowsPerPage);
+  const filtredTopics = forumApi
+    .getTopic()
+    .slice(rowsOffset, rowsOffset + rowsPerPage);
 
   const formikSearch = useFormik({
     initialValues: {
-      search: ""
+      search: "",
     },
     validationSchema: searchValidation,
     onSubmit: values => {
       console.log(values);
-    }
+    },
   });
   const onChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -54,14 +59,11 @@ export const Forum: FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: 3
+        padding: 3,
       }}>
-        <Typography
-          variant="h2"
-          component="h1"
-          textAlign="center">
-          Forum
-        </Typography>
+      <Typography variant="h2" component="h1" textAlign="center">
+        Forum
+      </Typography>
       <Box
         sx={{
           boxSizing: "border-box",
@@ -69,7 +71,7 @@ export const Forum: FC = () => {
           alignItems: "center",
           width: "100%",
           justifyContent: "space-between",
-          px: 4
+          px: 4,
         }}>
         <Box
           component="form"
@@ -80,7 +82,7 @@ export const Forum: FC = () => {
             alignItems: "end",
             flex: 1,
             my: 2,
-            mr: 5
+            mr: 5,
           }}>
           <TextField
             fullWidth
@@ -88,8 +90,12 @@ export const Forum: FC = () => {
             name="search"
             label="Search"
             onChange={formikSearch.handleChange}
-            error={formikSearch.touched.search && Boolean(formikSearch.errors.search)}
-            helperText={formikSearch.touched.search && formikSearch.errors.search}
+            error={
+              formikSearch.touched.search && Boolean(formikSearch.errors.search)
+            }
+            helperText={
+              formikSearch.touched.search && formikSearch.errors.search
+            }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -101,12 +107,11 @@ export const Forum: FC = () => {
                   <IconButton
                     aria-label="search topic"
                     edge="end"
-                    type="submit"
-                  >
+                    type="submit">
                     <ArrowForward />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </Box>
@@ -116,23 +121,32 @@ export const Forum: FC = () => {
         sx={{
           flex: 1,
           width: "100%",
-          overflowY: "auto"
+          overflowY: "auto",
         }}>
         {filtredTopics.map(item => (
-          <TopicItem key={item.id} isBordered {...item} header={() => (
-            <CardActionArea component={Link} to={`/forum/${item.id}`}>
-              <CardHeader
-                title={<Typography variant="h5" component="h2">Topic {item.id}</Typography>}
-              />
-            </CardActionArea>
-          )} />
+          <TopicItem
+            key={item.id}
+            isBordered
+            {...item}
+            header={() => (
+              <CardActionArea component={Link} to={`/forum/${item.id}`}>
+                <CardHeader
+                  title={
+                    <Typography variant="h5" component="h2">
+                      Topic {item.id}
+                    </Typography>
+                  }
+                />
+              </CardActionArea>
+            )}
+          />
         ))}
       </List>
       <Box
         sx={{
           display: "flex",
           justifyContent: "flex-end",
-          width: "100%"
+          width: "100%",
         }}>
         <TablePagination
           component="div"
@@ -143,9 +157,9 @@ export const Forum: FC = () => {
           page={page}
           SelectProps={{
             inputProps: {
-              "aria-label": "rows per page"
+              "aria-label": "rows per page",
             },
-            native: true
+            native: true,
           }}
           onPageChange={onChangePage}
           onRowsPerPageChange={onChangeRowsPerPage}
