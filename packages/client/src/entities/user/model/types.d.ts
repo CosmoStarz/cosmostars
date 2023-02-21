@@ -1,10 +1,9 @@
 export type User = {
-  id: number;
+  id?: number;
   first_name: string;
-  second_name: string;
-  display_name: string;
+  display_name?: string;
   login: string;
   email: string;
   phone: string;
-  avatar: string | null;
+  avatar?: string | null;
 };
