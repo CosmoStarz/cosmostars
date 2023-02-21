@@ -4,7 +4,11 @@ export type GetTeamLeaderboardQuery = {
   perPage: number;
 };
 
+// Object that will add as leaderboard entry
 export type LeaderData = {
   playerId: number;
+  name: string;
+  img?: string;
+  email?: string;
   score: number;
 };

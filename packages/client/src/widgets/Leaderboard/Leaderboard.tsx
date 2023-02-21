@@ -1,15 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
-import { leaderboardData } from "../../data/leaderboard";
 import { useGetLeaderboardQuery } from "../../entities/leaderboard/api";
 import { Table } from "./ui";
 
 export const Leaderboard: FC = () => {
-  const leaderboardQueryData = useGetLeaderboardQuery({
+  const { data } = useGetLeaderboardQuery({
     offset: 0,
     perPage: 10,
   });
-  console.log(leaderboardQueryData);
+  console.log(data);
 
   return (
     <Box
@@ -36,9 +35,7 @@ export const Leaderboard: FC = () => {
         }}>
         Leader Board
       </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Table data={leaderboardData} />
-      </Box>
+      <Box sx={{ width: "100%" }}>{data && <Table data={data} />}</Box>
     </Box>
   );
 };

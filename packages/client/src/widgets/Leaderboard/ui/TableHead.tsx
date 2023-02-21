@@ -6,10 +6,9 @@ export const TableHead: FC = () => {
   return (
     <MuiTableHead>
       <TableRow>
+        <TableHeadCell text="Place" />
         <TableHeadCell text="Player" />
         <TableHeadCell text="Score" />
-        <TableHeadCell text="Status" />
-        <TableHeadCell text="Last Game" />
       </TableRow>
     </MuiTableHead>
   );

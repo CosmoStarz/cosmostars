@@ -1,10 +1,8 @@
 import { LeaderData } from "./frontend";
 
 // * Types for backend api server
-export type LeaderboardItemData = LeaderData;
-
 export type LeaderboardNewLeaderRequest = {
-  data: LeaderboardItemData;
+  data: LeaderData;
   ratingFieldName: string;
   teamName?: string;
 };
@@ -16,5 +14,5 @@ export type LeaderboardRequest = {
 };
 
 export type LeaderboardResponse = {
-  data: LeaderboardItemData;
-};
+  data: LeaderData;
+}[];
