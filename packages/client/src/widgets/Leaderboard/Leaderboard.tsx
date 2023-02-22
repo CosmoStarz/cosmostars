@@ -6,7 +6,7 @@ import {
   useGetLeaderboardQuery,
 } from "@/entities/leaderboard/api";
 
-import { DEFAULT_PER_PAGE, ENTRIES_LIMIT,START_PAGE } from "./config";
+import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
 import { Table } from "./ui";
 import { generateRandomUserInfo } from "./utils";
 
