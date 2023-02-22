@@ -21,8 +21,8 @@ export const TableBody: FC<TableBodyProps> = ({
 }) => {
   const actualData = data.slice(rowsOffset, rowsOffset + rowsCount);
 
-  const rows = actualData.map((data, index) => (
-    <TableRow key={index} data={data} place={index} />
+  const rows = actualData.map(data => (
+    <TableRow key={data.playerId} data={data} />
   ));
 
   // Avoid a layout jump when reaching the last page with empty rows.

@@ -7,11 +7,13 @@ import { TableFooter } from "./TableFooter";
 
 type TableProps = {
   data: RowData[];
+  startPage: number;
+  defaultPerPage: number;
 };
 
-export const Table: FC<TableProps> = ({ data }) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+export const Table: FC<TableProps> = ({ data, startPage, defaultPerPage }) => {
+  const [page, setPage] = useState(startPage);
+  const [rowsPerPage, setRowsPerPage] = useState(defaultPerPage);
 
   const rowsOffset = page * rowsPerPage;
 
@@ -26,7 +28,7 @@ export const Table: FC<TableProps> = ({ data }) => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPage(startPage);
   };
 
   return (

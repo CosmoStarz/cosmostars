@@ -1,7 +1,7 @@
 // * Types for usage in frontend application
 export type GetTeamLeaderboardQuery = {
   offset: number;
-  perPage: number;
+  limit: number;
 };
 
 export type AddLeaderboardEntryMutation = LeaderData;

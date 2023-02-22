@@ -14,13 +14,13 @@ import {
 const leaderboardApi = yandexApi.injectEndpoints({
   endpoints: builder => ({
     getLeaderboard: builder.query<LeaderData[], GetTeamLeaderboardQuery>({
-      query: ({ offset, perPage }) => ({
+      query: ({ offset, limit }) => ({
         url: `/${LEADERBOARD_API_ENDPOINT}/${TEAM_NAME}`,
         method: "POST",
         body: {
           ratingFieldName: RATING_FIELD,
           cursor: offset,
-          limit: perPage,
+          limit,
         },
       }),
       transformResponse(response: LeaderboardResponse) {

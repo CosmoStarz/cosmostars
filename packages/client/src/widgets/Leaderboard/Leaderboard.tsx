@@ -1,27 +1,27 @@
 import { Box, Button, Typography } from "@mui/material";
-import { MouseEvent, FC, useCallback } from "react";
+import { MouseEvent, FC, useCallback, useMemo } from "react";
 import {
   useAddLeaderboardEntryMutation,
   useGetLeaderboardQuery,
 } from "../../entities/leaderboard/api";
+import { START_PAGE, DEFAULT_PER_PAGE, ENTRIES_LIMIT } from "./config";
 import { Table } from "./ui";
-
-const generateRandomUserInfo = () => {
-  const num = Math.floor(Math.random() * 1000);
-
-  return { playerId: num, name: `User${num}`, email: `user${num}@email.com` };
-};
+import { generateRandomUserInfo } from "./utils";
 
 export const Leaderboard: FC = () => {
   const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
 
   const { data } = useGetLeaderboardQuery({
-    offset: 0,
-    perPage: 10,
+    offset: START_PAGE,
+    limit: ENTRIES_LIMIT,
   });
-  console.log(data);
 
-  // * Временно для добавления / обновления записей пока не реализован соответствующий функционал
+  const dataWithPlaces = useMemo(
+    () => data?.map((entry, index) => ({ ...entry, place: index + 1 })),
+    [data]
+  );
+
+  // * Временная функция для добавления / обновления записей пока не реализован соответствующий функционал
   const onAddScoreButtonClick = useCallback(
     (evt: MouseEvent) => {
       evt.preventDefault();
@@ -63,7 +63,15 @@ export const Leaderboard: FC = () => {
         Добавить / обновить очки
       </Button>
       {/* ---------------------------- */}
-      <Box sx={{ width: "100%" }}>{data && <Table data={data} />}</Box>
+      <Box sx={{ width: "100%" }}>
+        {dataWithPlaces && (
+          <Table
+            data={dataWithPlaces}
+            startPage={START_PAGE}
+            defaultPerPage={DEFAULT_PER_PAGE}
+          />
+        )}
+      </Box>
     </Box>
   );
-};
+};;;;;;;

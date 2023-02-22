@@ -5,12 +5,10 @@ import { RowData } from "./types";
 
 type TableRowProps = {
   data: RowData;
-  place: number;
 };
 
 export const TableRow: FC<TableRowProps> = ({
-  data: { name = "Name", email = "email@email.ru", img, score },
-  place,
+  data: { place, name = "Name", email = "email@email.ru", img, score },
 }) => {
   return (
     <MuiTableRow>
