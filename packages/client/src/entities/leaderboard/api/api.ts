@@ -1,9 +1,12 @@
-import { yandexApi } from "../../../shared/api/yandexApi";
+import { ErrorResponse } from "@/shared/api/types";
+import { getErrorReason } from "@/shared/api/utils";
+import { yandexApi } from "@/shared/api/yandexApi";
 import {
   LEADERBOARD_API_ENDPOINT,
   RATING_FIELD,
   TEAM_NAME,
-} from "../../../shared/constants/leaderboard";
+} from "@/shared/constants/leaderboard";
+
 import {
   AddLeaderboardEntryMutation,
   GetTeamLeaderboardQuery,
@@ -26,6 +29,9 @@ const leaderboardApi = yandexApi.injectEndpoints({
       transformResponse(response: LeaderboardResponse) {
         return response.map(item => item.data);
       },
+      transformErrorResponse(response) {
+        return getErrorReason(response);
+      },
       providesTags: ["Leaderboard"],
     }),
 
@@ -42,6 +48,9 @@ const leaderboardApi = yandexApi.injectEndpoints({
           teamName: TEAM_NAME,
         },
       }),
+      transformErrorResponse(response) {
+        return getErrorReason(response);
+      },
       invalidatesTags: ["Leaderboard"],
     }),
   }),

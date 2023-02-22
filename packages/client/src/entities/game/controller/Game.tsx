@@ -5,12 +5,12 @@ import {
   GameKeyboard,
   randomInterval,
 } from "@/shared/constants";
+import { getRandomNumber } from "@/shared/utils/functions";
 
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
-import { getRandomNumber } from "./utils";
 
 export class Game {
   private canvas: HTMLCanvasElement;

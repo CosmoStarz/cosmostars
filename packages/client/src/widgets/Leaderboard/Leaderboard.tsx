@@ -5,6 +5,7 @@ import {
   useAddLeaderboardEntryMutation,
   useGetLeaderboardQuery,
 } from "@/entities/leaderboard/api";
+import { getRandomNumber } from "@/shared/utils/functions";
 
 import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
 import { Table } from "./ui";
@@ -19,7 +20,13 @@ export const Leaderboard: FC = () => {
   });
 
   const dataWithPlaces = useMemo(
-    () => data?.map((entry, index) => ({ ...entry, place: index + 1 })),
+    () =>
+      data?.map((entry, index) => ({
+        ...entry,
+        place: index + 1,
+        // Временно, пока не везде есть playerId (он используется как key в списке строк)
+        playerId: entry.playerId ?? getRandomNumber(0, 1000),
+      })),
     [data]
   );
 
