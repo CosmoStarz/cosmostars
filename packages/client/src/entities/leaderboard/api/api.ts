@@ -1,4 +1,4 @@
-import { ErrorResponse } from "@/shared/api/types";
+import { ErrorResponse, HTTPMethods, Tags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
 import { yandexApi } from "@/shared/api/yandexApi";
 import {
@@ -19,7 +19,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
     getLeaderboard: builder.query<LeaderData[], GetTeamLeaderboardQuery>({
       query: ({ offset, limit }) => ({
         url: `/${LEADERBOARD_API_ENDPOINT}/${TEAM_NAME}`,
-        method: "POST",
+        method: HTTPMethods.POST,
         body: {
           ratingFieldName: RATING_FIELD,
           cursor: offset,
@@ -32,7 +32,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
       transformErrorResponse(response) {
         return getErrorReason(response);
       },
-      providesTags: ["Leaderboard"],
+      providesTags: [Tags.LEADERBOARD],
     }),
 
     addLeaderboardEntry: builder.mutation<
@@ -41,7 +41,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
     >({
       query: leaderData => ({
         url: `/${LEADERBOARD_API_ENDPOINT}`,
-        method: "POST",
+        method: HTTPMethods.POST,
         body: {
           data: leaderData,
           ratingFieldName: RATING_FIELD,
@@ -53,7 +53,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
       // transformErrorResponse(response) {
       //   return getErrorReason(response);
       // },
-      invalidatesTags: ["Leaderboard"],
+      invalidatesTags: [Tags.LEADERBOARD],
     }),
   }),
 });
