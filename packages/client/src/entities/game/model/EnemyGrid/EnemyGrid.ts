@@ -2,6 +2,7 @@ import {
   baseSpeed,
   basicGridSpeed,
   EnemyGridSizes,
+  GameImages,
   initialObjectSize,
 } from "@/shared/constants";
 
@@ -58,7 +59,7 @@ export class EnemyGrid extends BaseObject {
             },
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
-            src: "game-model-enemy",
+            src: GameImages.ENEMY,
           })
         );
       }

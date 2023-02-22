@@ -1,4 +1,5 @@
 import {
+  GameImages,
   initialCoords,
   initialObjectSize,
   initialVelocity,
@@ -20,9 +21,9 @@ export class BaseObject {
 
   constructor(baseProps: baseObjectProps) {
     this.scene = baseProps.scene;
-    this.src = baseProps.src ? baseProps.src : "game-model-projectile";
+    this.src = baseProps.src ? baseProps.src : GameImages.PROJECTILE;
     this.image = new Image();
-    this.image.src = `/src/assets/images/${this.src}.png`;
+    this.image.src = `/src/assets/images/game-model-${this.src}.png`;
     this.position = baseProps.position ?? this.getInitialPosition;
     this.velocity = baseProps.velocity ?? this.getInitialVelocity;
     this.size = baseProps.size ?? initialObjectSize;

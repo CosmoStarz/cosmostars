@@ -1,4 +1,5 @@
-import { projectileSize } from "../../../../shared/constants";
+import { projectileHeight, projectileWidth } from "@/shared/constants";
+
 import { BaseObject } from "../BaseObject/BaseObject";
 import { shootingObjectProps } from "./types";
 
@@ -22,7 +23,7 @@ export class ShootingObject extends BaseObject {
     const projectile = new BaseObject({
       scene: this.scene,
       position: {
-        x: this.position.x + this.size.width / 2.5,
+        x: this.position.x + this.size.width / 2,
         y: this.position.y,
       },
       velocity: {
@@ -30,8 +31,8 @@ export class ShootingObject extends BaseObject {
         dy: this.projectileSpeed,
       },
       size: {
-        width: projectileSize,
-        height: projectileSize,
+        width: projectileWidth,
+        height: projectileHeight,
       },
     });
     this.projectiles.push(projectile);
