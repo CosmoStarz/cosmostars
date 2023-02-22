@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authApi } from "../../entities/user/model";
-import { yandexApi } from "../../shared/api/yandexApi";
+
+import { authApi } from "@/entities/user/model";
+import { yandexApi } from "@/shared/api/yandexApi";
 
 export const store = configureStore({
   reducer: {

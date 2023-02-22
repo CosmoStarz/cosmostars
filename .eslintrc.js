@@ -13,8 +13,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 11,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
   },
 }

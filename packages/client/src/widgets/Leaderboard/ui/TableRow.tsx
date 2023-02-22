@@ -1,5 +1,6 @@
-import { TableRow as MuiTableRow, TableCell, Typography } from "@mui/material";
+import { TableCell, TableRow as MuiTableRow, Typography } from "@mui/material";
 import { FC } from "react";
+
 import { PlayerInfo } from "./PlayerInfo";
 import { RowData } from "./types";
 

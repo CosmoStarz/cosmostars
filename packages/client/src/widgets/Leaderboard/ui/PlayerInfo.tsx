@@ -1,5 +1,6 @@
 import { Avatar, Card, CardHeader } from "@mui/material";
 import { FC } from "react";
+
 import { PlayerData } from "./types";
 
 type PlayerInfoProps = Omit<PlayerData, "playerId">;

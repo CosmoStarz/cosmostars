@@ -4,6 +4,7 @@ import {
   TableRow as MuiTableRow,
 } from "@mui/material";
 import { FC } from "react";
+
 import { TableRow } from "./TableRow";
 import { RowData } from "./types";
 

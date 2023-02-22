@@ -1,4 +1,4 @@
-import { BaseGameColors } from "../../../shared/constants";
+import { BaseGameColors } from "@/shared/constants";
 
 export type GameObjectColor =
   | BaseGameColors.RED

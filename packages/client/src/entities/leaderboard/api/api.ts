@@ -1,8 +1,8 @@
 import { yandexApi } from "../../../shared/api/yandexApi";
 import {
   LEADERBOARD_API_ENDPOINT,
-  TEAM_NAME,
   RATING_FIELD,
+  TEAM_NAME,
 } from "../../../shared/constants/leaderboard";
 import {
   AddLeaderboardEntryMutation,

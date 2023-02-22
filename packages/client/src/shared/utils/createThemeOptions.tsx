@@ -1,5 +1,6 @@
 import { PaletteMode } from "@mui/material";
 import { ThemeOptions } from "@mui/material/styles";
+
 import { ThemeNames } from "../constants";
 
 export const createThemeOptions = (mode: PaletteMode): ThemeOptions => ({

@@ -1,10 +1,12 @@
 import { Box, Button, Typography } from "@mui/material";
-import { MouseEvent, FC, useCallback, useMemo } from "react";
+import { FC, MouseEvent, useCallback, useMemo } from "react";
+
 import {
   useAddLeaderboardEntryMutation,
   useGetLeaderboardQuery,
-} from "../../entities/leaderboard/api";
-import { START_PAGE, DEFAULT_PER_PAGE, ENTRIES_LIMIT } from "./config";
+} from "@/entities/leaderboard/api";
+
+import { DEFAULT_PER_PAGE, ENTRIES_LIMIT,START_PAGE } from "./config";
 import { Table } from "./ui";
 import { generateRandomUserInfo } from "./utils";
 
@@ -74,4 +76,4 @@ export const Leaderboard: FC = () => {
       </Box>
     </Box>
   );
-};;;;;;;
+};

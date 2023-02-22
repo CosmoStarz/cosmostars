@@ -1,7 +1,8 @@
+import { Link, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { FC } from "react";
-import { ListItem, ListItemIcon, ListItemText, Link } from "@mui/material";
-import { LinkComponentType } from "./types";
 import { Link as RouterLink } from "react-router-dom";
+
+import { LinkComponentType } from "./types";
 
 export const MenuLink: FC<LinkComponentType> = props => {
   const { title, icon, path = "" } = props.link;
