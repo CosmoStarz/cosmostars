@@ -48,9 +48,11 @@ const leaderboardApi = yandexApi.injectEndpoints({
           teamName: TEAM_NAME,
         },
       }),
-      transformErrorResponse(response) {
-        return getErrorReason(response);
-      },
+      // ? WTF By commenting this out,
+      // ? I fixed the bug with not auto-refetching leaderboard after adding a new entry
+      // transformErrorResponse(response) {
+      //   return getErrorReason(response);
+      // },
       invalidatesTags: ["Leaderboard"],
     }),
   }),
