@@ -1,5 +1,6 @@
-import { PropsWithChildren } from "react";
 import { useFormik } from "formik";
+import { PropsWithChildren } from "react";
+
 import { CardView } from "../../../shared/ui";
 import { ChangePasswordSchema } from "../schemas/change-password";
 

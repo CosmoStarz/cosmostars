@@ -1,23 +1,24 @@
-import SettingsIcon from "@mui/icons-material/Settings";
 import EmailIcon from "@mui/icons-material/Email";
+import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
+
+import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
+import LooseRight from "@/assets/images/loose-modal-top-right.png";
+import WinLeft from "@/assets/images/win-modal-bottom-left.png";
+import WinRight from "@/assets/images/win-modal-top-right.png";
 import {
   basicSize,
   basicVelocity,
-} from "../../entities/game/model/BaseObject/types";
-import { elementCoords } from "../../entities/game/ui/Canvas/types";
-import { GameModalProps, GameModalTypes } from "../../widgets/GameModal/types";
-import { MenuLinkType } from "../../features/MenuLink/types";
-import WinRight from "../../assets/images/win-modal-top-right.png";
-import WinLeft from "../../assets/images/win-modal-bottom-left.png";
-import LooseRight from "../../assets/images/loose-modal-top-right.png";
-import LooseLeft from "../../assets/images/loose-modal-bottom-left.png";
+} from "@/entities/game/model/BaseObject/types";
+import { elementCoords } from "@/entities/game/ui/Canvas/types";
+import { MenuLinkType } from "@/features/MenuLink/types";
+import { GameModalProps, GameModalTypes } from "@/widgets/GameModal/types";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
 export const baseSpeed = 10;
 
-export const projectileRadius = 3;
+export const projectileSize = 6;
 
 export enum BaseGameColors {
   RED = "#ff0000",
@@ -140,10 +141,13 @@ export const basicGridSpeed = 3;
 export const randomInterval = 500;
 
 export const framesPerShoot = 100;
-export const maxColumns = 10;
-export const minColumns = 5;
-export const maxRows = 5;
-export const minRows = 2;
+
+export enum EnemyGridSizes {
+  MAX_COLUMNS = 10,
+  MIN_COLUMNS = 5,
+  MAX_ROWS = 5,
+  MIN_ROWS = 2,
+}
 
 export enum GameKeyboard {
   LEFT = 37,

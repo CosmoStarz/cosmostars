@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
 import { SvgIconProps } from "@mui/material";
+import { ReactElement } from "react";
 
 export type MenuLinkType = {
   title?: string;

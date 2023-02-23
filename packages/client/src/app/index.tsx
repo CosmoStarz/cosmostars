@@ -1,28 +1,17 @@
-import { useEffect } from "react";
-import { ThemeProvider } from "@mui/material";
-import { ColorModeContext } from "../features/ThemeToggler/ThemeToggler";
-import { useBasicTheme } from "../shared/hooks/useBasicTheme";
-import { baseUrl } from "../shared/constants";
-import { Router } from "../router";
-import { BrowserRouter } from "react-router-dom";
 import "./index.css";
+
+import { ThemeProvider } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
+
+import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
+import { Router } from "@/router";
+import { useBasicTheme } from "@/shared/hooks/useBasicTheme";
 
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
-  useEffect(() => {
-    // пример использования хука rtk query. он получит
-    // пользователя и результат сохранит в стор
-    // useGetUserInfoQuery();
-
-    const fetchServerData = async () => {
-      const response = await fetch(baseUrl);
-      const data = await response.json();
-      console.log(data);
-    };
-
-    fetchServerData();
-  }, []);
+  // пример использования хука rtk query. он получит
+  // пользователя и результат сохранит в стор
 
   return (
     <ColorModeContext.Provider value={colorMode}>

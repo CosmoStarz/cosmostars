@@ -1,7 +1,8 @@
 import { FC, useEffect, useRef } from "react";
-import { GameModalConfig, GameStatuses } from "../../shared/constants";
-import { Game, initGame } from "../../entities/game/controller/Game";
-import { GameModal } from "../../widgets/GameModal/GameModal";
+
+import { Game, initGame } from "@/entities/game/controller/Game";
+import { GameModalConfig, GameStatuses } from "@/shared/constants";
+import { GameModal } from "@/widgets/GameModal/GameModal";
 
 export const GamePage: FC = () => {
   const canvasElement = useRef<HTMLCanvasElement>(null);
@@ -14,7 +15,7 @@ export const GamePage: FC = () => {
   }, [canvasElement]);
 
   const startNewGame = () => {
-    game.current?.init();
+    game.current?.start();
   };
 
   return (

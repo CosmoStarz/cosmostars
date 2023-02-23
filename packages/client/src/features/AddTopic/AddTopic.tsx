@@ -1,5 +1,3 @@
-import { FC, useState } from "react";
-import { useFormik } from "formik";
 import {
   Box,
   Button,
@@ -8,7 +6,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { addTopicValidation } from "../../shared/constants/validationShemas";
+import { useFormik } from "formik";
+import { FC, useState } from "react";
+
+import { addTopicValidation } from "@/shared/constants/validationShemas";
 
 export const AddTopic: FC = () => {
   const [open, setOpen] = useState(false);

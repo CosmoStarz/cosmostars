@@ -1,5 +1,5 @@
-import React, { ErrorInfo, ReactNode } from "react";
 import { Alert } from "@mui/material";
+import React, { ErrorInfo, ReactNode } from "react";
 
 type ErrorBoundaryState = {
   hasError: boolean;

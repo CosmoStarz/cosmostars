@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../../app/store/types";
+import { RootState } from "@/app/store/types";
 
 type AuthState = {
   isLogged: boolean | null;

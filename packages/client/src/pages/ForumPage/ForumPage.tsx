@@ -1,7 +1,8 @@
-import { FC } from "react";
 import { Container } from "@mui/material";
-import { MainLayout } from "../../shared/layouts/MainLayout";
-import { Forum } from "../../widgets/Forum/Forum";
+import { FC } from "react";
+
+import { MainLayout } from "@/shared/layouts/MainLayout";
+import { Forum } from "@/widgets/Forum/Forum";
 
 export const ForumPage: FC = () => {
   return (

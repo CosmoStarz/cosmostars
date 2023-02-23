@@ -1,44 +1,57 @@
 import {
   BaseGameColors,
+  baseSpeed,
   basicGridSpeed,
-  initialCoords,
+  EnemyGridSizes,
   initialObjectSize,
-  maxColumns,
-  maxRows,
-  minColumns,
-  minRows,
-} from "../../../../shared/constants";
+} from "@/shared/constants";
+
+import { getRandomNumber } from "../../controller/utils";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
-import { Enemy } from "../Enemy/Enemy";
+import { ShootingObject } from "../ShootingObject/ShootingObject";
 
 export class EnemyGrid extends BaseObject {
   private columns: number;
   private rows: number;
-  public enemies: Enemy[];
+  public enemies: ShootingObject[];
 
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = Math.floor(Math.random() * maxColumns + minColumns);
-    this.rows = Math.floor(Math.random() * maxRows + minRows);
-    this.size = {
-      width: this.columns * initialObjectSize.width,
-      height: this.rows * initialObjectSize.height,
-    };
+    this.columns = getRandomNumber(
+      EnemyGridSizes.MIN_COLUMNS,
+      EnemyGridSizes.MAX_COLUMNS
+    );
+    this.rows = getRandomNumber(
+      EnemyGridSizes.MIN_ROWS,
+      EnemyGridSizes.MAX_ROWS
+    );
+    this.size = this.getSize;
     this.position = this.initPosition;
-    this.velocity = {
-      dx: basicGridSpeed,
-      dy: 0,
-    };
+    this.velocity = this.getVelocity;
     this.draw();
   }
 
-  draw() {
+  private get getSize() {
+    return {
+      width: this.columns * initialObjectSize.width,
+      height: this.rows * initialObjectSize.height,
+    };
+  }
+
+  private get getVelocity() {
+    return {
+      dx: basicGridSpeed,
+      dy: 0,
+    };
+  }
+
+  protected draw() {
     for (let x = 0; x < this.columns; x++) {
       for (let y = 0; y < this.rows; y++) {
         this.enemies.push(
-          new Enemy({
+          new ShootingObject({
             color: BaseGameColors.YELLOW,
             scene: this.scene,
             position: {
@@ -46,6 +59,7 @@ export class EnemyGrid extends BaseObject {
               y: y * initialObjectSize.width,
             },
             velocity: this.velocity,
+            projectileSpeed: baseSpeed,
           })
         );
       }
