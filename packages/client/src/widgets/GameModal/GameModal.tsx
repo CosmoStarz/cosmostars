@@ -24,7 +24,7 @@ import {
 } from "@/shared/constants";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 
-import { GameModalProps, GameModalType } from "./types";
+import { GameModalType } from "./types";
 
 export const GameModal: FC<GameModalType> = props => {
   const { onStart, onResume } = props;
@@ -32,24 +32,12 @@ export const GameModal: FC<GameModalType> = props => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(gameStatusSelector);
   const isOpen = useAppSelector(gameModalSelector);
-  const config =
-    GameModalConfig[status] ??
-    (GameModalConfig[GameStatuses.START] as GameModalProps);
-
-  const {
-    title,
-    startButton,
-    canBeResumed,
-    rulesVisibility,
-    scoreVisibility,
-    rightImg,
-    leftImg,
-  } = config;
+  const config = GameModalConfig[status];
   // TODO: передавать score через селектор, после реализации redux в рамках задачи добавления score (задача COS-63)
   const score = 0;
 
   const handleClose = () => {
-    canBeResumed ? onResume() : onStart();
+    config?.canBeResumed ? onResume() : onStart();
   };
 
   const handleHomeNavigate = () => {
@@ -73,42 +61,55 @@ export const GameModal: FC<GameModalType> = props => {
           overflow: "inherit",
         },
       }}>
-      <DialogTitle variant="h2" component="h1">
-        {title}
-      </DialogTitle>
-      {rightImg && (
-        <GameModalImage image={rightImg} type={GameModalImageAlign.RIGHT} />
+      {config && (
+        <>
+          <DialogTitle variant="h2" component="h1">
+            {config.title}
+          </DialogTitle>
+          {config.rightImg && (
+            <GameModalImage
+              image={config.rightImg}
+              type={GameModalImageAlign.RIGHT}
+            />
+          )}
+          {config.scoreVisibility && (
+            <Typography
+              variant="h5"
+              component="p"
+              color={BaseGameColors.PURPLE}>
+              Your score: {score}
+            </Typography>
+          )}
+          {config.rulesVisibility && (
+            <DialogContentText>
+              Press &#11160; and &#11162; to move spaceship. Press Space key to
+              shoot.
+              <br />
+              Press Esc key to paused the game.
+              <br />
+              Good luck!
+            </DialogContentText>
+          )}
+          {config.leftImg && (
+            <GameModalImage
+              image={config.leftImg}
+              type={GameModalImageAlign.LEFT}
+            />
+          )}
+          <DialogActions
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}>
+            <Button variant="contained" onClick={handleHomeNavigate}>
+              Home page
+            </Button>
+            <Button variant="contained" onClick={handleClose}>
+              {config.startButton}
+            </Button>
+          </DialogActions>
+        </>
       )}
-      {scoreVisibility && (
-        <Typography variant="h5" component="p" color={BaseGameColors.PURPLE}>
-          Your score: {score}
-        </Typography>
-      )}
-      {rulesVisibility && (
-        <DialogContentText>
-          Press &#11160; and &#11162; to move spaceship. Press Space key to
-          shoot.
-          <br />
-          Press Esc key to paused the game.
-          <br />
-          Good luck!
-        </DialogContentText>
-      )}
-      {leftImg && (
-        <GameModalImage image={leftImg} type={GameModalImageAlign.LEFT} />
-      )}
-      <DialogActions
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-        }}>
-        <Button variant="contained" onClick={handleHomeNavigate}>
-          Home page
-        </Button>
-        <Button variant="contained" onClick={handleClose}>
-          {startButton}
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 };
