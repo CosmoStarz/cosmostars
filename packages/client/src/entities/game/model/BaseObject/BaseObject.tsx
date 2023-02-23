@@ -20,24 +20,24 @@ export class BaseObject {
 
   constructor(baseProps: baseObjectProps) {
     this.scene = baseProps.scene;
-    this.velocity = baseProps.velocity ?? this.getInitialVelocity;
-    this.position = baseProps.position ?? this.getInitialPosition;
+    this.velocity = baseProps.velocity ?? this.initialVelocity;
+    this.position = baseProps.position ?? this.initialPosition;
     this.size = baseProps.size ?? initialObjectSize;
     this.color = baseProps.color ?? BaseGameColors.RED;
   }
 
-  private get getInitialVelocity(): basicVelocity {
+  private get initialVelocity(): basicVelocity {
     return {
       dx: initialVelocity.dx,
       dy: initialVelocity.dy,
-    }
+    };
   }
 
-  private get getInitialPosition(): elementCoords {
+  private get initialPosition(): elementCoords {
     return {
       x: initialCoords.x,
       y: initialCoords.y,
-    }
+    };
   }
 
   protected draw(): void {

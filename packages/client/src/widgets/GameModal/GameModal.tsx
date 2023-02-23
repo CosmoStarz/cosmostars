@@ -6,21 +6,36 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { setGameStatus } from "@/entities/game/model/store/gameSlice";
+import {
+  gameModalSelector,
+  gameStatusSelector,
+} from "@/entities/game/model/store/selectors";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
 import {
   BaseGameColors,
+  GameModalConfig,
   GameModalImageAlign,
+  GameStatuses,
   RoutesName,
 } from "@/shared/constants";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 
-import { GameModalProps } from "./types";
+import { GameModalProps, GameModalType } from "./types";
 
-export const GameModal: FC<
-  GameModalProps & { onStart: () => void }
-> = props => {
+export const GameModal: FC<GameModalType> = props => {
+  const { onStart, onResume } = props;
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const status = useAppSelector(gameStatusSelector);
+  const isOpen = useAppSelector(gameModalSelector);
+  const config =
+    GameModalConfig[status] ??
+    (GameModalConfig[GameStatuses.START] as GameModalProps);
+
   const {
     title,
     startButton,
@@ -29,31 +44,23 @@ export const GameModal: FC<
     scoreVisibility,
     rightImg,
     leftImg,
-    onStart,
-  } = props;
-  const navigate = useNavigate();
+  } = config;
   // TODO: передавать score через селектор, после реализации redux в рамках задачи добавления score (задача COS-63)
   const score = 0;
 
-  // TODO: доработать логику открытия-закрытия, когда добавим состояния игры с redux (задача COS-47)
-  const [open, setOpen] = useState(true);
-
   const handleClose = () => {
-    setOpen(false);
-    // TODO: метод остановки/паузы игры (задача COS-47)
-    canBeResumed ? null : onStart();
+    canBeResumed ? onResume() : onStart();
   };
 
   const handleHomeNavigate = () => {
-    setOpen(false);
+    dispatch(setGameStatus(GameStatuses.NOT_ACTIVE));
     navigate(RoutesName.MAIN);
   };
 
   return (
     <Dialog
       fullWidth
-      onClose={handleClose}
-      open={open}
+      open={isOpen}
       sx={{
         textAlign: "center",
       }}

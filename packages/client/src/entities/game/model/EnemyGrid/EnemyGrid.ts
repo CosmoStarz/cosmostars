@@ -19,26 +19,39 @@ export class EnemyGrid extends BaseObject {
   constructor(props: baseObjectProps) {
     super(props);
     this.enemies = [];
-    this.columns = getRandomNumber(EnemyGridSizes.MIN_COLUMNS, EnemyGridSizes.MAX_COLUMNS);
-    this.rows = getRandomNumber(EnemyGridSizes.MIN_ROWS, EnemyGridSizes.MAX_ROWS);
-    this.size = this.getSize;
-    this.position = this.initPosition;
-    this.velocity = this.getVelocity;
+    this.columns = getRandomNumber(
+      EnemyGridSizes.MIN_COLUMNS,
+      EnemyGridSizes.MAX_COLUMNS
+    );
+    this.rows = getRandomNumber(
+      EnemyGridSizes.MIN_ROWS,
+      EnemyGridSizes.MAX_ROWS
+    );
+    this.size = this.gridSize;
+    this.position = this.gridPosition;
+    this.velocity = this.gridVelocity;
     this.draw();
   }
 
-  private get getSize() {
+  private get gridSize() {
     return {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,
-    }
+    };
   }
 
-  private get getVelocity() {
+  private get gridVelocity() {
     return {
       dx: basicGridSpeed,
       dy: 0,
-    }
+    };
+  }
+
+  private get gridPosition() {
+    return {
+      x: 0,
+      y: 0,
+    };
   }
 
   protected draw() {
@@ -58,13 +71,6 @@ export class EnemyGrid extends BaseObject {
         );
       }
     }
-  }
-
-  protected get initPosition() {
-    return {
-      x: 0,
-      y: 0,
-    };
   }
 
   public update() {

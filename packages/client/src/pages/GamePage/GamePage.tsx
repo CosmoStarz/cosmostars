@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 
 import { Game, initGame } from "@/entities/game/controller/Game";
-import { GameModalConfig, GameStatuses } from "@/shared/constants";
 import { GameModal } from "@/widgets/GameModal/GameModal";
 
 export const GamePage: FC = () => {
@@ -18,12 +17,13 @@ export const GamePage: FC = () => {
     game.current?.start();
   };
 
+  const resumeGame = () => {
+    game.current?.resume();
+  };
+
   return (
     <>
-      <GameModal
-        {...GameModalConfig[GameStatuses.START]}
-        onStart={startNewGame}
-      />
+      <GameModal onStart={startNewGame} onResume={resumeGame} />
       <canvas className="game-canvas" ref={canvasElement}></canvas>
     </>
   );
