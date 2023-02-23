@@ -1,12 +1,12 @@
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
-import { RoutesName } from "@/shared/constants";
-
-import { CardView } from "@/shared/ui";
-import { signInSchema } from "../schemas/sign-in";
 import { authTypes } from "@/shared/api";
 import { SignInRequest } from "@/shared/api/auth/models";
+import { RoutesName } from "@/shared/constants";
+import { CardView } from "@/shared/ui";
+
+import { signInSchema } from "../schemas/sign-in";
 
 export type SignInProps = PropsWithChildren<{
   handleSignIn: (userForm: authTypes.SignInRequest) => void;

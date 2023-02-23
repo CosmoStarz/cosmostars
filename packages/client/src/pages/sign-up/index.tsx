@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { BasicLayout } from "@/shared/layouts/BasicLayout";
+
 import { SignUp } from "@/features/Auth/SignUp";
-import { RoutesName } from "@/shared/constants";
 import { useSignUpMutation } from "@/shared/api/auth/auth";
+import { RoutesName } from "@/shared/constants";
+import { BasicLayout } from "@/shared/layouts/BasicLayout";
 export const SignUpPage = () => {
   const location = useLocation();
   const navigate = useNavigate();

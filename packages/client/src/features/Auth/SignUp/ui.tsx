@@ -2,10 +2,10 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
+import { authTypes } from "@/shared/api";
 import { CardView } from "@/shared/ui";
 
 import { signUpSchema } from "../schemas/sign-up";
-import { authTypes } from "@/shared/api";
 
 export type SignUpProps = PropsWithChildren<{
   handleSignUp: (userForm: authTypes.SignUpRequest) => void;

@@ -1,5 +1,5 @@
-import { SignUpRequest, SignUpResponse, SignInRequest } from "./models";
 import { api } from "./base";
+import { SignInRequest, SignUpRequest, SignUpResponse } from "./models";
 
 enum AUTH_URL {
   SIGN_UP = "/auth/signup",

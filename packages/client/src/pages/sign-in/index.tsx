@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BasicLayout } from "@/shared/layouts/BasicLayout";
-import { SignIn } from "@/features/Auth/SignIn";
-import { RoutesName } from "@/shared/constants";
-import { useSignInMutation } from "@/shared/api/auth/auth";
+
 import { authModel } from "@/entities/auth";
+import { SignIn } from "@/features/Auth/SignIn";
+import { useSignInMutation } from "@/shared/api/auth/auth";
+import { RoutesName } from "@/shared/constants";
+import { BasicLayout } from "@/shared/layouts/BasicLayout";
 
 export const SignInPage = () => {
   const location = useLocation();
