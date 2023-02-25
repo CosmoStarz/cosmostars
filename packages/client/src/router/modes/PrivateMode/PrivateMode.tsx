@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
-// import { logOut } from "../../../features/auth";
+import { useLogoutMutation } from "@/shared/api/auth/auth";
 import { RoutesName } from "@/shared/constants";
 import { useAuth } from "@/shared/hooks/useAuth";
 
@@ -12,14 +12,15 @@ export type PrivateModeProps = {
 export const PrivateMode: FC<PrivateModeProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLogged = useAuth();
-
-  const onLogoutButtonClick = () => {
-    // logOut();
+  const isAuth = useAuth();
+  const [logout] = useLogoutMutation();
+  const onLogoutButtonClick = async () => {
+    await logout("");
+    window.location.reload();
     navigate(RoutesName.LOGIN);
   };
 
-  return isLogged ? (
+  return isAuth ? (
     <>
       {children}
       <button onClick={onLogoutButtonClick}>Log out</button>

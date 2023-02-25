@@ -1,24 +1,18 @@
-import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { authModel } from "@/entities/auth";
 import { SignIn } from "@/features/Auth/SignIn";
 import { useSignInMutation } from "@/shared/api/auth/auth";
+import { SignInRequest } from "@/shared/api/auth/models";
 import { RoutesName } from "@/shared/constants";
 import { BasicLayout } from "@/shared/layouts/BasicLayout";
-
 export const SignInPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [signIn] = useSignInMutation();
-  const dispatch = useDispatch();
-  const handleSignIn = userForm => {
-    try {
-      signIn(userForm);
-      dispatch(authModel.authSlice.setCredentials());
+  const handleSignIn = async (userForm: SignInRequest) => {
+    const response = await signIn(userForm);
+    if (response.error?.data === "OK") {
       navigate(location?.state?.from ?? RoutesName.MAIN);
-    } catch (e) {
-      console.log(e);
     }
   };
   return (
