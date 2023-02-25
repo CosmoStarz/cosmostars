@@ -1,8 +1,8 @@
 import {
-  BaseGameColors,
   baseSpeed,
   basicGridSpeed,
   EnemyGridSizes,
+  GameImages,
   initialObjectSize,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
@@ -52,7 +52,6 @@ export class EnemyGrid extends BaseObject {
       for (let y = 0; y < this.rows; y++) {
         this.enemies.push(
           new ShootingObject({
-            color: BaseGameColors.YELLOW,
             scene: this.scene,
             position: {
               x: x * initialObjectSize.width,
@@ -60,6 +59,7 @@ export class EnemyGrid extends BaseObject {
             },
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
+            src: GameImages.ENEMY,
           })
         );
       }

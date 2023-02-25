@@ -2,6 +2,7 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
+  GameImages,
   GameKeyboard,
   randomInterval,
 } from "@/shared/constants";
@@ -39,9 +40,9 @@ export class Game {
 
   get createPlayer() {
     return new Player({
-      color: BaseGameColors.RED,
       scene: this.scene,
       projectileSpeed: -baseSpeed,
+      src: GameImages.PLAYER,
     });
   }
 

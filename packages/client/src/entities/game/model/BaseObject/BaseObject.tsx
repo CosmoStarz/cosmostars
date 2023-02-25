@@ -1,5 +1,5 @@
 import {
-  BaseGameColors,
+  GameImages,
   initialCoords,
   initialObjectSize,
   initialVelocity,
@@ -16,14 +16,17 @@ export class BaseObject {
   public velocity: basicVelocity;
   public position: elementCoords;
   public size: basicSize;
-  public color: GameObjectColor;
+  public src: string;
+  private image: HTMLImageElement;
 
   constructor(baseProps: baseObjectProps) {
     this.scene = baseProps.scene;
-    this.velocity = baseProps.velocity ?? this.getInitialVelocity;
+    this.src = baseProps.src ? baseProps.src : GameImages.PROJECTILE;
+    this.image = new Image();
+    this.image.src = `/src/assets/images/game-model-${this.src}.png`;
     this.position = baseProps.position ?? this.getInitialPosition;
+    this.velocity = baseProps.velocity ?? this.getInitialVelocity;
     this.size = baseProps.size ?? initialObjectSize;
-    this.color = baseProps.color ?? BaseGameColors.RED;
   }
 
   private get getInitialVelocity(): basicVelocity {
@@ -41,8 +44,7 @@ export class BaseObject {
   }
 
   protected draw(): void {
-    // TODO: вместо прямоугольника рисовать на канвасе картинку (COS-53)
-    this.scene.drawRect(this.color, this.position, this.size);
+    this.scene.pasteImage(this.image, this.position, this.size);
   }
 
   public update(): void {
