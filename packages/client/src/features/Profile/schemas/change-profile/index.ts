@@ -22,5 +22,5 @@ export const ChangeProfileSchema = yup.object().shape({
   second_name: yup
     .string()
     .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
-    .required(ERROR_MESSAGES.REQUIRED_MSG), 
+    .required(ERROR_MESSAGES.REQUIRED_MSG),
 });
