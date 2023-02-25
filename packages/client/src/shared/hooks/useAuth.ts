@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
-
-import { selectIsLogged } from "../../entities/auth/model/auth";
+import { useGetUserQuery } from "../api/auth/auth";
 export const useAuth = () => {
-  return useSelector(selectIsLogged);
+  const { data } = useGetUserQuery("user");
+  console.log(data);
+  return !!data;
 };
