@@ -5,8 +5,8 @@ import {
   GameImages,
   initialObjectSize,
 } from "@/shared/constants";
+import { getRandomNumber } from "@/shared/utils/functions";
 
-import { getRandomNumber } from "../../controller/utils";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
 import { ShootingObject } from "../ShootingObject/ShootingObject";

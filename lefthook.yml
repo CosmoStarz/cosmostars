@@ -6,4 +6,4 @@ pre-commit:
       run: yarn eslint {staged_files}
     format:
       glob: "*.{ts,tsx}"
-      run: yarn format {staged_files}
+      run: yarn format
