@@ -1,6 +1,6 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Box, Button, Typography } from "@mui/material";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import { RoutesName } from "@/shared/constants";

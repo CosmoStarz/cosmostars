@@ -5,15 +5,15 @@ import {
   shouldMatchSnapshot,
   shouldRenderWithoutError,
 } from "../tests/factories";
-import { MainPage } from "./MainPage";
+import { ForumPage } from "./ForumPage";
 
 let Page: ReactElement;
 
-describe("Main Page", () => {
+describe("Forum Page", () => {
   beforeEach(() => {
     Page = (
       <BrowserRouter>
-        <MainPage />
+        <ForumPage />
       </BrowserRouter>
     );
   });

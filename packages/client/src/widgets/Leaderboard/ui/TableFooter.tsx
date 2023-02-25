@@ -3,7 +3,7 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
+// import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import React, { FC } from "react";
 
 type TableFooterProps = {
@@ -43,7 +43,6 @@ export const TableFooter: FC<TableFooterProps> = ({
           }}
           onPageChange={onChangePage}
           onRowsPerPageChange={onChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
         />
       </TableRow>
     </MuiTableFooter>

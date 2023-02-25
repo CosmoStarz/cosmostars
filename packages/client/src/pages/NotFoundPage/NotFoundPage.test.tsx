@@ -5,15 +5,15 @@ import {
   shouldMatchSnapshot,
   shouldRenderWithoutError,
 } from "../tests/factories";
-import { MainPage } from "./MainPage";
+import { NotFoundPage } from "./NotFoundPage";
 
 let Page: ReactElement;
 
-describe("Main Page", () => {
+describe("Not Found Page", () => {
   beforeEach(() => {
     Page = (
       <BrowserRouter>
-        <MainPage />
+        <NotFoundPage />
       </BrowserRouter>
     );
   });
