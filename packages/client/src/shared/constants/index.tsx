@@ -39,6 +39,10 @@ export enum BaseGameColors {
   PURPLE = "#ba68c8",
 }
 
+export const EnemyPoints = {
+  BASIC: 100,
+} as const;
+
 export enum GameImages {
   ENEMY = "enemy",
   PLAYER = "player",

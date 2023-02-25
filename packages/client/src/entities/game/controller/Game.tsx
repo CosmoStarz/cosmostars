@@ -1,3 +1,5 @@
+import { store } from "@/app/store";
+import { incrementScoreByEnemy } from "@/app/store/score/scoreSlice";
 import {
   BaseGameColors,
   baseSpeed,
@@ -136,6 +138,8 @@ export class Game {
           enemy,
           () => {
             // TODO: добавить взрыв (COS-53)
+            store.dispatch(incrementScoreByEnemy("BASIC"));
+
             console.log("BOOM");
           }
         );
@@ -157,6 +161,7 @@ export class Game {
               playerProjectile,
               () => {
                 // TODO: добавить взрыв (COS-53)
+
                 console.log("BOOM");
               }
             );

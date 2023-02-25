@@ -59,6 +59,12 @@ export class Canvas {
     );
   }
 
+  public drawText(text: string) {
+    this.context.fillStyle = "white";
+    this.context.font = "bold 32px Arial";
+    this.context.fillText(text, 50, 50);
+  }
+
   public fillCanvas(color: GameObjectColor) {
     const size = {
       width: this.width,
