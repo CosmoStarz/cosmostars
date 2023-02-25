@@ -10,7 +10,8 @@ export const signUpSchema = yup.object().shape({
     .required(ERROR_MESSAGES.REQUIRED_MSG),
   phone: yup
     .string()
-    .matches(VALDIATION_REGEX.phoneRegExp, ERROR_MESSAGES.PHONE_ERROR_MSG),
+    .matches(VALDIATION_REGEX.phoneRegExp, ERROR_MESSAGES.PHONE_ERROR_MSG)
+    .required(ERROR_MESSAGES.REQUIRED_MSG),
   password: yup
     .string()
     .min(5, ERROR_MESSAGES.PASSWORD_ERROR_MSG)
@@ -24,6 +25,10 @@ export const signUpSchema = yup.object().shape({
     .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
     .required(ERROR_MESSAGES.REQUIRED_MSG),
   name: yup
+    .string()
+    .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
+    .required(ERROR_MESSAGES.REQUIRED_MSG),
+  second_name: yup
     .string()
     .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
     .required(ERROR_MESSAGES.REQUIRED_MSG),

@@ -17,6 +17,7 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
       email: "",
       login: "",
       name: "",
+      second_name: "",
       phone: "",
       password: "",
       confirmPassword: "",
@@ -26,7 +27,7 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
       //TODO мне не нравится как это выглядит, принимаю предложение на улучшение
       const userForm: authTypes.SignUpRequest = {
         first_name: values.name,
-        second_name: "forYandexApi",
+        second_name: values.second_name,
         login: values.login,
         email: values.email,
         password: values.password,
@@ -70,6 +71,16 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
         onChange: handleChange,
         onBlur: handleBlur,
         error: errors.name,
+      },
+      {
+        id: "second_name",
+        label: "Second name",
+        name: "second_name",
+        value: values.second_name,
+        type: "text",
+        onChange: handleChange,
+        onBlur: handleBlur,
+        error: errors.second_name,
       },
       {
         id: "phone",
