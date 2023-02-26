@@ -1,25 +1,33 @@
 import { useFormik } from "formik";
-import { PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
+
+import {
+  useChangeProfileMutation,
+  useGetUserQuery,
+} from "@/entities/user/model/api";
+import { UserProfile } from "@/entities/user/model/types";
+import { initialProfileForm } from "@/shared/constants/formInitials";
 
 import { CardView } from "../../../shared/ui";
 import { ChangeProfileSchema } from "../schemas/change-profile";
 
-export type ChangeProfileProps = PropsWithChildren<{
-  handleChangeProfile: () => void;
-}>;
-// { handleChangeProfile }: ChangeProfileProps
-export const ChangeProfile = () => {
+export const ChangeProfileForm = () => {
+  const [changeProfile] = useChangeProfileMutation();
+  const { data } = useGetUserQuery();
+  const [initValues, setInitValues] = useState<UserProfile>(initialProfileForm);
+
+  useEffect(() => {
+    if (data) {
+      setInitValues(data);
+    }
+  }, [data]);
+
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
-    initialValues: {
-      email: "test@mail.ru",
-      login: "testLogin",
-      name: "testName",
-      second_name: "asdas",
-      phone: "8800553535",
-    },
+    enableReinitialize: true,
+    initialValues: initValues,
     validationSchema: ChangeProfileSchema,
-    onSubmit: () => {
-      // handleChangeProfile();
+    onSubmit: values => {
+      changeProfile(values);
     },
   });
 
@@ -49,14 +57,34 @@ export const ChangeProfile = () => {
         error: errors.login,
       },
       {
-        id: "name",
+        id: "first_name",
         label: "Name",
-        name: "name",
-        value: values.name,
+        name: "first_name",
+        value: values.first_name,
         type: "text",
         onChange: handleChange,
         onBlur: handleBlur,
-        error: errors.name,
+        error: errors.first_name,
+      },
+      {
+        id: "second_name",
+        label: "Second name",
+        name: "second_name",
+        value: values.second_name,
+        type: "text",
+        onChange: handleChange,
+        onBlur: handleBlur,
+        error: errors.second_name,
+      },
+      {
+        id: "display_name",
+        label: "Display name",
+        name: "display_name",
+        value: values.display_name,
+        type: "text",
+        onChange: handleChange,
+        onBlur: handleBlur,
+        error: errors.display_name,
       },
       {
         id: "second_name",
@@ -83,7 +111,7 @@ export const ChangeProfile = () => {
   };
   return (
     <CardView
-      // handleSubmit={props.handleSubmit}
+      handleSubmit={props.handleSubmit}
       className={props.className}
       title={props.title}
       fields={props.fields}
