@@ -9,18 +9,19 @@ type TableRowProps = {
 };
 
 export const TableRow: FC<TableRowProps> = ({
-  data: { name, email, img, score, status, lastGameDate },
+  data: { place, name = "Name", email = "email@email.ru", img, score },
 }) => {
   return (
     <MuiTableRow>
+      <TableCell>
+        <Typography>{place}</Typography>
+      </TableCell>
       <TableCell>
         <PlayerInfo name={name} email={email} img={img} />
       </TableCell>
       <TableCell>
         <Typography>{score}</Typography>
       </TableCell>
-      <TableCell>{status}</TableCell>
-      <TableCell>{lastGameDate}</TableCell>
     </MuiTableRow>
   );
 };

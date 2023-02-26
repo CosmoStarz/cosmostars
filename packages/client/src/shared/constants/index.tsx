@@ -18,7 +18,17 @@ export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заме�
 
 export const baseSpeed = 10;
 
-export const projectileSize = 6;
+export const projectileWidth = 5;
+export const projectileHeight = 15;
+
+export enum GameStatuses {
+  NOT_ACTIVE = 0,
+  ACTIVE = 1,
+  START = 2,
+  LOOSE = 3,
+  WIN = 4,
+  PAUSED = 5,
+}
 
 export enum BaseGameColors {
   RED = "#ff0000",
@@ -29,13 +39,10 @@ export enum BaseGameColors {
   PURPLE = "#ba68c8",
 }
 
-export enum GameStatuses {
-  NOT_ACTIVE = 0,
-  ACTIVE = 1,
-  START = 2,
-  LOOSE = 3,
-  WIN = 4,
-  PAUSED = 5,
+export enum GameImages {
+  ENEMY = "enemy",
+  PLAYER = "player",
+  PROJECTILE = "projectile",
 }
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
@@ -134,8 +141,8 @@ export const initialCoords: elementCoords = {
 };
 
 export const initialObjectSize: basicSize = {
-  width: 45,
-  height: 45,
+  width: 50,
+  height: 50,
 };
 
 export const basicGridSpeed = 3;

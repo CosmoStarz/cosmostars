@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { PlayerData } from "./types";
 
-type PlayerInfoProps = PlayerData;
+type PlayerInfoProps = Omit<PlayerData, "playerId">;
 
 export const PlayerInfo: FC<PlayerInfoProps> = ({ name, img, email }) => {
   return (

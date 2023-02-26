@@ -3,17 +3,18 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
+  GameImages,
   GameKeyboard,
   GameStatuses,
   randomInterval,
 } from "@/shared/constants";
+import { getRandomNumber } from "@/shared/utils/functions";
 
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
 import { setGameStatus } from "../model/store/gameSlice";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
-import { getRandomNumber } from "./utils";
 
 export class Game {
   private canvas: HTMLCanvasElement;
@@ -42,9 +43,9 @@ export class Game {
 
   private get initialPlayer() {
     return new Player({
-      color: BaseGameColors.RED,
       scene: this.scene,
       projectileSpeed: -baseSpeed,
+      src: GameImages.PLAYER,
     });
   }
 
