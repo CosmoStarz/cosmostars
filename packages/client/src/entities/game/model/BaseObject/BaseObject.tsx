@@ -24,19 +24,19 @@ export class BaseObject {
     this.src = baseProps.src ? baseProps.src : GameImages.PROJECTILE;
     this.image = new Image();
     this.image.src = `/src/assets/images/game-model-${this.src}.png`;
-    this.position = baseProps.position ?? this.getInitialPosition;
-    this.velocity = baseProps.velocity ?? this.getInitialVelocity;
+    this.velocity = baseProps.velocity ?? this.initialVelocity;
+    this.position = baseProps.position ?? this.initialPosition;
     this.size = baseProps.size ?? initialObjectSize;
   }
 
-  private get getInitialVelocity(): basicVelocity {
+  private get initialVelocity(): basicVelocity {
     return {
       dx: initialVelocity.dx,
       dy: initialVelocity.dy,
     };
   }
 
-  private get getInitialPosition(): elementCoords {
+  private get initialPosition(): elementCoords {
     return {
       x: initialCoords.x,
       y: initialCoords.y,

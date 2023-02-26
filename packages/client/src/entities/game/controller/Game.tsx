@@ -1,9 +1,11 @@
+import { store } from "@/app/store";
 import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
   GameImages,
   GameKeyboard,
+  GameStatuses,
   randomInterval,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
@@ -11,6 +13,7 @@ import { getRandomNumber } from "@/shared/utils/functions";
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
+import { setGameStatus } from "../model/store/gameSlice";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 
 export class Game {
@@ -25,7 +28,7 @@ export class Game {
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
     this.scene = this.mainScene;
-    this.player = this.createPlayer;
+    this.player = this.initialPlayer;
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
@@ -34,11 +37,11 @@ export class Game {
     this.drawCanvas();
   }
 
-  get mainScene() {
+  private get mainScene() {
     return initCanvas(this.canvas);
   }
 
-  get createPlayer() {
+  private get initialPlayer() {
     return new Player({
       scene: this.scene,
       projectileSpeed: -baseSpeed,
@@ -171,20 +174,26 @@ export class Game {
     });
   }
 
-  public start() {
+  public resume() {
+    store.dispatch(setGameStatus(GameStatuses.ACTIVE));
     this.gameActive = true;
     this.initListeners();
     this.update();
   }
 
-  // TODO: внедрить состояния игры и прикрутить показ нужных окошек при каждом (COS-47)
-  private stopped() {
-    this.gameActive = false;
+  public start() {
+    this.clearGameState();
+    this.resume();
   }
 
   private loose() {
-    console.log("LOOSER");
-    this.stopped();
+    store.dispatch(setGameStatus(GameStatuses.LOOSE));
+    this.gameActive = false;
+  }
+
+  private paused() {
+    store.dispatch(setGameStatus(GameStatuses.PAUSED));
+    this.gameActive = false;
   }
 
   private initListeners() {
@@ -201,7 +210,7 @@ export class Game {
             this.player.shoot();
             break;
           case GameKeyboard.PAUSE:
-            this.stopped();
+            this.paused();
             break;
           default:
             break;
@@ -237,6 +246,12 @@ export class Game {
       this.watchEnemiesGone();
       this.createEnemies();
     }
+  }
+
+  private clearGameState() {
+    this.player = this.initialPlayer;
+    this.enemyGrids = [];
+    this.frames = 0;
   }
 }
 
