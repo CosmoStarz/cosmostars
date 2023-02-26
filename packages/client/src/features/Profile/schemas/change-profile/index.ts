@@ -14,7 +14,8 @@ export const ChangeProfileSchema = yup.object().shape({
     .required(ERROR_MESSAGES.REQUIRED_MSG),
   phone: yup
     .string()
-    .matches(VALDIATION_REGEX.phoneRegExp, ERROR_MESSAGES.PHONE_ERROR_MSG),
+    .matches(VALDIATION_REGEX.phoneRegExp, ERROR_MESSAGES.PHONE_ERROR_MSG)
+    .required(ERROR_MESSAGES.REQUIRED_MSG),
   first_name: yup
     .string()
     .min(3, ERROR_MESSAGES.NAME_ERROR_MSG)
