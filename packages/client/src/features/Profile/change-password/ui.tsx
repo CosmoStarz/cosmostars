@@ -1,23 +1,20 @@
 import { useFormik } from "formik";
-import { PropsWithChildren } from "react";
+
+import { useChangePasswordMutation } from "@/entities/user/model/api";
+import { passwordConverter } from "@/entities/user/model/converters";
+import { initialPasswordForm } from "@/shared/constants/formInitials";
 
 import { CardView } from "../../../shared/ui";
 import { ChangePasswordSchema } from "../schemas/change-password";
 
-export type ChangePasswordProps = PropsWithChildren<{
-  handleChangePassword: () => void;
-}>;
-// { handleChangePassword }: ChangePasswordProps
 export const ChangePassword = () => {
+  const [ChangePassword] = useChangePasswordMutation();
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
-    initialValues: {
-      oldPassword: "",
-      password: "",
-      confirmPassword: "",
-    },
+    initialValues: initialPasswordForm,
     validationSchema: ChangePasswordSchema,
     onSubmit: () => {
-      // handleChangePassword();
+      const data = passwordConverter(values);
+      ChangePassword(data);
     },
   });
 
