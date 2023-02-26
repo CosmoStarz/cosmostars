@@ -23,7 +23,7 @@ type FieldsType = {
   id: string;
   label: string;
   name: string;
-  value: string;
+  value: string | null;
   type: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: FocusEvent<HTMLInputElement>) => void;
@@ -68,7 +68,6 @@ const CardView = ({
         maxWidth: "595px",
         width: "100%",
         margin: "auto",
-        border: "1px solid",
         background:
           "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%) ",
       }}>

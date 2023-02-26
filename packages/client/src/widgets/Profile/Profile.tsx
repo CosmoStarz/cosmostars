@@ -4,9 +4,9 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Box, Tab, Tabs } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 
-import { ChangeAvatar } from "@/features/Profile/change-avatar";
-import { ChangePassword } from "@/features/Profile/change-password";
-import { ChangeProfile } from "@/features/Profile/change-profile";
+import { ChangeAvatarForm } from "@/features/Profile/change-avatar";
+import { ChangePasswordForm } from "@/features/Profile/change-password";
+import { ChangeProfileForm } from "@/features/Profile/change-profile";
 
 export type ProfileProps = PropsWithChildren<{
   handleProfile: () => void;
@@ -60,9 +60,9 @@ export function ProfileWidget({ handleProfile }: ProfileProps) {
         </Tabs>
       </Box>
       <Box>
-        {value === 0 && <ChangeProfile />}
-        {value === 1 && <ChangePassword />}
-        {value === 2 && <ChangeAvatar />}
+        {value === 0 && <ChangeProfileForm />}
+        {value === 1 && <ChangePasswordForm />}
+        {value === 2 && <ChangeAvatarForm />}
       </Box>
     </Box>
   );
