@@ -12,7 +12,7 @@ import { CardView } from "../../../shared/ui";
 import { ChangeProfileSchema } from "../schemas/change-profile";
 
 export const ChangeProfileForm = () => {
-  const [ChangeProfile] = useChangeProfileMutation();
+  const [changeProfile] = useChangeProfileMutation();
   const { data } = useGetUserQuery();
   const [initValues, setInitValues] = useState<UserProfile>(initialProfileForm);
 
@@ -27,7 +27,7 @@ export const ChangeProfileForm = () => {
     initialValues: initValues,
     validationSchema: ChangeProfileSchema,
     onSubmit: values => {
-      ChangeProfile(values);
+      changeProfile(values);
     },
   });
 

@@ -8,13 +8,13 @@ import { CardView } from "../../../shared/ui";
 import { ChangePasswordSchema } from "../schemas/change-password";
 
 export const ChangePasswordForm = () => {
-  const [ChangePassword] = useChangePasswordMutation();
+  const [changePassword] = useChangePasswordMutation();
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: initialPasswordForm,
     validationSchema: ChangePasswordSchema,
     onSubmit: () => {
       const data = passwordConverter(values);
-      ChangePassword(data);
+      changePassword(data);
     },
   });
 

@@ -24,7 +24,7 @@ import { configureResourcePath } from "@/shared/utils/configureUrl";
 import { ChangeAvatarSchema } from "../schemas/change-avatar";
 
 export const ChangeAvatarForm = () => {
-  const [ChangeAvatar] = useChangeAvatarMutation();
+  const [changeAvatar] = useChangeAvatarMutation();
   const { data } = useGetUserQuery();
   const currAvatar = configureResourcePath(data?.avatar);
   const [currentAvatar, setCurrentAvatar] = useState<string>(currAvatar);
@@ -34,7 +34,7 @@ export const ChangeAvatarForm = () => {
     validationSchema: ChangeAvatarSchema,
     onSubmit: () => {
       const data = avatarConverter(values);
-      ChangeAvatar(data);
+      changeAvatar(data);
     },
   });
 
