@@ -23,7 +23,7 @@ import { configureResourcePath } from "@/shared/utils/configureUrl";
 
 import { ChangeAvatarSchema } from "../schemas/change-avatar";
 
-export const ChangeAvatar = () => {
+export const ChangeAvatarForm = () => {
   const [ChangeAvatar] = useChangeAvatarMutation();
   const { data } = useGetUserQuery();
   const currAvatar = configureResourcePath(data?.avatar);
@@ -39,9 +39,11 @@ export const ChangeAvatar = () => {
   });
 
   const handleUploadFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const newFile = event.currentTarget.files![0];
-    setFieldValue("avatar", newFile);
-    setCurrentAvatar(URL.createObjectURL(newFile));
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      const newFile = event.currentTarget.files[0];
+      setFieldValue("avatar", newFile);
+      setCurrentAvatar(URL.createObjectURL(newFile));
+    }
   };
 
   const props = {

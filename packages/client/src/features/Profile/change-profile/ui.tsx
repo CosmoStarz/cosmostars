@@ -11,7 +11,7 @@ import { initialProfileForm } from "@/shared/constants/formInitials";
 import { CardView } from "../../../shared/ui";
 import { ChangeProfileSchema } from "../schemas/change-profile";
 
-export const ChangeProfile = () => {
+export const ChangeProfileForm = () => {
   const [ChangeProfile] = useChangeProfileMutation();
   const { data } = useGetUserQuery();
   const [initValues, setInitValues] = useState<UserProfile>(initialProfileForm);

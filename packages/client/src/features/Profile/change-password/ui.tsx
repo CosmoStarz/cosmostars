@@ -7,7 +7,7 @@ import { initialPasswordForm } from "@/shared/constants/formInitials";
 import { CardView } from "../../../shared/ui";
 import { ChangePasswordSchema } from "../schemas/change-password";
 
-export const ChangePassword = () => {
+export const ChangePasswordForm = () => {
   const [ChangePassword] = useChangePasswordMutation();
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: initialPasswordForm,
