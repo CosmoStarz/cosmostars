@@ -1,12 +1,12 @@
 import {
-  BaseGameColors,
   baseSpeed,
   basicGridSpeed,
   EnemyGridSizes,
+  GameImages,
   initialObjectSize,
 } from "@/shared/constants";
+import { getRandomNumber } from "@/shared/utils/functions";
 
-import { getRandomNumber } from "../../controller/utils";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
@@ -27,23 +27,30 @@ export class EnemyGrid extends BaseObject {
       EnemyGridSizes.MIN_ROWS,
       EnemyGridSizes.MAX_ROWS
     );
-    this.size = this.getSize;
-    this.position = this.initPosition;
-    this.velocity = this.getVelocity;
+    this.size = this.gridSize;
+    this.position = this.gridPosition;
+    this.velocity = this.gridVelocity;
     this.draw();
   }
 
-  private get getSize() {
+  private get gridSize() {
     return {
       width: this.columns * initialObjectSize.width,
       height: this.rows * initialObjectSize.height,
     };
   }
 
-  private get getVelocity() {
+  private get gridVelocity() {
     return {
       dx: basicGridSpeed,
       dy: 0,
+    };
+  }
+
+  private get gridPosition() {
+    return {
+      x: 0,
+      y: 0,
     };
   }
 
@@ -52,7 +59,6 @@ export class EnemyGrid extends BaseObject {
       for (let y = 0; y < this.rows; y++) {
         this.enemies.push(
           new ShootingObject({
-            color: BaseGameColors.YELLOW,
             scene: this.scene,
             position: {
               x: x * initialObjectSize.width,
@@ -60,17 +66,11 @@ export class EnemyGrid extends BaseObject {
             },
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
+            src: GameImages.ENEMY,
           })
         );
       }
     }
-  }
-
-  protected get initPosition() {
-    return {
-      x: 0,
-      y: 0,
-    };
   }
 
   public update() {

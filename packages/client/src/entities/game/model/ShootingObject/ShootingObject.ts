@@ -1,4 +1,5 @@
-import { BaseGameColors, projectileSize } from "../../../../shared/constants";
+import { projectileHeight, projectileWidth } from "@/shared/constants";
+
 import { BaseObject } from "../BaseObject/BaseObject";
 import { shootingObjectProps } from "./types";
 
@@ -19,10 +20,9 @@ export class ShootingObject extends BaseObject {
 
   public shoot() {
     const projectile = new BaseObject({
-      color: BaseGameColors.YELLOW,
       scene: this.scene,
       position: {
-        x: this.position.x + this.size.width / 2,
+        x: this.position.x + this.size.width / 2 - projectileWidth / 2,
         y: this.position.y,
       },
       velocity: {
@@ -30,8 +30,8 @@ export class ShootingObject extends BaseObject {
         dy: this.projectileSpeed,
       },
       size: {
-        width: projectileSize,
-        height: projectileSize,
+        width: projectileWidth,
+        height: projectileHeight,
       },
     });
     this.projectiles.push(projectile);
