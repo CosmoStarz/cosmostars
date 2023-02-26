@@ -1,7 +1,12 @@
 import { AUTH, Method } from "@/shared/constants/api";
 
 import { yandexApi } from "../yandexApi";
-import { SignInRequest, SignUpRequest, SignUpResponse } from "./models";
+import {
+  SignInRequest,
+  SignInResponse,
+  SignUpRequest,
+  SignUpResponse,
+} from "./models";
 
 const AUTH_URL = {
   SIGN_UP: `${AUTH}signup`,
@@ -19,7 +24,7 @@ export const authApi = yandexApi.injectEndpoints({
         body: signUpRequest,
       }),
     }),
-    signIn: builder.mutation<SignUpRequest, SignInRequest>({
+    signIn: builder.mutation<SignInResponse, SignInRequest>({
       query: signInRequest => ({
         url: AUTH_URL.SIGN_IN,
         method: Method.POST,

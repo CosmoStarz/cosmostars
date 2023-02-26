@@ -8,11 +8,19 @@ export type SignUpRequest = {
 };
 
 export type SignUpResponse = {
-  id?: number;
-  reason?: string;
+  data: SignUpData;
 };
 
+type SignUpData = {
+  id: number;
+};
 export type SignInRequest = {
   login: string;
   password: string;
+};
+export type SignInResponse = {
+  error: SignInData;
+};
+type SignInData = {
+  data: string;
 };
