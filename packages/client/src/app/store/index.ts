@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import { gameReducer } from "@/entities/game/model/store/gameSlice";
 import { authApi } from "@/shared/api";
 import { yandexApi } from "@/shared/api/yandexApi";
