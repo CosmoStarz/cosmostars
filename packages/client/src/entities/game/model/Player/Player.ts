@@ -4,10 +4,10 @@ import { shootingObjectProps } from "../ShootingObject/types";
 export class Player extends ShootingObject {
   constructor(props: shootingObjectProps) {
     super(props);
-    this.position = this.initPosition;
+    this.position = this.startPosition;
   }
 
-  protected get initPosition() {
+  private get startPosition() {
     const sceneRatio = 1.5;
 
     return {

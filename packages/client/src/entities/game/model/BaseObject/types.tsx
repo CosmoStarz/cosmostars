@@ -18,4 +18,5 @@ export type baseObjectProps = {
   position?: elementCoords;
   size?: basicSize;
   color?: GameObjectColor;
+  src?: string;
 };

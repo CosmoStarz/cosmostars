@@ -1,12 +1,22 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Box, Button, Typography } from "@mui/material";
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { RoutesName } from "@/shared/constants";
+import { setGameStatus } from "@/entities/game/model/store/gameSlice";
+import { GameStatuses, RoutesName } from "@/shared/constants";
+import { useAppDispatch } from "@/shared/hooks/store";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const MainPage: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(RoutesName.GAME);
+    dispatch(setGameStatus(GameStatuses.START));
+  };
+
   return (
     <MainLayout>
       <Box
@@ -41,8 +51,7 @@ export const MainPage: FC = () => {
           variant="contained"
           endIcon={<PlayArrowIcon />}
           size="large"
-          component={Link}
-          to={RoutesName.GAME}>
+          onClick={handleNavigate}>
           Play
         </Button>
       </Box>

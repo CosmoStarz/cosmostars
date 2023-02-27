@@ -12,22 +12,14 @@ import {
 } from "@/entities/game/model/BaseObject/types";
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
-import { GameModalProps, GameModalTypes } from "@/widgets/GameModal/types";
+import { GameModalProps } from "@/widgets/GameModal/types";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
 export const baseSpeed = 10;
 
-export const projectileSize = 6;
-
-export enum BaseGameColors {
-  RED = "#ff0000",
-  YELLOW = "#ffff00",
-  BLACK = "#000000",
-  BLUE = "#23A9F2",
-  GREEN = "#3AD900",
-  PURPLE = "#ba68c8",
-}
+export const projectileWidth = 5;
+export const projectileHeight = 15;
 
 export enum GameStatuses {
   NOT_ACTIVE = 0,
@@ -38,7 +30,24 @@ export enum GameStatuses {
   PAUSED = 5,
 }
 
-export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
+export enum BaseGameColors {
+  RED = "#ff0000",
+  YELLOW = "#ffff00",
+  BLACK = "#000000",
+  BLUE = "#23A9F2",
+  GREEN = "#3AD900",
+  PURPLE = "#ba68c8",
+}
+
+export enum GameImages {
+  ENEMY = "enemy",
+  PLAYER = "player",
+  PROJECTILE = "projectile",
+}
+
+export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
+  [GameStatuses.NOT_ACTIVE]: null,
+  [GameStatuses.ACTIVE]: null,
   [GameStatuses.START]: {
     title: "Start",
     startButton: "Start",
@@ -132,8 +141,8 @@ export const initialCoords: elementCoords = {
 };
 
 export const initialObjectSize: basicSize = {
-  width: 45,
-  height: 45,
+  width: 50,
+  height: 50,
 };
 
 export const basicGridSpeed = 3;
@@ -147,7 +156,7 @@ export enum EnemyGridSizes {
   MIN_COLUMNS = 5,
   MAX_ROWS = 5,
   MIN_ROWS = 2,
-};
+}
 
 export enum GameKeyboard {
   LEFT = 37,
