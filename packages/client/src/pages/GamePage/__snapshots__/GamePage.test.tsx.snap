@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game Page should match snapshot 1`] = `
+<div
+  aria-hidden="true"
+>
+  <canvas
+    class="game-canvas"
+  />
+</div>
+`;

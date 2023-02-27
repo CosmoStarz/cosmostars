@@ -7,10 +7,11 @@ import {
 } from "../tests/factories";
 import { GamePage } from "./GamePage";
 
+jest.mock("@/entities/game/controller/Game");
+
 let Page: ReactElement;
 
-// ! Эти тесты падают из-за ошибки типизации. Надо поправить код.
-describe.skip("Game Page", () => {
+describe("Game Page", () => {
   beforeEach(() => {
     Page = (
       <BrowserRouter>
