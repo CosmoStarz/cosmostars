@@ -20,9 +20,12 @@ const scoreSlice = createSlice({
     ) => {
       state.score += EnemyPoints[payload];
     },
+    resetScore: state => {
+      state.score = 0;
+    },
   },
 });
 
-export const { incrementScoreByEnemy } = scoreSlice.actions;
+export const { incrementScoreByEnemy, resetScore } = scoreSlice.actions;
 
 export default scoreSlice.reducer;

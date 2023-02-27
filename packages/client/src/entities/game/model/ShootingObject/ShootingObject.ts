@@ -9,7 +9,6 @@ export class ShootingObject extends BaseObject {
 
   constructor(props: shootingObjectProps) {
     super(props);
-
     this.projectiles = [];
     this.projectileSpeed = props.projectileSpeed;
   }

@@ -6,54 +6,48 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { setGameStatus } from "@/entities/game/model/store/gameSlice";
+import {
+  gameModalSelector,
+  gameStatusSelector,
+} from "@/entities/game/model/store/selectors";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
 import {
   BaseGameColors,
+  GameModalConfig,
   GameModalImageAlign,
+  GameStatuses,
   RoutesName,
 } from "@/shared/constants";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 
-import { GameModalProps } from "./types";
+import { GameModalType } from "./types";
 
-export const GameModal: FC<
-  GameModalProps & { onStart: () => void }
-> = props => {
-  const {
-    title,
-    startButton,
-    canBeResumed,
-    rulesVisibility,
-    scoreVisibility,
-    rightImg,
-    leftImg,
-    onStart,
-  } = props;
+export const GameModal: FC<GameModalType> = props => {
+  const { onStart, onResume } = props;
   const navigate = useNavigate();
-  // TODO: передавать score через селектор, после реализации redux в рамках задачи добавления score (задача COS-63)
-  const score = 0;
-
-  // TODO: доработать логику открытия-закрытия, когда добавим состояния игры с redux (задача COS-47)
-  const [open, setOpen] = useState(true);
+  const dispatch = useAppDispatch();
+  const status = useAppSelector(gameStatusSelector);
+  const isOpen = useAppSelector(gameModalSelector);
+  const config = GameModalConfig[status];
+  const { score } = useAppSelector(state => state.score);
 
   const handleClose = () => {
-    setOpen(false);
-    // TODO: метод остановки/паузы игры (задача COS-47)
-    canBeResumed ? null : onStart();
+    config?.canBeResumed ? onResume() : onStart();
   };
 
   const handleHomeNavigate = () => {
-    setOpen(false);
+    dispatch(setGameStatus(GameStatuses.NOT_ACTIVE));
     navigate(RoutesName.MAIN);
   };
 
   return (
     <Dialog
       fullWidth
-      onClose={handleClose}
-      open={open}
+      open={isOpen}
       sx={{
         textAlign: "center",
       }}
@@ -66,42 +60,55 @@ export const GameModal: FC<
           overflow: "inherit",
         },
       }}>
-      <DialogTitle variant="h2" component="h1">
-        {title}
-      </DialogTitle>
-      {rightImg && (
-        <GameModalImage image={rightImg} type={GameModalImageAlign.RIGHT} />
+      {config && (
+        <>
+          <DialogTitle variant="h2" component="h1">
+            {config.title}
+          </DialogTitle>
+          {config.rightImg && (
+            <GameModalImage
+              image={config.rightImg}
+              type={GameModalImageAlign.RIGHT}
+            />
+          )}
+          {config.scoreVisibility && (
+            <Typography
+              variant="h5"
+              component="p"
+              color={BaseGameColors.PURPLE}>
+              Your score: {score}
+            </Typography>
+          )}
+          {config.rulesVisibility && (
+            <DialogContentText>
+              Press &#11160; and &#11162; to move spaceship. Press Space key to
+              shoot.
+              <br />
+              Press Esc key to paused the game.
+              <br />
+              Good luck!
+            </DialogContentText>
+          )}
+          {config.leftImg && (
+            <GameModalImage
+              image={config.leftImg}
+              type={GameModalImageAlign.LEFT}
+            />
+          )}
+          <DialogActions
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}>
+            <Button variant="contained" onClick={handleHomeNavigate}>
+              Home page
+            </Button>
+            <Button variant="contained" onClick={handleClose}>
+              {config.startButton}
+            </Button>
+          </DialogActions>
+        </>
       )}
-      {scoreVisibility && (
-        <Typography variant="h5" component="p" color={BaseGameColors.PURPLE}>
-          Your score: {score}
-        </Typography>
-      )}
-      {rulesVisibility && (
-        <DialogContentText>
-          Press &#11160; and &#11162; to move spaceship. Press Space key to
-          shoot.
-          <br />
-          Press Esc key to paused the game.
-          <br />
-          Good luck!
-        </DialogContentText>
-      )}
-      {leftImg && (
-        <GameModalImage image={leftImg} type={GameModalImageAlign.LEFT} />
-      )}
-      <DialogActions
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-        }}>
-        <Button variant="contained" onClick={handleHomeNavigate}>
-          Home page
-        </Button>
-        <Button variant="contained" onClick={handleClose}>
-          {startButton}
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 };

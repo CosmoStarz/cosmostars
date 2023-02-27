@@ -12,7 +12,7 @@ import {
 } from "@/entities/game/model/BaseObject/types";
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
-import { GameModalProps, GameModalTypes } from "@/widgets/GameModal/types";
+import { GameModalProps } from "@/widgets/GameModal/types";
 
 export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
@@ -49,7 +49,9 @@ export enum GameImages {
   PROJECTILE = "projectile",
 }
 
-export const GameModalConfig: Record<GameModalTypes, GameModalProps> = {
+export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
+  [GameStatuses.NOT_ACTIVE]: null,
+  [GameStatuses.ACTIVE]: null,
   [GameStatuses.START]: {
     title: "Start",
     startButton: "Start",

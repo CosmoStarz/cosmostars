@@ -1,10 +1,7 @@
-import { GameStatuses } from "@/shared/constants";
-
-export type GameModalTypes =
-  | GameStatuses.START
-  | GameStatuses.LOOSE
-  | GameStatuses.WIN
-  | GameStatuses.PAUSED;
+export type GameModalType = {
+  onStart: () => void;
+  onResume: () => void;
+};
 
 export type GameModalProps = {
   title: string;
