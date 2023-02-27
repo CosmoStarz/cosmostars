@@ -5,21 +5,24 @@ import {
   shouldMatchSnapshot,
   shouldRenderWithoutError,
 } from "../tests/factories";
-// import { ProfilePage } from "./";
+import { ProfilePage } from "./";
 
 let Page: ReactElement;
 
-// ! Тест валится из-за ошибки тайпскрипта. Надо поправить.
-describe.skip("Profile Page", () => {
+describe("Profile Page", () => {
   beforeEach(() => {
-    Page = <BrowserRouter>{/* <ProfilePage /> */}</BrowserRouter>;
+    Page = (
+      <BrowserRouter>
+        <ProfilePage />
+      </BrowserRouter>
+    );
   });
 
-  it.skip("should render without error", () => {
+  it("should render without error", () => {
     shouldRenderWithoutError(Page);
   });
 
-  it.skip("should match snapshot", () => {
+  it("should match snapshot", () => {
     shouldMatchSnapshot(Page);
   });
 });

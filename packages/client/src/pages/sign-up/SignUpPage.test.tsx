@@ -5,14 +5,17 @@ import {
   shouldMatchSnapshot,
   shouldRenderWithoutError,
 } from "../tests/factories";
-// import { SignUpPage } from "./";
+import { SignUpPage } from "./";
 
 let Page: ReactElement;
 
-// ! Тест валится из-за ошибки тайпскрипта. Надо поправить.
-describe.skip("Sign Up Page", () => {
+describe("Sign Up Page", () => {
   beforeEach(() => {
-    Page = <BrowserRouter>{/* <SignUpPage /> */}</BrowserRouter>;
+    Page = (
+      <BrowserRouter>
+        <SignUpPage />
+      </BrowserRouter>
+    );
   });
 
   it("should render without error", () => {
