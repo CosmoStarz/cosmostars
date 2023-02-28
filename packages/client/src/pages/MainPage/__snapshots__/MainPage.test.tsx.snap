@@ -167,10 +167,10 @@ exports[`Main Page should match snapshot 1`] = `
       >
         Galaxy spaceship
       </h1>
-      <a
+      <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge main-page__play-btn css-jh47zj-MuiButtonBase-root-MuiButton-root"
-        href="/game"
         tabindex="0"
+        type="button"
       >
         Play
         <span
@@ -191,7 +191,7 @@ exports[`Main Page should match snapshot 1`] = `
         <span
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />
-      </a>
+      </button>
     </div>
   </div>
 </div>

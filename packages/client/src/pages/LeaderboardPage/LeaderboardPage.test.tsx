@@ -7,6 +7,8 @@ import {
 } from "../tests/factories";
 import { LeaderboardPage } from "./LeaderboardPage";
 
+jest.mock("@/entities/leaderboard/api");
+
 let Page: ReactElement;
 
 describe("Leaderboard Page", () => {

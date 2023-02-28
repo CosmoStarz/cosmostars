@@ -169,6 +169,16 @@ exports[`Leaderboard Page should match snapshot 1`] = `
         >
           Leader Board
         </h1>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-12cfzj2-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Добавить / обновить очки
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
         <div
           class="MuiBox-root css-8atqhb"
         >
@@ -181,6 +191,16 @@ exports[`Leaderboard Page should match snapshot 1`] = `
               <tr
                 class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
               >
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+                  scope="col"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1kmoebj-MuiTypography-root"
+                  >
+                    Place
+                  </p>
+                </th>
                 <th
                   class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                   scope="col"
@@ -201,26 +221,6 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                     Score
                   </p>
                 </th>
-                <th
-                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
-                  scope="col"
-                >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-1kmoebj-MuiTypography-root"
-                  >
-                    Status
-                  </p>
-                </th>
-                <th
-                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
-                  scope="col"
-                >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-1kmoebj-MuiTypography-root"
-                  >
-                    Last Game
-                  </p>
-                </th>
               </tr>
             </thead>
             <tbody
@@ -229,6 +229,15 @@ exports[`Leaderboard Page should match snapshot 1`] = `
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    1
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -244,7 +253,7 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <div
                           class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          E
+                          N
                         </div>
                       </div>
                       <div
@@ -253,12 +262,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Esthera Jackson
+                          Name1
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          esthera@simmmple.com
+                          email1@email.com
                         </span>
                       </div>
                     </div>
@@ -270,23 +279,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    1000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  online
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    2
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -300,13 +308,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -315,12 +319,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name2
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email2@email.com
                         </span>
                       </div>
                     </div>
@@ -332,23 +336,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    2000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    3
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -362,13 +365,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -377,12 +376,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name3
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email3@email.com
                         </span>
                       </div>
                     </div>
@@ -394,23 +393,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    3000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    4
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -424,13 +422,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -439,12 +433,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name4
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email4@email.com
                         </span>
                       </div>
                     </div>
@@ -456,23 +450,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    4000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    5
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -486,13 +479,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -501,12 +490,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name5
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email5@email.com
                         </span>
                       </div>
                     </div>
@@ -518,23 +507,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    5000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    6
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -548,13 +536,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -563,12 +547,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name6
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email6@email.com
                         </span>
                       </div>
                     </div>
@@ -580,23 +564,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    6000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    7
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -610,13 +593,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -625,12 +604,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name7
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email7@email.com
                         </span>
                       </div>
                     </div>
@@ -642,23 +621,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    7000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    8
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -672,13 +650,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -687,12 +661,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name8
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email8@email.com
                         </span>
                       </div>
                     </div>
@@ -704,23 +678,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    8000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    9
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -734,13 +707,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -749,12 +718,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name9
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email9@email.com
                         </span>
                       </div>
                     </div>
@@ -766,23 +735,22 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                   >
-                    10000
+                    9000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
               >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    10
+                  </p>
+                </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 >
@@ -796,13 +764,9 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
                       >
                         <div
-                          class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2s90m6-MuiAvatar-root"
                         >
-                          <img
-                            alt="Alexa Liras avatar"
-                            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
-                            src="https://via.placeholder.com/40"
-                          />
+                          N
                         </div>
                       </div>
                       <div
@@ -811,12 +775,12 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-title css-et1ao3-MuiTypography-root"
                         >
-                          Alexa Liras
+                          Name10
                         </span>
                         <span
                           class="MuiTypography-root MuiTypography-body2 MuiCardHeader-subheader css-83ijpv-MuiTypography-root"
                         >
-                          alexa@simmmple.com
+                          email10@email.com
                         </span>
                       </div>
                     </div>
@@ -830,16 +794,6 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                   >
                     10000
                   </p>
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  offline
-                </td>
-                <td
-                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
-                >
-                  14/06/21
                 </td>
               </tr>
             </tbody>
@@ -907,7 +861,7 @@ exports[`Leaderboard Page should match snapshot 1`] = `
                     <p
                       class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
                     >
-                      1–10 of 13
+                      1–10 of 19
                     </p>
                     <div
                       class="MuiTablePagination-actions"
