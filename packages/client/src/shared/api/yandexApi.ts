@@ -9,6 +9,6 @@ export const yandexApi = createApi({
     baseUrl: API_URL,
     credentials: "include",
   }),
-  tagTypes: [Tags.LEADERBOARD],
+  tagTypes: [Tags.LEADERBOARD, Tags.USER],
   endpoints: () => ({}),
 });
