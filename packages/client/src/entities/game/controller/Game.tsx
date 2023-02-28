@@ -1,5 +1,4 @@
 import { store } from "@/app/store";
-import { incrementScoreByEnemy } from "@/app/store/score/scoreSlice";
 import {
   BaseGameColors,
   baseSpeed,
@@ -14,7 +13,7 @@ import { getRandomNumber } from "@/shared/utils/functions";
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
-import { setGameStatus } from "../model/store/gameSlice";
+import { incrementScoreByEnemy, setGameStatus } from "../model/store/gameSlice";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 
 export class Game {

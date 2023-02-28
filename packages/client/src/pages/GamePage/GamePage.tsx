@@ -1,8 +1,11 @@
+import Box from "@mui/material/Box";
 import { FC, useEffect, useRef } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/app/store";
-import { resetScore } from "@/app/store/score/scoreSlice";
 import { Game, initGame } from "@/entities/game/controller/Game";
+import { resetScore } from "@/entities/game/model/store/gameSlice";
+import { gameScoreSelector } from "@/entities/game/model/store/selectors";
+import { BaseGameColors } from "@/shared/constants";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 import { GameModal } from "@/widgets/GameModal/GameModal";
 
 export const GamePage: FC = () => {
@@ -10,7 +13,7 @@ export const GamePage: FC = () => {
   const game = useRef<Game | null>(null);
   const dispatch = useAppDispatch();
 
-  const { score } = useAppSelector(state => state.score);
+  const score = useAppSelector(gameScoreSelector);
 
   useEffect(() => {
     if (canvasElement.current) {
@@ -29,9 +32,15 @@ export const GamePage: FC = () => {
 
   return (
     <>
-      <div style={{ position: "fixed", top: "0", left: "0", color: "white" }}>
-        Score: {score}
-      </div>
+      <Box
+        sx={{
+          position: "fixed",
+          top: "0",
+          left: "0",
+          color: BaseGameColors.WHITE,
+        }}>
+        {score}
+      </Box>
 
       <GameModal onStart={startNewGame} onResume={resumeGame} />
 

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { setGameStatus } from "@/entities/game/model/store/gameSlice";
 import {
   gameModalSelector,
+  gameScoreSelector,
   gameStatusSelector,
 } from "@/entities/game/model/store/selectors";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
@@ -33,7 +34,7 @@ export const GameModal: FC<GameModalType> = props => {
   const status = useAppSelector(gameStatusSelector);
   const isOpen = useAppSelector(gameModalSelector);
   const config = GameModalConfig[status];
-  const { score } = useAppSelector(state => state.score);
+  const score = useAppSelector(gameScoreSelector);
 
   const handleClose = () => {
     config?.canBeResumed ? onResume() : onStart();
