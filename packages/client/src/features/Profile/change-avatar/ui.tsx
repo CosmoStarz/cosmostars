@@ -11,22 +11,40 @@ import {
   Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { PropsWithChildren } from "react";
+import { ChangeEvent, useState } from "react";
 
-export type ChangeAvatarProps = PropsWithChildren<{
-  handleChangeAvatar: () => void;
-}>;
+import {
+  useChangeAvatarMutation,
+  useGetUserQuery,
+} from "@/entities/user/model/api";
+import { avatarConverter } from "@/entities/user/model/converters";
+import { initialAvatarForm } from "@/shared/constants/formInitials";
+import { configureResourcePath } from "@/shared/utils/configureUrl";
 
-// { handleChangeAvatar }: ChangeAvatarProps
-export const ChangeAvatar = () => {
-  const { values, handleSubmit } = useFormik({
-    initialValues: {
-      avatar: "",
-    },
+import { ChangeAvatarSchema } from "../schemas/change-avatar";
+
+export const ChangeAvatarForm = () => {
+  const [changeAvatar] = useChangeAvatarMutation();
+  const { data } = useGetUserQuery();
+  const currAvatar = configureResourcePath(data?.avatar);
+  const [currentAvatar, setCurrentAvatar] = useState<string>(currAvatar);
+
+  const { values, handleSubmit, setFieldValue, errors } = useFormik({
+    initialValues: initialAvatarForm,
+    validationSchema: ChangeAvatarSchema,
     onSubmit: () => {
-      // handleChangeAvatar();
+      const data = avatarConverter(values);
+      changeAvatar(data);
     },
   });
+
+  const handleUploadFile = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      const newFile = event.currentTarget.files[0];
+      setFieldValue("avatar", newFile);
+      setCurrentAvatar(URL.createObjectURL(newFile));
+    }
+  };
 
   const props = {
     className: "change-avatar",
@@ -82,7 +100,11 @@ export const ChangeAvatar = () => {
               justifyContent: "center",
               mb: "1rem",
             }}>
-            <Avatar alt="avatar" sx={{ width: 202, height: 188 }} />
+            <Avatar
+              alt={data?.login}
+              sx={{ width: 202, height: 188 }}
+              src={currentAvatar}
+            />
           </Box>
           <Box
             sx={{
@@ -93,7 +115,9 @@ export const ChangeAvatar = () => {
               height: "152px",
               maxWidht: "452px",
               width: "100%",
-              border: "1px dashed #E0E0E0",
+              border: `${
+                errors.avatar ? "1px dashed #f44336" : "1px dashed #E0E0E0"
+              }`,
               borderRadius: "4px",
             }}>
             <UploadFileIcon />
@@ -103,6 +127,9 @@ export const ChangeAvatar = () => {
                   Click to upload{" "}
                   <input
                     type="file"
+                    name="avatar"
+                    id="avatar"
+                    onChange={handleUploadFile}
                     accept="image/png, image/jpeg, image/jpg, image/svg, image/gif"
                     hidden
                   />
@@ -114,7 +141,11 @@ export const ChangeAvatar = () => {
               <Typography>SVG, PNG, JPG or GIF</Typography>
             </Box>
           </Box>
-
+          {errors.avatar && (
+            <Typography align="center" py={1} color="error">
+              {errors.avatar}
+            </Typography>
+          )}
           <CardActions
             sx={{
               mt: "1.5rem",

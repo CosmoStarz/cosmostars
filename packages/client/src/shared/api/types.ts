@@ -12,4 +12,5 @@ export enum HTTPMethods {
 
 export enum Tags {
   LEADERBOARD = "Leaderboard",
+  USER = "User",
 }
