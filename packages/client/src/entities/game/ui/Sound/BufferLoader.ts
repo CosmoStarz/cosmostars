@@ -1,21 +1,21 @@
-import { GameSounds } from "@/entities/game/ui/Sound/Sound";
+import { BufferListType, GameSounds } from "@/entities/game/ui/Sound/types";
 
 class BufferLoader {
   private context: AudioContext;
-  private urlList: GameSounds;
-  private bufferList: Record<keyof GameSounds, AudioBuffer | null> = {
+  private readonly urlList: GameSounds;
+  private bufferList: BufferListType = {
     background: null,
     gameover: null,
     shot: null,
     explosion: null,
     win: null,
   };
-  private onload: (buffer: Record<keyof GameSounds, AudioBuffer>) => void;
+  private readonly onload: (buffer: BufferListType) => void;
 
   constructor(
     context: AudioContext,
     urlList: GameSounds,
-    callback: (buffer: Record<keyof GameSounds, AudioBuffer>) => void
+    callback: (buffer: BufferListType) => void
   ) {
     this.context = context;
     this.urlList = urlList;

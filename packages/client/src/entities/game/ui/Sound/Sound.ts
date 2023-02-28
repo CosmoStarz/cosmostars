@@ -3,33 +3,24 @@ import Explosion from "@/assets/sounds/explosion.wav";
 import Gameover from "@/assets/sounds/gameover.wav";
 import Shot from "@/assets/sounds/shot.wav";
 import Win from "@/assets/sounds/win.wav";
+import { BufferListType, GameSounds } from "@/entities/game/ui/Sound/types";
 
 import BufferLoader from "./BufferLoader";
 
-export type GameSounds = {
-  background: string;
-  explosion: string;
-  gameover: string;
-  win: string;
-  shot: string;
-};
 export class Sound {
-  public game?: AudioBufferSourceNode;
-  public source?: AudioBufferSourceNode;
-  public gainNodeGame?: GainNode;
-  public gainNodeSource?: GainNode;
-  public context: AudioContext;
-  public bufferLoader: BufferLoader;
-  public bufferList: Record<keyof GameSounds, AudioBuffer | null> = {
+  private background: MediaElementAudioSourceNode;
+  private source?: AudioBufferSourceNode;
+  private readonly gainNode: GainNode;
+  private readonly context: AudioContext;
+  private bufferLoader: BufferLoader;
+  private bufferList: BufferListType = {
     background: null,
     gameover: null,
     shot: null,
     explosion: null,
     win: null,
   };
-  public sounds: string[] = [];
-  public isSound = true;
-  private static defaultVolume = 0.3;
+  private static defaultVolume = 0.1;
   private static gameSounds: GameSounds = {
     background: Background,
     explosion: Explosion,
@@ -39,20 +30,26 @@ export class Sound {
   };
 
   constructor() {
-    const musicNames = Object.values(Sound.gameSounds);
-    this.sounds = [...musicNames];
-    window.AudioContext;
     this.context = new AudioContext();
     this.bufferLoader = new BufferLoader(
       this.context,
       Sound.gameSounds,
       this.finishedLoading.bind(this)
     );
+    this.gainNode = this.context.createGain();
+    this.gainNode.connect(this.context.destination);
+    this.background = this.context.createMediaElementSource(
+      new Audio(Sound.gameSounds.background)
+    );
+    this.background.connect(this.gainNode);
   }
 
-  updateVolumeValue(value: number) {
-    this.gainNodeSource!.gain.setValueAtTime(value, this.context.currentTime);
-    this.gainNodeGame!.gain.setValueAtTime(value, this.context.currentTime);
+  mute() {
+    this.context.suspend();
+  }
+
+  unmute() {
+    this.context.resume();
   }
 
   playShot() {
@@ -71,58 +68,33 @@ export class Sound {
     this.playSound("win");
   }
 
-  playSound(sound: keyof GameSounds) {
-    this.source = this.context.createBufferSource();
-    this.gainNodeSource = this.context.createGain();
-    this.source.buffer = this.bufferList[sound];
-    this.source.connect(this.gainNodeSource);
-    this.gainNodeSource.connect(this.context.destination);
-    if (!this.isSound) {
-      this.gainNodeSource.gain.setValueAtTime(0, this.context.currentTime);
-    } else {
-      this.gainNodeSource.gain.setValueAtTime(
-        Sound.defaultVolume,
-        this.context.currentTime
-      );
-    }
-    this.source.start();
+  startSound() {
+    this.background.mediaElement.play();
   }
 
-  createAudio() {
-    const backgroundBuffer = this.bufferList.background;
-    this.game = this.context.createBufferSource();
-    this.gainNodeGame = this.context.createGain();
-    this.game.buffer = backgroundBuffer;
-    this.game.loop = true;
-    this.game.connect(this.gainNodeGame);
-    this.gainNodeGame.connect(this.context.destination);
-    if (!this.isSound) {
-      this.gainNodeGame.gain.setValueAtTime(0, this.context.currentTime + 3.0);
-    } else {
-      this.gainNodeGame.gain.exponentialRampToValueAtTime(
-        Sound.defaultVolume,
-        this.context.currentTime + 3.0
-      );
-    }
-  }
-
-  finishedLoading = (bufferedList: Record<keyof GameSounds, AudioBuffer>) => {
-    this.bufferList = { ...this.bufferList, ...bufferedList };
-    this.createAudio();
-  };
-
-  startGameSound() {
-    // this.playSound("background");
-    this.game?.start();
-  }
-  stopGameSound() {
-    this.game?.stop();
+  stopSound() {
+    this.background.mediaElement.pause();
   }
 
   init() {
-    console.log("init sound");
     this.bufferLoader.load();
+    this.setVolume(Sound.defaultVolume);
   }
+
+  private setVolume(value: number) {
+    this.gainNode.gain.setValueAtTime(value, this.context.currentTime);
+  }
+
+  private playSound(sound: keyof GameSounds) {
+    this.source = this.context.createBufferSource();
+    this.source.buffer = this.bufferList[sound];
+    this.source.connect(this.gainNode);
+    this.source.start();
+  }
+
+  finishedLoading = (bufferedList: BufferListType) => {
+    this.bufferList = { ...this.bufferList, ...bufferedList };
+  };
 }
 
 const sound = new Sound();
