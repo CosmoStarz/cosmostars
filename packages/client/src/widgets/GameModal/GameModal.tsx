@@ -15,6 +15,7 @@ import {
   gameStatusSelector,
 } from "@/entities/game/model/store/selectors";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
+import { MuteSound } from "@/features/MuteSound/MuteSound";
 import {
   BaseGameColors,
   GameModalConfig,
@@ -104,6 +105,7 @@ export const GameModal: FC<GameModalType> = props => {
             <Button variant="contained" onClick={handleHomeNavigate}>
               Home page
             </Button>
+            <MuteSound />
             <Button variant="contained" onClick={handleClose}>
               {config.startButton}
             </Button>
