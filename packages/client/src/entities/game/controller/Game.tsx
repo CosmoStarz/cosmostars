@@ -179,10 +179,10 @@ export class Game {
   }
 
   public resume() {
+    this.sound.startSound();
     store.dispatch(setGameStatus(GameStatuses.ACTIVE));
     this.gameActive = true;
     this.initListeners();
-    this.sound.startGameSound();
     this.update();
   }
 
@@ -192,15 +192,15 @@ export class Game {
   }
 
   private loose() {
-    this.sound.stopGameSound();
+    this.sound.stopSound();
     this.sound.playGameover();
     store.dispatch(setGameStatus(GameStatuses.LOOSE));
     this.gameActive = false;
   }
 
   private paused() {
+    this.sound.stopSound();
     store.dispatch(setGameStatus(GameStatuses.PAUSED));
-    this.sound.stopGameSound();
     this.gameActive = false;
   }
 
