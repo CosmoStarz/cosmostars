@@ -257,7 +257,7 @@ exports[`Profile Page should match snapshot 1`] = `
         class="MuiBox-root css-0"
       >
         <form
-          class="change-profile MuiBox-root css-xsl9q1"
+          class="change-profile MuiBox-root css-1swmuve"
           novalidate=""
         >
           <div
@@ -310,7 +310,7 @@ exports[`Profile Page should match snapshot 1`] = `
                       name="email"
                       required=""
                       type="email"
-                      value="test@mail.ru"
+                      value="test@email.com"
                     />
                     <fieldset
                       aria-hidden="true"
@@ -356,7 +356,7 @@ exports[`Profile Page should match snapshot 1`] = `
                       name="login"
                       required=""
                       type="text"
-                      value="testLogin"
+                      value="TestLogin"
                     />
                     <fieldset
                       aria-hidden="true"
@@ -380,8 +380,8 @@ exports[`Profile Page should match snapshot 1`] = `
                   <label
                     class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="true"
-                    for="name"
-                    id="name-label"
+                    for="first_name"
+                    id="first_name-label"
                   >
                     Name
                     <span
@@ -398,11 +398,11 @@ exports[`Profile Page should match snapshot 1`] = `
                     <input
                       aria-invalid="false"
                       class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                      id="name"
-                      name="name"
+                      id="first_name"
+                      name="first_name"
                       required=""
                       type="text"
-                      value="testName"
+                      value="TestFirstName"
                     />
                     <fieldset
                       aria-hidden="true"
@@ -413,6 +413,98 @@ exports[`Profile Page should match snapshot 1`] = `
                       >
                         <span>
                           Name
+                           
+                          *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-marginNormal MuiFormControl-fullWidth MuiTextField-root css-17vbkzs-MuiFormControl-root-MuiTextField-root"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="true"
+                    for="second_name"
+                    id="second_name-label"
+                  >
+                    Second name
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                      id="second_name"
+                      name="second_name"
+                      required=""
+                      type="text"
+                      value="TestSecondName"
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="css-14lo706"
+                      >
+                        <span>
+                          Second name
+                           
+                          *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-marginNormal MuiFormControl-fullWidth MuiTextField-root css-17vbkzs-MuiFormControl-root-MuiTextField-root"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
+                    for="display_name"
+                    id="display_name-label"
+                  >
+                    Display name
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                      id="display_name"
+                      name="display_name"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="css-yjsfm1"
+                      >
+                        <span>
+                          Display name
                            
                           *
                         </span>
@@ -448,7 +540,7 @@ exports[`Profile Page should match snapshot 1`] = `
                       name="phone"
                       required=""
                       type="text"
-                      value="8800553535"
+                      value="1234567890"
                     />
                     <fieldset
                       aria-hidden="true"

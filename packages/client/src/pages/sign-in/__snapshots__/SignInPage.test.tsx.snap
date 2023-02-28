@@ -6,7 +6,7 @@ exports[`Sign In Page should match snapshot 1`] = `
     class="MuiBox-root css-wlq4rs"
   >
     <form
-      class="sign-in MuiBox-root css-xsl9q1"
+      class="sign-in MuiBox-root css-1swmuve"
       novalidate=""
     >
       <div

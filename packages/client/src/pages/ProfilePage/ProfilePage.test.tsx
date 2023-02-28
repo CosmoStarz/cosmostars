@@ -7,6 +7,8 @@ import {
 } from "../tests/factories";
 import { ProfilePage } from "./";
 
+jest.mock("@/entities/user/model/api");
+
 let Page: ReactElement;
 
 describe("Profile Page", () => {
