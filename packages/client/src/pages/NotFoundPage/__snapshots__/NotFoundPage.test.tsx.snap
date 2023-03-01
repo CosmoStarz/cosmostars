@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not Found Page should match snapshot 1`] = `
+<div>
+  <main
+    data-testid="not-found-page"
+  >
+    <h1>
+      404
+    </h1>
+  </main>
+</div>
+`;
