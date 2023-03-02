@@ -1,4 +1,4 @@
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import { FC, useEffect, useRef } from "react";
 
 import { Game, initGame } from "@/entities/game/controller/Game";
@@ -34,12 +34,15 @@ export const GamePage: FC = () => {
     <>
       <Box
         sx={{
+          borderRadius: "20px",
+          border: "1px solid white",
+          px: "15px",
           position: "fixed",
-          top: "0",
-          left: "0",
+          top: "10px",
+          left: "5px",
           color: BaseGameColors.WHITE,
         }}>
-        {score}
+        Score: {score}
       </Box>
 
       <GameModal onStart={startNewGame} onResume={resumeGame} />

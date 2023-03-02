@@ -37,7 +37,7 @@ export enum BaseGameColors {
   BLUE = "#23A9F2",
   GREEN = "#3AD900",
   PURPLE = "#ba68c8",
-  WHITE = "FFFFFF",
+  WHITE = "#ffffff",
 }
 
 export const canvasTextWidth = 50;
