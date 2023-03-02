@@ -10,8 +10,9 @@ const CACHE_NAME = `${CACHE_PREFIX}:${CACHE_VERSION}`;
 const TIMEOUT = 4000;
 const URLS = import.meta.glob([
   "/index.html",
-  "/src/app/index.css",
-  "./src/assets/images/*.*",
+  "/src/**",
+  "!/src/**/**/__snapshots__",
+  "!/src/**/**/__mocks__",
 ]);
 const STATIC = Object.keys(URLS);
 
@@ -19,6 +20,7 @@ enum AcceptedTypes {
   HTML = "text/html",
   CSS = "text/css",
   IMAGE = "image",
+  JS = "application/javascript",
 }
 
 const addResourcesToCache = async (resources: RequestInfo[]) => {
@@ -125,7 +127,8 @@ self.addEventListener("fetch", (event: FetchEvent) => {
 
   if (
     acceptHeader?.includes(AcceptedTypes.HTML) ||
-    acceptHeader?.includes(AcceptedTypes.CSS)
+    acceptHeader?.includes(AcceptedTypes.CSS) ||
+    acceptHeader?.includes(AcceptedTypes.JS)
   ) {
     event.respondWith(fromNetworkFirst(request));
   } else if (acceptHeader?.includes(AcceptedTypes.IMAGE)) {

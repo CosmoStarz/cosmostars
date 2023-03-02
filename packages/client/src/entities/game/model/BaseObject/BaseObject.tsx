@@ -5,7 +5,6 @@ import {
   initialVelocity,
 } from "@/shared/constants";
 
-import { GameObjectColor } from "../../controller/types";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 import { baseObjectProps, basicSize, basicVelocity } from "./types";
@@ -23,7 +22,7 @@ export class BaseObject {
     this.scene = baseProps.scene;
     this.src = baseProps.src ? baseProps.src : GameImages.PROJECTILE;
     this.image = new Image();
-    this.image.src = `/src/assets/images/game-model-${this.src}.png`;
+    this.image.src = this.src;
     this.velocity = baseProps.velocity ?? this.initialVelocity;
     this.position = baseProps.position ?? this.initialPosition;
     this.size = baseProps.size ?? initialObjectSize;
