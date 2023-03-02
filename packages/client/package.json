@@ -18,6 +18,7 @@
     "@mui/material": "^5.11.7",
     "@mui/x-data-grid": "^5.17.23",
     "@reduxjs/toolkit": "1.9.2",
+    "@types/redux-persist": "^4.3.1",
     "dotenv": "^16.0.2",
     "eslint-config-prettier": "^8.5.0",
     "formik": "^2.2.9",
