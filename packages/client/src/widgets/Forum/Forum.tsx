@@ -11,7 +11,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
@@ -164,7 +163,6 @@ export const Forum: FC = () => {
           }}
           onPageChange={onChangePage}
           onRowsPerPageChange={onChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
         />
       </Box>
     </Paper>
