@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { GameStatuses } from "@/shared/constants";
+import { EnemyPoints, GameStatuses } from "@/shared/constants";
 
 import { GameState } from "./types";
 
 const initialState: GameState = {
   status: GameStatuses.NOT_ACTIVE,
   isModalOpened: false,
+  score: 0,
 };
 
 export const gameSlice = createSlice({
@@ -17,9 +18,19 @@ export const gameSlice = createSlice({
       state.status = payload;
       state.isModalOpened = payload > GameStatuses.ACTIVE;
     },
+    incrementScoreByEnemy: (
+      state,
+      { payload }: PayloadAction<keyof typeof EnemyPoints>
+    ) => {
+      state.score += EnemyPoints[payload];
+    },
+    resetScore: state => {
+      state.score = 0;
+    },
   },
 });
 
-export const { setGameStatus } = gameSlice.actions;
+export const { setGameStatus, incrementScoreByEnemy, resetScore } =
+  gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
