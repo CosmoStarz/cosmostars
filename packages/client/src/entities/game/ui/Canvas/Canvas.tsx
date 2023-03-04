@@ -1,4 +1,8 @@
-import { initialCoords } from "@/shared/constants";
+import {
+  BaseGameColors,
+  canvasTextWidth,
+  initialCoords,
+} from "@/shared/constants";
 
 import { GameObjectColor } from "../../controller/types";
 import { basicSize } from "../../model/BaseObject/types";
@@ -57,6 +61,12 @@ export class Canvas {
       size.width,
       size.height
     );
+  }
+
+  public drawText(text: string) {
+    this.context.fillStyle = BaseGameColors.WHITE;
+    this.context.font = "bold 32px Arial";
+    this.context.fillText(text, canvasTextWidth, canvasTextWidth);
   }
 
   public fillCanvas(color: GameObjectColor) {

@@ -18,7 +18,7 @@ export const signUpSchema = yup.object().shape({
     .required(ERROR_MESSAGES.REQUIRED_MSG),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], ERROR_MESSAGES.CONFIRM_ERROR_MSG)
+    .oneOf([yup.ref("password"), undefined], ERROR_MESSAGES.CONFIRM_ERROR_MSG)
     .required(ERROR_MESSAGES.REQUIRED_MSG),
   login: yup
     .string()

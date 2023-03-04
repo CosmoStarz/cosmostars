@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game Page should match snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-1i9nnga"
+  >
+    Score: 
+    0
+  </div>
+  <canvas
+    class="game-canvas"
+  />
+</div>
+`;
