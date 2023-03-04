@@ -9,7 +9,8 @@ export type PrivateModeProps = {
 };
 
 export const GuestMode: FC<PrivateModeProps> = ({ children }) => {
-  const isAuth = useAuth();
+  const { isAuth } = useAuth();
+
   return !isAuth ? (
     <>{children}</>
   ) : (
