@@ -118,6 +118,7 @@ self.addEventListener("install", (event: ExtendableEvent) => {
 
 self.addEventListener("activate", (event: ExtendableEvent) => {
   console.log("Service Worker activating...");
+  self.clients.claim();
   event.waitUntil(removeFromCache());
 });
 
