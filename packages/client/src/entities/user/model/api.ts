@@ -51,6 +51,7 @@ const userApi = yandexApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
+  useLazyGetUserQuery,
   useChangeProfileMutation,
   useChangePasswordMutation,
   useChangeAvatarMutation,
