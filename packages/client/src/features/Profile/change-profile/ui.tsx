@@ -87,16 +87,6 @@ export const ChangeProfileForm = () => {
         error: errors.display_name,
       },
       {
-        id: "second_name",
-        label: "Second name",
-        name: "second_name",
-        value: values.second_name,
-        type: "text",
-        onChange: handleChange,
-        onBlur: handleBlur,
-        error: errors.second_name,
-      },
-      {
         id: "phone",
         label: "Phone",
         name: "phone",
