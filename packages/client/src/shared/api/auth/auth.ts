@@ -11,7 +11,6 @@ import {
 const AUTH_URL = {
   SIGN_UP: `${AUTH}signup`,
   SIGN_IN: `${AUTH}signin`,
-  USER: `${AUTH}user`,
   LOGOUT: `${AUTH}logout`,
 };
 
@@ -31,12 +30,6 @@ export const authApi = yandexApi.injectEndpoints({
         body: signInRequest,
       }),
     }),
-    getUser: builder.query({
-      query: () => ({
-        url: AUTH_URL.USER,
-        method: Method.GET,
-      }),
-    }),
     logout: builder.mutation({
       query: () => ({
         url: AUTH_URL.LOGOUT,
@@ -46,9 +39,5 @@ export const authApi = yandexApi.injectEndpoints({
   }),
 });
 
-export const {
-  useSignUpMutation,
-  useSignInMutation,
-  useGetUserQuery,
-  useLogoutMutation,
-} = authApi;
+export const { useSignUpMutation, useSignInMutation, useLogoutMutation } =
+  authApi;

@@ -4,12 +4,10 @@ import { ThemeProvider } from "@mui/material";
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { useGetUserQuery } from "@/entities/user/model/api";
 import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
 import { Router } from "@/router";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { useBasicTheme } from "@/shared/hooks/useBasicTheme";
-// import { useGetUserQuery } from "@/shared/api/auth/auth";
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
