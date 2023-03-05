@@ -20,7 +20,6 @@ import { useAppDispatch } from "./store";
 export const useAuth = () => {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(selectIsAuth);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
   const [getUser] = useLazyGetUserQuery();
   const [signIn] = useSignInMutation();
@@ -28,7 +27,6 @@ export const useAuth = () => {
   const [logout] = useLogoutMutation();
 
   const checkIsUserAuth = async () => {
-    setIsLoadingAuth(true);
     try {
       const { isSuccess, data } = await getUser();
       dispatch(setIsAuth(isSuccess));
@@ -37,8 +35,6 @@ export const useAuth = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoadingAuth(false);
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
