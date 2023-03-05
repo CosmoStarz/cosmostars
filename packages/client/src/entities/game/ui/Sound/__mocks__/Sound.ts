@@ -1,6 +1,4 @@
-export class Sound {
-
-}
+export class Sound {}
 
 const sound = new Sound();
 
