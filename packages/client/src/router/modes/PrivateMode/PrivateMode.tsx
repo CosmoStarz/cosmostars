@@ -12,9 +12,7 @@ export const PrivateMode: FC<PrivateModeProps> = ({ children }) => {
   const location = useLocation();
   const { isAuth } = useAuth();
   return isAuth ? (
-    <>
-      {children}
-    </>
+    <>{children}</>
   ) : (
     <Navigate
       to={RoutesName.LOGIN}
