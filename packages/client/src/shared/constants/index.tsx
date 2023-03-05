@@ -44,6 +44,7 @@ export enum BaseGameColors {
 }
 
 export const canvasTextWidth = 50;
+export const canvasTextFont = "bold 32px Arial";
 
 export const EnemyPoints = {
   BASIC: 100,
