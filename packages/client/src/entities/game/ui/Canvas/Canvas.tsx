@@ -1,5 +1,6 @@
 import {
   BaseGameColors,
+  canvasTextFont,
   canvasTextWidth,
   initialCoords,
 } from "@/shared/constants";
@@ -65,7 +66,7 @@ export class Canvas {
 
   public drawText(text: string) {
     this.context.fillStyle = BaseGameColors.WHITE;
-    this.context.font = "bold 32px Arial";
+    this.context.font = canvasTextFont;
     this.context.fillText(text, canvasTextWidth, canvasTextWidth);
   }
 
