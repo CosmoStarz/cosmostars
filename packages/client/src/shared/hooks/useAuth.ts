@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { useLazyGetUserQuery } from "@/entities/user/model/api";
