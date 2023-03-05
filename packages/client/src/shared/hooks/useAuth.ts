@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { useLazyGetUserQuery } from "@/entities/user/model/api";
@@ -20,7 +19,6 @@ import { useAppDispatch } from "./store";
 export const useAuth = () => {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(selectIsAuth);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
   const [getUser] = useLazyGetUserQuery();
   const [signIn] = useSignInMutation();
@@ -28,7 +26,6 @@ export const useAuth = () => {
   const [logout] = useLogoutMutation();
 
   const checkIsUserAuth = async () => {
-    setIsLoadingAuth(true);
     try {
       const { isSuccess, data } = await getUser();
       dispatch(setIsAuth(isSuccess));
@@ -37,36 +34,42 @@ export const useAuth = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoadingAuth(false);
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
-    const data = await signIn(userForm);
-    if ((data as unknown as SignInResponse).error.data === "OK") {
-      checkIsUserAuth();
+    try {
+      const data = await signIn(userForm);
+      // приводится к типу unknown, т.к в базовых типах нет поле data
+      // из-за этого TS выдает ошибку
+      if ((data as unknown as SignInResponse).error.data === "OK") {
+        checkIsUserAuth();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const signUpAuth = async (userForm: SignUpRequest) => {
-    const response = await signUp(userForm);
-    // приводится к типу unknown, т.к в базовых типах нет поле data
-    // из-за этого TS выдает ошибку
-    if ((response as unknown as SignUpResponse).data.id) {
-      checkIsUserAuth();
+    try {
+      const data = await signUp(userForm);
+      if ((data as unknown as SignUpResponse).data.id) {
+        checkIsUserAuth();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const logoutAuth = async () => {
     await logout("");
-    await checkIsUserAuth();
+    dispatch(setUser(undefined));
+    dispatch(setIsAuth(false));
   };
   return {
     logoutAuth,
     signUpAuth,
     signInAuth,
     checkIsUserAuth,
-    isLoadingAuth,
     isAuth,
   };
 };

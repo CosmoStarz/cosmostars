@@ -7,13 +7,11 @@ import { UserInfo } from "@/entities/user/model/types";
 type InitialState = {
   isAuth: boolean;
   user: UserInfo | undefined;
-  isLoadingAuth: boolean;
 };
 
 const initialState: InitialState = {
   isAuth: false,
   user: undefined,
-  isLoadingAuth: false,
 };
 
 export const authSlice = createSlice({
@@ -23,15 +21,12 @@ export const authSlice = createSlice({
     setIsAuth(state, { payload }: PayloadAction<boolean>) {
       state.isAuth = payload;
     },
-    setUser(state, { payload }: PayloadAction<UserInfo>) {
+    setUser(state, { payload }: PayloadAction<UserInfo | undefined>) {
       state.user = payload;
-    },
-    setIsLoadingAuth(state, { payload }: PayloadAction<boolean>) {
-      state.isLoadingAuth = payload;
     },
   },
 });
 
-export const { setIsAuth, setUser, setIsLoadingAuth } = authSlice.actions;
+export const { setIsAuth, setUser } = authSlice.actions;
 export const selectIsAuth = (state: RootState) => state.auth.isAuth;
 export const authReducer = authSlice.reducer;

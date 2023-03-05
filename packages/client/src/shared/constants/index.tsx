@@ -2,6 +2,9 @@ import EmailIcon from "@mui/icons-material/Email";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
 
+import EnemyImage from "@/assets/images/game-model-enemy.png";
+import PlayerImage from "@/assets/images/game-model-player.png";
+import ProjileImage from "@/assets/images/game-model-projectile.png";
 import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 import LooseRight from "@/assets/images/loose-modal-top-right.png";
 import WinLeft from "@/assets/images/win-modal-bottom-left.png";
@@ -41,16 +44,17 @@ export enum BaseGameColors {
 }
 
 export const canvasTextWidth = 50;
+export const canvasTextFont = "bold 32px Arial";
 
 export const EnemyPoints = {
   BASIC: 100,
 } as const;
 
-export enum GameImages {
-  ENEMY = "enemy",
-  PLAYER = "player",
-  PROJECTILE = "projectile",
-}
+export const GameImages = {
+  ENEMY: EnemyImage,
+  PLAYER: PlayerImage,
+  PROJECTILE: ProjileImage,
+};
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
   [GameStatuses.NOT_ACTIVE]: null,

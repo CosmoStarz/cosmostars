@@ -32,7 +32,8 @@ export class Game {
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-    this.gameActive = false;
+
+    this.gameActive = store.getState().game.status === GameStatuses.ACTIVE;
 
     this.drawCanvas();
   }
