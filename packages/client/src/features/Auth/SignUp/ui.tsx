@@ -2,12 +2,13 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
+import { authTypes } from "@/shared/api";
 import { CardView } from "@/shared/ui";
 
 import { signUpSchema } from "../schemas/sign-up";
 
 export type SignUpProps = PropsWithChildren<{
-  handleSignUp: () => void;
+  handleSignUp: (userForm: authTypes.SignUpRequest) => void;
 }>;
 
 export const SignUp = ({ handleSignUp }: SignUpProps) => {
@@ -16,13 +17,23 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
       email: "",
       login: "",
       name: "",
+      second_name: "",
       phone: "",
       password: "",
       confirmPassword: "",
     },
     validationSchema: signUpSchema,
     onSubmit: () => {
-      handleSignUp();
+      //TODO мне не нравится как это выглядит, принимаю предложение на улучшение
+      const userForm: authTypes.SignUpRequest = {
+        first_name: values.name,
+        second_name: values.second_name,
+        login: values.login,
+        email: values.email,
+        password: values.password,
+        phone: values.phone,
+      };
+      handleSignUp(userForm);
     },
   });
 
@@ -60,6 +71,16 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
         onChange: handleChange,
         onBlur: handleBlur,
         error: errors.name,
+      },
+      {
+        id: "second_name",
+        label: "Second name",
+        name: "second_name",
+        value: values.second_name,
+        type: "text",
+        onChange: handleChange,
+        onBlur: handleBlur,
+        error: errors.second_name,
       },
       {
         id: "phone",

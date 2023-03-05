@@ -9,9 +9,8 @@ export type PrivateModeProps = {
 };
 
 export const GuestMode: FC<PrivateModeProps> = ({ children }) => {
-  const isLogged = useAuth();
-
-  return !isLogged ? (
+  const isAuth = useAuth();
+  return !isAuth ? (
     <>{children}</>
   ) : (
     <Navigate to={RoutesName.MAIN} replace={true} />
