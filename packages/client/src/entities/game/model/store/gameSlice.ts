@@ -34,7 +34,11 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setGameStatus, toggleIsMutedSound, incrementScoreByEnemy, resetScore } =
-  gameSlice.actions;
+export const {
+  setGameStatus,
+  toggleIsMutedSound,
+  incrementScoreByEnemy,
+  resetScore,
+} = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
