@@ -11,8 +11,8 @@ import { useBasicTheme } from "@/shared/hooks/useBasicTheme";
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
-  const { checkIsUserAuth, isAuth } = useAuth();
-  console.log(isAuth);
+  const { checkIsUserAuth} = useAuth();
+
   useEffect(() => {
     checkIsUserAuth();
   }, []);
