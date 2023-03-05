@@ -3,7 +3,11 @@ import Explosion from "@/assets/sounds/explosion.wav";
 import Gameover from "@/assets/sounds/gameover.wav";
 import Shot from "@/assets/sounds/shot.wav";
 import Win from "@/assets/sounds/win.wav";
-import { BufferListType, GameSounds, Sounds } from "@/entities/game/ui/Sound/types";
+import {
+  BufferListType,
+  GameSounds,
+  Sounds,
+} from "@/entities/game/ui/Sound/types";
 
 import BufferLoader from "./BufferLoader";
 
