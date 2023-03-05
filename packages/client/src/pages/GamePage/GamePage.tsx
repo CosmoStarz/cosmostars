@@ -44,9 +44,7 @@ export const GamePage: FC = () => {
         }}>
         Score: {score}
       </Box>
-
       <GameModal onStart={startNewGame} onResume={resumeGame} />
-
       <canvas className="game-canvas" ref={canvasElement}></canvas>
     </>
   );

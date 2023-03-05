@@ -242,7 +242,6 @@ export class Game {
   }
 
   private update() {
-    console.log("updated");
     if (this.gameActive) {
       requestAnimationFrame(this.update.bind(this));
       this.drawCanvas();
