@@ -1,7 +1,4 @@
-import {
-  configureStore,
-  createSerializableStateInvariantMiddleware,
-} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -21,9 +18,11 @@ export const store = configureStore({
     game: persistGameReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(
-      yandexApi.middleware
-    ),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"],
+      },
+    }).concat(yandexApi.middleware),
   // todo: вынести в конфиг .env
   devTools: true,
 });
