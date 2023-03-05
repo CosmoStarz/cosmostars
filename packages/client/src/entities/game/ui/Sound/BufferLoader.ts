@@ -1,4 +1,5 @@
 import { BufferListType, GameSounds } from "@/entities/game/ui/Sound/types";
+import { HTTPMethods } from "@/shared/api/types";
 
 class BufferLoader {
   private context: AudioContext;
@@ -24,7 +25,7 @@ class BufferLoader {
 
   loadBuffer(url: string, index: keyof GameSounds) {
     const request = new XMLHttpRequest();
-    request.open("GET", url, true);
+    request.open(HTTPMethods.GET, url, true);
     request.responseType = "arraybuffer";
 
     request.onload = () => {

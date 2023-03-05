@@ -3,11 +3,12 @@ import Explosion from "@/assets/sounds/explosion.wav";
 import Gameover from "@/assets/sounds/gameover.wav";
 import Shot from "@/assets/sounds/shot.wav";
 import Win from "@/assets/sounds/win.wav";
-import { BufferListType, GameSounds } from "@/entities/game/ui/Sound/types";
+import { BufferListType, GameSounds, Sounds } from "@/entities/game/ui/Sound/types";
 
 import BufferLoader from "./BufferLoader";
 
 export class Sound {
+  private isMuted = false;
   private background: MediaElementAudioSourceNode;
   private source?: AudioBufferSourceNode;
   private readonly gainNode: GainNode;
@@ -45,27 +46,29 @@ export class Sound {
   }
 
   mute() {
+    this.isMuted = true;
     this.context.suspend();
   }
 
   unmute() {
+    this.isMuted = false;
     this.context.resume();
   }
 
   playShot() {
-    this.playSound("shot");
+    this.playSound(Sounds.SHOT);
   }
 
   playExplosion() {
-    this.playSound("explosion");
+    this.playSound(Sounds.EXPLOSION);
   }
 
   playGameover() {
-    this.playSound("gameover");
+    this.playSound(Sounds.GAMEOVER);
   }
 
   playWin() {
-    this.playSound("win");
+    this.playSound(Sounds.WIN);
   }
 
   startSound() {
@@ -79,6 +82,7 @@ export class Sound {
   init() {
     this.bufferLoader.load();
     this.setVolume(Sound.defaultVolume);
+    // this.unmute();
   }
 
   private setVolume(value: number) {
@@ -86,6 +90,9 @@ export class Sound {
   }
 
   private playSound(sound: keyof GameSounds) {
+    if (this.isMuted) {
+      return;
+    }
     this.source = this.context.createBufferSource();
     this.source.buffer = this.bufferList[sound];
     this.source.connect(this.gainNode);
