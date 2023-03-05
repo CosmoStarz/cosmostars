@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { GameStatuses } from "@/shared/constants";
+import { EnemyPoints, GameStatuses } from "@/shared/constants";
 
 import { GameState } from "./types";
 
@@ -8,6 +8,7 @@ const initialState: GameState = {
   status: GameStatuses.NOT_ACTIVE,
   isModalOpened: false,
   isMutedSound: false,
+  score: 0,
 };
 
 export const gameSlice = createSlice({
@@ -21,9 +22,19 @@ export const gameSlice = createSlice({
     toggleIsMutedSound: state => {
       state.isMutedSound = !state.isMutedSound;
     },
+    incrementScoreByEnemy: (
+      state,
+      { payload }: PayloadAction<keyof typeof EnemyPoints>
+    ) => {
+      state.score += EnemyPoints[payload];
+    },
+    resetScore: state => {
+      state.score = 0;
+    },
   },
 });
 
-export const { setGameStatus, toggleIsMutedSound } = gameSlice.actions;
+export const { setGameStatus, toggleIsMutedSound, incrementScoreByEnemy, resetScore } =
+  gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

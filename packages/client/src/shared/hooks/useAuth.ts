@@ -1,5 +1,5 @@
-import { LS_IS_LOGGED_KEY } from "./../constants/auth";
-
+import { useGetUserQuery } from "../api/auth/auth";
 export const useAuth = () => {
-  return Boolean(Number(localStorage.getItem(LS_IS_LOGGED_KEY)));
+  const { data } = useGetUserQuery("user");
+  return !!data;
 };

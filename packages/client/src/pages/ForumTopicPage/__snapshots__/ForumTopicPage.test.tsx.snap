@@ -1,0 +1,554 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forum Topic Page should match snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-wlq4rs"
+  >
+    <div
+      class="MuiBox-root css-1l4w6pd"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-1hvtsev-MuiPaper-root"
+      >
+        <ul
+          class="MuiList-root MuiList-padding css-11b7ntw-MuiList-root"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+            href="/"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+            >
+              <div
+                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+              >
+                <span
+                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                >
+                  Main
+                </span>
+              </div>
+              <div
+                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+              />
+            </li>
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+            href="/profile"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+            >
+              <div
+                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+              >
+                <span
+                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                >
+                  Profile
+                </span>
+              </div>
+              <div
+                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                  data-testid="SettingsIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                  />
+                </svg>
+              </div>
+            </li>
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+            href="/leaderboard"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+            >
+              <div
+                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+              >
+                <span
+                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                >
+                  Leaderboard
+                </span>
+              </div>
+              <div
+                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                  data-testid="StarIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </div>
+            </li>
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+            href="/forum"
+          >
+            <li
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+            >
+              <div
+                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+              >
+                <span
+                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                >
+                  Forum
+                </span>
+              </div>
+              <div
+                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                  data-testid="EmailIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </div>
+            </li>
+          </a>
+        </ul>
+        <button
+          aria-label="brightness4icon"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1sbphdd-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="Brightness4Icon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-ba05xu-MuiPaper-root"
+    >
+      <div
+        class="MuiBox-root css-7pf6at"
+      >
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-4ne2uz-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="ReplyIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <h1
+          class="MuiTypography-root MuiTypography-h2 topic-page__name css-smnxl0-MuiTypography-root"
+        >
+          Topic example
+        </h1>
+      </div>
+      <li
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-7wt4rv-MuiListItem-root-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-vwhs70-MuiAvatar-root"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                data-testid="PersonIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+            >
+              John Johnov
+            </h6>
+          </div>
+        </div>
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div
+          class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+        >
+          <div
+            class="MuiBox-root css-70qvj9"
+          >
+            <button
+              aria-label="likes"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                data-testid="CommentIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"
+                />
+              </svg>
+            </button>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+            >
+              0 Comments
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-70qvj9"
+          >
+            <button
+              aria-label="likes"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                data-testid="FavoriteIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+              </svg>
+            </button>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+            >
+              5 Likes
+            </p>
+          </div>
+        </div>
+      </li>
+      <form
+        class="MuiBox-root css-sjobso"
+      >
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1j5gcdd-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="false"
+            for="comment"
+            id="comment-label"
+          >
+            Comment
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+              id="comment"
+              name="comment"
+              rows="2"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-yjsfm1"
+              >
+                <span>
+                  Comment
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-jh47zj-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="submit"
+        >
+          Comment
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </form>
+      <ul
+        class="MuiList-root MuiList-padding css-1by5a8o-MuiList-root"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-roubkh-MuiListItem-root-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+          >
+            <div
+              class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-vwhs70-MuiAvatar-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                  data-testid="PersonIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+              >
+                Petr Petrov
+              </h6>
+            </div>
+          </div>
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            nice
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <button
+                aria-label="likes"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                  data-testid="CommentIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"
+                  />
+                </svg>
+              </button>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+              >
+                0 Comments
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <button
+                aria-label="likes"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                  data-testid="FavoriteIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  />
+                </svg>
+              </button>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+              >
+                2 Likes
+              </p>
+            </div>
+          </div>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-roubkh-MuiListItem-root-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+          >
+            <div
+              class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-vwhs70-MuiAvatar-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                  data-testid="PersonIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+              >
+                Ivan Ivanov
+              </h6>
+            </div>
+          </div>
+          <div
+            class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            good topic
+          </div>
+          <div
+            class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+          >
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <button
+                aria-label="likes"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                  data-testid="CommentIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"
+                  />
+                </svg>
+              </button>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+              >
+                0 Comments
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <button
+                aria-label="likes"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
+                  data-testid="FavoriteIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  />
+                </svg>
+              </button>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
+              >
+                0 Likes
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

@@ -4,4 +4,5 @@ export type GameState = {
   isModalOpened: boolean;
   status: GameStatuses;
   isMutedSound: boolean;
+  score: number;
 };

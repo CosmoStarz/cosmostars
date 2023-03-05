@@ -1,13 +1,15 @@
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
+import { authTypes } from "@/shared/api";
+import { SignInRequest } from "@/shared/api/auth/models";
 import { RoutesName } from "@/shared/constants";
+import { CardView } from "@/shared/ui";
 
-import { CardView } from "../../../shared/ui";
 import { signInSchema } from "../schemas/sign-in";
 
 export type SignInProps = PropsWithChildren<{
-  handleSignIn: () => void;
+  handleSignIn: (userForm: authTypes.SignInRequest) => void;
 }>;
 
 export const SignIn = ({ handleSignIn }: SignInProps) => {
@@ -18,10 +20,14 @@ export const SignIn = ({ handleSignIn }: SignInProps) => {
     },
     validationSchema: signInSchema,
     onSubmit: () => {
-      handleSignIn();
+      const userForm: SignInRequest = {
+        login: values.login,
+        password: values.password,
+      };
+      handleSignIn(userForm);
     },
   });
-  console.log(errors);
+
   const props = {
     className: "sign-in",
     title: "Login",

@@ -14,7 +14,7 @@ import { getRandomNumber } from "@/shared/utils/functions";
 import { BaseObject } from "../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
 import { Player } from "../model/Player/Player";
-import { setGameStatus } from "../model/store/gameSlice";
+import { incrementScoreByEnemy, setGameStatus } from "../model/store/gameSlice";
 import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
 
 export class Game {
@@ -143,6 +143,8 @@ export class Game {
           enemy,
           () => {
             this.sound.playExplosion();
+            store.dispatch(incrementScoreByEnemy("BASIC"));
+
             console.log("BOOM");
           }
         );
@@ -164,6 +166,8 @@ export class Game {
               playerProjectile,
               () => {
                 this.sound.playExplosion();
+                // TODO: добавить взрыв (COS-53)
+
                 console.log("BOOM");
               }
             );

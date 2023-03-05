@@ -13,7 +13,6 @@ import { RoutesName } from "@/shared/constants";
 
 import { GuestMode } from "./modes/GuestMode";
 import { PrivateMode } from "./modes/PrivateMode";
-
 export const Router = () => {
   return (
     <Routes>
