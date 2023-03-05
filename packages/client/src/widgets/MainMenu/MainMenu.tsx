@@ -19,7 +19,7 @@ export const MainMenu: FC = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          width:"100%",
+          width: "100%",
           pl: "10%",
         }}>
         <Paper
