@@ -14,6 +14,7 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from "../api/auth/models";
+import { getErrorReason } from "../api/utils";
 import { useAppDispatch } from "./store";
 
 export const useAuth = () => {
@@ -37,26 +38,24 @@ export const useAuth = () => {
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
-    try {
-      const data = await signIn(userForm);
-      // приводится к типу unknown, т.к в базовых типах нет поле data
-      // из-за этого TS выдает ошибку
-      if ((data as unknown as SignInResponse).error.data === "OK") {
-        checkIsUserAuth();
-      }
-    } catch (error) {
-      console.log(error);
+    const { error } = (await signIn(userForm)) as unknown as SignInResponse;
+    // сделан костыль т.к яндекс возвращает строку ОК на успех
+    if (error.data === "OK") {
+      checkIsUserAuth();
+    } else {
+      const textError = getErrorReason(error);
+      console.log(textError);
     }
   };
 
   const signUpAuth = async (userForm: SignUpRequest) => {
-    try {
-      const data = await signUp(userForm);
-      if ((data as unknown as SignUpResponse).data.id) {
-        checkIsUserAuth();
-      }
-    } catch (error) {
-      console.log(error);
+    const { error } = (await signUp(userForm)) as unknown as SignUpResponse;
+
+    if (error) {
+      const textError = getErrorReason(error);
+      console.log(textError);
+    } else {
+      checkIsUserAuth();
     }
   };
 
