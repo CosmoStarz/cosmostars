@@ -11,8 +11,11 @@ const TIMEOUT = 4000;
 const URLS = import.meta.glob([
   "/index.html",
   "/src/**",
-  "!/src/**/**/__snapshots__",
-  "!/src/**/**/__mocks__",
+  "!**/__snapshots__",
+  "!**/__mocks__",
+  "!**.test.tsx",
+  "!**.d.ts",
+  "!**/types.ts",
 ]);
 const STATIC = Object.keys(URLS);
 
