@@ -43,34 +43,32 @@ export const useAuth = () => {
   };
   const signInAuth = async (userForm: SignInRequest) => {
     try {
-    const data = await signIn(userForm)
-    // приводится к типу unknown, т.к в базовых типах нет поле data
-    // из-за этого TS выдает ошибку
-    if ((data as unknown as SignInResponse).error.data === "OK") {
-      checkIsUserAuth();
-    } 
+      const data = await signIn(userForm);
+      // приводится к типу unknown, т.к в базовых типах нет поле data
+      // из-за этого TS выдает ошибку
+      if ((data as unknown as SignInResponse).error.data === "OK") {
+        checkIsUserAuth();
+      }
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   const signUpAuth = async (userForm: SignUpRequest) => {
     try {
-    const data = await signUp(userForm)
-    if ((data as unknown as SignUpResponse).data.id) {
-      checkIsUserAuth();
-    }
-    }
-    catch (error) {
+      const data = await signUp(userForm);
+      if ((data as unknown as SignUpResponse).data.id) {
+        checkIsUserAuth();
+      }
+    } catch (error) {
       console.log(error);
     }
   };
 
   const logoutAuth = async () => {
     await logout("");
-    dispatch(setUser(undefined))
-    dispatch(setIsAuth(false))
+    dispatch(setUser(undefined));
+    dispatch(setIsAuth(false));
   };
   return {
     logoutAuth,
