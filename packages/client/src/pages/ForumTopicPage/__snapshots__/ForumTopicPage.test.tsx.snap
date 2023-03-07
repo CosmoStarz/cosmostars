@@ -6,156 +6,191 @@ exports[`Forum Topic Page should match snapshot 1`] = `
     class="MuiBox-root css-wlq4rs"
   >
     <div
-      class="MuiBox-root css-1l4w6pd"
+      class="main-header MuiBox-root css-k008qs"
+      data-testid="main-header"
     >
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-1hvtsev-MuiPaper-root"
+        class="main-menu MuiBox-root css-14vpuhd"
+        data-testid="main-menu"
       >
-        <ul
-          class="MuiList-root MuiList-padding css-11b7ntw-MuiList-root"
+        <div
+          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-9y0w1q-MuiPaper-root"
         >
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
-            href="/"
+          <ul
+            class="MuiList-root MuiList-padding css-11b7ntw-MuiList-root"
           >
-            <li
-              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+              href="/"
             >
-              <div
-                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+              <li
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
               >
-                <span
-                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                <div
+                  class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
                 >
-                  Main
-                </span>
-              </div>
-              <div
-                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                  >
+                    Main
+                  </span>
+                </div>
+                <div
+                  class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+                />
+              </li>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+              href="/profile"
+            >
+              <li
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+              >
+                <div
+                  class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                  >
+                    Profile
+                  </span>
+                </div>
+                <div
+                  class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                    data-testid="SettingsIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                    />
+                  </svg>
+                </div>
+              </li>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+              href="/leaderboard"
+            >
+              <li
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+              >
+                <div
+                  class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                  >
+                    Leaderboard
+                  </span>
+                </div>
+                <div
+                  class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                    data-testid="StarIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                    />
+                  </svg>
+                </div>
+              </li>
+            </a>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
+              href="/forum"
+            >
+              <li
+                class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
+              >
+                <div
+                  class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+                  >
+                    Forum
+                  </span>
+                </div>
+                <div
+                  class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                    data-testid="EmailIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                    />
+                  </svg>
+                </div>
+              </li>
+            </a>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="main-action MuiBox-root css-1qny9ir"
+      >
+        <div
+          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-9y0w1q-MuiPaper-root"
+        >
+          <button
+            aria-label="brightness4icon"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1sbphdd-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+              data-testid="Brightness4Icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
               />
-            </li>
-          </a>
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
-            href="/profile"
-          >
-            <li
-              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
-            >
-              <div
-                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
-                >
-                  Profile
-                </span>
-              </div>
-              <div
-                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
-                  data-testid="SettingsIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
-                  />
-                </svg>
-              </div>
-            </li>
-          </a>
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
-            href="/leaderboard"
-          >
-            <li
-              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
-            >
-              <div
-                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
-                >
-                  Leaderboard
-                </span>
-              </div>
-              <div
-                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
-                  data-testid="StarIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                  />
-                </svg>
-              </div>
-            </li>
-          </a>
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone css-1cmksfb-MuiTypography-root-MuiLink-root"
-            href="/forum"
-          >
-            <li
-              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-xfsx2q-MuiListItem-root"
-            >
-              <div
-                class="MuiListItemText-root css-1dyz23z-MuiListItemText-root"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
-                >
-                  Forum
-                </span>
-              </div>
-              <div
-                class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
-                  data-testid="EmailIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
-                  />
-                </svg>
-              </div>
-            </li>
-          </a>
-        </ul>
-        <button
-          aria-label="brightness4icon"
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1sbphdd-MuiButtonBase-root-MuiIconButton-root"
-          tabindex="0"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
-            data-testid="Brightness4Icon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
+          </button>
+          <button
+            aria-label="brightness4icon"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1sbphdd-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="LogoutIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="m17 7-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
       </div>
     </div>
     <div
