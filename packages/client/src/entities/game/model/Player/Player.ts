@@ -30,4 +30,9 @@ export class Player extends ShootingObject {
       this.position.x = this.scene.width - this.size.width;
     }
   }
+
+  public clear() {
+    super.clear();
+    this.position = this.startPosition;
+  }
 }

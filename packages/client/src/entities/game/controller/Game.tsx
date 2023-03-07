@@ -24,6 +24,9 @@ export class Game {
   private enemyGrids: EnemyGrid[];
   private randomInterval: number;
   private gameActive: boolean;
+  private handleKeyDown: ({ keyCode }: KeyboardEvent) => void;
+  private handleKeyUp: ({ keyCode }: KeyboardEvent) => void;
+  private handleResize: (e: Event) => void;
 
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvas = canvasElement;
@@ -32,8 +35,11 @@ export class Game {
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-
     this.gameActive = store.getState().game.status === GameStatuses.ACTIVE;
+
+    this.handleKeyDown = this.onKeyDown.bind(this);
+    this.handleKeyUp = this.onKeyUp.bind(this);
+    this.handleResize = this.onResize.bind(this);
 
     this.drawCanvas();
   }
@@ -181,12 +187,12 @@ export class Game {
   public resume() {
     store.dispatch(setGameStatus(GameStatuses.ACTIVE));
     this.gameActive = true;
-    this.initListeners();
     this.update();
   }
 
   public start() {
     this.clearGameState();
+    this.initListeners();
     this.resume();
   }
 
@@ -200,41 +206,49 @@ export class Game {
     this.gameActive = false;
   }
 
-  private initListeners() {
-    if (this.gameActive) {
-      window.addEventListener("keydown", ({ keyCode }) => {
-        switch (keyCode) {
-          case GameKeyboard.LEFT:
-            this.player.velocity.dx = -baseSpeed;
-            break;
-          case GameKeyboard.RIGHT:
-            this.player.velocity.dx = baseSpeed;
-            break;
-          case GameKeyboard.SHOOT:
-            this.player.shoot();
-            break;
-          case GameKeyboard.PAUSE:
-            this.paused();
-            break;
-          default:
-            break;
-        }
-      });
-
-      window.addEventListener("keyup", ({ keyCode }) => {
-        if (keyCode === GameKeyboard.LEFT || keyCode === GameKeyboard.RIGHT) {
-          this.player.velocity.dx = 0;
-        }
-      });
-
-      window.addEventListener("resize", (e: Event) => {
-        const current = e.target as Window;
-        if (current) {
-          this.canvas.width = current.innerWidth;
-          this.canvas.height = current.innerHeight;
-        }
-      });
+  private onKeyDown({ keyCode }: KeyboardEvent) {
+    switch (keyCode) {
+      case GameKeyboard.LEFT:
+        this.player.velocity.dx = -baseSpeed;
+        break;
+      case GameKeyboard.RIGHT:
+        this.player.velocity.dx = baseSpeed;
+        break;
+      case GameKeyboard.SHOOT:
+        this.player.shoot();
+        break;
+      case GameKeyboard.PAUSE:
+        this.paused();
+        break;
+      default:
+        break;
     }
+  }
+
+  private onKeyUp({ keyCode }: KeyboardEvent) {
+    if (keyCode === GameKeyboard.LEFT || keyCode === GameKeyboard.RIGHT) {
+      this.player.velocity.dx = 0;
+    }
+  }
+
+  private onResize(e: Event) {
+    const current = e.target as Window;
+    if (current) {
+      this.canvas.width = current.innerWidth;
+      this.canvas.height = current.innerHeight;
+    }
+  }
+
+  private initListeners() {
+    window.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener("keyup", this.handleKeyUp);
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  public removeListeners() {
+    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   private drawCanvas() {
@@ -253,7 +267,9 @@ export class Game {
   }
 
   private clearGameState() {
-    this.player = this.initialPlayer;
+    this.removeListeners();
+    this.player.clear();
+    this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
     this.frames = 0;
   }

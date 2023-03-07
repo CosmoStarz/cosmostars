@@ -19,6 +19,8 @@ export const GamePage: FC = () => {
     if (canvasElement.current) {
       game.current = initGame(canvasElement.current);
     }
+
+    return () => game.current?.removeListeners();
   }, [canvasElement]);
 
   const startNewGame = () => {
