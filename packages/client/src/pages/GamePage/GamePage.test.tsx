@@ -8,6 +8,7 @@ import {
 import { GamePage } from "./GamePage";
 
 jest.mock("@/entities/game/controller/Game");
+jest.mock("@/entities/game/ui/Sound/Sound");
 
 let Page: ReactElement;
 
