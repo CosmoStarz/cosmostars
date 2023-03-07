@@ -7,6 +7,7 @@ import { GameState } from "./types";
 const initialState: GameState = {
   status: GameStatuses.NOT_ACTIVE,
   isModalOpened: false,
+  isMutedSound: false,
   score: 0,
 };
 
@@ -17,6 +18,9 @@ export const gameSlice = createSlice({
     setGameStatus: (state, { payload }: PayloadAction<GameStatuses>) => {
       state.status = payload;
       state.isModalOpened = payload > GameStatuses.ACTIVE;
+    },
+    toggleIsMutedSound: state => {
+      state.isMutedSound = !state.isMutedSound;
     },
     incrementScoreByEnemy: (
       state,
@@ -30,7 +34,11 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setGameStatus, incrementScoreByEnemy, resetScore } =
-  gameSlice.actions;
+export const {
+  setGameStatus,
+  toggleIsMutedSound,
+  incrementScoreByEnemy,
+  resetScore,
+} = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;
