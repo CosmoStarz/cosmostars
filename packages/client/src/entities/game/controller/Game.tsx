@@ -1,4 +1,5 @@
 import { store } from "@/app/store";
+import sound, { Sound } from "@/entities/game/ui/Sound/Sound";
 import {
   BaseGameColors,
   baseSpeed,
@@ -24,18 +25,20 @@ export class Game {
   private enemyGrids: EnemyGrid[];
   private randomInterval: number;
   private gameActive: boolean;
+  private sound: Sound;
 
-  constructor(canvasElement: HTMLCanvasElement) {
+  constructor(canvasElement: HTMLCanvasElement, sound: Sound) {
     this.canvas = canvasElement;
     this.scene = this.mainScene;
     this.player = this.initialPlayer;
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-
     this.gameActive = store.getState().game.status === GameStatuses.ACTIVE;
+    this.sound = sound;
 
     this.drawCanvas();
+    this.sound.init();
   }
 
   private get mainScene() {
@@ -139,7 +142,7 @@ export class Game {
           this.player.projectiles,
           enemy,
           () => {
-            // TODO: добавить взрыв (COS-53)
+            this.sound.playExplosion();
             store.dispatch(incrementScoreByEnemy("BASIC"));
 
             console.log("BOOM");
@@ -162,6 +165,7 @@ export class Game {
               enemy.projectiles,
               playerProjectile,
               () => {
+                this.sound.playExplosion();
                 // TODO: добавить взрыв (COS-53)
 
                 console.log("BOOM");
@@ -179,6 +183,7 @@ export class Game {
   }
 
   public resume() {
+    this.sound.startSound();
     store.dispatch(setGameStatus(GameStatuses.ACTIVE));
     this.gameActive = true;
     this.initListeners();
@@ -191,11 +196,14 @@ export class Game {
   }
 
   private loose() {
+    this.sound.stopSound();
+    this.sound.playGameover();
     store.dispatch(setGameStatus(GameStatuses.LOOSE));
     this.gameActive = false;
   }
 
   private paused() {
+    this.sound.stopSound();
     store.dispatch(setGameStatus(GameStatuses.PAUSED));
     this.gameActive = false;
   }
@@ -211,6 +219,7 @@ export class Game {
             this.player.velocity.dx = baseSpeed;
             break;
           case GameKeyboard.SHOOT:
+            this.sound.playShot();
             this.player.shoot();
             break;
           case GameKeyboard.PAUSE:
@@ -259,4 +268,4 @@ export class Game {
   }
 }
 
-export const initGame = (canvas: HTMLCanvasElement) => new Game(canvas);
+export const initGame = (canvas: HTMLCanvasElement) => new Game(canvas, sound);

@@ -4,10 +4,9 @@ import { BasicLayout } from "@/shared/layouts/BasicLayout";
 
 export const SignInPage = () => {
   const { signInAuth } = useAuth();
-  const handleSignIn = signInAuth;
   return (
     <BasicLayout>
-      <SignIn handleSignIn={handleSignIn} />
+      <SignIn handleSignIn={signInAuth} />
     </BasicLayout>
   );
 };

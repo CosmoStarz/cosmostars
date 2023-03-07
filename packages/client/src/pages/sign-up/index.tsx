@@ -4,10 +4,9 @@ import { BasicLayout } from "@/shared/layouts/BasicLayout";
 
 export const SignUpPage = () => {
   const { signUpAuth } = useAuth();
-  const handleSignUp = signUpAuth;
   return (
     <BasicLayout>
-      <SignUp handleSignUp={handleSignUp} />
+      <SignUp handleSignUp={signUpAuth} />
     </BasicLayout>
   );
 };
