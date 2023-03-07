@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { useLazyGetUserQuery } from "@/entities/user/model/api";
-import { selectIsAuth, setIsAuth, setUser } from "@/entities/user/model/user";
+import { resetAuth,selectIsAuth, setIsAuth, setUser } from "@/entities/user/model/user";
 import {
   useLogoutMutation,
   useSignInMutation,
@@ -14,7 +14,6 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from "../api/auth/models";
-import { getErrorReason } from "../api/utils";
 import { useAppDispatch } from "./store";
 
 export const useAuth = () => {
@@ -38,13 +37,12 @@ export const useAuth = () => {
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
-    const { error } = (await signIn(userForm)) as unknown as SignInResponse;
-    // сделан костыль т.к яндекс возвращает строку ОК на успех
-    if (error.data === "OK") {
+    const { data, error } = (await signIn(userForm)) as unknown as SignInResponse;
+    
+    if (data === "OK") {
       checkIsUserAuth();
     } else {
-      const textError = getErrorReason(error);
-      console.log(textError);
+      console.log(error);
     }
   };
 
@@ -52,8 +50,7 @@ export const useAuth = () => {
     const { error } = (await signUp(userForm)) as unknown as SignUpResponse;
 
     if (error) {
-      const textError = getErrorReason(error);
-      console.log(textError);
+      console.log(error);
     } else {
       checkIsUserAuth();
     }
@@ -61,8 +58,7 @@ export const useAuth = () => {
 
   const logoutAuth = async () => {
     await logout("");
-    dispatch(setUser(undefined));
-    dispatch(setIsAuth(false));
+    dispatch(resetAuth());
   };
   return {
     logoutAuth,

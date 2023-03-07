@@ -24,9 +24,13 @@ export const authSlice = createSlice({
     setUser(state, { payload }: PayloadAction<UserInfo | undefined>) {
       state.user = payload;
     },
+    resetAuth(state) {
+      state.user = undefined;
+      state.isAuth = false;
+    },
   },
 });
 
-export const { setIsAuth, setUser } = authSlice.actions;
+export const { setIsAuth, setUser, resetAuth } = authSlice.actions;
 export const selectIsAuth = (state: RootState) => state.auth.isAuth;
 export const authReducer = authSlice.reducer;

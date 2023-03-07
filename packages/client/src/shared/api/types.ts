@@ -2,6 +2,9 @@ export type ErrorResponse = {
   reason: string;
 };
 
+export enum RequestStatus {
+  OK = 200,
+}
 export enum HTTPMethods {
   GET = "get",
   POST = "post",

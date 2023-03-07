@@ -18,5 +18,6 @@ export type SignInRequest = {
 };
 export type SignInResponse = {
   error: SignInData;
+  data: string;
 };
 type SignInData = { status: "CUSTOM_ERROR"; data?: unknown; error: string };
