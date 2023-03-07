@@ -1,7 +1,12 @@
 import { useSelector } from "react-redux";
 
 import { useLazyGetUserQuery } from "@/entities/user/model/api";
-import { resetAuth,selectIsAuth, setIsAuth, setUser } from "@/entities/user/model/user";
+import {
+  resetAuth,
+  selectIsAuth,
+  setIsAuth,
+  setUser,
+} from "@/entities/user/model/user";
 import {
   useLogoutMutation,
   useSignInMutation,
@@ -37,8 +42,10 @@ export const useAuth = () => {
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
-    const { data, error } = (await signIn(userForm)) as unknown as SignInResponse;
-    
+    const { data, error } = (await signIn(
+      userForm
+    )) as unknown as SignInResponse;
+
     if (data === "OK") {
       checkIsUserAuth();
     } else {

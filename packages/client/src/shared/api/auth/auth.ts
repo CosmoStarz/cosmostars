@@ -33,7 +33,10 @@ export const authApi = yandexApi.injectEndpoints({
         url: AUTH_URL.SIGN_IN,
         method: Method.POST,
         body: signInRequest,
-        responseHandler: (response) => response.status === RequestStatus.OK ? response.text() : response.json(),
+        responseHandler: response =>
+          response.status === RequestStatus.OK
+            ? response.text()
+            : response.json(),
       }),
       transformErrorResponse(response) {
         return getErrorReason(response);
