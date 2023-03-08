@@ -37,7 +37,7 @@ export class Game {
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-    this.gameActive = store.getState().game.status === GameStatuses.ACTIVE;
+    this.gameActive = false;
     this.sound = sound;
 
     this.handleKeyDown = this.onKeyDown.bind(this);
@@ -61,8 +61,15 @@ export class Game {
     });
   }
 
+  private get isGameReload() {
+    const activeStatuses = [GameStatuses.ACTIVE, GameStatuses.PAUSED];
+    const status = store.getState().game.status;
+
+    return activeStatuses.includes(status);
+  }
+
   private checkGameReload() {
-    if (this.gameActive) {
+    if (this.isGameReload) {
       store.dispatch(setGameStatus(GameStatuses.UPDATING));
     }
   }
