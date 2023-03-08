@@ -46,6 +46,7 @@ export class Game {
 
     this.drawCanvas();
     this.sound.init();
+    this.checkGameReload();
   }
 
   private get mainScene() {
@@ -58,6 +59,12 @@ export class Game {
       projectileSpeed: -baseSpeed,
       src: GameImages.PLAYER,
     });
+  }
+
+  private checkGameReload() {
+    if (this.gameActive) {
+      store.dispatch(setGameStatus(GameStatuses.UPDATING));
+    }
   }
 
   private createOneEnemyGrid() {
@@ -151,8 +158,6 @@ export class Game {
           () => {
             this.sound.playExplosion();
             store.dispatch(incrementScoreByEnemy("BASIC"));
-
-            console.log("BOOM");
           }
         );
         this.player.projectiles = hitEnemy.newProjectiles;
@@ -173,9 +178,6 @@ export class Game {
               playerProjectile,
               () => {
                 this.sound.playExplosion();
-                // TODO: добавить взрыв (COS-53)
-
-                console.log("BOOM");
               }
             );
             enemy.projectiles = hitProjectiles.newProjectiles;
@@ -224,7 +226,7 @@ export class Game {
         this.player.velocity.dx = baseSpeed;
         break;
       case GameKeyboard.SHOOT:
-      	this.sound.playShot();
+        this.sound.playShot();
         this.player.shoot();
         break;
       case GameKeyboard.PAUSE:

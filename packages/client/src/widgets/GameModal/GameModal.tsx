@@ -9,7 +9,10 @@ import {
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { setGameStatus } from "@/entities/game/model/store/gameSlice";
+import {
+  resetScore,
+  setGameStatus,
+} from "@/entities/game/model/store/gameSlice";
 import {
   gameModalSelector,
   gameScoreSelector,
@@ -37,8 +40,15 @@ export const GameModal: FC<GameModalType> = props => {
   const config = GameModalConfig[status];
   const score = useAppSelector(gameScoreSelector);
 
+  const handleStart = () => {
+    if (config?.clearScoreOnStart) {
+      dispatch(resetScore());
+    }
+    onStart();
+  };
+
   const handleClose = () => {
-    config?.canBeResumed ? onResume() : onStart();
+    config?.canBeResumed ? onResume() : handleStart();
   };
 
   const handleHomeNavigate = () => {
