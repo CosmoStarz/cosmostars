@@ -1,5 +1,7 @@
 import { AUTH, Method } from "@/shared/constants/api";
 
+import { RequestStatus } from "../types";
+import { getErrorReason } from "../utils";
 import { yandexApi } from "../yandexApi";
 import {
   SignInRequest,
@@ -11,7 +13,6 @@ import {
 const AUTH_URL = {
   SIGN_UP: `${AUTH}signup`,
   SIGN_IN: `${AUTH}signin`,
-  USER: `${AUTH}user`,
   LOGOUT: `${AUTH}logout`,
 };
 
@@ -23,19 +24,23 @@ export const authApi = yandexApi.injectEndpoints({
         method: Method.POST,
         body: signUpRequest,
       }),
+      transformErrorResponse(response) {
+        return getErrorReason(response);
+      },
     }),
     signIn: builder.mutation<SignInResponse, SignInRequest>({
       query: signInRequest => ({
         url: AUTH_URL.SIGN_IN,
         method: Method.POST,
         body: signInRequest,
+        responseHandler: response =>
+          response.status === RequestStatus.OK
+            ? response.text()
+            : response.json(),
       }),
-    }),
-    getUser: builder.query({
-      query: () => ({
-        url: AUTH_URL.USER,
-        method: Method.GET,
-      }),
+      transformErrorResponse(response) {
+        return getErrorReason(response);
+      },
     }),
     logout: builder.mutation({
       query: () => ({
@@ -46,9 +51,5 @@ export const authApi = yandexApi.injectEndpoints({
   }),
 });
 
-export const {
-  useSignUpMutation,
-  useSignInMutation,
-  useGetUserQuery,
-  useLogoutMutation,
-} = authApi;
+export const { useSignUpMutation, useSignInMutation, useLogoutMutation } =
+  authApi;

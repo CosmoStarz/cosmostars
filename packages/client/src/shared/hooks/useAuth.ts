@@ -1,5 +1,77 @@
-import { useGetUserQuery } from "../api/auth/auth";
+import { useSelector } from "react-redux";
+
+import { useLazyGetUserQuery } from "@/entities/user/model/api";
+import {
+  resetAuth,
+  selectIsAuth,
+  setIsAuth,
+  setUser,
+} from "@/entities/user/model/user";
+import {
+  useLogoutMutation,
+  useSignInMutation,
+  useSignUpMutation,
+} from "@/shared/api/auth/auth";
+
+import {
+  SignInRequest,
+  SignInResponse,
+  SignUpRequest,
+  SignUpResponse,
+} from "../api/auth/models";
+import { useAppDispatch } from "./store";
+
 export const useAuth = () => {
-  const { data } = useGetUserQuery("user");
-  return !!data;
+  const dispatch = useAppDispatch();
+  const isAuth = useSelector(selectIsAuth);
+
+  const [getUser] = useLazyGetUserQuery();
+  const [signIn] = useSignInMutation();
+  const [signUp] = useSignUpMutation();
+  const [logout] = useLogoutMutation();
+
+  const checkIsUserAuth = async () => {
+    try {
+      const { isSuccess, data } = await getUser();
+      dispatch(setIsAuth(isSuccess));
+      if (isSuccess) {
+        dispatch(setUser(data));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const signInAuth = async (userForm: SignInRequest) => {
+    const { data, error } = (await signIn(
+      userForm
+    )) as unknown as SignInResponse;
+
+    if (data === "OK") {
+      checkIsUserAuth();
+    } else {
+      console.log(error);
+    }
+  };
+
+  const signUpAuth = async (userForm: SignUpRequest) => {
+    const { error } = (await signUp(userForm)) as unknown as SignUpResponse;
+
+    if (error) {
+      console.log(error);
+    } else {
+      checkIsUserAuth();
+    }
+  };
+
+  const logoutAuth = async () => {
+    await logout("");
+    dispatch(resetAuth());
+  };
+  return {
+    logoutAuth,
+    signUpAuth,
+    signInAuth,
+    checkIsUserAuth,
+    isAuth,
+  };
 };
