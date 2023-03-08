@@ -54,7 +54,7 @@ export const GameImages = {
   ENEMY: EnemyImage,
   PLAYER: PlayerImage,
   PROJECTILE: ProjileImage,
-}
+};
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
   [GameStatuses.NOT_ACTIVE]: null,
