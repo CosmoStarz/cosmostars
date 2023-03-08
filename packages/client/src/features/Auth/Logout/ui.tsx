@@ -6,7 +6,7 @@ export const Logout = () => {
   const { logoutAuth } = useAuth();
   return (
     <IconButton
-      aria-label="brightness4icon"
+      aria-label="logout-icon"
       size="small"
       sx={{
         mx: 2,
