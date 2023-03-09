@@ -31,6 +31,7 @@ export enum GameStatuses {
   LOOSE = 3,
   WIN = 4,
   PAUSED = 5,
+  UPDATING = 6,
 }
 
 export enum BaseGameColors {
@@ -63,6 +64,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     title: "Start",
     startButton: "Start",
     rulesVisibility: true,
+    clearScoreOnStart: true,
   },
   [GameStatuses.LOOSE]: {
     title: "Looser!",
@@ -70,6 +72,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: LooseRight,
     leftImg: LooseLeft,
+    clearScoreOnStart: true,
   },
   [GameStatuses.WIN]: {
     title: "Winner!",
@@ -77,6 +80,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: WinRight,
     leftImg: WinLeft,
+    clearScoreOnStart: true,
   },
   [GameStatuses.PAUSED]: {
     title: "Pause",
@@ -84,6 +88,11 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     canBeResumed: true,
     rulesVisibility: true,
+  },
+  [GameStatuses.UPDATING]: {
+    title: "Game was paused!",
+    startButton: "Resume",
+    scoreVisibility: true,
   },
 };
 

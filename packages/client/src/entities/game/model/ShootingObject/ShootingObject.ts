@@ -50,4 +50,8 @@ export class ShootingObject extends BaseObject {
       }
     });
   }
+
+  public clear() {
+    this.projectiles = [];
+  }
 }
