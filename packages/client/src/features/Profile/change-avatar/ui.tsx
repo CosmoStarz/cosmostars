@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { ChangeEvent, DragEvent,useState } from "react";
+import { ChangeEvent, DragEvent, useState } from "react";
 
 import {
   useChangeAvatarMutation,
