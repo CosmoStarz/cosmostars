@@ -31,8 +31,7 @@ export const ChangeAvatarForm = () => {
   const currAvatar = configureResourcePath(data?.avatar);
 
   const [currentAvatar, setCurrentAvatar] = useState<string>(currAvatar);
-  const [oldAvatar, setOldAvatar] = useState<string>("");
-  const [selectedImage, setSelectedImage] = useState<Blob | undefined>(
+  const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
   );
   const [drag, setDrag] = useState<boolean>(false);
@@ -49,8 +48,7 @@ export const ChangeAvatarForm = () => {
 
   const setNewAvatar = (newFile: Blob) => {
     setFieldValue("avatar", newFile);
-    setSelectedImage(newFile);
-    setOldAvatar(currentAvatar);
+    setSelectedImage(URL.createObjectURL(newFile));
     setCurrentAvatar(URL.createObjectURL(newFile));
   };
 
@@ -63,7 +61,7 @@ export const ChangeAvatarForm = () => {
 
   const removeSelectedImage = () => {
     setSelectedImage(undefined);
-    setCurrentAvatar(oldAvatar);
+    setCurrentAvatar(currAvatar);
   };
 
   const dragStartHandler = (event: DragEvent<HTMLDivElement>) => {
@@ -186,17 +184,16 @@ export const ChangeAvatarForm = () => {
                       borderRadius: "5%",
                     }}>
                     <Box
-                      component="img"
-                      src={URL.createObjectURL(selectedImage)}
                       sx={{
+                        backgroundImage: `url(${selectedImage})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
                         display: "block",
                         height: 130,
                         width: 100,
-                        maxHeight: "100%",
-                        maxWidth: "100%",
                         borderRadius: "5%",
                       }}
-                      alt="Avatar preview"
                     />
                     <IconButton
                       onClick={removeSelectedImage}
