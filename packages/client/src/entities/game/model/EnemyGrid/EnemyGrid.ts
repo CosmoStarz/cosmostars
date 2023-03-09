@@ -93,4 +93,8 @@ export class EnemyGrid extends BaseObject {
       this.velocity.dy = initialObjectSize.height;
     }
   }
+
+  public clear() {
+    this.enemies.forEach(enemy => enemy.clear());
+  }
 }

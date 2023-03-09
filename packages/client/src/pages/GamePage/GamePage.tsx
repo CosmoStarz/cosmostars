@@ -2,16 +2,14 @@ import { Box } from "@mui/material";
 import { FC, useEffect, useRef } from "react";
 
 import { Game, initGame } from "@/entities/game/controller/Game";
-import { resetScore } from "@/entities/game/model/store/gameSlice";
 import { gameScoreSelector } from "@/entities/game/model/store/selectors";
 import { BaseGameColors } from "@/shared/constants";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
+import { useAppSelector } from "@/shared/hooks/store";
 import { GameModal } from "@/widgets/GameModal/GameModal";
 
 export const GamePage: FC = () => {
   const canvasElement = useRef<HTMLCanvasElement>(null);
   const game = useRef<Game | null>(null);
-  const dispatch = useAppDispatch();
 
   const score = useAppSelector(gameScoreSelector);
 
@@ -19,10 +17,11 @@ export const GamePage: FC = () => {
     if (canvasElement.current) {
       game.current = initGame(canvasElement.current);
     }
+
+    return () => game.current?.removeListeners();
   }, [canvasElement]);
 
   const startNewGame = () => {
-    dispatch(resetScore());
     game.current?.start();
   };
 
