@@ -30,3 +30,9 @@ export const useChangeAvatarMutation = () => [
     return;
   },
 ];
+
+export const useLazyGetUserQuery = () => [
+  () => {
+    return;
+  },
+];

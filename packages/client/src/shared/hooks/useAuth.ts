@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { useLazyGetUserQuery } from "@/entities/user/model/api";
@@ -29,8 +30,9 @@ export const useAuth = () => {
   const [signIn] = useSignInMutation();
   const [signUp] = useSignUpMutation();
   const [logout] = useLogoutMutation();
-
+  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
   const checkIsUserAuth = async () => {
+    setIsLoadingAuth(true);
     try {
       const { isSuccess, data } = await getUser();
       dispatch(setIsAuth(isSuccess));
@@ -39,6 +41,8 @@ export const useAuth = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoadingAuth(false);
     }
   };
   const signInAuth = async (userForm: SignInRequest) => {
@@ -72,6 +76,7 @@ export const useAuth = () => {
     signUpAuth,
     signInAuth,
     checkIsUserAuth,
+    isLoadingAuth,
     isAuth,
   };
 };
