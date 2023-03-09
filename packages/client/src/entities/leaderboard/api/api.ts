@@ -22,7 +22,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
         method: HTTPMethods.POST,
         body: {
           ratingFieldName: RATING_FIELD,
-          cursor: offset,
+          cursorr: offset,
           limit,
         },
       }),
