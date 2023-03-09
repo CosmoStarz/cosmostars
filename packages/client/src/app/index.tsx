@@ -8,10 +8,12 @@ import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
 import { Router } from "@/router";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { useBasicTheme } from "@/shared/hooks/useBasicTheme";
+import { BasicLayout } from "@/shared/layouts/BasicLayout";
+import { LoaderView } from "@/shared/ui";
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
-  const { checkIsUserAuth } = useAuth();
+  const { checkIsUserAuth, isLoadingAuth } = useAuth();
 
   useEffect(() => {
     checkIsUserAuth();
@@ -20,9 +22,15 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        {isLoadingAuth ? (
+          <BasicLayout>
+            <LoaderView />
+          </BasicLayout>
+        ) : (
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        )}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
