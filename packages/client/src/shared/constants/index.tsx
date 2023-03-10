@@ -126,6 +126,7 @@ export enum RoutesName {
   LOGIN = "/login",
   REGISTRATION = "/registration",
   FORUM_DETAIL = "/forum/:id",
+  OAUTH = "/oauth",
 }
 
 export const MenuItems: MenuLinkType[] = [
