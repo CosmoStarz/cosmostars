@@ -3,10 +3,12 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { gameReducer } from "@/entities/game/model/store/gameSlice";
+import {
+  notificationMiddleware,
+  notificationReducer,
+} from "@/entities/notification";
 import { authReducer } from "@/entities/user/model/user";
 import { yandexApi } from "@/shared/api/yandexApi";
-import { notificationMiddleware } from "@/shared/middlewares/notificationMiddleware";
-import { notificationReducer } from "@/shared/slices/notificationSlice";
 
 const config = {
   key: "root",
