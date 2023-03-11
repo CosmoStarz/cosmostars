@@ -1,6 +1,7 @@
 export class Game {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  /* eslint-disable @typescript-eslint/no-empty-function */
   start() {}
+  removeListeners() {}
 }
 
 export const initGame = () => new Game();

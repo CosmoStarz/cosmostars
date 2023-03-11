@@ -10,12 +10,9 @@ export type PrivateModeProps = {
 
 export const PrivateMode: FC<PrivateModeProps> = ({ children }) => {
   const location = useLocation();
-  const { isAuth, logoutAuth } = useAuth();
+  const { isAuth } = useAuth();
   return isAuth ? (
-    <>
-      {children}
-      <button onClick={logoutAuth}>Log out</button>
-    </>
+    <>{children}</>
   ) : (
     <Navigate
       to={RoutesName.LOGIN}

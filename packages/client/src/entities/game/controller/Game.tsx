@@ -26,6 +26,9 @@ export class Game {
   private randomInterval: number;
   private gameActive: boolean;
   private sound: Sound;
+  private handleKeyDown: ({ keyCode }: KeyboardEvent) => void;
+  private handleKeyUp: ({ keyCode }: KeyboardEvent) => void;
+  private handleResize: (e: Event) => void;
 
   constructor(canvasElement: HTMLCanvasElement, sound: Sound) {
     this.canvas = canvasElement;
@@ -34,11 +37,16 @@ export class Game {
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-    this.gameActive = store.getState().game.status === GameStatuses.ACTIVE;
+    this.gameActive = false;
     this.sound = sound;
+
+    this.handleKeyDown = this.onKeyDown.bind(this);
+    this.handleKeyUp = this.onKeyUp.bind(this);
+    this.handleResize = this.onResize.bind(this);
 
     this.drawCanvas();
     this.sound.init();
+    this.checkGameReload();
   }
 
   private get mainScene() {
@@ -51,6 +59,19 @@ export class Game {
       projectileSpeed: -baseSpeed,
       src: GameImages.PLAYER,
     });
+  }
+
+  private get isGameReload() {
+    const activeStatuses = [GameStatuses.ACTIVE, GameStatuses.PAUSED];
+    const status = store.getState().game.status;
+
+    return activeStatuses.includes(status);
+  }
+
+  private checkGameReload() {
+    if (this.isGameReload) {
+      store.dispatch(setGameStatus(GameStatuses.UPDATING));
+    }
   }
 
   private createOneEnemyGrid() {
@@ -144,8 +165,6 @@ export class Game {
           () => {
             this.sound.playExplosion();
             store.dispatch(incrementScoreByEnemy("BASIC"));
-
-            console.log("BOOM");
           }
         );
         this.player.projectiles = hitEnemy.newProjectiles;
@@ -166,9 +185,6 @@ export class Game {
               playerProjectile,
               () => {
                 this.sound.playExplosion();
-                // TODO: добавить взрыв (COS-53)
-
-                console.log("BOOM");
               }
             );
             enemy.projectiles = hitProjectiles.newProjectiles;
@@ -186,12 +202,12 @@ export class Game {
     this.sound.startSound();
     store.dispatch(setGameStatus(GameStatuses.ACTIVE));
     this.gameActive = true;
-    this.initListeners();
     this.update();
   }
 
   public start() {
     this.clearGameState();
+    this.initListeners();
     this.resume();
   }
 
@@ -208,42 +224,50 @@ export class Game {
     this.gameActive = false;
   }
 
-  private initListeners() {
-    if (this.gameActive) {
-      window.addEventListener("keydown", ({ keyCode }) => {
-        switch (keyCode) {
-          case GameKeyboard.LEFT:
-            this.player.velocity.dx = -baseSpeed;
-            break;
-          case GameKeyboard.RIGHT:
-            this.player.velocity.dx = baseSpeed;
-            break;
-          case GameKeyboard.SHOOT:
-            this.sound.playShot();
-            this.player.shoot();
-            break;
-          case GameKeyboard.PAUSE:
-            this.paused();
-            break;
-          default:
-            break;
-        }
-      });
-
-      window.addEventListener("keyup", ({ keyCode }) => {
-        if (keyCode === GameKeyboard.LEFT || keyCode === GameKeyboard.RIGHT) {
-          this.player.velocity.dx = 0;
-        }
-      });
-
-      window.addEventListener("resize", (e: Event) => {
-        const current = e.target as Window;
-        if (current) {
-          this.canvas.width = current.innerWidth;
-          this.canvas.height = current.innerHeight;
-        }
-      });
+  private onKeyDown({ keyCode }: KeyboardEvent) {
+    switch (keyCode) {
+      case GameKeyboard.LEFT:
+        this.player.velocity.dx = -baseSpeed;
+        break;
+      case GameKeyboard.RIGHT:
+        this.player.velocity.dx = baseSpeed;
+        break;
+      case GameKeyboard.SHOOT:
+        this.sound.playShot();
+        this.player.shoot();
+        break;
+      case GameKeyboard.PAUSE:
+        this.paused();
+        break;
+      default:
+        break;
     }
+  }
+
+  private onKeyUp({ keyCode }: KeyboardEvent) {
+    if (keyCode === GameKeyboard.LEFT || keyCode === GameKeyboard.RIGHT) {
+      this.player.velocity.dx = 0;
+    }
+  }
+
+  private onResize(e: Event) {
+    const current = e.target as Window;
+    if (current) {
+      this.canvas.width = current.innerWidth;
+      this.canvas.height = current.innerHeight;
+    }
+  }
+
+  private initListeners() {
+    window.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener("keyup", this.handleKeyUp);
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  public removeListeners() {
+    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   private drawCanvas() {
@@ -262,7 +286,9 @@ export class Game {
   }
 
   private clearGameState() {
-    this.player = this.initialPlayer;
+    this.removeListeners();
+    this.player.clear();
+    this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
     this.frames = 0;
   }
