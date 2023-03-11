@@ -13,7 +13,7 @@ const userApi = yandexApi.injectEndpoints({
   endpoints: builder => ({
     getUser: builder.query<UserInfo, void>({
       query: () => ({
-        url: `/${AUTH_API_BASIC}/${USER_API_BASIC}/1`,
+        url: `/${AUTH_API_BASIC}/${USER_API_BASIC}`,
       }),
       transformErrorResponse: response => getErrorReason(response),
       providesTags: [Tags.USER],

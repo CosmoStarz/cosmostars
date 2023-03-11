@@ -1,4 +1,4 @@
-import { ErrorResponse, HTTPMethods, Tags } from "@/shared/api/types";
+import { HTTPMethods, Tags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
 import { yandexApi } from "@/shared/api/yandexApi";
 import {
@@ -22,7 +22,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
         method: HTTPMethods.POST,
         body: {
           ratingFieldName: RATING_FIELD,
-          cursorr: offset,
+          cursor: offset,
           limit,
         },
       }),

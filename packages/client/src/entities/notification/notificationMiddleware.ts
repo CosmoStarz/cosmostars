@@ -11,7 +11,6 @@ export const notificationMiddleware: Middleware<unknown, RootState> =
   next =>
   action => {
     if (actions.includes(action.type)) {
-      console.log(action.payload);
       dispatch(
         setNotification({
           id: action.meta.requestId,

@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 
 export const Notification: FC = () => {
   const dispatch = useAppDispatch();
-  // const [open, setOpen] = useState<boolean>(true);
   const { id, type, text } = useAppSelector(selectNotification);
 
   const isShown = Boolean(id);
@@ -18,12 +17,12 @@ export const Notification: FC = () => {
         <Snackbar
           key={id}
           open={true}
-          onClose={(evt, reason) => {
+          onClose={(_evt, reason) => {
             if (reason !== "clickaway") {
               dispatch(clearNotification());
             }
           }}
-          autoHideDuration={10000}>
+          autoHideDuration={6000}>
           <Alert severity={type ?? "info"} variant="filled">
             {String(text)}
           </Alert>
