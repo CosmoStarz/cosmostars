@@ -1,56 +1,47 @@
 import { store } from "@/app/store";
-import sound, { Sound } from "@/entities/game/ui/Sound/Sound";
+import { Sound } from "@/entities/game/ui/Sound/Sound";
 import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
   GameImages,
-  GameKeyboard,
-  GameStatuses,
+  maxStarsCount,
   randomInterval,
+  StarRadius,
+  StarVelocity,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
-import { BaseObject } from "../model/BaseObject/BaseObject";
-import { EnemyGrid } from "../model/EnemyGrid/EnemyGrid";
-import { Player } from "../model/Player/Player";
-import { incrementScoreByEnemy, setGameStatus } from "../model/store/gameSlice";
-import { Canvas, initCanvas } from "../ui/Canvas/Canvas";
+import { BaseObject } from "../../model/BaseObject/BaseObject";
+import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
+import { Player } from "../../model/Player/Player";
+import { Star } from "../../model/Star/Star";
+import { incrementScoreByEnemy } from "../../model/store/gameSlice";
+import { Canvas } from "../../ui/Canvas/Canvas";
+import { GameControllerType } from "./types";
 
-export class Game {
-  private canvas: HTMLCanvasElement;
+// класс игрового контроллера: включает в себя работу над игровыми объектами
+export class GameController {
   private scene: Canvas;
-  private player: Player;
+  public player: Player;
   private frames: number;
   private enemyGrids: EnemyGrid[];
+  private stars: Star[];
   private randomInterval: number;
-  private gameActive: boolean;
   private sound: Sound;
-  private handleKeyDown: ({ keyCode }: KeyboardEvent) => void;
-  private handleKeyUp: ({ keyCode }: KeyboardEvent) => void;
-  private handleResize: (e: Event) => void;
+  private end: () => void;
 
-  constructor(canvasElement: HTMLCanvasElement, sound: Sound) {
-    this.canvas = canvasElement;
-    this.scene = this.mainScene;
+  constructor(props: GameControllerType) {
+    this.scene = props.scene;
+    this.sound = props.sound;
+    this.end = props.end;
     this.player = this.initialPlayer;
+    this.stars = [];
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-    this.gameActive = false;
-    this.sound = sound;
 
-    this.handleKeyDown = this.onKeyDown.bind(this);
-    this.handleKeyUp = this.onKeyUp.bind(this);
-    this.handleResize = this.onResize.bind(this);
-
-    this.drawCanvas();
-    this.sound.init();
-    this.checkGameReload();
-  }
-
-  private get mainScene() {
-    return initCanvas(this.canvas);
+    this.generateStars();
   }
 
   private get initialPlayer() {
@@ -58,19 +49,29 @@ export class Game {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       src: GameImages.PLAYER,
+      projectileImage: GameImages.PLAYER_PROJECTILE,
     });
   }
 
-  private get isGameReload() {
-    const activeStatuses = [GameStatuses.ACTIVE, GameStatuses.PAUSED];
-    const status = store.getState().game.status;
-
-    return activeStatuses.includes(status);
+  private createOneStar() {
+    return new Star({
+      scene: this.scene,
+      position: {
+        x: Math.random() * this.scene.width,
+        y: Math.random() * this.scene.height,
+      },
+      velocity: {
+        dx: StarVelocity.dx,
+        dy: StarVelocity.dy,
+      },
+      radius: getRandomNumber(StarRadius.MIN, StarRadius.MAX),
+      color: BaseGameColors.WHITE,
+    });
   }
 
-  private checkGameReload() {
-    if (this.isGameReload) {
-      store.dispatch(setGameStatus(GameStatuses.UPDATING));
+  private generateStars() {
+    for (let i = 0; i < maxStarsCount; i++) {
+      this.stars.push(this.createOneStar());
     }
   }
 
@@ -80,13 +81,24 @@ export class Game {
     });
   }
 
-  private createEnemies() {
+  private generateEnemies() {
     if (this.frames % this.randomInterval === 0) {
       this.enemyGrids.push(this.createOneEnemyGrid());
       this.frames = 0;
       this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     }
     this.frames += 1;
+  }
+
+  private watchStarsGone() {
+    this.stars.forEach(star => {
+      if (star.position.y - star.radius >= this.scene.height) {
+        star.position.x = Math.random() * this.scene.width;
+        star.position.y = -star.radius;
+      } else {
+        star.update();
+      }
+    });
   }
 
   private watchEnemiesGone() {
@@ -155,7 +167,7 @@ export class Game {
   private checkAllCollisions() {
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
-        this.loose();
+        this.end();
       }
 
       enemyGrid.enemies = enemyGrid.enemies.filter(enemy => {
@@ -173,7 +185,7 @@ export class Game {
           enemy.projectiles,
           this.player,
           () => {
-            this.loose();
+            this.end();
           }
         );
         enemy.projectiles = hitPlayer.newProjectiles;
@@ -198,100 +210,18 @@ export class Game {
     });
   }
 
-  public resume() {
-    this.sound.startSound();
-    store.dispatch(setGameStatus(GameStatuses.ACTIVE));
-    this.gameActive = true;
-    this.update();
+  public update() {
+    this.watchStarsGone();
+    this.player.update();
+    this.checkAllCollisions();
+    this.watchEnemiesGone();
+    this.generateEnemies();
   }
 
-  public start() {
-    this.clearGameState();
-    this.initListeners();
-    this.resume();
-  }
-
-  private loose() {
-    this.sound.stopSound();
-    this.sound.playGameover();
-    store.dispatch(setGameStatus(GameStatuses.LOOSE));
-    this.gameActive = false;
-  }
-
-  private paused() {
-    this.sound.stopSound();
-    store.dispatch(setGameStatus(GameStatuses.PAUSED));
-    this.gameActive = false;
-  }
-
-  private onKeyDown({ keyCode }: KeyboardEvent) {
-    switch (keyCode) {
-      case GameKeyboard.LEFT:
-        this.player.velocity.dx = -baseSpeed;
-        break;
-      case GameKeyboard.RIGHT:
-        this.player.velocity.dx = baseSpeed;
-        break;
-      case GameKeyboard.SHOOT:
-        this.sound.playShot();
-        this.player.shoot();
-        break;
-      case GameKeyboard.PAUSE:
-        this.paused();
-        break;
-      default:
-        break;
-    }
-  }
-
-  private onKeyUp({ keyCode }: KeyboardEvent) {
-    if (keyCode === GameKeyboard.LEFT || keyCode === GameKeyboard.RIGHT) {
-      this.player.velocity.dx = 0;
-    }
-  }
-
-  private onResize(e: Event) {
-    const current = e.target as Window;
-    if (current) {
-      this.canvas.width = current.innerWidth;
-      this.canvas.height = current.innerHeight;
-    }
-  }
-
-  private initListeners() {
-    window.addEventListener("keydown", this.handleKeyDown);
-    window.addEventListener("keyup", this.handleKeyUp);
-    window.addEventListener("resize", this.handleResize);
-  }
-
-  public removeListeners() {
-    window.removeEventListener("keydown", this.handleKeyDown);
-    window.removeEventListener("keyup", this.handleKeyUp);
-    window.removeEventListener("resize", this.handleResize);
-  }
-
-  private drawCanvas() {
-    this.scene.fillCanvas(BaseGameColors.BLACK);
-  }
-
-  private update() {
-    if (this.gameActive) {
-      requestAnimationFrame(this.update.bind(this));
-      this.drawCanvas();
-      this.player.update();
-      this.checkAllCollisions();
-      this.watchEnemiesGone();
-      this.createEnemies();
-    }
-  }
-
-  private clearGameState() {
-    this.removeListeners();
+  public clearGameState() {
     this.player.clear();
     this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
     this.frames = 0;
   }
 }
-
-export const initGame = (canvas: HTMLCanvasElement) => new Game(canvas, sound);

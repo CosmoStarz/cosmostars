@@ -67,6 +67,7 @@ export class EnemyGrid extends BaseObject {
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
             src: GameImages.ENEMY,
+            projectileImage: GameImages.ENEMY_PROJECTILE,
           })
         );
       }

@@ -34,5 +34,6 @@ export class Player extends ShootingObject {
   public clear() {
     super.clear();
     this.position = this.startPosition;
+    this.velocity.dx = 0;
   }
 }
