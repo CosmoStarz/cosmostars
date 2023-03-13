@@ -18,6 +18,8 @@ import {
   gameScoreSelector,
   gameStatusSelector,
 } from "@/entities/game/model/store/selectors";
+import { useAddLeaderboardEntryMutation } from "@/entities/leaderboard/api";
+import { useGetUserQuery } from "@/entities/user/model/api";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
 import { MuteSound } from "@/features/MuteSound/MuteSound";
 import {
@@ -32,6 +34,12 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 import { GameModalType } from "./types";
 
 export const GameModal: FC<GameModalType> = props => {
+  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
+  const { data } = useGetUserQuery();
+
+  const { id, first_name, display_name } = data || {};
+  const nameForLeaderboard = display_name ? display_name : first_name;
+
   const { onStart, onResume } = props;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -48,10 +56,25 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleClose = () => {
+    if (id && nameForLeaderboard) {
+      addLeaderboardEntry({
+        playerId: id,
+        name: nameForLeaderboard,
+        score,
+      });
+    }
+
     config?.canBeResumed ? onResume() : handleStart();
   };
 
   const handleHomeNavigate = () => {
+    if (id && nameForLeaderboard) {
+      addLeaderboardEntry({
+        playerId: id,
+        name: nameForLeaderboard,
+        score,
+      });
+    }
     dispatch(setGameStatus(GameStatuses.NOT_ACTIVE));
     navigate(RoutesName.MAIN);
   };

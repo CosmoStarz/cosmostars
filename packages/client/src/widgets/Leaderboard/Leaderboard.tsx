@@ -30,18 +30,6 @@ export const Leaderboard: FC = () => {
     [data]
   );
 
-  // * Временная функция для добавления / обновления записей пока не реализован соответствующий функционал
-  const onAddScoreButtonClick = useCallback(
-    (evt: MouseEvent) => {
-      evt.preventDefault();
-
-      const score = Number(prompt("Enter player score:", "0"));
-
-      addLeaderboardEntry({ ...generateRandomUserInfo(), score });
-    },
-    [addLeaderboardEntry]
-  );
-
   return (
     <Box
       sx={{
@@ -67,11 +55,7 @@ export const Leaderboard: FC = () => {
         }}>
         Leader Board
       </Typography>
-      {/* Временно для добавления / обновления записей пока не реализован соответствующий функционал */}
-      <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
-        Добавить / обновить очки
-      </Button>
-      {/* ---------------------------- */}
+
       <Box sx={{ width: "100%" }}>
         {dataWithPlaces && (
           <Table
