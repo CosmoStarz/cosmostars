@@ -121,7 +121,7 @@ export const ChangeAvatarForm = () => {
         />
         <CardContent
           sx={{
-            padding: "0",
+            p: "0",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
