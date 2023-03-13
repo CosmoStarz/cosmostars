@@ -80,7 +80,7 @@ export const ChangeProfileForm = () => {
         id: "display_name",
         label: "Display name",
         name: "display_name",
-        value: values.display_name,
+        value: values.display_name ?? "",
         type: "text",
         onChange: handleChange,
         onBlur: handleBlur,
