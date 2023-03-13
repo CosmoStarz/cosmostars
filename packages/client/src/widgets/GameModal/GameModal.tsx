@@ -36,8 +36,9 @@ import { GameModalType } from "./types";
 export const GameModal: FC<GameModalType> = props => {
   const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
   const { data } = useGetUserQuery();
+  console.log(data);
 
-  const { id, first_name, display_name } = data || {};
+  const { id, first_name, display_name, email, avatar } = data || {};
   const nameForLeaderboard = display_name ? display_name : first_name;
 
   const { onStart, onResume } = props;
@@ -56,8 +57,10 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleClose = () => {
-    if (id && nameForLeaderboard) {
+    if (id && nameForLeaderboard && avatar) {
       addLeaderboardEntry({
+        img: avatar,
+        email,
         playerId: id,
         name: nameForLeaderboard,
         score,
@@ -68,8 +71,10 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleHomeNavigate = () => {
-    if (id && nameForLeaderboard) {
+    if (id && nameForLeaderboard && avatar) {
       addLeaderboardEntry({
+        img: avatar,
+        email,
         playerId: id,
         name: nameForLeaderboard,
         score,
