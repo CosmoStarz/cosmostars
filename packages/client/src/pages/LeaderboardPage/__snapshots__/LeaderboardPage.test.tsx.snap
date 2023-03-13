@@ -195,16 +195,6 @@ exports[`Leaderboard Page should match snapshot 1`] = `
         >
           Leader Board
         </h1>
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-12cfzj2-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Добавить / обновить очки
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
         <div
           class="MuiBox-root css-8atqhb"
         >
