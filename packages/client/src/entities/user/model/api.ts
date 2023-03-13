@@ -33,6 +33,7 @@ const userApi = yandexApi.injectEndpoints({
         url: `/${USER_API_BASIC}/${UserEndpoints.PASSWORD}`,
         method: HTTPMethods.PUT,
         body,
+        responseHandler: "content-type",
       }),
       transformErrorResponse: response => getErrorReason(response),
     }),
