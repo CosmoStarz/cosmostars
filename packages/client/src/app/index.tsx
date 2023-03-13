@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { ThemeProvider } from "@mui/material";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
@@ -13,16 +13,19 @@ import { LoaderView } from "@/shared/ui";
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
-  const { checkIsUserAuth, isLoadingAuth } = useAuth();
+  // const { checkIsUserAuth, isLoadingAuth } = useAuth();
 
-  useEffect(() => {
-    checkIsUserAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkIsUserAuth();
+  // }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        {isLoadingAuth ? (
+        <BasicLayout>
+          <LoaderView />
+        </BasicLayout>
+        {/* {isLoadingAuth ? (
           <BasicLayout>
             <LoaderView />
           </BasicLayout>
@@ -30,7 +33,7 @@ function App() {
           <BrowserRouter>
             <Router />
           </BrowserRouter>
-        )}
+        )} */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

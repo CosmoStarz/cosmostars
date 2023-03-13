@@ -8,16 +8,17 @@ import { persistor, store } from "./app/store";
 import { ErrorBoundary } from "./shared/utils/ErrorBoundary/ErrorBoundary";
 import { initServiceWorker } from "./shared/utils/initServiceWorker";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.hydrateRoot(
+  document.getElementById("root") as HTMLElement,
   <React.StrictMode>
     <ErrorBoundary>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+      {/* <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}> */}
           <App />
-        </PersistGate>
-      </Provider>
+        {/* </PersistGate>
+      </Provider> */}
     </ErrorBoundary>
   </React.StrictMode>
-);
+)
 
-initServiceWorker();
+// initServiceWorker();
