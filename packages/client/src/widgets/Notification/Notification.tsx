@@ -24,7 +24,7 @@ export const Notification: FC = () => {
           }}
           autoHideDuration={6000}>
           <Alert severity={type ?? "info"} variant="filled">
-            {String(text)}
+            {text}
           </Alert>
         </Snackbar>
       )}

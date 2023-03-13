@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { NotificationTypes } from "./types";
 
-type InitialState = {
+type NotificationState = {
   id: string | null;
   type: NotificationTypes | null;
-  text: "";
+  text: string;
 };
-const initialState: InitialState = { id: null, type: null, text: "" };
+const initialState: NotificationState = { id: null, type: null, text: "" };
 
 const notificationSlice = createSlice({
   name: "notification",
