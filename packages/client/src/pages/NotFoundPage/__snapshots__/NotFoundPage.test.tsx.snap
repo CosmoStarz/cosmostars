@@ -2,12 +2,28 @@
 
 exports[`Not Found Page should match snapshot 1`] = `
 <div>
-  <main
-    data-testid="not-found-page"
+  <div
+    class="MuiBox-root css-wlq4rs"
   >
-    <h1>
-      404
-    </h1>
-  </main>
+    <div
+      class="MuiBox-root css-5jrfta"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-body1 main-page__name css-v6tnx3-MuiTypography-root"
+      >
+        Oops...Error!
+      </h1>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Back
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
 </div>
 `;
