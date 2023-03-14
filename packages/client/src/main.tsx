@@ -14,11 +14,11 @@ ReactDOM.hydrateRoot(
     <ErrorBoundary>
       {/* <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}> */}
-          <App />
-        {/* </PersistGate>
+      <App />
+      {/* </PersistGate>
       </Provider> */}
     </ErrorBoundary>
   </React.StrictMode>
-)
+);
 
-// initServiceWorker();
+initServiceWorker();

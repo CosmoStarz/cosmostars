@@ -16,15 +16,15 @@ export default defineConfig({
   },
   build: {
     lib: {
-        entry: path.resolve(__dirname, "ssr.tsx"),
-        name: "Client",
-        formats: ["cjs"],
+      entry: path.resolve(__dirname, "ssr.tsx"),
+      name: "Client",
+      formats: ["cjs"],
     },
     rollupOptions: {
-        output: {
-            dir: "ssr-dist",
-        },
+      output: {
+        dir: "ssr-dist",
+      },
     },
     ssr: true,
-  }
+  },
 });
