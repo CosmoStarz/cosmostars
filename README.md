@@ -1,3 +1,20 @@
+### Как запускать SSR?
+
+Для development:
+1. `cd packages/client`
+2. `yarn build:ssr`
+3. `yarn build`
+4. `cd ../server`
+5. `yarn dev`
+
+Для production:
+1. `cd packages/client`
+2. `yarn build:ssr`
+3. `yarn build`
+4. `cd ../server`
+5. `yarn build`
+6. `yarn preview`
+
 ### Как запускать?
 
 1. Убедитесь что у вас установлен `node` и `docker`
