@@ -36,7 +36,6 @@ import { GameModalType } from "./types";
 export const GameModal: FC<GameModalType> = props => {
   const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
   const { data } = useGetUserQuery();
-  console.log(data);
 
   const { id, first_name, display_name, email, avatar } = data || {};
   const nameForLeaderboard = display_name ? display_name : first_name;
@@ -57,7 +56,7 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleClose = () => {
-    if (id && nameForLeaderboard && avatar) {
+    if (id && nameForLeaderboard && avatar && status === GameStatuses.LOOSE) {
       addLeaderboardEntry({
         img: avatar,
         email,

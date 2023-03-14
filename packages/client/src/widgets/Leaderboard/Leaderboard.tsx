@@ -1,19 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
-import { FC, MouseEvent, useCallback, useMemo } from "react";
+import { Box, Typography } from "@mui/material";
+import { FC, useMemo } from "react";
 
-import {
-  useAddLeaderboardEntryMutation,
-  useGetLeaderboardQuery,
-} from "@/entities/leaderboard/api";
+import { useGetLeaderboardQuery } from "@/entities/leaderboard/api";
 import { getRandomNumber } from "@/shared/utils/functions";
 
 import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
 import { Table } from "./ui";
-import { generateRandomUserInfo } from "./utils";
 
 export const Leaderboard: FC = () => {
-  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
-
   const { data } = useGetLeaderboardQuery({
     offset: START_PAGE,
     limit: ENTRIES_LIMIT,
