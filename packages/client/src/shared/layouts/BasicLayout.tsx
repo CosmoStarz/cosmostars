@@ -3,6 +3,7 @@ import { FC, PropsWithChildren, useMemo } from "react";
 
 import BackgroundDark from "@/assets/images/bg-dark.png";
 import BackgroundLight from "@/assets/images/bg-light.jpg";
+import { Notification } from "@/widgets/Notification";
 
 import { ThemeNames } from "../constants";
 
@@ -25,6 +26,7 @@ export const BasicLayout: FC<PropsWithChildren> = props => {
         backgroundRepeat: "repeat",
       }}>
       {props.children}
+      <Notification />
     </Box>
   );
 };
