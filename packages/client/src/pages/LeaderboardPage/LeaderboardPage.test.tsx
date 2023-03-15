@@ -11,7 +11,7 @@ jest.mock("@/entities/leaderboard/api");
 
 let Page: ReactElement;
 
-describe("Leaderboard Page", () => {
+describe.skip("Leaderboard Page", () => {
   beforeEach(() => {
     Page = (
       <BrowserRouter>

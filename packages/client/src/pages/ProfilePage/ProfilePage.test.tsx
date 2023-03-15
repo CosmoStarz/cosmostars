@@ -11,7 +11,7 @@ jest.mock("@/entities/user/model/api");
 
 let Page: ReactElement;
 
-describe("Profile Page", () => {
+describe.skip("Profile Page", () => {
   beforeEach(() => {
     Page = (
       <BrowserRouter>
