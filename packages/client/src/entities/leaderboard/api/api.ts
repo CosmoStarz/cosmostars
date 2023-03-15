@@ -1,4 +1,4 @@
-import { ErrorResponse, HTTPMethods, Tags } from "@/shared/api/types";
+import { HTTPMethods, Tags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
 import { yandexApi } from "@/shared/api/yandexApi";
 import {
