@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 
-import {
-  useChangeProfileMutation,
-  useGetUserQuery,
-} from "@/entities/user/model/api";
+// import {
+//   useChangeProfileMutation,
+//   useGetUserQuery,
+// } from "@/entities/user/model/api";
 import { UserProfile } from "@/entities/user/model/types";
 import { initialProfileForm } from "@/shared/constants/formInitials";
 
@@ -12,22 +12,22 @@ import { CardView } from "../../../shared/ui";
 import { ChangeProfileSchema } from "../schemas/change-profile";
 
 export const ChangeProfileForm = () => {
-  const [changeProfile] = useChangeProfileMutation();
-  const { data } = useGetUserQuery();
+  // const [changeProfile] = useChangeProfileMutation();
+  // const { data } = useGetUserQuery();
   const [initValues, setInitValues] = useState<UserProfile>(initialProfileForm);
 
-  useEffect(() => {
-    if (data) {
-      setInitValues(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setInitValues(data);
+  //   }
+  // }, [data]);
 
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     enableReinitialize: true,
     initialValues: initValues,
     validationSchema: ChangeProfileSchema,
     onSubmit: values => {
-      changeProfile(values);
+      // changeProfile(values);
     },
   });
 

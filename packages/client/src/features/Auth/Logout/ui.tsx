@@ -3,7 +3,9 @@ import { IconButton } from "@mui/material";
 
 import { useAuth } from "@/shared/hooks/useAuth";
 export const Logout = () => {
-  const { logoutAuth } = useAuth();
+  // const { logoutAuth } = useAuth();
+  // eslint-disable-next-line
+  const logoutAuth = () => {};
   return (
     <IconButton
       aria-label="logout-icon"

@@ -11,7 +11,8 @@ export const GamePage: FC = () => {
   const canvasElement = useRef<HTMLCanvasElement>(null);
   const game = useRef<Game | null>(null);
 
-  const score = useAppSelector(gameScoreSelector);
+  // const score = useAppSelector(gameScoreSelector);
+  const score = 0;
 
   useEffect(() => {
     if (canvasElement.current) {

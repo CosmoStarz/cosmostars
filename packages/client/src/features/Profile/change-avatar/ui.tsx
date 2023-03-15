@@ -24,9 +24,9 @@ import { configureResourcePath } from "@/shared/utils/configureUrl";
 import { ChangeAvatarSchema } from "../schemas/change-avatar";
 
 export const ChangeAvatarForm = () => {
-  const [changeAvatar] = useChangeAvatarMutation();
-  const { data } = useGetUserQuery();
-  const currAvatar = configureResourcePath(data?.avatar);
+  // const [changeAvatar] = useChangeAvatarMutation();
+  // const { data } = useGetUserQuery();
+  const currAvatar = configureResourcePath(/*data?.avatar*/"");
   const [currentAvatar, setCurrentAvatar] = useState<string>(currAvatar);
 
   const { values, handleSubmit, setFieldValue, errors } = useFormik({
@@ -34,7 +34,7 @@ export const ChangeAvatarForm = () => {
     validationSchema: ChangeAvatarSchema,
     onSubmit: () => {
       const data = avatarConverter(values);
-      changeAvatar(data);
+      // changeAvatar(data);
     },
   });
 
@@ -101,7 +101,7 @@ export const ChangeAvatarForm = () => {
               mb: "1rem",
             }}>
             <Avatar
-              alt={data?.login}
+              // alt={data?.login}
               sx={{ width: 202, height: 188 }}
               src={currentAvatar}
             />

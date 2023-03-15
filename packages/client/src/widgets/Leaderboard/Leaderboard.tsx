@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FC, MouseEvent, useCallback, useMemo } from "react";
 
-import {
-  useAddLeaderboardEntryMutation,
-  useGetLeaderboardQuery,
-} from "@/entities/leaderboard/api";
+// import {
+//   useAddLeaderboardEntryMutation,
+//   useGetLeaderboardQuery,
+// } from "@/entities/leaderboard/api";
 import { getRandomNumber } from "@/shared/utils/functions";
 
 import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
@@ -12,35 +12,35 @@ import { Table } from "./ui";
 import { generateRandomUserInfo } from "./utils";
 
 export const Leaderboard: FC = () => {
-  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
+  // const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
 
-  const { data } = useGetLeaderboardQuery({
-    offset: START_PAGE,
-    limit: ENTRIES_LIMIT,
-  });
+  // const { data } = useGetLeaderboardQuery({
+  //   offset: START_PAGE,
+  //   limit: ENTRIES_LIMIT,
+  // });
 
-  const dataWithPlaces = useMemo(
-    () =>
-      data?.map((entry, index) => ({
-        ...entry,
-        place: index + 1,
-        // Временно, пока не везде есть playerId (он используется как key в списке строк)
-        playerId: entry.playerId ?? getRandomNumber(0, 1000),
-      })),
-    [data]
-  );
+  // const dataWithPlaces = useMemo(
+  //   () =>
+  //     data?.map((entry, index) => ({
+  //       ...entry,
+  //       place: index + 1,
+  //       // Временно, пока не везде есть playerId (он используется как key в списке строк)
+  //       playerId: entry.playerId ?? getRandomNumber(0, 1000),
+  //     })),
+  //   [data]
+  // );
 
   // * Временная функция для добавления / обновления записей пока не реализован соответствующий функционал
-  const onAddScoreButtonClick = useCallback(
-    (evt: MouseEvent) => {
-      evt.preventDefault();
+  // const onAddScoreButtonClick = useCallback(
+  //   (evt: MouseEvent) => {
+  //     evt.preventDefault();
 
-      const score = Number(prompt("Enter player score:", "0"));
+  //     const score = Number(prompt("Enter player score:", "0"));
 
-      addLeaderboardEntry({ ...generateRandomUserInfo(), score });
-    },
-    [addLeaderboardEntry]
-  );
+  //     addLeaderboardEntry({ ...generateRandomUserInfo(), score });
+  //   },
+  //   [addLeaderboardEntry]
+  // );
 
   return (
     <Box
@@ -68,11 +68,11 @@ export const Leaderboard: FC = () => {
         Leader Board
       </Typography>
       {/* Временно для добавления / обновления записей пока не реализован соответствующий функционал */}
-      <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
+      {/* <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
         Добавить / обновить очки
-      </Button>
+      </Button> */}
       {/* ---------------------------- */}
-      <Box sx={{ width: "100%" }}>
+      {/* <Box sx={{ width: "100%" }}>
         {dataWithPlaces && (
           <Table
             data={dataWithPlaces}
@@ -80,7 +80,7 @@ export const Leaderboard: FC = () => {
             defaultPerPage={DEFAULT_PER_PAGE}
           />
         )}
-      </Box>
+      </Box> */}
     </Box>
   );
 };

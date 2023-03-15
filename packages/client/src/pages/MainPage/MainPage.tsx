@@ -9,12 +9,12 @@ import { useAppDispatch } from "@/shared/hooks/store";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const MainPage: FC = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate(RoutesName.GAME);
-    dispatch(setGameStatus(GameStatuses.START));
+    // dispatch(setGameStatus(GameStatuses.START));
   };
 
   return (

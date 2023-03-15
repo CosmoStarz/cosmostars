@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-import { useChangePasswordMutation } from "@/entities/user/model/api";
+// import { useChangePasswordMutation } from "@/entities/user/model/api";
 import { passwordConverter } from "@/entities/user/model/converters";
 import { initialPasswordForm } from "@/shared/constants/formInitials";
 
@@ -8,13 +8,13 @@ import { CardView } from "../../../shared/ui";
 import { ChangePasswordSchema } from "../schemas/change-password";
 
 export const ChangePasswordForm = () => {
-  const [changePassword] = useChangePasswordMutation();
+  // const [changePassword] = useChangePasswordMutation();
   const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: initialPasswordForm,
     validationSchema: ChangePasswordSchema,
     onSubmit: () => {
       const data = passwordConverter(values);
-      changePassword(data);
+      // changePassword(data);
     },
   });
 

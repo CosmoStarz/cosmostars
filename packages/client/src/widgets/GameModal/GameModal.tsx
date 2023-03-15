@@ -9,15 +9,15 @@ import {
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  resetScore,
-  setGameStatus,
-} from "@/entities/game/model/store/gameSlice";
-import {
-  gameModalSelector,
-  gameScoreSelector,
-  gameStatusSelector,
-} from "@/entities/game/model/store/selectors";
+// import {
+//   resetScore,
+//   setGameStatus,
+// } from "@/entities/game/model/store/gameSlice";
+// import {
+//   gameModalSelector,
+//   gameScoreSelector,
+//   gameStatusSelector,
+// } from "@/entities/game/model/store/selectors";
 import { GameModalImage } from "@/features/GameModalImage/GameModalImage";
 import { MuteSound } from "@/features/MuteSound/MuteSound";
 import {
@@ -27,22 +27,23 @@ import {
   GameStatuses,
   RoutesName,
 } from "@/shared/constants";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 
+// import { useAppDispatch, useAppSelector } from "@/shared/hooks/store";
 import { GameModalType } from "./types";
 
 export const GameModal: FC<GameModalType> = props => {
   const { onStart, onResume } = props;
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const status = useAppSelector(gameStatusSelector);
-  const isOpen = useAppSelector(gameModalSelector);
-  const config = GameModalConfig[status];
-  const score = useAppSelector(gameScoreSelector);
+  // const dispatch = useAppDispatch();
+  // const status = useAppSelector(gameStatusSelector);
+  // const isOpen = useAppSelector(gameModalSelector);
+  // const config = GameModalConfig[status];
+  // const score = useAppSelector(gameScoreSelector);
+  const config = GameModalConfig[0];
 
   const handleStart = () => {
     if (config?.clearScoreOnStart) {
-      dispatch(resetScore());
+      // dispatch(resetScore());
     }
     onStart();
   };
@@ -52,14 +53,14 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleHomeNavigate = () => {
-    dispatch(setGameStatus(GameStatuses.NOT_ACTIVE));
+    // dispatch(setGameStatus(GameStatuses.NOT_ACTIVE));
     navigate(RoutesName.MAIN);
   };
 
   return (
     <Dialog
       fullWidth
-      open={isOpen}
+      open={/*isOpen*/false}
       sx={{
         textAlign: "center",
       }}
@@ -88,7 +89,7 @@ export const GameModal: FC<GameModalType> = props => {
               variant="h5"
               component="p"
               color={BaseGameColors.PURPLE}>
-              Your score: {score}
+              {/* Your score: {score} */}
             </Typography>
           )}
           {config.rulesVisibility && (
