@@ -6,8 +6,8 @@ export default {
   testEnvironment: "jsdom",
   testMatch: ["<rootDir>/src/**/*.test.{ts,tsx}"],
   globals: {
-    // __SERVER_PORT__: process.env.SERVER_PORT,
-    __SERVER_PORT__: 3001,
+    __SERVER_PORT__: process.env.SERVER_PORT,
+    // __SERVER_PORT__: 3001,
   },
   setupFiles: ["./setupTests.ts"],
   moduleNameMapper: {

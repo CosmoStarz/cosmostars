@@ -17,8 +17,6 @@ import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
-export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
-
 export const baseSpeed = 10;
 
 export const projectileWidth = 5;
