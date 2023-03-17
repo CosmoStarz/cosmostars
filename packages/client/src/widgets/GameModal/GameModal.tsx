@@ -56,7 +56,7 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleClose = () => {
-    if (id && nameForLeaderboard && avatar && status === GameStatuses.LOOSE) {
+    if (id && nameForLeaderboard && status === GameStatuses.LOOSE) {
       addLeaderboardEntry({
         img: avatar,
         email,
@@ -70,7 +70,7 @@ export const GameModal: FC<GameModalType> = props => {
   };
 
   const handleHomeNavigate = () => {
-    if (id && nameForLeaderboard && avatar) {
+    if (id && nameForLeaderboard) {
       addLeaderboardEntry({
         img: avatar,
         email,

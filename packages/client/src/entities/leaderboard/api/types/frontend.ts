@@ -10,7 +10,7 @@ export type AddLeaderboardEntryMutation = LeaderData;
 export type LeaderData = {
   playerId: number;
   name: string;
-  img?: string;
+  img?: string | null;
   email?: string;
   score: number;
 };
