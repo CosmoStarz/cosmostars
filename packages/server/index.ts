@@ -50,7 +50,7 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
 
     try {
       let template: string;
-      let render: () => Promise<string>;
+      let render: () => Promise<{ appHtml: string; stateScript: string }>;
 
       if (isDev && vite) {
         template = fs.readFileSync(
@@ -70,9 +70,11 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
         render = (await import(ssrClientPath)).render;
       }
 
-      const appHtml = await render();
+      const { appHtml, stateScript } = await render();
 
-      const html = template.replace("<!--ssr-outlet-->", appHtml);
+      const html = template
+        .replace("<!--ssr-outlet-->", appHtml)
+        .replace("<!--ssr-state-outlet-->", stateScript);
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (error) {

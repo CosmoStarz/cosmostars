@@ -12,11 +12,11 @@ ReactDOM.hydrateRoot(
   document.getElementById("root") as HTMLElement,
   <React.StrictMode>
     <ErrorBoundary>
-      {/* <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}> */}
-      <App />
-      {/* </PersistGate>
-      </Provider> */}
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
     </ErrorBoundary>
   </React.StrictMode>
 );
