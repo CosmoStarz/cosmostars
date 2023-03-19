@@ -1,15 +1,18 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
+import { StaticRouter } from "react-router-dom/server";
 
 import App from "./src/app";
 import { store } from "./src/app/store";
 
-export function render() {
+export function render(url: string) {
   const appHtml = renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <StaticRouter location={url}>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </StaticRouter>
   );
 
   const preloadedState = store.getState();

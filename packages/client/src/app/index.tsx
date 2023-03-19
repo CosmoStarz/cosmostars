@@ -2,7 +2,6 @@ import "./index.css";
 
 import { ThemeProvider } from "@mui/material";
 import React, { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
 
 import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
 import { Router } from "@/router";
@@ -22,18 +21,13 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <BasicLayout>
-          <LoaderView />
-        </BasicLayout>
-        {/* {isLoadingAuth ? (
+        {isLoadingAuth ? (
           <BasicLayout>
             <LoaderView />
           </BasicLayout>
         ) : (
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        )} */}
+          <Router />
+        )}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
