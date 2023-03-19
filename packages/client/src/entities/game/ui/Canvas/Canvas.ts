@@ -5,7 +5,6 @@ import {
   initialCoords,
 } from "@/shared/constants";
 
-import { GameObjectColor } from "../../controller/types";
 import { basicSize } from "../../model/BaseObject/types";
 import { elementCoords } from "./types";
 
@@ -30,7 +29,7 @@ export class Canvas {
   }
 
   public drawRect(
-    color: GameObjectColor,
+    color: BaseGameColors,
     position: elementCoords,
     size: basicSize
   ) {
@@ -39,7 +38,7 @@ export class Canvas {
   }
 
   public drawRound(
-    color: GameObjectColor,
+    color: BaseGameColors,
     position: elementCoords,
     radius: number
   ) {
@@ -70,7 +69,7 @@ export class Canvas {
     this.context.fillText(text, canvasTextWidth, canvasTextWidth);
   }
 
-  public fillCanvas(color: GameObjectColor) {
+  public fillCanvas(color: BaseGameColors) {
     const size = {
       width: this.width,
       height: this.height,
