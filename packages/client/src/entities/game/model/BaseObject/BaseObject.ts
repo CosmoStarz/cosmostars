@@ -15,14 +15,12 @@ export class BaseObject {
   public velocity: basicVelocity;
   public position: elementCoords;
   public size: basicSize;
-  public src: string;
   private image: HTMLImageElement;
 
   constructor(baseProps: baseObjectProps) {
     this.scene = baseProps.scene;
-    this.src = baseProps.src ? baseProps.src : GameImages.PROJECTILE;
     this.image = new Image();
-    this.image.src = this.src;
+    this.image.src = baseProps.src ? baseProps.src : GameImages.PLAYER;
     this.velocity = baseProps.velocity ?? this.initialVelocity;
     this.position = baseProps.position ?? this.initialPosition;
     this.size = baseProps.size ?? initialObjectSize;

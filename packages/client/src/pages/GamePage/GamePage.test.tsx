@@ -7,7 +7,7 @@ import {
 } from "../tests/factories";
 import { GamePage } from "./GamePage";
 
-jest.mock("@/entities/game/controller/Game");
+jest.mock("@/entities/game/controller/GameLoop/GameLoop");
 jest.mock("@/entities/game/ui/Sound/Sound");
 
 let Page: ReactElement;
