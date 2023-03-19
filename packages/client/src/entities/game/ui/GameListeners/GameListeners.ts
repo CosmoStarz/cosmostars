@@ -37,11 +37,24 @@ export class GameListeners {
         this.sound.playShot();
         this.player.shoot();
         break;
+      case GameKeyboard.FULLSCREN:
+        this.toggleFullScreen();
+        break;
       case GameKeyboard.PAUSE:
         this.pause();
         break;
       default:
         break;
+    }
+  }
+
+  private toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
     }
   }
 
