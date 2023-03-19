@@ -13,11 +13,11 @@ import { LoaderView } from "@/shared/ui";
 function App() {
   const [theme, colorMode] = useBasicTheme();
 
-  // const { checkIsUserAuth, isLoadingAuth } = useAuth();
+  const { checkIsUserAuth, isLoadingAuth } = useAuth();
 
-  // useEffect(() => {
-  //   checkIsUserAuth();
-  // }, []);
+  useEffect(() => {
+    checkIsUserAuth();
+  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
