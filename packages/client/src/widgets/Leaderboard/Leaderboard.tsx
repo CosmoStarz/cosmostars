@@ -1,19 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
-import { FC, MouseEvent, useCallback, useMemo } from "react";
+import { Box, Typography } from "@mui/material";
+import { FC, useMemo } from "react";
 
-import {
-  useAddLeaderboardEntryMutation,
-  useGetLeaderboardQuery,
-} from "@/entities/leaderboard/api";
+import { useGetLeaderboardQuery } from "@/entities/leaderboard/api";
 import { getRandomNumber } from "@/shared/utils/functions";
 
 import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
 import { Table } from "./ui";
-import { generateRandomUserInfo } from "./utils";
 
 export const Leaderboard: FC = () => {
-  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
-
   const { data } = useGetLeaderboardQuery({
     offset: START_PAGE,
     limit: ENTRIES_LIMIT,
@@ -28,18 +22,6 @@ export const Leaderboard: FC = () => {
         playerId: entry.playerId ?? getRandomNumber(0, 1000),
       })),
     [data]
-  );
-
-  // * Временная функция для добавления / обновления записей пока не реализован соответствующий функционал
-  const onAddScoreButtonClick = useCallback(
-    (evt: MouseEvent) => {
-      evt.preventDefault();
-
-      const score = Number(prompt("Enter player score:", "0"));
-
-      addLeaderboardEntry({ ...generateRandomUserInfo(), score });
-    },
-    [addLeaderboardEntry]
   );
 
   return (
@@ -67,11 +49,7 @@ export const Leaderboard: FC = () => {
         }}>
         Leader Board
       </Typography>
-      {/* Временно для добавления / обновления записей пока не реализован соответствующий функционал */}
-      <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
-        Добавить / обновить очки
-      </Button>
-      {/* ---------------------------- */}
+
       <Box sx={{ width: "100%" }}>
         {dataWithPlaces && (
           <Table
