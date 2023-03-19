@@ -125,6 +125,8 @@ export const GameModal: FC<GameModalType> = props => {
               <br />
               Press Esc key to paused the game.
               <br />
+              Press F2 to toggle fullscreen.
+              <br />
               Good luck!
             </DialogContentText>
           )}
