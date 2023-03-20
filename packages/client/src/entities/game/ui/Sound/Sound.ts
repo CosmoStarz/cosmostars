@@ -95,7 +95,6 @@ export class Sound {
     if (this.bufferLoader) {
       this.bufferLoader.load();
       this.setVolume(Sound.defaultVolume);
-      // this.unmute();
     }
   }
 
