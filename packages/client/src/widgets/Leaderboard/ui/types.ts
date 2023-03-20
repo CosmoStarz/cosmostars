@@ -1,7 +1,7 @@
 export type PlayerData = {
   playerId: number;
   name: string;
-  img?: string;
+  img?: string | null;
   email?: string;
 };
 

@@ -1,4 +1,4 @@
-import { ErrorResponse, HTTPMethods, Tags } from "@/shared/api/types";
+import { HTTPMethods, Tags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
 import { yandexApi } from "@/shared/api/yandexApi";
 import {
@@ -47,6 +47,7 @@ const leaderboardApi = yandexApi.injectEndpoints({
           ratingFieldName: RATING_FIELD,
           teamName: TEAM_NAME,
         },
+        responseHandler: "content-type",
       }),
       // ? WTF By commenting this out,
       // ? I fixed the bug with not auto-refetching leaderboard after adding a new entry

@@ -3,8 +3,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
 
 import EnemyImage from "@/assets/images/game-model-enemy.png";
+import EnemyProjectileImage from "@/assets/images/game-model-enemy-projectile.png";
 import PlayerImage from "@/assets/images/game-model-player.png";
-import ProjileImage from "@/assets/images/game-model-projectile.png";
+import PlayerProjectileImage from "@/assets/images/game-model-player-projectile.png";
 import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 import LooseRight from "@/assets/images/loose-modal-top-right.png";
 import WinLeft from "@/assets/images/win-modal-bottom-left.png";
@@ -21,8 +22,10 @@ export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заме�
 
 export const baseSpeed = 10;
 
-export const projectileWidth = 5;
-export const projectileHeight = 15;
+export enum ProjectileSizes {
+  WIDTH = 5,
+  HEIGHT = 20,
+}
 
 export enum GameStatuses {
   NOT_ACTIVE = 0,
@@ -44,6 +47,18 @@ export enum BaseGameColors {
   WHITE = "#ffffff",
 }
 
+export const maxStarsCount = 100;
+
+export const StarVelocity: basicVelocity = {
+  dx: 0,
+  dy: 1,
+};
+
+export enum StarRadius {
+  MIN = 1,
+  MAX = 3,
+}
+
 export const canvasTextWidth = 50;
 export const canvasTextFont = "bold 32px Arial";
 
@@ -54,7 +69,8 @@ export const EnemyPoints = {
 export const GameImages = {
   ENEMY: EnemyImage,
   PLAYER: PlayerImage,
-  PROJECTILE: ProjileImage,
+  PLAYER_PROJECTILE: PlayerProjectileImage,
+  ENEMY_PROJECTILE: EnemyProjectileImage,
 };
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
