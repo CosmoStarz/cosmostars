@@ -11,7 +11,7 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ name, img, email }) => {
       <CardHeader
         sx={{ padding: 0 }}
         avatar={
-          <Avatar src={img} alt={`${name} avatar`}>
+          <Avatar src={img ?? undefined} alt={`${name} avatar`}>
             {name[0]}
           </Avatar>
         }

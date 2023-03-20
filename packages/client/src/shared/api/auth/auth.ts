@@ -1,6 +1,5 @@
 import { AUTH, Method } from "@/shared/constants/api";
 
-import { RequestStatus } from "../types";
 import { getErrorReason } from "../utils";
 import { yandexApi } from "../yandexApi";
 import {
@@ -23,6 +22,7 @@ export const authApi = yandexApi.injectEndpoints({
         url: AUTH_URL.SIGN_UP,
         method: Method.POST,
         body: signUpRequest,
+        responseHandler: "content-type",
       }),
       transformErrorResponse(response) {
         return getErrorReason(response);
@@ -33,10 +33,7 @@ export const authApi = yandexApi.injectEndpoints({
         url: AUTH_URL.SIGN_IN,
         method: Method.POST,
         body: signInRequest,
-        responseHandler: response =>
-          response.status === RequestStatus.OK
-            ? response.text()
-            : response.json(),
+        responseHandler: "content-type",
       }),
       transformErrorResponse(response) {
         return getErrorReason(response);
@@ -46,6 +43,7 @@ export const authApi = yandexApi.injectEndpoints({
       query: () => ({
         url: AUTH_URL.LOGOUT,
         method: Method.POST,
+        responseHandler: "content-type",
       }),
     }),
   }),
