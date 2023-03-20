@@ -1,7 +1,6 @@
 export const AUTH = "/auth/";
 export const OAUTH = "/oauth/yandex";
-export const OK_RESPONSE = "OK";
-export const REDIRECT_URI = "http://localhost:3000/oauth";
+export const REDIRECT_URI = "http://localhost:3000";
 export enum Method {
   GET = "GET",
   POST = "POST",

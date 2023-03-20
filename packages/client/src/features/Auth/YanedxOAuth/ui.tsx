@@ -1,56 +1,15 @@
-import { IconButton, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { Button, Typography } from "@mui/material";
 
-import { SignInResponse } from "@/shared/api/auth/models";
-import {
-  useLazyGetServiceIDQuery,
-  useSignInYandexOAuthMutation,
-} from "@/shared/api/oauth/oauth";
-import { OK_RESPONSE } from "@/shared/constants/api";
-import { REDIRECT_URI } from "@/shared/constants/api";
-import { useAuth } from "@/shared/hooks/useAuth";
+import { useOAuth } from "./utils";
 export const YandexOAuth = () => {
-  const [getServiceID] = useLazyGetServiceIDQuery();
-  const [signInYandexOAuth] = useSignInYandexOAuthMutation();
-  const { checkIsUserAuth } = useAuth();
-  useEffect(() => {
-    async function yandexOauth() {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const codeParam = urlParams.get("code");
-      const body = {
-        code: codeParam,
-        redirect_uri: REDIRECT_URI,
-      };
-      if (codeParam) {
-        const { data, error } = (await signInYandexOAuth(
-          body
-        )) as unknown as SignInResponse;
-        if (data === OK_RESPONSE) {
-          checkIsUserAuth();
-        } else {
-          console.log(error);
-        }
-      }
-    }
-    yandexOauth();
-  }, []);
-  const handleYandexOAuth = async () => {
-    const response = await getServiceID(REDIRECT_URI);
-    const CLIENT_ID = response.data.service_id;
-    window.location.assign(
-      `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`
-    );
-  };
+  const { handleYandexOAuth } = useOAuth();
   return (
-    <IconButton
-      aria-label="logout-icon"
-      size="small"
+    <Button
       sx={{
-        mx: 2,
+        mb: 2,
       }}
       onClick={handleYandexOAuth}>
-      <Typography>Yandex</Typography>
-    </IconButton>
+      <Typography>Enter with Yandex</Typography>
+    </Button>
   );
 };

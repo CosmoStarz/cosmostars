@@ -80,14 +80,6 @@ export const Router = () => {
           </GuestMode>
         }
       />
-      <Route
-        path={RoutesName.OAUTH}
-        element={
-          <GuestMode>
-            <SignInPage />
-          </GuestMode>
-        }
-      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

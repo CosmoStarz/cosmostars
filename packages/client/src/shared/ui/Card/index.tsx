@@ -160,23 +160,22 @@ const CardView = ({
               sx={{ mt: 3, mb: 2 }}>
               {buttonName}
             </Button>
-            {linkName && (
-              <NavLink to={linkHref ? linkHref : "#"}>
-                <Typography>{linkName}</Typography>
-              </NavLink>
-            )}
             {children && (
               <Box
                 sx={{
-                  pt: "5%",
+                  pt: "2%",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                 }}>
-                <Typography>Enter with </Typography>
                 {children}
               </Box>
+            )}
+            {linkName && (
+              <NavLink to={linkHref ? linkHref : "#"}>
+                <Typography>{linkName}</Typography>
+              </NavLink>
             )}
           </CardActions>
         </Box>

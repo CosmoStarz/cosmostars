@@ -20,7 +20,6 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from "../api/auth/models";
-import { OK_RESPONSE } from "../constants/api";
 import { useAppDispatch } from "./store";
 
 export const useAuth = () => {
@@ -51,7 +50,7 @@ export const useAuth = () => {
       userForm
     )) as unknown as SignInResponse;
 
-    if (data === OK_RESPONSE) {
+    if (data) {
       checkIsUserAuth();
     } else {
       console.log(error);
