@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { ThemeProvider } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import { useOAuth } from "@/features/Auth/YanedxOAuth/utils";
@@ -17,15 +17,20 @@ function App() {
   const { yandexOAuth } = useOAuth();
   const [theme, colorMode] = useBasicTheme();
   const code = new URLSearchParams(window.location.search).get("code");
-
+  const effectRan = useRef(false);
   useEffect(() => {
-    checkIsUserAuth();
+    if (!code) {
+      checkIsUserAuth();
+    }
   }, []);
   useEffect(() => {
-    if (code) {
+    if (code && !effectRan.current) {
       yandexOAuth(code);
     }
-  });
+    return () => {
+      effectRan.current = true;
+    };
+  }, []);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
