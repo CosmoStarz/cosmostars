@@ -1,5 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  PERSIST,
+  persistReducer,
+  persistStore,
+  REHYDRATE,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { gameReducer } from "@/entities/game/model/store/gameSlice";
@@ -14,6 +19,8 @@ const config = {
 const persistGameReducer = persistReducer(config, gameReducer);
 
 export const store = configureStore({
+  preloadedState:
+    typeof window !== "undefined" ? window.__PRELOADED_STATE__ : undefined,
   reducer: {
     [yandexApi.reducerPath]: yandexApi.reducer,
     auth: authReducer,
@@ -22,7 +29,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST"],
+        ignoredActions: [PERSIST, REHYDRATE],
       },
     }).concat(yandexApi.middleware),
   // todo: вынести в конфиг .env
