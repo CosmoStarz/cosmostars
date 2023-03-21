@@ -97,6 +97,7 @@ export const GameModal: FC<GameModalType> = props => {
           display: "flex",
           justifyContent: "space-between",
           overflow: "inherit",
+          backgroundColor: "background.default",
         },
       }}>
       {config && (

@@ -2,7 +2,8 @@ import { Box, useTheme } from "@mui/material";
 import { FC, PropsWithChildren, useMemo } from "react";
 
 import BackgroundDark from "@/assets/images/bg-dark.png";
-import BackgroundLight from "@/assets/images/bg-light.jpg";
+import BackgroundLight from "@/assets/images/bg-light.png";
+import { AdditionalMenu } from "@/widgets/AdditionalMenu/AdditionalMenu";
 import { Notification } from "@/widgets/Notification";
 
 import { ThemeNames } from "../constants";
@@ -22,9 +23,10 @@ export const BasicLayout: FC<PropsWithChildren> = props => {
         flexDirection: "column",
         minHeight: "100vh",
         width: "100%",
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: "repeat",
+        background: `url(${background}) repeat`,
+        backgroundSize: "contain",
       }}>
+      <AdditionalMenu />
       {props.children}
       <Notification />
     </Box>

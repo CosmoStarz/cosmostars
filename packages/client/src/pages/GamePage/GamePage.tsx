@@ -4,7 +4,7 @@ import { FC, useEffect, useRef } from "react";
 import { GameLoop } from "@/entities/game/controller/GameLoop/GameLoop";
 import { initGame } from "@/entities/game/controller/initGame";
 import { gameScoreSelector } from "@/entities/game/model/store/selectors";
-import { BaseGameColors } from "@/shared/constants";
+import { BaseGameColors, ThemeBorderRadius } from "@/shared/constants";
 import { useAppSelector } from "@/shared/hooks/store";
 import { GameModal } from "@/widgets/GameModal/GameModal";
 
@@ -34,7 +34,7 @@ export const GamePage: FC = () => {
     <>
       <Box
         sx={{
-          borderRadius: "20px",
+          borderRadius: ThemeBorderRadius.BUTTON,
           border: "1px solid white",
           px: "15px",
           position: "fixed",
