@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
+import { YandexOAuth } from "@/features/Auth/YanedxOAuth";
 import { authTypes } from "@/shared/api";
 import { SignInRequest } from "@/shared/api/auth/models";
 import { RoutesName } from "@/shared/constants";
@@ -65,7 +66,8 @@ export const SignIn = ({ handleSignIn }: SignInProps) => {
       fields={props.fields}
       buttonName={props.btn}
       linkName={props.link}
-      linkHref={RoutesName.REGISTRATION}
-    />
+      linkHref={RoutesName.REGISTRATION}>
+      <YandexOAuth />
+    </CardView>
   );
 };
