@@ -234,4 +234,5 @@ export enum GameKeyboard {
   RIGHT = 39,
   SHOOT = 32,
   PAUSE = 27,
+  FULLSCREN = 70,
 }

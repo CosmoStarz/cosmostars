@@ -13,7 +13,13 @@ import {
 import { SvgIconProps } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import React, { ChangeEvent, FocusEvent, ReactElement, useState } from "react";
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  ReactElement,
+  ReactNode,
+  useState,
+} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { RoutesName } from "../../constants";
@@ -37,6 +43,7 @@ type Props = {
   handleSubmit?: () => void;
   icon?: ReactElement<SvgIconProps>;
   linkHref?: string;
+  children?: ReactNode;
 };
 
 const CardView = ({
@@ -48,6 +55,7 @@ const CardView = ({
   linkName,
   icon,
   linkHref,
+  children,
 }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -147,6 +155,18 @@ const CardView = ({
               sx={{ mt: 3, mb: 2 }}>
               {buttonName}
             </Button>
+            {children && (
+              <Box
+                sx={{
+                  pt: "2%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                {children}
+              </Box>
+            )}
             {linkName && (
               <NavLink to={linkHref ? linkHref : "#"}>
                 <Typography>{linkName}</Typography>

@@ -93,7 +93,6 @@ export const GameModal: FC<GameModalType> = props => {
       PaperProps={{
         sx: {
           padding: 4,
-          height: "35%",
           display: "flex",
           justifyContent: "space-between",
           overflow: "inherit",
@@ -125,6 +124,8 @@ export const GameModal: FC<GameModalType> = props => {
               shoot.
               <br />
               Press Esc key to paused the game.
+              <br />
+              Press F to toggle fullscreen.
               <br />
               Good luck!
             </DialogContentText>

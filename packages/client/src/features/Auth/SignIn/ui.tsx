@@ -2,6 +2,7 @@ import { Paper } from "@mui/material";
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
+import { YandexOAuth } from "@/features/Auth/YanedxOAuth";
 import { authTypes } from "@/shared/api";
 import { SignInRequest } from "@/shared/api/auth/models";
 import { RoutesName } from "@/shared/constants";
@@ -60,15 +61,16 @@ export const SignIn = ({ handleSignIn }: SignInProps) => {
   };
   return (
     <Paper className="form-paper" sx={{ my: "auto" }}>
-      <CardView
-        handleSubmit={props.handleSubmit}
-        className={props.className}
-        title={props.title}
-        fields={props.fields}
-        buttonName={props.btn}
-        linkName={props.link}
-        linkHref={RoutesName.REGISTRATION}
-      />
+    <CardView
+      handleSubmit={props.handleSubmit}
+      className={props.className}
+      title={props.title}
+      fields={props.fields}
+      buttonName={props.btn}
+      linkName={props.link}
+      linkHref={RoutesName.REGISTRATION}>
+      <YandexOAuth />
+    </CardView>
     </Paper>
   );
 };
