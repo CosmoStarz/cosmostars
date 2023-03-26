@@ -8,3 +8,9 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.emoji-picker-react {
+  position: absolute !important;
+  z-index: 1;
+  right: 12%;
+}
