@@ -90,7 +90,7 @@ export const ChangeProfileForm = () => {
         id: "phone",
         label: "Phone",
         name: "phone",
-        value: values.phone,
+        value: values.phone ?? "",
         type: "text",
         onChange: handleChange,
         onBlur: handleBlur,

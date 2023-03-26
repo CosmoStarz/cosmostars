@@ -31,7 +31,7 @@ export const Leaderboard: FC = () => {
         p: "5%",
       }}>
       <Typography variant="h3" component="h1">
-        Leader Board
+        Leaderboard
       </Typography>
 
       <Box sx={{ width: "100%" }}>
