@@ -50,7 +50,7 @@ export const useAuth = () => {
       userForm
     )) as unknown as SignInResponse;
 
-    if (data === "OK") {
+    if (data) {
       checkIsUserAuth();
     } else {
       console.log(error);
