@@ -38,13 +38,14 @@ export const ForumTopicPage: FC = () => {
     navigate(RoutesName.FORUM);
   };
   const [showPicker, setShowPicker] = useState(false);
+  /* eslint-disable  @typescript-eslint/no-unused-vars */
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData>();
 
   const onEmojiClick = (
     event: React.MouseEvent<Element, MouseEvent>,
     emojiObject: IEmojiData
   ) => {
-    setChosenEmoji(emojiObject);
+    setChosenEmoji(emojiObject); // нужно для ререндера компонента, инчае поле комментариев обновляется, только после закрытия эмоджи
     /* eslint-disable  @typescript-eslint/no-non-null-assertion */
     formik.values.comment = formik.values.comment + emojiObject!.emoji;
     console.log(formik.values.comment);
