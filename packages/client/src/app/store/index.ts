@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import { forumApi } from "@/entities/forum/api/forumApi";
 import { gameReducer } from "@/entities/game/model/store/gameSlice";
 import {
   notificationMiddleware,
@@ -19,6 +20,7 @@ const persistGameReducer = persistReducer(config, gameReducer);
 
 export const reducer = combineReducers({
   [yandexApi.reducerPath]: yandexApi.reducer,
+  [forumApi.reducerPath]: forumApi.reducer,
   auth: authReducer,
   game: persistGameReducer,
   notification: notificationReducer,
@@ -31,7 +33,11 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST"],
       },
-    }).concat([yandexApi.middleware, notificationMiddleware]),
+    }).concat([
+      yandexApi.middleware,
+      forumApi.middleware,
+      notificationMiddleware,
+    ]),
   // todo: вынести в конфиг .env
   devTools: true,
 });

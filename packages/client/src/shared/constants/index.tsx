@@ -142,6 +142,7 @@ export enum RoutesName {
   LOGIN = "/login",
   REGISTRATION = "/registration",
   FORUM_DETAIL = "/forum/:id",
+  NOT_FOUND = "/not-found",
 }
 
 export const MenuItems: MenuLinkType[] = [

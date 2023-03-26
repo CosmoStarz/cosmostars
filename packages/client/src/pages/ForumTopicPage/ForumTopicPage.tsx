@@ -10,15 +10,19 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
+import { useGetOneTopicQuery } from "@/entities/forum/api/forumApi";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { RoutesName } from "@/shared/constants";
-import { forumApi } from "@/shared/constants/mocks";
 import { commentValidation } from "@/shared/constants/validationShemas";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const ForumTopicPage: FC = () => {
+  const currentUrl = useLocation();
+  const forumId: string = currentUrl.pathname.match("[^/]+$")![0];
+  const { data, isLoading, isError } = useGetOneTopicQuery(forumId);
+
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -29,8 +33,20 @@ export const ForumTopicPage: FC = () => {
       console.log(values);
     },
   });
-  const comments = forumApi.getTopic();
-  const authorTopic = forumApi.getAuthor();
+
+  if (isError) {
+    navigate(RoutesName.NOT_FOUND);
+  }
+
+  const topicItemProps = data
+    ? {
+        id: data.id,
+        author: data.author,
+        description: data.description,
+      }
+    : undefined;
+
+  const checkedComments = data ? data.comments : [];
 
   const handleNavigateForum = () => {
     navigate(RoutesName.FORUM);
@@ -38,6 +54,12 @@ export const ForumTopicPage: FC = () => {
 
   return (
     <MainLayout>
+      {isLoading && (
+        <Typography variant="h5" textAlign="center">
+          Loading...
+        </Typography>
+      )}
+
       <Paper
         variant="outlined"
         sx={{
@@ -69,10 +91,10 @@ export const ForumTopicPage: FC = () => {
             component="h1"
             className="topic-page__name"
             m={"auto"}>
-            {authorTopic.title}
+            {data?.title}
           </Typography>
         </Box>
-        <TopicItem {...authorTopic} />
+        {topicItemProps && <TopicItem {...topicItemProps} />}
         <Box
           component="form"
           onSubmit={formik.handleSubmit}
@@ -106,9 +128,20 @@ export const ForumTopicPage: FC = () => {
             width: "100%",
             overflowY: "auto",
           }}>
-          {comments.map(item => (
-            <TopicItem key={item.id} isBordered {...item} />
-          ))}
+          {checkedComments.length ? (
+            checkedComments.map(comment => (
+              <TopicItem
+                description={comment.comment}
+                key={comment.id}
+                isBordered
+                {...comment}
+              />
+            ))
+          ) : (
+            <Typography variant="h6" textAlign="center">
+              No comments yet...
+            </Typography>
+          )}
         </List>
       </Paper>
     </MainLayout>
