@@ -53,9 +53,7 @@ export const Forum: FC = () => {
 
   return (
     <Paper
-      variant="outlined"
       sx={{
-        opacity: ".8",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

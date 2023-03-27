@@ -7,7 +7,7 @@ import { Leaderboard } from "@/widgets/Leaderboard";
 export const LeaderboardPage: FC = () => {
   return (
     <MainLayout>
-      <Container sx={{ mt: "9.375%", mb: "6.45%" }}>
+      <Container sx={{ my: "3%" }}>
         <Leaderboard />
       </Container>
     </MainLayout>

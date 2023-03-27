@@ -4,7 +4,6 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
-  GameImages,
   maxStarsCount,
   randomInterval,
   StarRadius,
@@ -18,6 +17,11 @@ import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
 import { incrementScoreByEnemy } from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
+import { elementCoords } from "../../ui/Canvas/types";
+import {
+  initialExplosionSize,
+  SpriteConstants,
+} from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
@@ -27,6 +31,7 @@ export class GameController {
   private frames: number;
   private enemyGrids: EnemyGrid[];
   private stars: Star[];
+  private explosions: BaseObject[];
   private randomInterval: number;
   private sound: Sound;
   private end: () => void;
@@ -37,6 +42,7 @@ export class GameController {
     this.end = props.end;
     this.player = this.initialPlayer;
     this.stars = [];
+    this.explosions = [];
     this.enemyGrids = [];
     this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
@@ -48,8 +54,8 @@ export class GameController {
     return new Player({
       scene: this.scene,
       projectileSpeed: -baseSpeed,
-      src: GameImages.PLAYER,
-      projectileImage: GameImages.PLAYER_PROJECTILE,
+      type: SpriteConstants.PLAYER,
+      projectileType: SpriteConstants.PLAYER_PROJECTILE,
     });
   }
 
@@ -88,6 +94,25 @@ export class GameController {
       this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     }
     this.frames += 1;
+  }
+
+  private createExplosion(position: elementCoords) {
+    return new BaseObject({
+      scene: this.scene,
+      position: position,
+      type: SpriteConstants.EXPLOSION,
+      size: initialExplosionSize,
+    });
+  }
+
+  private watchExplosionsDone() {
+    this.explosions.forEach((explosion, index) => {
+      if (explosion.currentSprite === explosion.maxIndexSprite) {
+        this.explosions = this.explosions.filter((item, idx) => idx !== index);
+      } else {
+        explosion.update();
+      }
+    });
   }
 
   private watchStarsGone() {
@@ -154,6 +179,7 @@ export class GameController {
     let isAlive = true;
     const newProjectiles = projectiles.filter(projectile => {
       if (this.isIntersect(collidingObject, projectile)) {
+        this.explosions.push(this.createExplosion(collidingObject.position));
         collidingMethod();
         isAlive = false;
         return false;
@@ -212,6 +238,7 @@ export class GameController {
 
   public update() {
     this.watchStarsGone();
+    this.watchExplosionsDone();
     this.player.update();
     this.checkAllCollisions();
     this.watchEnemiesGone();
@@ -222,6 +249,7 @@ export class GameController {
     this.player.clear();
     this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
+    this.explosions = [];
     this.frames = 0;
   }
 }
