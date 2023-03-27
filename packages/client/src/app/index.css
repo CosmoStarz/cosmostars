@@ -9,6 +9,12 @@ body {
   width: 100%;
 }
 
+.emoji-picker-react {
+  position: absolute !important;
+  z-index: 1;
+  right: 12%;
+}
+
 .MuiPaper-root.form-paper {
   margin-right: auto;
   margin-left: auto;
