@@ -4,10 +4,6 @@ import StarIcon from "@mui/icons-material/Star";
 import { PaletteColorOptions } from "@mui/material";
 import { purple } from "@mui/material/colors";
 
-import EnemyImage from "@/assets/images/game-model-enemy.png";
-import EnemyProjectileImage from "@/assets/images/game-model-enemy-projectile.png";
-import PlayerImage from "@/assets/images/game-model-player.png";
-import PlayerProjectileImage from "@/assets/images/game-model-player-projectile.png";
 import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 import LooseRight from "@/assets/images/loose-modal-top-right.png";
 import WinLeft from "@/assets/images/win-modal-bottom-left.png";
@@ -67,13 +63,6 @@ export const canvasTextFont = "bold 32px Arial";
 export const EnemyPoints = {
   BASIC: 100,
 } as const;
-
-export const GameImages = {
-  ENEMY: EnemyImage,
-  PLAYER: PlayerImage,
-  PLAYER_PROJECTILE: PlayerProjectileImage,
-  ENEMY_PROJECTILE: EnemyProjectileImage,
-};
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
   [GameStatuses.NOT_ACTIVE]: null,
