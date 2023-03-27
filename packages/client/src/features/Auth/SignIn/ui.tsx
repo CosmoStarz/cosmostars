@@ -1,3 +1,4 @@
+import { Paper } from "@mui/material";
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
@@ -59,15 +60,17 @@ export const SignIn = ({ handleSignIn }: SignInProps) => {
     link: "Create account?",
   };
   return (
-    <CardView
-      handleSubmit={props.handleSubmit}
-      className={props.className}
-      title={props.title}
-      fields={props.fields}
-      buttonName={props.btn}
-      linkName={props.link}
-      linkHref={RoutesName.REGISTRATION}>
-      <YandexOAuth />
-    </CardView>
+    <Paper className="form-paper" sx={{ my: "auto" }}>
+      <CardView
+        handleSubmit={props.handleSubmit}
+        className={props.className}
+        title={props.title}
+        fields={props.fields}
+        buttonName={props.btn}
+        linkName={props.link}
+        linkHref={RoutesName.REGISTRATION}>
+        <YandexOAuth />
+      </CardView>
+    </Paper>
   );
 };

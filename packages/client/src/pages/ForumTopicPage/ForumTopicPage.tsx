@@ -39,7 +39,6 @@ export const ForumTopicPage: FC = () => {
   return (
     <MainLayout>
       <Paper
-        variant="outlined"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -47,7 +46,7 @@ export const ForumTopicPage: FC = () => {
           alignItems: "center",
           height: "80%",
           width: "80%",
-          my: 2,
+          my: "3%",
           mx: "auto",
           padding: 3,
         }}>

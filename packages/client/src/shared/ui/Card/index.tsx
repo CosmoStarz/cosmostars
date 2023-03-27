@@ -67,17 +67,10 @@ const CardView = ({
   const navigate = useNavigate();
   return (
     <Box
-      className={className}
+      className="form-paper"
       component="form"
       onSubmit={handleSubmit}
-      noValidate
-      sx={{
-        maxWidth: "595px",
-        width: "100%",
-        margin: "auto",
-        background:
-          "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%) ",
-      }}>
+      noValidate>
       <Card
         sx={{
           my: "2rem",
@@ -87,6 +80,8 @@ const CardView = ({
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          boxShadow: "none",
+          border: "none",
         }}>
         {icon && (
           <Box

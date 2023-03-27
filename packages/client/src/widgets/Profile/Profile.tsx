@@ -1,7 +1,7 @@
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
 import InsertPhotoRoundedIcon from "@mui/icons-material/InsertPhotoRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Paper, Tab, Tabs } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 
 import { ChangeAvatarForm } from "@/features/Profile/change-avatar";
@@ -20,16 +20,7 @@ export function ProfileWidget({ handleProfile }: ProfileProps) {
   };
 
   return (
-    <Box
-      className="change-settings"
-      sx={{
-        margin: "auto",
-        maxWidth: "595px",
-        width: "100%",
-        border: "1px solid",
-        background:
-          "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%) ",
-      }}>
+    <Paper className="form-paper" sx={{ my: "3%" }}>
       <Box
         sx={{
           display: "flex",
@@ -39,24 +30,10 @@ export function ProfileWidget({ handleProfile }: ProfileProps) {
         <Tabs
           value={value}
           onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
           aria-label="secondary tabs example">
-          <Tab
-            sx={{ flexDirection: "row" }}
-            label="Profile"
-            icon={<PersonRoundedIcon />}
-          />
-          <Tab
-            sx={{ flexDirection: "row" }}
-            label="Pasword"
-            icon={<HttpsRoundedIcon />}
-          />
-          <Tab
-            sx={{ flexDirection: "row" }}
-            label="Avatar"
-            icon={<InsertPhotoRoundedIcon />}
-          />
+          <Tab label="Profile" icon={<PersonRoundedIcon />} />
+          <Tab label="Pasword" icon={<HttpsRoundedIcon />} />
+          <Tab label="Avatar" icon={<InsertPhotoRoundedIcon />} />
         </Tabs>
       </Box>
       <Box>
@@ -64,6 +41,6 @@ export function ProfileWidget({ handleProfile }: ProfileProps) {
         {value === 1 && <ChangePasswordForm />}
         {value === 2 && <ChangeAvatarForm />}
       </Box>
-    </Box>
+    </Paper>
   );
 }
