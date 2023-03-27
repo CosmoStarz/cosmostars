@@ -7,7 +7,7 @@ import { Forum } from "@/widgets/Forum/Forum";
 export const ForumPage: FC = () => {
   return (
     <MainLayout>
-      <Container sx={{ mt: "9.375%", mb: "6.45%" }}>
+      <Container sx={{ my: "3%" }}>
         <Forum />
       </Container>
     </MainLayout>

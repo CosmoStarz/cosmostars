@@ -1,3 +1,4 @@
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ReplyIcon from "@mui/icons-material/Reply";
 import {
   Box,
@@ -8,8 +9,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import EmojiPicker, { IEmojiData } from "emoji-picker-react";
 import { useFormik } from "formik";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { TopicItem } from "@/features/TopicItem/TopicItem";
@@ -27,19 +29,31 @@ export const ForumTopicPage: FC = () => {
     validationSchema: commentValidation,
     onSubmit: values => {
       console.log(values);
+      setShowPicker(false);
     },
   });
   const comments = forumApi.getTopic();
   const authorTopic = forumApi.getAuthor();
-
   const handleNavigateForum = () => {
     navigate(RoutesName.FORUM);
   };
+  const [showPicker, setShowPicker] = useState(false);
+  /* eslint-disable  @typescript-eslint/no-unused-vars */
+  const [chosenEmoji, setChosenEmoji] = useState<IEmojiData>();
 
+  const onEmojiClick = (
+    event: React.MouseEvent<Element, MouseEvent>,
+    emojiObject: IEmojiData
+  ) => {
+    setChosenEmoji(emojiObject); // нужно для ререндера компонента, инчае поле комментариев обновляется, только после закрытия эмоджи
+    /* eslint-disable  @typescript-eslint/no-non-null-assertion */
+    formik.values.comment = formik.values.comment + emojiObject!.emoji;
+    console.log(formik.values.comment);
+  };
+  const handlePicker = () => setShowPicker(val => !val);
   return (
     <MainLayout>
       <Paper
-        variant="outlined"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -47,7 +61,7 @@ export const ForumTopicPage: FC = () => {
           alignItems: "center",
           height: "80%",
           width: "80%",
-          my: 2,
+          my: "3%",
           mx: "auto",
           padding: 3,
         }}>
@@ -86,6 +100,7 @@ export const ForumTopicPage: FC = () => {
           <TextField
             fullWidth
             id="comment"
+            value={formik.values.comment}
             name="comment"
             label="Comment"
             onChange={formik.handleChange}
@@ -97,9 +112,15 @@ export const ForumTopicPage: FC = () => {
               mb: 2,
             }}
           />
-          <Button variant="contained" size="large" type="submit">
-            Comment
-          </Button>
+          <Box>
+            <IconButton onClick={handlePicker}>
+              <EmojiEmotionsIcon sx={{ position: "relative" }} />
+            </IconButton>
+            {showPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+            <Button variant="contained" size="large" type="submit">
+              Comment
+            </Button>
+          </Box>
         </Box>
         <List
           sx={{

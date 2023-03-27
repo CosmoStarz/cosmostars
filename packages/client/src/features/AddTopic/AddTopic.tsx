@@ -33,7 +33,6 @@ export const AddTopic: FC = () => {
     <>
       <Modal open={open} onClose={handleClose}>
         <Paper
-          variant="outlined"
           sx={{
             position: "absolute",
             top: "50%",
@@ -41,6 +40,7 @@ export const AddTopic: FC = () => {
             transform: "translate(-50%, -50%)",
             width: "400px",
             padding: "16px",
+            backgroundColor: "background.default",
           }}>
           <Typography
             id="modal-title"
@@ -101,12 +101,8 @@ export const AddTopic: FC = () => {
                 display: "flex",
                 justifyContent: "flex-end",
               }}>
-              <Button variant="text" type="reset">
-                Cancel
-              </Button>
-              <Button variant="text" type="submit">
-                Add
-              </Button>
+              <Button type="reset">Cancel</Button>
+              <Button type="submit">Add</Button>
             </Box>
           </Box>
         </Paper>
