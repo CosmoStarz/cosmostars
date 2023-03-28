@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { baseUrl } from "../constants";
-import { Tags } from "./types";
+import { InternalTags } from "./types";
 
 export const internalApi = createApi({
   reducerPath: "internalApi",
@@ -9,5 +9,6 @@ export const internalApi = createApi({
     baseUrl: baseUrl,
     credentials: "include",
   }),
+  tagTypes: [InternalTags.TOPICS],
   endpoints: () => ({}),
 });

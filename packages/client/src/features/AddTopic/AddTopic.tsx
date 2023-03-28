@@ -9,9 +9,15 @@ import {
 import { useFormik } from "formik";
 import { FC, useState } from "react";
 
+import { AddTopicMutation } from "@/entities/forum/topics/api/types";
 import { addTopicValidation } from "@/shared/constants/validationShemas";
 
-export const AddTopic: FC = () => {
+type AddTopicProps = {
+  onSubmit: (data: AddTopicMutation) => unknown;
+  authorId: number;
+};
+
+export const AddTopic: FC<AddTopicProps> = ({ onSubmit, authorId }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -21,8 +27,8 @@ export const AddTopic: FC = () => {
       topicDescription: "",
     },
     validationSchema: addTopicValidation,
-    onSubmit: values => {
-      console.log(values);
+    onSubmit: ({ topicName, topicDescription }) => {
+      onSubmit({ title: topicName, description: topicDescription, authorId });
     },
     onReset: () => {
       handleClose();

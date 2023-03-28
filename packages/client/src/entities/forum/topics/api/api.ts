@@ -1,10 +1,11 @@
-import { HTTPMethods } from "@/shared/api/types";
+import { internalApi } from "@/shared/api/internalApi";
+import { HTTPMethods, InternalTags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
-import { yandexApi } from "@/shared/api/yandexApi";
 import { TOPICS_API_ENDPOINT } from "@/shared/constants/forum";
+
 import { AddTopicMutation } from "./types";
 
-const topicsApi = yandexApi.injectEndpoints({
+const topicsApi = internalApi.injectEndpoints({
   endpoints: builder => ({
     addTopic: builder.mutation<undefined, AddTopicMutation>({
       query: topicData => ({
@@ -15,6 +16,7 @@ const topicsApi = yandexApi.injectEndpoints({
       transformErrorResponse(response) {
         return getErrorReason(response);
       },
+      invalidatesTags: [InternalTags.TOPICS],
     }),
   }),
 });
