@@ -16,5 +16,6 @@ export const sequelize = new Sequelize(
     host: POSTGRES_HOST ?? "localhost",
     port: Number(POSTGRES_PORT ?? 5432),
     dialect: "postgres",
+    models: [__dirname + '/models'],
   }
 );

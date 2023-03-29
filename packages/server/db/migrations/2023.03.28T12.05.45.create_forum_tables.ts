@@ -5,26 +5,6 @@ import type { Migration } from "../migrator";
 export const up: Migration = async ({ context: sequelize }) => {
   await sequelize.transaction(t => {
     return Promise.all([
-      // sequelize.getQueryInterface().createTable('users', {
-      //   id: {
-      //     type: DataTypes.INTEGER.UNSIGNED,
-      //     autoIncrement: true,
-      //     allowNull: false,
-      //     primaryKey: true,
-      //   },
-      //   login: {
-      //     type: DataTypes.STRING,
-      //     allowNull: false,
-      //   },
-      //   display_name: {
-      //     type: DataTypes.STRING,
-      //     allowNull: true,
-      //   },
-      //   avatar: {
-      //     type: DataTypes.TEXT,
-      //     allowNull: true,
-      //   }
-      // }, { transaction: t }),
       sequelize.getQueryInterface().createTable(
         "topics",
         {
@@ -45,10 +25,6 @@ export const up: Migration = async ({ context: sequelize }) => {
           author_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            // references: {
-            //   model: 'users',
-            //   key: 'id',
-            // }
           },
           creation_date: {
             type: DataTypes.DATE,
@@ -82,10 +58,6 @@ export const up: Migration = async ({ context: sequelize }) => {
           author_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            // references: {
-            //   model: 'users',
-            //   key: 'id',
-            // }
           },
           parent_id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -122,10 +94,6 @@ export const up: Migration = async ({ context: sequelize }) => {
           user_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            // references: {
-            //   model: 'users',
-            //   key: 'id',
-            // }
           },
           status: {
             type: DataTypes.BOOLEAN,
@@ -145,7 +113,6 @@ export const down: Migration = async ({ context: sequelize }) => {
       sequelize.getQueryInterface().dropTable("likes", { transaction: t }),
       sequelize.getQueryInterface().dropTable("comments", { transaction: t }),
       sequelize.getQueryInterface().dropTable("topics", { transaction: t }),
-      // sequelize.getQueryInterface().dropTable("users",{ transaction: t }),
     ]);
   });
 };
