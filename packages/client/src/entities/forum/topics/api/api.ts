@@ -8,10 +8,10 @@ import { AddTopicMutation } from "./types";
 const topicsApi = internalApi.injectEndpoints({
   endpoints: builder => ({
     addTopic: builder.mutation<undefined, AddTopicMutation>({
-      query: topicData => ({
+      query: ({ title, description, authorId }) => ({
         url: `/${TOPICS_API_ENDPOINT}`,
         method: HTTPMethods.POST,
-        body: topicData,
+        body: { title, description, author_id: authorId },
       }),
       transformErrorResponse(response) {
         return getErrorReason(response);
