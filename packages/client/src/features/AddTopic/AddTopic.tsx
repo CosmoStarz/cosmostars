@@ -29,6 +29,7 @@ export const AddTopic: FC<AddTopicProps> = ({ onSubmit, authorId }) => {
     validationSchema: addTopicValidation,
     onSubmit: ({ topicName, topicDescription }) => {
       onSubmit({ title: topicName, description: topicDescription, authorId });
+      handleClose();
     },
     onReset: () => {
       handleClose();
