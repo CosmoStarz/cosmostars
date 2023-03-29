@@ -7,7 +7,7 @@ type PlayerInfoProps = Omit<PlayerData, "playerId">;
 
 export const PlayerInfo: FC<PlayerInfoProps> = ({ name, img, email }) => {
   return (
-    <Card sx={{ bgcolor: "transparent" }} elevation={0}>
+    <Card sx={{ background: "transparent", border: "none" }} elevation={0}>
       <CardHeader
         sx={{ padding: 0 }}
         avatar={

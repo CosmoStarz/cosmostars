@@ -1,7 +1,6 @@
-import { BaseGameColors } from "@/shared/constants";
-
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 
 export type basicVelocity = {
   dx: number;
@@ -15,9 +14,8 @@ export type basicSize = {
 
 export type baseObjectProps = {
   scene: Canvas;
+  type?: SpriteConstants;
   velocity?: basicVelocity;
   position?: elementCoords;
   size?: basicSize;
-  color?: BaseGameColors;
-  src?: string;
 };

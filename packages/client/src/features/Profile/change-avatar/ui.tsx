@@ -20,6 +20,7 @@ import {
   useGetUserQuery,
 } from "@/entities/user/model/api";
 import { avatarConverter } from "@/entities/user/model/converters";
+import { ThemeBorderRadius } from "@/shared/constants";
 import { initialAvatarForm } from "@/shared/constants/formInitials";
 import { configureResourcePath } from "@/shared/utils/configureUrl";
 
@@ -89,18 +90,10 @@ export const ChangeAvatarForm = () => {
   };
   return (
     <Box
-      className="change-avatar"
+      className="form-paper"
       component="form"
       onSubmit={handleSubmit}
-      noValidate
-      sx={{
-        maxWidth: "595px",
-        width: "100%",
-        margin: "auto",
-        border: "1px solid",
-        background:
-          "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%) ",
-      }}>
+      noValidate>
       <Card
         sx={{
           my: "2rem",
@@ -110,18 +103,20 @@ export const ChangeAvatarForm = () => {
           flexDirection: "column",
           justifyContent: "space-around",
           alignItems: "center",
+          boxShadow: "none",
+          border: "none",
         }}>
         <CardHeader
           titleTypographyProps={{ variant: "h3" }}
           title={props.title}
           sx={{
-            padding: "0",
+            padding: 0,
             textAlign: "center",
           }}
         />
         <CardContent
           sx={{
-            p: "0",
+            p: 0,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
@@ -153,7 +148,7 @@ export const ChangeAvatarForm = () => {
               border: `${
                 errors.avatar ? "1px dashed #f44336" : "1px dashed #E0E0E0"
               }`,
-              borderRadius: "4px",
+              borderRadius: ThemeBorderRadius.MIN,
             }}>
             {drag ? (
               <Box
@@ -181,18 +176,14 @@ export const ChangeAvatarForm = () => {
                       justifyContent: "center",
                       alignItems: "center",
                       position: "relative",
-                      borderRadius: "5%",
                     }}>
                     <Box
                       sx={{
-                        backgroundImage: `url(${selectedImage})`,
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
+                        background: `no-repeat center/cover url(${selectedImage})`,
                         display: "block",
                         height: 130,
                         width: 100,
-                        borderRadius: "5%",
+                        borderRadius: ThemeBorderRadius.MIN,
                       }}
                     />
                     <IconButton
@@ -251,7 +242,7 @@ export const ChangeAvatarForm = () => {
           <CardActions
             sx={{
               mt: "1.5rem",
-              padding: "0",
+              padding: 0,
               width: "100%",
               display: "flex",
               flexDirection: "column",
