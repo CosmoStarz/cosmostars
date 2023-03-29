@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 const port = Number(process.env.SERVER_PORT) || 3001;
 
-
 // await sequelize.sync();
 // sequelize
 //   .authenticate()
@@ -20,7 +19,6 @@ const port = Number(process.env.SERVER_PORT) || 3001;
 app.get("/", (_, res) => {
   res.json("👋 Howdy from the server :)");
 });
-
 
 const start = async (): Promise<void> => {
   try {
@@ -36,4 +34,3 @@ const start = async (): Promise<void> => {
 };
 
 void start();
-
