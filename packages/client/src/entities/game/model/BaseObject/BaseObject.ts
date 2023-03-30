@@ -58,6 +58,7 @@ export class BaseObject {
       canvas: this.scene,
       objectSize: this.size,
       spriteType: type,
+      objectPosition: this.position,
     });
   }
 

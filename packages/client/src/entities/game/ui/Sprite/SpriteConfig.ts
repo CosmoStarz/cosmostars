@@ -1,3 +1,4 @@
+import AsteroidImage from "@/assets/images/game-model-asteroid.png";
 import EnemyImage from "@/assets/images/game-model-enemy.png";
 import EnemyProjectileImage from "@/assets/images/game-model-enemy-projectile.png";
 import ExplosionSprite from "@/assets/images/game-model-explosion.png";
@@ -8,6 +9,11 @@ import { basicSize } from "../../model/BaseObject/types";
 import { SpriteConfigType } from "./types";
 
 export const SpriteSpeedLimit = 4;
+
+export enum SpinTypes {
+  CLOCKWISE = 1,
+  COUNTERCLOCKWISE = -1,
+}
 
 export const initialExplosionSize: basicSize = {
   width: 96,
@@ -20,6 +26,7 @@ export enum SpriteConstants {
   PLAYER_PROJECTILE = 3,
   ENEMY_PROJECTILE = 4,
   EXPLOSION = 5,
+  ASTEROID = 6,
 }
 
 export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
@@ -40,5 +47,9 @@ export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
   [SpriteConstants.EXPLOSION]: {
     src: ExplosionSprite,
     frames: 12,
+  },
+  [SpriteConstants.ASTEROID]: {
+    src: AsteroidImage,
+    ratio: 3,
   },
 };
