@@ -5,16 +5,13 @@ dotenv.config();
 import express from "express";
 
 import { sequelize } from "./db/db";
+import topicRoutes from "./routes/TopicRoutes";
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+app.use("/topics", topicRoutes);
 const port = Number(process.env.SERVER_PORT) || 3001;
-
-// await sequelize.sync();
-// sequelize
-//   .authenticate()
-//   .then(() => console.log("Connection has been established successfully."))
-//   .catch(e => console.error("Unable to connect to the database:", e));
 
 app.get("/", (_, res) => {
   res.json("👋 Howdy from the server :)");
