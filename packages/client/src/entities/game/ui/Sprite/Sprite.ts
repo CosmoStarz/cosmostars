@@ -1,7 +1,7 @@
 import { basicSize } from "../../model/BaseObject/types";
 import { Canvas } from "../Canvas/Canvas";
 import { elementCoords } from "../Canvas/types";
-import { SpriteConfig, SpriteSpeedLimit } from "./SpriteConfig";
+import { SpinTypes, SpriteConfig, SpriteSpeedLimit } from "./SpriteConfig";
 import { SpriteConfigType, SpriteType } from "./types";
 
 // класс для отрисовки анимированной картинки
@@ -9,6 +9,7 @@ export class Sprite {
   private canvas: Canvas;
   private image: HTMLImageElement;
   private objectSize: basicSize;
+  private objectPosition: elementCoords;
   private spriteSize: basicSize;
   private isAnimated: boolean;
   private frameConfig: SpriteConfigType;
@@ -21,6 +22,7 @@ export class Sprite {
   constructor(props: SpriteType) {
     this.canvas = props.canvas;
     this.objectSize = props.objectSize;
+    this.objectPosition = props.objectPosition;
     this.frameConfig = SpriteConfig[props.spriteType];
     this.image = new Image();
     this.image.src = this.frameConfig.src;
@@ -52,6 +54,17 @@ export class Sprite {
     if (this.isAnimated) {
       this.update();
     }
+  }
+
+  drawRotate(position: elementCoords, angle: number, spin: SpinTypes) {
+    this.canvas.context.save();
+    this.canvas.context.translate(
+      this.objectPosition.x - position.x,
+      this.objectPosition.y - position.y
+    );
+    this.canvas.context.rotate((angle * spin * Math.PI) / 360);
+    this.draw(position);
+    this.canvas.context.restore();
   }
 
   update() {
