@@ -17,7 +17,5 @@ export const getAllTopic: RequestHandler = async (_req, res) => {
 export const getTopicById: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const topic: Topic | null = await Topic.findByPk(id);
-  return res
-    .status(200)
-    .json(topic);
+  return res.status(200).json(topic);
 };
