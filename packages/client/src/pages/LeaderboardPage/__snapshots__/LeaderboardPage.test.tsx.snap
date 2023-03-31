@@ -172,7 +172,7 @@ exports[`Leaderboard Page should match snapshot 1`] = `
         <h1
           class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
         >
-          Leader Board
+          Leaderboard
         </h1>
         <div
           class="MuiBox-root css-8atqhb"

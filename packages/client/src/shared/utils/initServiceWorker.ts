@@ -2,7 +2,7 @@ export function initServiceWorker() {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
-        .register("/serviceWorker.ts")
+        .register("/serviceWorker.js")
         .then(registration => {
           console.log(`Service Worker registered in ${registration.scope}`);
         })
