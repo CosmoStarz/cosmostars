@@ -19,5 +19,5 @@ export const getTopicById: RequestHandler = async (req, res) => {
   const topic: Topic | null = await Topic.findByPk(id);
   return res
     .status(200)
-    .json({ message: "Topic fetched successfully", data: topic });
+    .json(topic);
 };
