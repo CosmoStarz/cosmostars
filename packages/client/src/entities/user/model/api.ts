@@ -15,6 +15,7 @@ const userApi = yandexApi.injectEndpoints({
       query: () => ({
         url: `/${AUTH_API_BASIC}/${USER_API_BASIC}`,
       }),
+      transformErrorResponse: response => getErrorReason(response),
       providesTags: [Tags.USER],
     }),
 
@@ -33,6 +34,7 @@ const userApi = yandexApi.injectEndpoints({
         url: `/${USER_API_BASIC}/${UserEndpoints.PASSWORD}`,
         method: HTTPMethods.PUT,
         body,
+        responseHandler: "content-type",
       }),
       transformErrorResponse: response => getErrorReason(response),
     }),

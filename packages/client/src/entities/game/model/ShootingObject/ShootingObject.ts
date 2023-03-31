@@ -1,16 +1,19 @@
-import { projectileHeight, projectileWidth } from "@/shared/constants";
+import { ProjectileSizes } from "@/shared/constants";
 
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { shootingObjectProps } from "./types";
 
 export class ShootingObject extends BaseObject {
   public projectiles: BaseObject[];
   public projectileSpeed: number;
+  private projectileType: SpriteConstants;
 
   constructor(props: shootingObjectProps) {
     super(props);
     this.projectiles = [];
     this.projectileSpeed = props.projectileSpeed;
+    this.projectileType = props.projectileType;
   }
 
   public update() {
@@ -22,7 +25,7 @@ export class ShootingObject extends BaseObject {
     const projectile = new BaseObject({
       scene: this.scene,
       position: {
-        x: this.position.x + this.size.width / 2 - projectileWidth / 2,
+        x: this.position.x + this.size.width / 2 - ProjectileSizes.WIDTH / 2,
         y: this.position.y,
       },
       velocity: {
@@ -30,9 +33,10 @@ export class ShootingObject extends BaseObject {
         dy: this.projectileSpeed,
       },
       size: {
-        width: projectileWidth,
-        height: projectileHeight,
+        width: ProjectileSizes.WIDTH,
+        height: ProjectileSizes.HEIGHT,
       },
+      type: this.projectileType,
     });
     this.projectiles.push(projectile);
   }

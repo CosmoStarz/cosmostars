@@ -2,11 +2,11 @@ import {
   baseSpeed,
   basicGridSpeed,
   EnemyGridSizes,
-  GameImages,
   initialObjectSize,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { BaseObject } from "../BaseObject/BaseObject";
 import { baseObjectProps } from "../BaseObject/types";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
@@ -66,7 +66,8 @@ export class EnemyGrid extends BaseObject {
             },
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
-            src: GameImages.ENEMY,
+            type: SpriteConstants.ENEMY_DEFAULT,
+            projectileType: SpriteConstants.ENEMY_PROJECTILE,
           })
         );
       }

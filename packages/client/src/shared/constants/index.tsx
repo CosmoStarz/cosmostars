@@ -1,10 +1,9 @@
 import EmailIcon from "@mui/icons-material/Email";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
+import { PaletteColorOptions } from "@mui/material";
+import { purple } from "@mui/material/colors";
 
-import EnemyImage from "@/assets/images/game-model-enemy.png";
-import PlayerImage from "@/assets/images/game-model-player.png";
-import ProjileImage from "@/assets/images/game-model-projectile.png";
 import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 import LooseRight from "@/assets/images/loose-modal-top-right.png";
 import WinLeft from "@/assets/images/win-modal-bottom-left.png";
@@ -19,8 +18,10 @@ import { GameModalProps } from "@/widgets/GameModal/types";
 
 export const baseSpeed = 10;
 
-export const projectileWidth = 5;
-export const projectileHeight = 15;
+export enum ProjectileSizes {
+  WIDTH = 5,
+  HEIGHT = 20,
+}
 
 export enum GameStatuses {
   NOT_ACTIVE = 0,
@@ -42,18 +43,24 @@ export enum BaseGameColors {
   WHITE = "#ffffff",
 }
 
+export const maxStarsCount = 100;
+
+export const StarVelocity: basicVelocity = {
+  dx: 0,
+  dy: 1,
+};
+
+export enum StarRadius {
+  MIN = 1,
+  MAX = 3,
+}
+
 export const canvasTextWidth = 50;
 export const canvasTextFont = "bold 32px Arial";
 
 export const EnemyPoints = {
   BASIC: 100,
 } as const;
-
-export const GameImages = {
-  ENEMY: EnemyImage,
-  PLAYER: PlayerImage,
-  PROJECTILE: ProjileImage,
-};
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
   [GameStatuses.NOT_ACTIVE]: null,
@@ -113,6 +120,39 @@ export const GameModalImageProps = {
 export enum ThemeNames {
   LIGHT = "light",
   DARK = "dark",
+}
+
+export enum ThemeColors {
+  WHITE = "#ffffff",
+  BLACK = "#000000",
+  WHITE_GRADIENT = "linear-gradient(180deg, rgba(255, 255, 255, 0.6175) 0%, rgba(255, 255, 255, 0.6175) 100%)",
+  BLACK_GRADIENT = "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%)",
+}
+
+export const ThemeConfig = {
+  [ThemeNames.LIGHT]: {
+    background: ThemeColors.WHITE,
+    text: ThemeColors.BLACK,
+    paper: ThemeColors.WHITE_GRADIENT,
+  },
+  [ThemeNames.DARK]: {
+    background: ThemeColors.BLACK,
+    text: ThemeColors.WHITE,
+    paper: ThemeColors.BLACK_GRADIENT,
+  },
+};
+
+export const ThemePrimaryButton: PaletteColorOptions = {
+  light: purple[300],
+  main: purple[500],
+  dark: purple[700],
+  contrastText: ThemeColors.WHITE,
+};
+
+export enum ThemeBorderRadius {
+  MIN = "4px",
+  PAPER = "12px",
+  BUTTON = "32px",
 }
 
 export enum RoutesName {
@@ -181,4 +221,5 @@ export enum GameKeyboard {
   RIGHT = 39,
   SHOOT = 32,
   PAUSE = 27,
+  FULLSCREN = 70,
 }

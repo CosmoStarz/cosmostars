@@ -1,19 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
-import { FC, MouseEvent, useCallback, useMemo } from "react";
+import { Box, Paper, Typography } from "@mui/material";
+import { FC, useMemo } from "react";
 
-import {
-  useAddLeaderboardEntryMutation,
-  useGetLeaderboardQuery,
-} from "@/entities/leaderboard/api";
+import { useGetLeaderboardQuery } from "@/entities/leaderboard/api";
 import { getRandomNumber } from "@/shared/utils/functions";
 
 import { DEFAULT_PER_PAGE, ENTRIES_LIMIT, START_PAGE } from "./config";
 import { Table } from "./ui";
-import { generateRandomUserInfo } from "./utils";
 
 export const Leaderboard: FC = () => {
-  const [addLeaderboardEntry] = useAddLeaderboardEntryMutation();
-
   const { data } = useGetLeaderboardQuery({
     offset: START_PAGE,
     limit: ENTRIES_LIMIT,
@@ -30,48 +24,16 @@ export const Leaderboard: FC = () => {
     [data]
   );
 
-  // * Временная функция для добавления / обновления записей пока не реализован соответствующий функционал
-  const onAddScoreButtonClick = useCallback(
-    (evt: MouseEvent) => {
-      evt.preventDefault();
-
-      const score = Number(prompt("Enter player score:", "0"));
-
-      addLeaderboardEntry({ ...generateRandomUserInfo(), score });
-    },
-    [addLeaderboardEntry]
-  );
-
   return (
-    <Box
+    <Paper
       sx={{
-        bgcolor: "red",
         width: "100%",
-        background:
-          "linear-gradient(126.97deg, rgba(6, 11, 40, 0.26) 28.26%, rgba(10, 14, 35, 0.42) 91.2%)",
-        backdropFilter: "blur(60px)",
-        borderRadius: "20px",
-        px: "1.35%",
-        pt: "2.69%",
-        pb: "5.61%",
+        p: "5%",
       }}>
-      <Typography
-        component="h1"
-        sx={{
-          mb: "1.72%",
-          fontStyle: "normal",
-          fontWeight: "400",
-          fontSize: "45px",
-          lineHeight: "63px",
-          color: " #fff",
-        }}>
-        Leader Board
+      <Typography variant="h3" component="h1">
+        Leaderboard
       </Typography>
-      {/* Временно для добавления / обновления записей пока не реализован соответствующий функционал */}
-      <Button onClick={onAddScoreButtonClick} sx={{ backgroundColor: "white" }}>
-        Добавить / обновить очки
-      </Button>
-      {/* ---------------------------- */}
+
       <Box sx={{ width: "100%" }}>
         {dataWithPlaces && (
           <Table
@@ -81,6 +43,6 @@ export const Leaderboard: FC = () => {
           />
         )}
       </Box>
-    </Box>
+    </Paper>
   );
 };

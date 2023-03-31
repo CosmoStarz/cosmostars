@@ -14,7 +14,6 @@ export const TableHeadCell: FC<TableHeadCellProps> = ({ text }) => {
           fontWeight: "400",
           fontSize: "10px",
           lineHeight: "15px",
-          color: "#A0AEC0",
           textTransform: "uppercase",
         }}>
         {text}
