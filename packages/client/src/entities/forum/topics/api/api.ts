@@ -9,7 +9,7 @@ const topicsApi = internalApi.injectEndpoints({
   endpoints: builder => ({
     addTopic: builder.mutation<undefined, AddTopicMutation>({
       query: ({ title, description, authorId }) => ({
-        url: `/${TOPICS_API_ENDPOINT}`,
+        url: `/${TOPICS_API_ENDPOINT}/`,
         method: HTTPMethods.POST,
         body: { title, description, author_id: authorId },
       }),

@@ -16,6 +16,8 @@ import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
+export const SERVER_URL = `localhost:${__SERVER_PORT__}`;
+
 export const baseSpeed = 10;
 
 export enum ProjectileSizes {
