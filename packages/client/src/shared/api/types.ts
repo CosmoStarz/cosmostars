@@ -17,3 +17,7 @@ export enum Tags {
   LEADERBOARD = "Leaderboard",
   USER = "User",
 }
+
+export enum InternalTags {
+  TOPICS = "Topics",
+}

@@ -35,19 +35,24 @@ export class Sound {
   };
 
   constructor() {
-    this.context = typeof window !== "undefined" ? new AudioContext() : undefined;
-    this.bufferLoader = this.context ? new BufferLoader(
-      this.context,
-      Sound.gameSounds,
-      this.finishedLoading.bind(this)
-    ) : undefined;
+    this.context =
+      typeof window !== "undefined" ? new AudioContext() : undefined;
+    this.bufferLoader = this.context
+      ? new BufferLoader(
+          this.context,
+          Sound.gameSounds,
+          this.finishedLoading.bind(this)
+        )
+      : undefined;
     this.gainNode = this.context ? this.context.createGain() : undefined;
     if (this.gainNode && this.context) {
       this.gainNode.connect(this.context.destination);
     }
-    this.background = this.context ? this.context.createMediaElementSource(
-      new Audio(Sound.gameSounds.background)
-    ) : undefined;
+    this.background = this.context
+      ? this.context.createMediaElementSource(
+          new Audio(Sound.gameSounds.background)
+        )
+      : undefined;
     if (this.background && this.gainNode) {
       this.background.connect(this.gainNode);
     }
