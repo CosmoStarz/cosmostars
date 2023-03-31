@@ -123,7 +123,9 @@ export const ForumTopicPage: FC = () => {
             <IconButton onClick={handlePicker}>
               <EmojiEmotionsIcon sx={{ position: "relative" }} />
             </IconButton>
-            {showPicker && EmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+            {showPicker && EmojiPicker && (
+              <EmojiPicker onEmojiClick={onEmojiClick} />
+            )}
             <Button variant="contained" size="large" type="submit">
               Comment
             </Button>

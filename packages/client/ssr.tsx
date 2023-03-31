@@ -10,7 +10,7 @@ export function render(url: string) {
   const appHtml = renderToString(
     <StaticRouter location={url}>
       <Provider store={store}>
-          <App />
+        <App />
       </Provider>
     </StaticRouter>
   );
