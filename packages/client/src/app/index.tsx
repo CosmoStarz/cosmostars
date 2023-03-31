@@ -15,10 +15,13 @@ function App() {
   const { checkIsUserAuth, isLoadingAuth } = useAuth();
   const { yandexOAuth } = useOAuth();
   const [theme, colorMode] = useBasicTheme();
-  const code = new URLSearchParams(window.location.search).get("code");
+  const code =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("code")
+      : undefined;
   const effectRan = useRef(false);
   useEffect(() => {
-    if (!code) {
+    if (!code && typeof window !== "undefined") {
       checkIsUserAuth();
     }
   }, []);

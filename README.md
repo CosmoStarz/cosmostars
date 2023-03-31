@@ -6,6 +6,7 @@
 3. `yarn build`
 4. `cd ../server`
 5. `yarn dev`
+Открыть в браузере http://localhost:8000/
 
 Для production:
 1. `cd packages/client`
@@ -14,6 +15,7 @@
 4. `cd ../server`
 5. `yarn build`
 6. `yarn preview`
+Открыть в браузере http://localhost:8000/
 
 ### Как запускать?
 

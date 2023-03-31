@@ -22,14 +22,18 @@ const URLS = Object.assign({
   "/src/app/store/index.ts": () => import("/src/app/store/index.ts"),
   "/src/assets/images/bg-dark.png": () =>
     import("/src/assets/images/bg-dark.png?import"),
-  "/src/assets/images/bg-light.jpg": () =>
-    import("/src/assets/images/bg-light.jpg?import"),
+  "/src/assets/images/bg-light.png": () =>
+    import("/src/assets/images/bg-light.png?import"),
+  "/src/assets/images/game-model-enemy-projectile.png": () =>
+    import("/src/assets/images/game-model-enemy-projectile.png?import"),
   "/src/assets/images/game-model-enemy.png": () =>
     import("/src/assets/images/game-model-enemy.png?import"),
+  "/src/assets/images/game-model-explosion.png": () =>
+    import("/src/assets/images/game-model-explosion.png?import"),
+  "/src/assets/images/game-model-player-projectile.png": () =>
+    import("/src/assets/images/game-model-player-projectile.png?import"),
   "/src/assets/images/game-model-player.png": () =>
     import("/src/assets/images/game-model-player.png?import"),
-  "/src/assets/images/game-model-projectile.png": () =>
-    import("/src/assets/images/game-model-projectile.png?import"),
   "/src/assets/images/loose-modal-bottom-left.png": () =>
     import("/src/assets/images/loose-modal-bottom-left.png?import"),
   "/src/assets/images/loose-modal-top-right.png": () =>
@@ -48,32 +52,38 @@ const URLS = Object.assign({
     import("/src/assets/sounds/shot.wav?import"),
   "/src/assets/sounds/win.wav": () =>
     import("/src/assets/sounds/win.wav?import"),
-  "/src/entities/game/controller/Game.tsx": () =>
-    import("/src/entities/game/controller/Game.tsx"),
-  "/src/entities/game/controller/types.tsx": () =>
-    import("/src/entities/game/controller/types.tsx"),
-  "/src/entities/game/model/BaseObject/BaseObject.tsx": () =>
-    import("/src/entities/game/model/BaseObject/BaseObject.tsx"),
-  "/src/entities/game/model/BaseObject/types.tsx": () =>
-    import("/src/entities/game/model/BaseObject/types.tsx"),
+  "/src/entities/game/controller/GameController/GameController.ts": () =>
+    import("/src/entities/game/controller/GameController/GameController.ts"),
+  "/src/entities/game/controller/GameLoop/GameLoop.ts": () =>
+    import("/src/entities/game/controller/GameLoop/GameLoop.ts"),
+  "/src/entities/game/controller/initGame.ts": () =>
+    import("/src/entities/game/controller/initGame.ts"),
+  "/src/entities/game/model/BaseObject/BaseObject.ts": () =>
+    import("/src/entities/game/model/BaseObject/BaseObject.ts"),
   "/src/entities/game/model/EnemyGrid/EnemyGrid.ts": () =>
     import("/src/entities/game/model/EnemyGrid/EnemyGrid.ts"),
   "/src/entities/game/model/Player/Player.ts": () =>
     import("/src/entities/game/model/Player/Player.ts"),
   "/src/entities/game/model/ShootingObject/ShootingObject.ts": () =>
     import("/src/entities/game/model/ShootingObject/ShootingObject.ts"),
+  "/src/entities/game/model/Star/Star.ts": () =>
+    import("/src/entities/game/model/Star/Star.ts"),
   "/src/entities/game/model/store/gameSlice.ts": () =>
     import("/src/entities/game/model/store/gameSlice.ts"),
   "/src/entities/game/model/store/selectors.ts": () =>
     import("/src/entities/game/model/store/selectors.ts"),
-  "/src/entities/game/ui/Canvas/Canvas.tsx": () =>
-    import("/src/entities/game/ui/Canvas/Canvas.tsx"),
-  "/src/entities/game/ui/Canvas/types.tsx": () =>
-    import("/src/entities/game/ui/Canvas/types.tsx"),
+  "/src/entities/game/ui/Canvas/Canvas.ts": () =>
+    import("/src/entities/game/ui/Canvas/Canvas.ts"),
+  "/src/entities/game/ui/GameListeners/GameListeners.ts": () =>
+    import("/src/entities/game/ui/GameListeners/GameListeners.ts"),
   "/src/entities/game/ui/Sound/BufferLoader.ts": () =>
     import("/src/entities/game/ui/Sound/BufferLoader.ts"),
   "/src/entities/game/ui/Sound/Sound.ts": () =>
     import("/src/entities/game/ui/Sound/Sound.ts"),
+  "/src/entities/game/ui/Sprite/Sprite.ts": () =>
+    import("/src/entities/game/ui/Sprite/Sprite.ts"),
+  "/src/entities/game/ui/Sprite/SpriteConfig.ts": () =>
+    import("/src/entities/game/ui/Sprite/SpriteConfig.ts"),
   "/src/entities/leaderboard/api/api.ts": () =>
     import("/src/entities/leaderboard/api/api.ts"),
   "/src/entities/leaderboard/api/index.ts": () =>
@@ -84,6 +94,16 @@ const URLS = Object.assign({
     import("/src/entities/leaderboard/api/types/frontend.ts"),
   "/src/entities/leaderboard/api/types/index.ts": () =>
     import("/src/entities/leaderboard/api/types/index.ts"),
+  "/src/entities/notification/config.ts": () =>
+    import("/src/entities/notification/config.ts"),
+  "/src/entities/notification/index.ts": () =>
+    import("/src/entities/notification/index.ts"),
+  "/src/entities/notification/notificationMiddleware.ts": () =>
+    import("/src/entities/notification/notificationMiddleware.ts"),
+  "/src/entities/notification/notificationSlice.ts": () =>
+    import("/src/entities/notification/notificationSlice.ts"),
+  "/src/entities/notification/selectors.ts": () =>
+    import("/src/entities/notification/selectors.ts"),
   "/src/entities/user/model/api.ts": () =>
     import("/src/entities/user/model/api.ts"),
   "/src/entities/user/model/converters.ts": () =>
@@ -104,6 +124,12 @@ const URLS = Object.assign({
     import("/src/features/Auth/SignUp/index.ts"),
   "/src/features/Auth/SignUp/ui.tsx": () =>
     import("/src/features/Auth/SignUp/ui.tsx"),
+  "/src/features/Auth/YanedxOAuth/index.ts": () =>
+    import("/src/features/Auth/YanedxOAuth/index.ts"),
+  "/src/features/Auth/YanedxOAuth/ui.tsx": () =>
+    import("/src/features/Auth/YanedxOAuth/ui.tsx"),
+  "/src/features/Auth/YanedxOAuth/utils.ts": () =>
+    import("/src/features/Auth/YanedxOAuth/utils.ts"),
   "/src/features/Auth/schemas/sign-in/index.ts": () =>
     import("/src/features/Auth/schemas/sign-in/index.ts"),
   "/src/features/Auth/schemas/sign-up/index.ts": () =>
@@ -185,6 +211,8 @@ const URLS = Object.assign({
   "/src/shared/api/auth/models.ts": () =>
     import("/src/shared/api/auth/models.ts"),
   "/src/shared/api/index.ts": () => import("/src/shared/api/index.ts"),
+  "/src/shared/api/oauth/oauth.ts": () =>
+    import("/src/shared/api/oauth/oauth.ts"),
   "/src/shared/api/utils.ts": () => import("/src/shared/api/utils.ts"),
   "/src/shared/api/yandexApi.ts": () => import("/src/shared/api/yandexApi.ts"),
   "/src/shared/config/index.ts": () => import("/src/shared/config/index.ts"),
@@ -226,6 +254,8 @@ const URLS = Object.assign({
     import("/src/shared/utils/functions.ts"),
   "/src/shared/utils/initServiceWorker.ts": () =>
     import("/src/shared/utils/initServiceWorker.ts"),
+  "/src/widgets/AdditionalMenu/AdditionalMenu.tsx": () =>
+    import("/src/widgets/AdditionalMenu/AdditionalMenu.tsx"),
   "/src/widgets/Forum/Forum.tsx": () => import("/src/widgets/Forum/Forum.tsx"),
   "/src/widgets/GameModal/GameModal.tsx": () =>
     import("/src/widgets/GameModal/GameModal.tsx"),
@@ -257,6 +287,10 @@ const URLS = Object.assign({
     import("/src/widgets/Leaderboard/utils.ts"),
   "/src/widgets/MainMenu/MainMenu.tsx": () =>
     import("/src/widgets/MainMenu/MainMenu.tsx"),
+  "/src/widgets/Notification/Notification.tsx": () =>
+    import("/src/widgets/Notification/Notification.tsx"),
+  "/src/widgets/Notification/index.ts": () =>
+    import("/src/widgets/Notification/index.ts"),
   "/src/widgets/Profile/Profile.tsx": () =>
     import("/src/widgets/Profile/Profile.tsx"),
 });

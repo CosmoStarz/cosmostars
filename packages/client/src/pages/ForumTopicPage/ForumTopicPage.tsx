@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import EmojiPicker, { IEmojiData } from "emoji-picker-react";
+import { IEmojiData, IEmojiPickerProps } from "emoji-picker-react";
 import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,13 @@ import { RoutesName } from "@/shared/constants";
 import { forumApi } from "@/shared/constants/mocks";
 import { commentValidation } from "@/shared/constants/validationShemas";
 import { MainLayout } from "@/shared/layouts/MainLayout";
+
+let EmojiPicker: React.FC<IEmojiPickerProps> | undefined;
+if (typeof window !== "undefined") {
+  import("emoji-picker-react").then(_module => {
+    EmojiPicker = _module.default;
+  });
+}
 
 export const ForumTopicPage: FC = () => {
   const navigate = useNavigate();
@@ -116,7 +123,7 @@ export const ForumTopicPage: FC = () => {
             <IconButton onClick={handlePicker}>
               <EmojiEmotionsIcon sx={{ position: "relative" }} />
             </IconButton>
-            {showPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+            {showPicker && EmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
             <Button variant="contained" size="large" type="submit">
               Comment
             </Button>

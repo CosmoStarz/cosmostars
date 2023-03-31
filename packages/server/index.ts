@@ -11,7 +11,7 @@ dotenv.config();
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
-  const port = Number(process.env.SERVER_PORT) || 3001;
+  const port = Number(process.env.SERVER_PORT) || 8000;
 
   let vite: ViteDevServer | undefined;
   const distPath = path.dirname(require.resolve("client/dist/index.html"));
@@ -50,7 +50,9 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
 
     try {
       let template: string;
-      let render: (url: string) => Promise<{ appHtml: string; stateScript: string }>;
+      let render: (
+        url: string
+      ) => Promise<{ appHtml: string; stateScript: string }>;
 
       if (isDev && vite) {
         template = fs.readFileSync(
