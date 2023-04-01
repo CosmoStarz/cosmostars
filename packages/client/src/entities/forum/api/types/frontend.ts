@@ -24,6 +24,7 @@ export type CommentData = {
   comment: string;
   topic_id: number;
   parent_id: number | null;
+  comments_count: number
   author: AuthorOfTopicData;
   date: Date;
 };
@@ -31,3 +32,8 @@ export type CommentData = {
 export type TopicData = {
   comments: CommentData[];
 } & TopicItemData;
+
+export type CommentsData = {
+  comments: CommentData[]
+  count: number
+}

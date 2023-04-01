@@ -5,7 +5,7 @@ import { FORUM_API_ENDPOINT } from "@/shared/constants/forum";
 
 import { TopicData, TopicsData } from "./types/frontend";
 
-export const forumApi = baseForumApi.injectEndpoints({
+const forumApi = baseForumApi.injectEndpoints({
   endpoints: builder => ({
     getTopics: builder.query<TopicsData, void>({
       query: () => ({
@@ -14,7 +14,7 @@ export const forumApi = baseForumApi.injectEndpoints({
       transformErrorResponse: response => getErrorReason(response),
       providesTags: [Tags.FORUM],
     }),
-    getOneTopic: builder.query<TopicData, void>({
+    getOneTopic: builder.query<TopicData, number>({
       query: id => ({
         url: `/${FORUM_API_ENDPOINT}/${id}`,
       }),
