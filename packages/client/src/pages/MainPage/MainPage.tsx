@@ -31,19 +31,7 @@ export const MainPage: FC = () => {
           height: "70%",
           width: "100%",
         }}>
-        <Typography
-          component="h1"
-          className="main-page__name"
-          sx={{
-            fontSize: "144px",
-            letterSpacing: "0.01em",
-            color: "transparent",
-            textShadow:
-              " 5px 4px 6px #011133, 0px 0px 0px #ff00008c, 5px 4px 6px #ff00008c",
-            marginBottom: 2,
-            WebkitTextStroke: "4px white",
-            pointerEvents: "none",
-          }}>
+        <Typography component="h1" className="main-page__name">
           Galaxy spaceship
         </Typography>
         <Button

@@ -1,5 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  PERSIST,
+  persistReducer,
+  persistStore,
+  REHYDRATE,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { forumApi } from "@/entities/forum/api/forumApi";
@@ -27,11 +32,13 @@ export const reducer = combineReducers({
 });
 
 export const store = configureStore({
+  preloadedState:
+    typeof window !== "undefined" ? window.__PRELOADED_STATE__ : undefined,
   reducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST"],
+        ignoredActions: [PERSIST, REHYDRATE],
       },
     }).concat([
       yandexApi.middleware,

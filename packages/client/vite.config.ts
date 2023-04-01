@@ -10,7 +10,8 @@ export default defineConfig({
     port: Number(process.env.CLIENT_PORT) || 3000,
   },
   define: {
-    __SERVER_PORT__: process.env.SERVER_PORT,
+    global: {},
+    __SERVER_PORT__: process.env.SERVER_PORT || 8000,
   },
   plugins: [react()],
   resolve: {

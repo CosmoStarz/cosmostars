@@ -1,4 +1,5 @@
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import { Paper } from "@mui/material";
 import { useFormik } from "formik";
 import { PropsWithChildren } from "react";
 
@@ -117,13 +118,15 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
     icon: <ArrowBackRoundedIcon />,
   };
   return (
-    <CardView
-      handleSubmit={props.handleSubmit}
-      className={props.className}
-      title={props.title}
-      fields={props.fields}
-      buttonName={props.btn}
-      icon={props.icon}
-    />
+    <Paper className="form-paper" sx={{ my: "3%" }}>
+      <CardView
+        handleSubmit={props.handleSubmit}
+        className={props.className}
+        title={props.title}
+        fields={props.fields}
+        buttonName={props.btn}
+        icon={props.icon}
+      />
+    </Paper>
   );
 };

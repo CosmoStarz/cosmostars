@@ -1,8 +1,7 @@
 import "./index.css";
 
 import { ThemeProvider } from "@mui/material";
-import { useEffect, useRef } from "react";
-import { BrowserRouter } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
 
 import { useOAuth } from "@/features/Auth/YanedxOAuth/utils";
 import { ColorModeContext } from "@/features/ThemeToggler/ThemeToggler";
@@ -16,10 +15,13 @@ function App() {
   const { checkIsUserAuth, isLoadingAuth } = useAuth();
   const { yandexOAuth } = useOAuth();
   const [theme, colorMode] = useBasicTheme();
-  const code = new URLSearchParams(window.location.search).get("code");
+  const code =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("code")
+      : undefined;
   const effectRan = useRef(false);
   useEffect(() => {
-    if (!code) {
+    if (!code && typeof window !== "undefined") {
       checkIsUserAuth();
     }
   }, []);
@@ -39,9 +41,7 @@ function App() {
             <LoaderView />
           </BasicLayout>
         ) : (
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
+          <Router />
         )}
       </ThemeProvider>
     </ColorModeContext.Provider>

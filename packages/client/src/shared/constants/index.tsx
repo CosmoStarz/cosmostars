@@ -1,11 +1,9 @@
 import EmailIcon from "@mui/icons-material/Email";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
+import { PaletteColorOptions } from "@mui/material";
+import { purple } from "@mui/material/colors";
 
-import EnemyImage from "@/assets/images/game-model-enemy.png";
-import EnemyProjectileImage from "@/assets/images/game-model-enemy-projectile.png";
-import PlayerImage from "@/assets/images/game-model-player.png";
-import PlayerProjectileImage from "@/assets/images/game-model-player-projectile.png";
 import LooseLeft from "@/assets/images/loose-modal-bottom-left.png";
 import LooseRight from "@/assets/images/loose-modal-top-right.png";
 import WinLeft from "@/assets/images/win-modal-bottom-left.png";
@@ -17,8 +15,6 @@ import {
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
-
-export const baseUrl = `http://localhost:${__SERVER_PORT__}`; // TODO: заменить на нужный для апи нынешнего спринта, а далее - получать с бэка
 
 export const baseSpeed = 10;
 
@@ -65,13 +61,6 @@ export const canvasTextFont = "bold 32px Arial";
 export const EnemyPoints = {
   BASIC: 100,
 } as const;
-
-export const GameImages = {
-  ENEMY: EnemyImage,
-  PLAYER: PlayerImage,
-  PLAYER_PROJECTILE: PlayerProjectileImage,
-  ENEMY_PROJECTILE: EnemyProjectileImage,
-};
 
 export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
   [GameStatuses.NOT_ACTIVE]: null,
@@ -131,6 +120,39 @@ export const GameModalImageProps = {
 export enum ThemeNames {
   LIGHT = "light",
   DARK = "dark",
+}
+
+export enum ThemeColors {
+  WHITE = "#ffffff",
+  BLACK = "#000000",
+  WHITE_GRADIENT = "linear-gradient(180deg, rgba(255, 255, 255, 0.6175) 0%, rgba(255, 255, 255, 0.6175) 100%)",
+  BLACK_GRADIENT = "linear-gradient(152.97deg, rgba(0, 0, 0, 0.4655) 15.24%, rgba(0, 0, 0, 0.95) 115.24%)",
+}
+
+export const ThemeConfig = {
+  [ThemeNames.LIGHT]: {
+    background: ThemeColors.WHITE,
+    text: ThemeColors.BLACK,
+    paper: ThemeColors.WHITE_GRADIENT,
+  },
+  [ThemeNames.DARK]: {
+    background: ThemeColors.BLACK,
+    text: ThemeColors.WHITE,
+    paper: ThemeColors.BLACK_GRADIENT,
+  },
+};
+
+export const ThemePrimaryButton: PaletteColorOptions = {
+  light: purple[300],
+  main: purple[500],
+  dark: purple[700],
+  contrastText: ThemeColors.WHITE,
+};
+
+export enum ThemeBorderRadius {
+  MIN = "4px",
+  PAPER = "12px",
+  BUTTON = "32px",
 }
 
 export enum RoutesName {

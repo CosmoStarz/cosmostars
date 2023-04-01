@@ -4,7 +4,6 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
-  GameImages,
   maxStarsCount,
   randomInterval,
   StarRadius,
@@ -12,21 +11,33 @@ import {
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
+import { Asteroid } from "../../model/Asteroid/Asteroid";
+import {
+  asteroidFrequency,
+  generateAsteroidConfig,
+} from "../../model/Asteroid/AsteroidConfig";
 import { BaseObject } from "../../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
 import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
 import { incrementScoreByEnemy } from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
+import { elementCoords } from "../../ui/Canvas/types";
+import {
+  initialExplosionSize,
+  SpriteConstants,
+} from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
 export class GameController {
   private scene: Canvas;
   public player: Player;
-  private frames: number;
-  private enemyGrids: EnemyGrid[];
-  private stars: Star[];
+  private frames = 0;
+  private enemyGrids: EnemyGrid[] = [];
+  private stars: Star[] = [];
+  private explosions: BaseObject[] = [];
+  private asteroids: Asteroid[] = [];
   private randomInterval: number;
   private sound: Sound;
   private end: () => void;
@@ -36,9 +47,6 @@ export class GameController {
     this.sound = props.sound;
     this.end = props.end;
     this.player = this.initialPlayer;
-    this.stars = [];
-    this.enemyGrids = [];
-    this.frames = 0;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
 
     this.generateStars();
@@ -48,8 +56,8 @@ export class GameController {
     return new Player({
       scene: this.scene,
       projectileSpeed: -baseSpeed,
-      src: GameImages.PLAYER,
-      projectileImage: GameImages.PLAYER_PROJECTILE,
+      type: SpriteConstants.PLAYER,
+      projectileType: SpriteConstants.PLAYER_PROJECTILE,
     });
   }
 
@@ -81,13 +89,50 @@ export class GameController {
     });
   }
 
+  private createAsteroid() {
+    const config = generateAsteroidConfig(this.scene);
+    return new Asteroid(config);
+  }
+
   private generateEnemies() {
-    if (this.frames % this.randomInterval === 0) {
+    if (this.frames % asteroidFrequency === 0 && this.frames !== 0) {
+      this.asteroids.push(this.createAsteroid());
+    }
+    if (this.frames % this.randomInterval === 0 || !this.enemyGrids.length) {
       this.enemyGrids.push(this.createOneEnemyGrid());
       this.frames = 0;
       this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     }
     this.frames += 1;
+  }
+
+  private watchAsteroidsGone() {
+    this.asteroids.forEach((asteroid, index) => {
+      if (asteroid.position.y >= this.scene.height) {
+        this.asteroids = this.asteroids.filter((item, idx) => idx !== index);
+      } else {
+        asteroid.update();
+      }
+    });
+  }
+
+  private createExplosion(position: elementCoords) {
+    return new BaseObject({
+      scene: this.scene,
+      position: position,
+      type: SpriteConstants.EXPLOSION,
+      size: initialExplosionSize,
+    });
+  }
+
+  private watchExplosionsDone() {
+    this.explosions.forEach((explosion, index) => {
+      if (explosion.currentSprite === explosion.maxIndexSprite) {
+        this.explosions = this.explosions.filter((item, idx) => idx !== index);
+      } else {
+        explosion.update();
+      }
+    });
   }
 
   private watchStarsGone() {
@@ -154,6 +199,7 @@ export class GameController {
     let isAlive = true;
     const newProjectiles = projectiles.filter(projectile => {
       if (this.isIntersect(collidingObject, projectile)) {
+        this.explosions.push(this.createExplosion(collidingObject.position));
         collidingMethod();
         isAlive = false;
         return false;
@@ -165,6 +211,10 @@ export class GameController {
   }
 
   private checkAllCollisions() {
+    this.checkCollision(this.asteroids, this.player, () => {
+      this.end();
+    });
+
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
         this.end();
@@ -180,6 +230,14 @@ export class GameController {
           }
         );
         this.player.projectiles = hitEnemy.newProjectiles;
+
+        const hitEnemyByAsteroid = this.checkCollision(
+          this.asteroids,
+          enemy,
+          () => {
+            this.sound.playExplosion();
+          }
+        );
 
         const hitPlayer = this.checkCollision(
           enemy.projectiles,
@@ -205,16 +263,18 @@ export class GameController {
           }
         );
 
-        return hitEnemy.isAlive;
+        return hitEnemy.isAlive && hitEnemyByAsteroid.isAlive;
       });
     });
   }
 
   public update() {
     this.watchStarsGone();
+    this.watchExplosionsDone();
     this.player.update();
     this.checkAllCollisions();
     this.watchEnemiesGone();
+    this.watchAsteroidsGone();
     this.generateEnemies();
   }
 
@@ -222,6 +282,8 @@ export class GameController {
     this.player.clear();
     this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
+    this.explosions = [];
+    this.asteroids = [];
     this.frames = 0;
   }
 }

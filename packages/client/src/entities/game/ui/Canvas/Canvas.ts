@@ -51,15 +51,21 @@ export class Canvas {
 
   public pasteImage(
     img: HTMLImageElement,
-    position: elementCoords,
-    size: basicSize
+    insidePosition: elementCoords,
+    insideSize: basicSize,
+    outsidePosition: elementCoords,
+    outsideSize: basicSize
   ) {
     this.context.drawImage(
       img,
-      position.x,
-      position.y,
-      size.width,
-      size.height
+      insidePosition.x,
+      insidePosition.y,
+      insideSize.width,
+      insideSize.height,
+      outsidePosition.x,
+      outsidePosition.y,
+      outsideSize.width,
+      outsideSize.height
     );
   }
 
