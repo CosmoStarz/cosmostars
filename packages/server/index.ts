@@ -14,6 +14,7 @@ dotenv.config();
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
+  app.use(express.json());
   const port = Number(process.env.SERVER_PORT) || 8000;
 
   let vite: ViteDevServer | undefined;

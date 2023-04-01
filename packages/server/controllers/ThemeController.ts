@@ -74,7 +74,7 @@ export const createThemeToUser: RequestHandler = async (
   try {
     const [userTheme] = await Theme.findOrCreate({
       where: { user_id: id },
-      defaults: { user_id: id, ...theme },
+      defaults: { user_id: id, theme: theme },
     });
     userTheme.set({ theme: theme });
     userTheme.save();
