@@ -5,7 +5,7 @@ import { FORUM_API_ENDPOINT } from "@/shared/constants/forum";
 
 import { TopicData, TopicsData } from "./types/frontend";
 
-const forumApi = baseForumApi.injectEndpoints({
+export const forumApi = baseForumApi.injectEndpoints({
   endpoints: builder => ({
     getTopics: builder.query<TopicsData, void>({
       query: () => ({

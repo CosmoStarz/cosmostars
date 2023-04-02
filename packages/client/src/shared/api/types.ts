@@ -18,3 +18,8 @@ export enum Tags {
   USER = "User",
   FORUM = "Forum",
 }
+
+export enum InternalTags {
+  TOPICS = "Topics",
+  COMMENTS = "Comments",
+}
