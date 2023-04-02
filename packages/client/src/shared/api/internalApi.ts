@@ -7,8 +7,7 @@ export const internalApi = createApi({
   reducerPath: "internalApi",
   baseQuery: fetchBaseQuery({
     baseUrl: SERVER_URL,
-    credentials: "include",
   }),
-  tagTypes: [InternalTags.TOPICS, InternalTags.COMMENTS],
+  tagTypes: [InternalTags.TOPICS, InternalTags.COMMENTS, InternalTags.THEME],
   endpoints: () => ({}),
 });
