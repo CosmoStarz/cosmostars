@@ -15,7 +15,7 @@ import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useAddTopicMutation } from "@/entities/forum/topics/api";
+import { useAddTopicMutation, useGetTopicsQuery } from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { searchValidation } from "@/shared/constants/validationShemas";

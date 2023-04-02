@@ -12,9 +12,10 @@ import {
 import { IEmojiData, IEmojiPickerProps } from "emoji-picker-react";
 import { useFormik } from "formik";
 import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { useAddCommentMutation } from "@/entities/forum/comments/api";
+import { useAddCommentMutation, useGetCommentsQuery } from "@/entities/forum/comments/api";
+import { useGetOneTopicQuery } from "@/entities/forum/topics/api";
 import { useGetUserQuery } from "@/entities/user/model/api";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { RoutesName } from "@/shared/constants";
@@ -30,20 +31,16 @@ if (typeof window !== "undefined") {
 
 export const ForumTopicPage: FC = () => {
   const currentUrl = useLocation();
-  const forumId: string = currentUrl.pathname.match("[^/]+$")![0];
-  const { data, isLoading, isError } = useGetOneTopicQuery(forumId);
-
+  const forumId: number = +currentUrl.pathname.match("[^/]+$")![0];
   const navigate = useNavigate();
 
-  const currentTopicId = 1; // Заглушка, пока нет апи получения топика
+  const { data: topicData, isFetching: isTopicFetching, isError: isTopicError } = useGetOneTopicQuery(forumId);
   const { data: userData } = useGetUserQuery();
+  const { data: commentsData, } = useGetCommentsQuery({parentId: forumId});
 
-  const comments =
-    forumApi
-      .getComments()
-      .find(commentItem => commentItem.topicId === currentTopicId)?.comments ||
-    [];
-  const authorTopic = forumApi.getAuthor();
+  if (!forumId || isTopicError) {
+    navigate('/not-found')
+  }
 
   const [addComment] = useAddCommentMutation();
 
@@ -54,7 +51,7 @@ export const ForumTopicPage: FC = () => {
     validationSchema: commentValidation,
     onSubmit: ({ comment }, helpers) => {
       if (userData) {
-        addComment({ comment, topicId: currentTopicId, authorId: userData.id });
+        addComment({ comment, topicId: forumId, authorId: userData.id });
         helpers.setFieldValue("comment", "");
       }
       setShowPicker(false);
@@ -80,12 +77,12 @@ export const ForumTopicPage: FC = () => {
   const handlePicker = () => setShowPicker(val => !val);
   return (
     <MainLayout>
-      {isLoading && (
-        <Typography variant="h5" textAlign="center">
+      {isTopicFetching ? (
+        <Typography variant="h3" textAlign="center" margin='auto'>
           Loading...
         </Typography>
-      )}
-
+      )
+        : (
       <Paper
         sx={{
           display: "flex",
@@ -116,10 +113,10 @@ export const ForumTopicPage: FC = () => {
             component="h1"
             className="topic-page__name"
             m={"auto"}>
-            {data?.title}
+            {topicData?.title}
           </Typography>
         </Box>
-        {topicItemProps && <TopicItem {...topicItemProps} />}
+        {topicData && <TopicItem {...topicData} />}
         <Box
           component="form"
           onSubmit={formik.handleSubmit}
@@ -162,8 +159,8 @@ export const ForumTopicPage: FC = () => {
             width: "100%",
             overflowY: "auto",
           }}>
-          {checkedComments.length ? (
-            checkedComments.map(comment => (
+          {commentsData?.comments.length ? (
+            commentsData.comments.map(comment => (
               <TopicItem
                 description={comment.comment}
                 key={comment.id}
@@ -177,7 +174,8 @@ export const ForumTopicPage: FC = () => {
             </Typography>
           )}
         </List>
-      </Paper>
+      </Paper>)}
+
     </MainLayout>
   );
 };
