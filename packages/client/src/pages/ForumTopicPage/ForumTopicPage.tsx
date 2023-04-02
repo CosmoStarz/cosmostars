@@ -31,6 +31,7 @@ if (typeof window !== "undefined") {
 
 export const ForumTopicPage: FC = () => {
   const currentUrl = useLocation();
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const forumId: number = +currentUrl.pathname.match("[^/]+$")![0];
   const navigate = useNavigate();
 

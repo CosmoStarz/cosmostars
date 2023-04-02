@@ -7,7 +7,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { forumApi } from "@/entities/forum/api/forumApi";
 import { gameReducer } from "@/entities/game/model/store/gameSlice";
 import {
   notificationMiddleware,
