@@ -7,6 +7,7 @@ import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 
 import { sequelize } from "./db/db";
+import themeRoutes from "./routes/ThemeRoutes";
 import topicRoutes from "./routes/TopicRoutes";
 
 dotenv.config();
@@ -15,6 +16,7 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
   app.use(express.json());
+  app.use("/theme", themeRoutes);
   app.use("/topics", topicRoutes);
   const port = Number(process.env.SERVER_PORT) || 8000;
 
