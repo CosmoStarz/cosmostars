@@ -103,6 +103,26 @@ export const up: Migration = async ({ context: sequelize }) => {
         },
         { transaction: t }
       ),
+      sequelize.getQueryInterface().createTable(
+        "themes",
+        {
+          id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+            primaryKey: true,
+          },
+          user_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+          },
+          theme: {
+            type: DataTypes.TEXT,
+            defaultValue: false,
+            allowNull: false,
+          },
+        },
+        { transaction: t }
+      ),
     ]);
   });
 };
@@ -113,6 +133,7 @@ export const down: Migration = async ({ context: sequelize }) => {
       sequelize.getQueryInterface().dropTable("likes", { transaction: t }),
       sequelize.getQueryInterface().dropTable("comments", { transaction: t }),
       sequelize.getQueryInterface().dropTable("topics", { transaction: t }),
+      sequelize.getQueryInterface().dropTable("themes", { transaction: t }),
     ]);
   });
 };

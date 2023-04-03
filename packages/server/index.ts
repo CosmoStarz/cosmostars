@@ -6,11 +6,15 @@ import * as path from "path";
 import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 
+import { sequelize } from "./db/db";
+import themeRoutes from "./routes/ThemeRoutes";
+
 dotenv.config();
 
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
+  app.use(express.json());
   const port = Number(process.env.SERVER_PORT) || 8000;
 
   let vite: ViteDevServer | undefined;
@@ -27,6 +31,9 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
 
     app.use(vite.middlewares);
   }
+
+  await sequelize.sync();
+  app.use("/theme", themeRoutes);
 
   if (!isDev) {
     app.use("/assets", express.static(path.resolve(distPath, "assets")));
