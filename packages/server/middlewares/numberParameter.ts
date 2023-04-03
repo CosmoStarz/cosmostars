@@ -12,10 +12,6 @@ export const numberParameter = (paramName: string) => {
     if (!isNaN(+req.params[paramName])) {
       return next();
     }
-    configureError(
-      res,
-      BaseStatuses.NOT_FOUND,
-      ErrorMessages.NOT_FOUND
-    );
+    configureError(res, BaseStatuses.NOT_FOUND, ErrorMessages.NOT_FOUND);
   };
 };
