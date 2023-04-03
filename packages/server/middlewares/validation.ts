@@ -1,6 +1,8 @@
 import type express from "express";
 import { ValidationChain, validationResult } from "express-validator";
 
+import { BaseStatuses } from "../constants";
+
 export const validate = (validations: ValidationChain[]) => {
   return async (
     req: express.Request,
@@ -14,6 +16,6 @@ export const validate = (validations: ValidationChain[]) => {
       return next();
     }
 
-    res.status(400).json({ errors: errors.array() });
+    res.status(BaseStatuses.BAD_REQUEST).json({ errors: errors.array() });
   };
 };
