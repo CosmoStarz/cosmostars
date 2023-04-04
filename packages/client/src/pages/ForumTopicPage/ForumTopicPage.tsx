@@ -14,6 +14,8 @@ import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useAddCommentMutation } from "@/entities/forum/comments/api";
+import { useGetUserQuery } from "@/entities/user/model/api";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { RoutesName } from "@/shared/constants";
 import { forumApi } from "@/shared/constants/mocks";
@@ -29,18 +31,33 @@ if (typeof window !== "undefined") {
 
 export const ForumTopicPage: FC = () => {
   const navigate = useNavigate();
+
+  const currentTopicId = 1; // Заглушка, пока нет апи получения топика
+  const { data: userData } = useGetUserQuery();
+
+  const comments =
+    forumApi
+      .getComments()
+      .find(commentItem => commentItem.topicId === currentTopicId)?.comments ||
+    [];
+  const authorTopic = forumApi.getAuthor();
+
+  const [addComment] = useAddCommentMutation();
+
   const formik = useFormik({
     initialValues: {
       comment: "",
     },
     validationSchema: commentValidation,
-    onSubmit: values => {
-      console.log(values);
+    onSubmit: ({ comment }, helpers) => {
+      if (userData) {
+        addComment({ comment, topicId: currentTopicId, authorId: userData.id });
+        helpers.setFieldValue("comment", "");
+      }
       setShowPicker(false);
     },
   });
-  const comments = forumApi.getTopic();
-  const authorTopic = forumApi.getAuthor();
+
   const handleNavigateForum = () => {
     navigate(RoutesName.FORUM);
   };
