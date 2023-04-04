@@ -11,13 +11,16 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 
+import { forumApi } from "@/shared/constants/mocks";
+
 import { TypographyButton } from "../TypographyButton/TypographyButton";
 import { TopicItemType } from "./types";
 
 export const TopicItem: FC<TopicItemType> = props => {
   const {
     id,
-    author,
+    // TODO: убрать мок, когда прикрутим передачу юзера
+    author = forumApi.getAuthor(),
     comments_count,
     description,
     likesCount,

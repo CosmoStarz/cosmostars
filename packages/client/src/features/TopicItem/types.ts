@@ -1,10 +1,10 @@
-import { AuthorOfTopicData } from "@/entities/forum/api/types/frontend";
+import { AuthorOfTopicData } from "@/entities/forum/topics/api/types";
 
 export type TopicItemType = {
   id: number;
   isBordered?: boolean;
   header?: () => JSX.Element | null;
-  author: AuthorOfTopicData;
+  author?: AuthorOfTopicData;
   description: string;
   comments_count?: number;
   likesCount?: number;

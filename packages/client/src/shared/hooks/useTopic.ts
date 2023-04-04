@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import { useLazyGetCommentsQuery } from "@/entities/forum/comments/api";
-import { CommentsData } from "@/entities/forum/comments/api/types";
+import { CommentsDataRequest } from "@/entities/forum/comments/api/types";
 import { useLazyGetOneTopicQuery } from "@/entities/forum/topics/api";
-import { TopicItemData } from "@/entities/forum/topics/api/types";
+import { TopicItemDataRequest } from "@/entities/forum/topics/api/types";
 
 export const useTopic = () => {
-  const [currentTopic, setCurrentTopic] = useState<TopicItemData | null>(null);
-  const [currentComments, setCurrentComments] = useState<CommentsData | null>(
+  const [currentTopic, setCurrentTopic] = useState<TopicItemDataRequest | null>(
     null
   );
+  const [currentComments, setCurrentComments] =
+    useState<CommentsDataRequest | null>(null);
   const [isLoadingTopic, setIsLoadingTopic] = useState<boolean>(false);
   const [isLoadingComments, setIsLoadingComments] = useState<boolean>(false);
   const loading = isLoadingTopic || isLoadingComments;
