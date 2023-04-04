@@ -12,16 +12,16 @@ export type CommentData = {
   comment: string;
   topic_id: number;
   parent_id: number | null;
-  comments_count: number
+  comments_count: number;
   author: AuthorOfTopicData;
   date: Date;
 };
 
 export type CommentsData = {
-  comments: CommentData[]
-  count: number
-}
+  comments: CommentData[];
+  count: number;
+};
 
 export type CommentsDataQuery = {
-  parentId: number
-}
+  parentId: number;
+};

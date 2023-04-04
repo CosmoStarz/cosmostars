@@ -24,5 +24,3 @@ export type AuthorOfTopicData = {
   display_name?: string | null;
   avatar?: string | null;
 };
-
-
