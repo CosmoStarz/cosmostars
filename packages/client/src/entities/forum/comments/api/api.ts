@@ -24,14 +24,15 @@ const commentsApi = internalApi.injectEndpoints({
       invalidatesTags: [InternalTags.COMMENTS],
     }),
     getComments: builder.query<CommentsData, CommentsDataQuery>({
-      query: ({parentId}) => ({
+      query: ({ parentId }) => ({
         url: `/${COMMENTS_API_ENDPOINT}/`,
-        params: {parentId},
-        method: HTTPMethods.GET
+        params: { parentId },
+        method: HTTPMethods.GET,
       }),
       transformErrorResponse: response => getErrorReason(response),
       providesTags: [InternalTags.COMMENTS],
+    }),
   }),
-})})
+});
 
-export const { useAddCommentMutation, useGetCommentsQuery } = commentsApi;
+export const { useAddCommentMutation, useLazyGetCommentsQuery } = commentsApi;

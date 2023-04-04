@@ -34,4 +34,8 @@ const topicsApi = internalApi.injectEndpoints({
   }),
 });
 
-export const { useAddTopicMutation, useGetTopicsQuery, useGetOneTopicQuery } = topicsApi;
+export const {
+  useAddTopicMutation,
+  useGetTopicsQuery,
+  useLazyGetOneTopicQuery,
+} = topicsApi;

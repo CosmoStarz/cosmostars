@@ -300,21 +300,21 @@ exports[`Forum Page should match snapshot 1`] = `
                 >
                   <option
                     class="MuiTablePagination-menuItem"
-                    value="1"
-                  >
-                    1
-                  </option>
-                  <option
-                    class="MuiTablePagination-menuItem"
-                    value="2"
-                  >
-                    2
-                  </option>
-                  <option
-                    class="MuiTablePagination-menuItem"
                     value="3"
                   >
                     3
+                  </option>
+                  <option
+                    class="MuiTablePagination-menuItem"
+                    value="5"
+                  >
+                    5
+                  </option>
+                  <option
+                    class="MuiTablePagination-menuItem"
+                    value="10"
+                  >
+                    10
                   </option>
                 </select>
                 <svg
@@ -332,7 +332,7 @@ exports[`Forum Page should match snapshot 1`] = `
               <p
                 class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
               >
-                1–1 of 1
+                0–0 of 0
               </p>
               <div
                 class="MuiTablePagination-actions"
@@ -380,38 +380,6 @@ exports[`Forum Page should match snapshot 1`] = `
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomLeft css-cpgvjg-MuiSnackbar-root"
-      role="presentation"
-    >
-      <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-filledError MuiAlert-filled css-1c3trtb-MuiPaper-root-MuiAlert-root"
-        direction="up"
-        role="alert"
-        style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      >
-        <div
-          class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
-            data-testid="ErrorOutlineIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-            />
-          </svg>
-        </div>
-        <div
-          class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
-        >
-          Unexpected error
         </div>
       </div>
     </div>

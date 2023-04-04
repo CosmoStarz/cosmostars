@@ -15,7 +15,10 @@ import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useAddTopicMutation, useGetTopicsQuery } from "@/entities/forum/topics/api";
+import {
+  useAddTopicMutation,
+  useGetTopicsQuery,
+} from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { searchValidation } from "@/shared/constants/validationShemas";
@@ -25,11 +28,11 @@ import { useGetUserQuery } from "../../entities/user/model/api";
 export const Forum: FC = () => {
   const [addTopic] = useAddTopicMutation();
   const { data: userData } = useGetUserQuery();
+  const { data } = useGetTopicsQuery();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(1);
   const rowsOffset = page * rowsPerPage;
-  const { data } = useGetTopicsQuery();
 
   const filtredTopics = data
     ? data.topics.slice(rowsOffset, rowsOffset + rowsPerPage)
@@ -139,7 +142,7 @@ export const Forum: FC = () => {
                   <CardHeader
                     title={
                       <Typography variant="h5" component="h2">
-                        Topic {topic.title}
+                        {topic.title}
                       </Typography>
                     }
                   />
@@ -161,9 +164,9 @@ export const Forum: FC = () => {
         }}>
         <TablePagination
           component="div"
-          rowsPerPageOptions={[1, 2, 3]}
+          rowsPerPageOptions={[3, 5, 10]}
           colSpan={4}
-          count={data ? data.count : 1}
+          count={data ? data.count : 0}
           rowsPerPage={rowsPerPage}
           page={page}
           SelectProps={{
