@@ -31,7 +31,7 @@ export const Forum: FC = () => {
   const { data } = useGetTopicsQuery();
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
   const rowsOffset = page * rowsPerPage;
 
   const filtredTopics = data
