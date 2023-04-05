@@ -21,7 +21,3 @@ export type CommentsData = {
   comments: CommentData[];
   count: number;
 };
-
-export type CommentsDataQuery = {
-  parentId: number;
-};

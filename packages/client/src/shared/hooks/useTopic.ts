@@ -37,7 +37,7 @@ export const useTopic = () => {
   const getCurrentComments = async (topic: number) => {
     setIsLoadingComments(true);
     try {
-      const { isSuccess, data } = await getComments({ parentId: topic });
+      const { isSuccess, data } = await getComments(topic);
       if (isSuccess) {
         setCurrentComments(data);
       }

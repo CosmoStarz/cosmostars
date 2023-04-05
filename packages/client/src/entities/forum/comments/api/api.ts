@@ -1,11 +1,10 @@
 import { internalApi } from "@/shared/api/internalApi";
 import { HTTPMethods, InternalTags } from "@/shared/api/types";
 import { getErrorReason } from "@/shared/api/utils";
-import { COMMENTS_API_ENDPOINT } from "@/shared/constants/forum";
+import { COMMENTS_API_ENDPOINT, TOPICS_API_ENDPOINT } from "@/shared/constants/forum";
 
 import {
   AddCommentMutation,
-  CommentsDataQuery,
   CommentsDataRequest,
 } from "./types";
 
@@ -27,10 +26,9 @@ const commentsApi = internalApi.injectEndpoints({
       },
       invalidatesTags: [InternalTags.COMMENTS],
     }),
-    getComments: builder.query<CommentsDataRequest, CommentsDataQuery>({
-      query: ({ parentId }) => ({
-        url: `/${COMMENTS_API_ENDPOINT}/`,
-        params: { parentId },
+    getComments: builder.query<CommentsDataRequest, number>({
+      query: (id) => ({
+        url: `/${TOPICS_API_ENDPOINT}/${id}/${COMMENTS_API_ENDPOINT}/`,
         method: HTTPMethods.GET,
       }),
       transformErrorResponse: response => getErrorReason(response),
