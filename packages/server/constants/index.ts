@@ -5,6 +5,8 @@ export enum ErrorMessages {
   NOT_FOUND = "Not found",
   INVALID_THEME = "Invalid theme name",
   BASE_SERVER_ERROR = "Internal Server Error",
+  NOT_EMPTY = "can't be empty",
+  IS_NUMERIC = "can be numeric only",
 }
 
 export enum BaseStatuses {
