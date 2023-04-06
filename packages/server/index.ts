@@ -7,8 +7,8 @@ import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 
 import { sequelize } from "./db/db";
-import themeRoutes from "./routes/ThemeRoutes";
-
+import { proxyMiddleware } from "./middlewares";
+import { ApiRouter } from "./routes";
 dotenv.config();
 
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
@@ -32,8 +32,10 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
     app.use(vite.middlewares);
   }
 
+  app.use("/api/v2", proxyMiddleware);
   await sequelize.sync();
-  app.use("/theme", themeRoutes);
+
+  app.use("", ApiRouter);
 
   if (!isDev) {
     app.use("/assets", express.static(path.resolve(distPath, "assets")));

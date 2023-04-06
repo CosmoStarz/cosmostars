@@ -1,3 +1,4 @@
+export const YANDEX_URL = "https://ya-praktikum.tech";
 export enum ErrorMessages {
   INVALID_USER = "Invalid user id",
   EMPTY_BODY = "Body can`t be empty",
