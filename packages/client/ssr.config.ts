@@ -11,6 +11,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  define: {
+    __SERVER_PORT__: process.env.SERVER_PORT || 8000,
+  },
   ssr: {
     format: "cjs",
   },
