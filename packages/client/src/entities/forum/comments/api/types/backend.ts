@@ -10,12 +10,7 @@ export type CommentDataRequest = {
   comment: string;
   topic_id: number;
   parent_id: number | null;
-  comments_count: number;
   author_id: number;
-  date: Date;
-};
-
-export type CommentsDataRequest = {
-  comments: CommentDataRequest[];
-  count: number;
+  creation_date: Date;
+  replies: CommentDataRequest[];
 };

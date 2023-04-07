@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useLazyGetCommentsQuery } from "@/entities/forum/comments/api";
-import { CommentsDataRequest } from "@/entities/forum/comments/api/types";
+import { CommentDataRequest } from "@/entities/forum/comments/api/types";
 import { useLazyGetOneTopicQuery } from "@/entities/forum/topics/api";
 import { TopicItemDataRequest } from "@/entities/forum/topics/api/types";
 
@@ -10,7 +10,7 @@ export const useTopic = () => {
     null
   );
   const [currentComments, setCurrentComments] =
-    useState<CommentsDataRequest | null>(null);
+    useState<CommentDataRequest[]>([]);
   const [isLoadingTopic, setIsLoadingTopic] = useState<boolean>(false);
   const [isLoadingComments, setIsLoadingComments] = useState<boolean>(false);
   const loading = isLoadingTopic || isLoadingComments;

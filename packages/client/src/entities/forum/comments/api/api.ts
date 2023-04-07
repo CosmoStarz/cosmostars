@@ -6,7 +6,7 @@ import {
   TOPICS_API_ENDPOINT,
 } from "@/shared/constants/forum";
 
-import { AddCommentMutation, CommentsDataRequest } from "./types";
+import { AddCommentMutation, CommentDataRequest } from "./types";
 
 const commentsApi = internalApi.injectEndpoints({
   endpoints: builder => ({
@@ -26,7 +26,7 @@ const commentsApi = internalApi.injectEndpoints({
       },
       invalidatesTags: [InternalTags.COMMENTS],
     }),
-    getComments: builder.query<CommentsDataRequest, number>({
+    getComments: builder.query<CommentDataRequest[], number>({
       query: id => ({
         url: `/${TOPICS_API_ENDPOINT}/${id}/${COMMENTS_API_ENDPOINT}/`,
         method: HTTPMethods.GET,

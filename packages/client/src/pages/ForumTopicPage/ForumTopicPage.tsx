@@ -86,12 +86,13 @@ export const ForumTopicPage: FC = () => {
     setChosenEmoji(emojiObject); // нужно для ререндера компонента, инчае поле комментариев обновляется, только после закрытия эмоджи
     /* eslint-disable  @typescript-eslint/no-non-null-assertion */
     formik.values.comment = formik.values.comment + emojiObject!.emoji;
-    console.log(formik.values.comment);
   };
+
   const handlePicker = () => setShowPicker(val => !val);
+
   return (
     <MainLayout>
-      {loading ? (
+      {(!currentTopic && loading) ? (
         <Box
           sx={{
             m: "auto",
@@ -181,8 +182,8 @@ export const ForumTopicPage: FC = () => {
               width: "100%",
               overflowY: "auto",
             }}>
-            {currentComments?.comments.length ? (
-              currentComments.comments.map(comment => (
+            {currentComments.length ? (
+              currentComments.map(comment => (
                 <TopicItem
                   description={comment.comment}
                   key={comment.id}
