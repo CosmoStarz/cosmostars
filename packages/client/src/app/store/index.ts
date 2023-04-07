@@ -13,6 +13,7 @@ import {
   notificationReducer,
 } from "@/entities/notification";
 import { authReducer } from "@/entities/user/model/user";
+import { internalApi } from "@/shared/api/internalApi";
 import { yandexApi } from "@/shared/api/yandexApi";
 
 const config = {
@@ -24,6 +25,7 @@ const persistGameReducer = persistReducer(config, gameReducer);
 
 export const reducer = combineReducers({
   [yandexApi.reducerPath]: yandexApi.reducer,
+  [internalApi.reducerPath]: internalApi.reducer,
   auth: authReducer,
   game: persistGameReducer,
   notification: notificationReducer,
@@ -38,7 +40,11 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [PERSIST, REHYDRATE],
       },
-    }).concat([yandexApi.middleware, notificationMiddleware]),
+    }).concat([
+      yandexApi.middleware,
+      internalApi.middleware,
+      notificationMiddleware,
+    ]),
   // todo: вынести в конфиг .env
   devTools: true,
 });

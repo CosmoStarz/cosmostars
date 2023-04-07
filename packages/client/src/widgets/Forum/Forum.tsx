@@ -15,12 +15,18 @@ import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useAddTopicMutation } from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { forumApi } from "@/shared/constants/mocks";
 import { searchValidation } from "@/shared/constants/validationShemas";
 
+import { useGetUserQuery } from "../../entities/user/model/api";
+
 export const Forum: FC = () => {
+  const [addTopic] = useAddTopicMutation();
+  const { data: userData } = useGetUserQuery();
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(1);
   const rowsOffset = page * rowsPerPage;
@@ -113,7 +119,7 @@ export const Forum: FC = () => {
             }}
           />
         </Box>
-        <AddTopic />
+        {userData && <AddTopic onSubmit={addTopic} authorId={userData.id} />}
       </Box>
       <List
         sx={{
