@@ -21,6 +21,7 @@ import {
 } from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
+import { BasePerPage } from "@/shared/constants";
 import { searchValidation } from "@/shared/constants/validationShemas";
 
 import { useGetUserQuery } from "../../entities/user/model/api";
@@ -31,7 +32,7 @@ export const Forum: FC = () => {
   const { data } = useGetTopicsQuery();
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(BasePerPage[0]);
   const rowsOffset = page * rowsPerPage;
 
   const filtredTopics = data
@@ -164,7 +165,7 @@ export const Forum: FC = () => {
         }}>
         <TablePagination
           component="div"
-          rowsPerPageOptions={[3, 5, 10]}
+          rowsPerPageOptions={BasePerPage}
           colSpan={4}
           count={data ? data.count : 0}
           rowsPerPage={rowsPerPage}
