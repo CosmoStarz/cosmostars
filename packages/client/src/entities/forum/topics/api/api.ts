@@ -34,12 +34,10 @@ const topicsApi = internalApi.injectEndpoints({
         url: `/${TOPICS_API_ENDPOINT}/${id}/`,
       }),
       transformErrorResponse: response => getErrorReason(response),
+      providesTags: [InternalTags.COMMENTS],
     }),
   }),
 });
 
-export const {
-  useAddTopicMutation,
-  useGetTopicsQuery,
-  useLazyGetOneTopicQuery,
-} = topicsApi;
+export const { useAddTopicMutation, useGetTopicsQuery, useGetOneTopicQuery } =
+  topicsApi;

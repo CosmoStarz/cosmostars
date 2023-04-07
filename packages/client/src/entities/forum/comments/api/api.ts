@@ -37,4 +37,4 @@ const commentsApi = internalApi.injectEndpoints({
   }),
 });
 
-export const { useAddCommentMutation, useLazyGetCommentsQuery } = commentsApi;
+export const { useAddCommentMutation, useGetCommentsQuery } = commentsApi;

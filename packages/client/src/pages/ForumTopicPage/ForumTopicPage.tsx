@@ -15,12 +15,15 @@ import { useFormik } from "formik";
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useAddCommentMutation } from "@/entities/forum/comments/api";
+import {
+  useAddCommentMutation,
+  useGetCommentsQuery,
+} from "@/entities/forum/comments/api";
+import { useGetOneTopicQuery } from "@/entities/forum/topics/api";
 import { useGetUserQuery } from "@/entities/user/model/api";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { RoutesName } from "@/shared/constants";
 import { commentValidation } from "@/shared/constants/validationShemas";
-import { useTopic } from "@/shared/hooks/useTopic";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 
 let EmojiPicker: React.FC<IEmojiPickerProps> | undefined;
@@ -36,24 +39,17 @@ export const ForumTopicPage: FC = () => {
   const navigate = useNavigate();
 
   const { data: userData } = useGetUserQuery();
+  const { data: currentComments } = useGetCommentsQuery(forumId ?? 0, {
+    skip: !forumId,
+  });
+  const { data: currentTopic, isFetching: loading } = useGetOneTopicQuery(
+    forumId ?? 0,
+    { skip: !forumId }
+  );
   const [addComment] = useAddCommentMutation();
-  const {
-    currentComments,
-    currentTopic,
-    getCurrentComments,
-    getCurrentTopic,
-    loading,
-  } = useTopic();
-
-  const handleNavigate = () => {
-    navigate(RoutesName.NOT_FOUND);
-  };
 
   useEffect(() => {
-    if (forumId) {
-      getCurrentTopic(forumId, handleNavigate);
-      getCurrentComments(forumId);
-    } else {
+    if (!forumId) {
       navigate(RoutesName.NOT_FOUND);
     }
   }, []);
@@ -66,7 +62,7 @@ export const ForumTopicPage: FC = () => {
     onSubmit: ({ comment }, helpers) => {
       if (userData && forumId) {
         addComment({ comment, topicId: forumId, authorId: userData.id });
-        helpers.setFieldValue("comment", "");
+        helpers.setFieldValue("comment", "", false);
       }
       setShowPicker(false);
     },
@@ -92,7 +88,7 @@ export const ForumTopicPage: FC = () => {
 
   return (
     <MainLayout>
-      {(!currentTopic && loading) ? (
+      {!currentTopic && loading ? (
         <Box
           sx={{
             m: "auto",
@@ -182,15 +178,17 @@ export const ForumTopicPage: FC = () => {
               width: "100%",
               overflowY: "auto",
             }}>
-            {currentComments.length ? (
-              currentComments.map(comment => (
-                <TopicItem
-                  description={comment.comment}
-                  key={comment.id}
-                  isBordered
-                  {...comment}
-                />
-              ))
+            {currentComments && currentComments.length ? (
+              currentComments
+                .map(comment => (
+                  <TopicItem
+                    description={comment.comment}
+                    key={comment.id}
+                    isBordered
+                    {...comment}
+                  />
+                ))
+                .reverse()
             ) : (
               <Typography variant="h6" textAlign="center">
                 No comments yet...
