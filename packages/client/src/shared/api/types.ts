@@ -21,4 +21,5 @@ export enum Tags {
 export enum InternalTags {
   TOPICS = "Topics",
   COMMENTS = "Comments",
+  THEME = "Theme",
 }

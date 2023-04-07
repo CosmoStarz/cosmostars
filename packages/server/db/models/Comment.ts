@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import {
+  AfterCreate,
   BelongsTo,
   Column,
   CreatedAt,
@@ -51,4 +52,10 @@ export class Comment extends Model {
 
   @CreatedAt
   creation_date!: Date;
+
+  @AfterCreate
+  static async addIncrementCommentsCount(instance: Comment) {
+    const topic: Topic | null = await Topic.findByPk(instance.topic_id);
+    await topic?.increment("comments_count");
+  }
 }
