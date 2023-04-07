@@ -24,6 +24,11 @@ export class Topic extends Model {
   comments!: Comment[];
 
   @Column({
+    type: DataTypes.INTEGER,
+  })
+  comments_count!: number;
+
+  @Column({
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
   })
