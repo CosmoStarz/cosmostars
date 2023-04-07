@@ -409,14 +409,14 @@ exports[`Forum Topic Page should match snapshot 1`] = `
               <h6
                 class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
               >
-                Petr Petrov
+                Comment Author
               </h6>
             </div>
           </div>
           <div
             class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
-            nice
+            Comment 1
           </div>
           <div
             class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
@@ -472,7 +472,7 @@ exports[`Forum Topic Page should match snapshot 1`] = `
               <p
                 class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
               >
-                2 Likes
+                0 Likes
               </p>
             </div>
           </div>
@@ -508,14 +508,14 @@ exports[`Forum Topic Page should match snapshot 1`] = `
               <h6
                 class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
               >
-                Ivan Ivanov
+                Comment Author 2
               </h6>
             </div>
           </div>
           <div
             class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
           >
-            good topic
+            Comment 2
           </div>
           <div
             class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
