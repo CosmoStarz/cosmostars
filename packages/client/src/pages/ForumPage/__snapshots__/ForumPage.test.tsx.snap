@@ -266,131 +266,11 @@ exports[`Forum Page should match snapshot 1`] = `
         <ul
           class="MuiList-root MuiList-padding css-mdlf6k-MuiList-root"
         >
-          <li
-            class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-roubkh-MuiListItem-root-MuiPaper-root-MuiCard-root"
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-ph2xsj-MuiTypography-root"
           >
-            <a
-              class="MuiButtonBase-root MuiCardActionArea-root css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root"
-              href="/forum/1"
-              tabindex="0"
-            >
-              <div
-                class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
-              >
-                <div
-                  class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
-                >
-                  <h2
-                    class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
-                  >
-                    Topic 
-                    1
-                  </h2>
-                </div>
-              </div>
-              <span
-                class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
-              />
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </a>
-            <div
-              class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
-            >
-              <div
-                class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
-              >
-                <div
-                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-vwhs70-MuiAvatar-root"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
-                    data-testid="PersonIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div
-                class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
-              >
-                <h6
-                  class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
-                >
-                  Petr Petrov
-                </h6>
-              </div>
-            </div>
-            <div
-              class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
-            >
-              nice
-            </div>
-            <div
-              class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
-            >
-              <div
-                class="MuiBox-root css-70qvj9"
-              >
-                <button
-                  aria-label="likes"
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
-                    data-testid="CommentIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"
-                    />
-                  </svg>
-                </button>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
-                >
-                  0 Comments
-                </p>
-              </div>
-              <div
-                class="MuiBox-root css-70qvj9"
-              >
-                <button
-                  aria-label="likes"
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1qqlian-MuiButtonBase-root-MuiIconButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled MuiSvgIcon-fontSizeMedium css-1db085k-MuiSvgIcon-root"
-                    data-testid="FavoriteIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                    />
-                  </svg>
-                </button>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-57qp49-MuiTypography-root"
-                >
-                  2 Likes
-                </p>
-              </div>
-            </div>
-          </li>
+            No topics yet...
+          </h5>
         </ul>
         <div
           class="MuiBox-root css-asvefe"
@@ -420,21 +300,21 @@ exports[`Forum Page should match snapshot 1`] = `
                 >
                   <option
                     class="MuiTablePagination-menuItem"
-                    value="1"
-                  >
-                    1
-                  </option>
-                  <option
-                    class="MuiTablePagination-menuItem"
-                    value="2"
-                  >
-                    2
-                  </option>
-                  <option
-                    class="MuiTablePagination-menuItem"
                     value="3"
                   >
                     3
+                  </option>
+                  <option
+                    class="MuiTablePagination-menuItem"
+                    value="5"
+                  >
+                    5
+                  </option>
+                  <option
+                    class="MuiTablePagination-menuItem"
+                    value="10"
+                  >
+                    10
                   </option>
                 </select>
                 <svg
@@ -452,7 +332,7 @@ exports[`Forum Page should match snapshot 1`] = `
               <p
                 class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
               >
-                1–1 of 2
+                0–0 of 0
               </p>
               <div
                 class="MuiTablePagination-actions"
@@ -479,8 +359,9 @@ exports[`Forum Page should match snapshot 1`] = `
                 </button>
                 <button
                   aria-label="Go to next page"
-                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
-                  tabindex="0"
+                  class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                  disabled=""
+                  tabindex="-1"
                   title="Go to next page"
                   type="button"
                 >
@@ -495,9 +376,6 @@ exports[`Forum Page should match snapshot 1`] = `
                       d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
                     />
                   </svg>
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
                 </button>
               </div>
             </div>

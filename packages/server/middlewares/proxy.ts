@@ -1,10 +1,12 @@
-import { YANDEX_URL } from "constants";
-import type { Request,RequestHandler } from "express";
+import type { Request, RequestHandler } from "express";
 import type { ClientRequest } from "http";
 import {
   createProxyMiddleware,
   responseInterceptor,
 } from "http-proxy-middleware";
+
+import { YANDEX_URL } from "../constants";
+
 const modifyBodyReStreamCb = function (proxyReq: ClientRequest, req: Request) {
   if (req.body) {
     const bodyData = JSON.stringify(req.body);

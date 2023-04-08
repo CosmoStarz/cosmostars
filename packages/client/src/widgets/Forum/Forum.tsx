@@ -15,10 +15,13 @@ import { useFormik } from "formik";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useAddTopicMutation } from "@/entities/forum/topics/api";
+import {
+  useAddTopicMutation,
+  useGetTopicsQuery,
+} from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
-import { forumApi } from "@/shared/constants/mocks";
+import { BasePerPage } from "@/shared/constants";
 import { searchValidation } from "@/shared/constants/validationShemas";
 
 import { useGetUserQuery } from "../../entities/user/model/api";
@@ -26,13 +29,15 @@ import { useGetUserQuery } from "../../entities/user/model/api";
 export const Forum: FC = () => {
   const [addTopic] = useAddTopicMutation();
   const { data: userData } = useGetUserQuery();
+  const { data } = useGetTopicsQuery();
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(BasePerPage[0]);
   const rowsOffset = page * rowsPerPage;
-  const filtredTopics = forumApi
-    .getTopic()
-    .slice(rowsOffset, rowsOffset + rowsPerPage);
+
+  const filtredTopics = data
+    ? data.topics.slice(rowsOffset, rowsOffset + rowsPerPage)
+    : [];
 
   const formikSearch = useFormik({
     initialValues: {
@@ -127,24 +132,30 @@ export const Forum: FC = () => {
           width: "100%",
           overflowY: "auto",
         }}>
-        {filtredTopics.map(item => (
-          <TopicItem
-            key={item.id}
-            isBordered
-            {...item}
-            header={() => (
-              <CardActionArea component={Link} to={`/forum/${item.id}`}>
-                <CardHeader
-                  title={
-                    <Typography variant="h5" component="h2">
-                      Topic {item.id}
-                    </Typography>
-                  }
-                />
-              </CardActionArea>
-            )}
-          />
-        ))}
+        {filtredTopics.length ? (
+          filtredTopics.map(topic => (
+            <TopicItem
+              key={topic.id}
+              isBordered
+              {...topic}
+              header={() => (
+                <CardActionArea component={Link} to={`/forum/${topic.id}`}>
+                  <CardHeader
+                    title={
+                      <Typography variant="h5" component="h2">
+                        {topic.title}
+                      </Typography>
+                    }
+                  />
+                </CardActionArea>
+              )}
+            />
+          ))
+        ) : (
+          <Typography variant="h5" textAlign="center">
+            No topics yet...
+          </Typography>
+        )}
       </List>
       <Box
         sx={{
@@ -154,9 +165,9 @@ export const Forum: FC = () => {
         }}>
         <TablePagination
           component="div"
-          rowsPerPageOptions={[1, 2, 3]}
+          rowsPerPageOptions={BasePerPage}
           colSpan={4}
-          count={forumApi.getTopic().length}
+          count={data ? data.count : 0}
           rowsPerPage={rowsPerPage}
           page={page}
           SelectProps={{

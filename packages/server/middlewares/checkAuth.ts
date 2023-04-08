@@ -1,16 +1,9 @@
 import axios, { AxiosError } from "axios";
-import { YANDEX_URL } from "constants";
 import type { RequestHandler } from "express";
-type YandexUserType = {
-  id: number;
-  first_name: string;
-  second_name: string;
-  display_name: string | null;
-  login: string;
-  avatar: null;
-  email: string;
-  phone: string;
-};
+
+import { BaseStatuses, ErrorMessages,YANDEX_URL } from "../constants";
+import type { YandexUserType } from "../constants/types";
+import { configureError } from "../utils/configureError";
 
 export const axiosInstance = axios.create({
   baseURL: YANDEX_URL,
@@ -19,7 +12,7 @@ export const axiosInstance = axios.create({
   },
   withCredentials: true,
 });
-
+// @ts-ignore
 export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
   axiosInstance
     .get<YandexUserType>(`${YANDEX_URL}/api/v2/auth/user`, {
@@ -31,12 +24,14 @@ export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
       next();
     })
     .catch((e: AxiosError) => {
-      res
-        .status(e.status ?? 401)
-        .set({ "Content-Type": "text/html" })
-        .json({
-          // @ts-ignore
-          error: e.response?.data?.reason ?? e.message,
-        });
+      console.log(e.message);
+      configureError(res, BaseStatuses.NOT_AUTH, ErrorMessages.NOT_AUTH);
+      // res
+      //   .status(e.status ?? 401)
+      //   .set({ "Content-Type": "text/html" })
+      //   .json({
+      //     // @ts-ignore
+      //     error: e.response?.data?.reason ?? e.message,
+      //   });
     });
 };

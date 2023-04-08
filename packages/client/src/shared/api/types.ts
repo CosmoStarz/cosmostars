@@ -16,9 +16,11 @@ export enum HTTPMethods {
 export enum Tags {
   LEADERBOARD = "Leaderboard",
   USER = "User",
+  FORUM = "Forum",
 }
 
 export enum InternalTags {
   TOPICS = "Topics",
   COMMENTS = "Comments",
+  THEME = "Theme",
 }

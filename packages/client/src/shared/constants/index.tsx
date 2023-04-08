@@ -18,6 +18,10 @@ import { GameModalProps } from "@/widgets/GameModal/types";
 
 export const SERVER_URL = `http://localhost:${__SERVER_PORT__}`;
 
+export const NOT_FOUND_STATUS = 404;
+
+export const BasePerPage = [3, 5, 10];
+
 export const baseSpeed = 10;
 
 export enum ProjectileSizes {
@@ -166,6 +170,7 @@ export enum RoutesName {
   LOGIN = "/login",
   REGISTRATION = "/registration",
   FORUM_DETAIL = "/forum/:id",
+  NOT_FOUND = "/not-found",
 }
 
 export const MenuItems: MenuLinkType[] = [

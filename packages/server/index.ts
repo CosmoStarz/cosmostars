@@ -15,6 +15,8 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
   app.use(express.json());
+  // app.use("/theme", themeRoutes);
+  // app.use("/topics", topicRoutes);
   const port = Number(process.env.SERVER_PORT) || 8000;
 
   let vite: ViteDevServer | undefined;
@@ -96,9 +98,15 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
     }
   });
 
-  app.listen(port, () => {
-    console.log(`  ➜ 🎸 Server is listening on port: ${port}`);
-  });
+  try {
+    await sequelize.sync();
+    app.listen(port, () => {
+      console.log(`  ➜ 🎸 Server is listening on port: ${port}`);
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 };
 
 startServer();

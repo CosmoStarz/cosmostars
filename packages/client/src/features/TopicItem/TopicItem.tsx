@@ -11,22 +11,25 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 
+import { forumApi } from "@/shared/constants/mocks";
+
 import { TypographyButton } from "../TypographyButton/TypographyButton";
 import { TopicItemType } from "./types";
 
 export const TopicItem: FC<TopicItemType> = props => {
   const {
     id,
-    author,
-    avatar,
-    commentsCount,
-    content,
+    // TODO: убрать мок, когда прикрутим передачу юзера
+    author = forumApi.getAuthor(),
+    comments_count,
+    description,
     likesCount,
     isBordered,
     header = () => null,
   } = props;
   const [favourite, setFavourite] = useState(false);
   const [likesNumber, setLikesCount] = useState(likesCount ?? 0);
+  const { display_name, login, avatar } = author;
 
   const handleChangeIsLike = () => {
     setFavourite(!favourite);
@@ -52,15 +55,20 @@ export const TopicItem: FC<TopicItemType> = props => {
       {header()}
       <CardHeader
         avatar={
-          <Avatar sx={{ width: 48, height: 48 }} alt={author} src={avatar} />
+          <Avatar
+            sx={{ width: 48, height: 48 }}
+            src={avatar ?? undefined}
+            alt={`${login} avatar`}>
+            {login[0]}
+          </Avatar>
         }
-        title={<Typography variant="h6">{author}</Typography>}
+        title={<Typography variant="h6">{display_name ?? login}</Typography>}
       />
-      <CardContent>{content}</CardContent>
+      <CardContent>{description}</CardContent>
       <CardActions>
         <TypographyButton
           icon={<CommentIcon color="disabled" />}
-          title={`${commentsCount ?? 0} Comments`}
+          title={`${comments_count ?? 0} Comments`}
         />
         <TypographyButton
           icon={<FavoriteIcon color={favourite ? "error" : "disabled"} />}
