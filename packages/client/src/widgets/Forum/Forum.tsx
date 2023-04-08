@@ -1,8 +1,6 @@
 import { ArrowForward, Search } from "@mui/icons-material";
 import {
   Box,
-  CardActionArea,
-  CardHeader,
   IconButton,
   InputAdornment,
   List,
@@ -13,13 +11,13 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { FC, useState } from "react";
-import { Link } from "react-router-dom";
 
 import {
   useAddTopicMutation,
   useGetTopicsQuery,
 } from "@/entities/forum/topics/api";
 import { AddTopic } from "@/features/AddTopic/AddTopic";
+import { GenericList } from "@/features/GenericList/GenericList";
 import { TopicItem } from "@/features/TopicItem/TopicItem";
 import { BasePerPage } from "@/shared/constants";
 import { searchValidation } from "@/shared/constants/validationShemas";
@@ -133,24 +131,12 @@ export const Forum: FC = () => {
           overflowY: "auto",
         }}>
         {filtredTopics.length ? (
-          filtredTopics.map(topic => (
-            <TopicItem
-              key={topic.id}
-              isBordered
-              {...topic}
-              header={() => (
-                <CardActionArea component={Link} to={`/forum/${topic.id}`}>
-                  <CardHeader
-                    title={
-                      <Typography variant="h5" component="h2">
-                        {topic.title}
-                      </Typography>
-                    }
-                  />
-                </CardActionArea>
-              )}
-            />
-          ))
+          <GenericList
+            renderItem={TopicItem}
+            items={filtredTopics}
+            isBordered
+            hasLink
+          />
         ) : (
           <Typography variant="h5" textAlign="center">
             No topics yet...
