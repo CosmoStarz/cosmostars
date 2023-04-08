@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import type { RequestHandler } from "express";
 
-import { BaseStatuses, ErrorMessages,YANDEX_URL } from "../constants";
+import { BaseStatuses, ErrorMessages, YANDEX_URL } from "../constants";
 import type { YandexUserType } from "../constants/types";
 import { configureError } from "../utils/configureError";
 
