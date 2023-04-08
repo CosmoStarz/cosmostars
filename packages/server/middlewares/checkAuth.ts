@@ -12,7 +12,6 @@ export const axiosInstance = axios.create({
   },
   withCredentials: true,
 });
-// @ts-ignore
 export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
   axiosInstance
     .get<YandexUserType>(`${YANDEX_URL}/api/v2/auth/user`, {
@@ -26,12 +25,5 @@ export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
     .catch((e: AxiosError) => {
       console.log(e.message);
       configureError(res, BaseStatuses.NOT_AUTH, ErrorMessages.NOT_AUTH);
-      // res
-      //   .status(e.status ?? 401)
-      //   .set({ "Content-Type": "text/html" })
-      //   .json({
-      //     // @ts-ignore
-      //     error: e.response?.data?.reason ?? e.message,
-      //   });
     });
 };
