@@ -7,6 +7,8 @@ export enum ErrorMessages {
   INVALID_THEME = "Invalid theme name",
   BASE_SERVER_ERROR = "Internal Server Error",
   NOT_AUTH = "User is not authenticated",
+  NOT_EMPTY = "can't be empty",
+  IS_NUMERIC = "can be numeric only",
 }
 
 export enum BaseStatuses {
