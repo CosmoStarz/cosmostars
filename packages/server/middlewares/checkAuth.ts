@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import type { RequestHandler } from "express";
 
 import { BaseStatuses, ErrorMessages, YANDEX_URL } from "../constants";
@@ -22,8 +22,7 @@ export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
     .then(() => {
       next();
     })
-    .catch((e: AxiosError) => {
-      console.log(e.message);
+    .catch(() => {
       configureError(res, BaseStatuses.NOT_AUTH, ErrorMessages.NOT_AUTH);
     });
 };
