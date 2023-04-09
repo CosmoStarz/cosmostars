@@ -3,6 +3,7 @@ import { Sound } from "@/entities/game/ui/Sound/Sound";
 import {
   BaseGameColors,
   baseSpeed,
+  EnemyDamage,
   framesPerShoot,
   maxStarsCount,
   randomInterval,
@@ -20,7 +21,10 @@ import { BaseObject } from "../../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
 import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
-import { incrementScoreByEnemy } from "../../model/store/gameSlice";
+import {
+  decrementLives,
+  incrementScoreByEnemy,
+} from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 import {
@@ -194,12 +198,15 @@ export class GameController {
   private checkCollision(
     projectiles: BaseObject[],
     collidingObject: BaseObject,
-    collidingMethod: () => void
+    collidingMethod: () => void,
+    disableExplosion?: boolean
   ) {
     let isAlive = true;
     const newProjectiles = projectiles.filter(projectile => {
       if (this.isIntersect(collidingObject, projectile)) {
-        this.explosions.push(this.createExplosion(collidingObject.position));
+        if (!disableExplosion) {
+          this.explosions.push(this.createExplosion(collidingObject.position));
+        }
         collidingMethod();
         isAlive = false;
         return false;
@@ -212,11 +219,13 @@ export class GameController {
 
   private checkAllCollisions() {
     this.checkCollision(this.asteroids, this.player, () => {
+      store.dispatch(decrementLives(EnemyDamage.MAX));
       this.end();
     });
 
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
+        store.dispatch(decrementLives(EnemyDamage.MAX));
         this.end();
       }
 
@@ -243,8 +252,13 @@ export class GameController {
           enemy.projectiles,
           this.player,
           () => {
-            this.end();
-          }
+            this.sound.playExplosion();
+            store.dispatch(decrementLives(EnemyDamage.MIN));
+            if (store.getState().game.lives <= 0) {
+              this.end();
+            }
+          },
+          true
         );
         enemy.projectiles = hitPlayer.newProjectiles;
 

@@ -24,6 +24,14 @@ export const BasePerPage = [3, 5, 10];
 
 export const baseSpeed = 10;
 
+export const maxPlayerLives = 3;
+
+export enum EnemyDamage {
+  MAX = maxPlayerLives,
+  MEDIUM = 2,
+  MIN = 1,
+}
+
 export enum ProjectileSizes {
   WIDTH = 5,
   HEIGHT = 20,
@@ -75,7 +83,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     title: "Start",
     startButton: "Start",
     rulesVisibility: true,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.LOOSE]: {
     title: "Looser!",
@@ -83,7 +91,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: LooseRight,
     leftImg: LooseLeft,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.WIN]: {
     title: "Winner!",
@@ -91,7 +99,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: WinRight,
     leftImg: WinLeft,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.PAUSED]: {
     title: "Pause",

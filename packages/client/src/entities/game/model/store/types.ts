@@ -5,4 +5,5 @@ export type GameState = {
   status: GameStatuses;
   isMutedSound: boolean;
   score: number;
+  lives: number;
 };
