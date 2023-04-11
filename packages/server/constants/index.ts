@@ -1,3 +1,4 @@
+export const YANDEX_URL = "https://ya-praktikum.tech";
 export enum ErrorMessages {
   INVALID_USER = "Invalid user id",
   EMPTY_BODY = "Body can`t be empty",
@@ -5,6 +6,7 @@ export enum ErrorMessages {
   NOT_FOUND = "Not found",
   INVALID_THEME = "Invalid theme name",
   BASE_SERVER_ERROR = "Internal Server Error",
+  NOT_AUTH = "User is not authenticated",
   NOT_EMPTY = "can't be empty",
   IS_NUMERIC = "can be numeric only",
 }
@@ -15,6 +17,7 @@ export enum BaseStatuses {
   BAD_REQUEST = 400,
   NOT_FOUND = 404,
   SERVER_ERROR = 500,
+  NOT_AUTH = 401,
 }
 
 export enum ThemeModes {

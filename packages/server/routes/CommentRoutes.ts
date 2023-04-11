@@ -5,9 +5,9 @@ import { ErrorMessages } from "../constants";
 import { createComment } from "../controllers/CommentController";
 import { validate } from "../middlewares/validation";
 
-const router = Router();
+const commentRouter = Router();
 
-router.post(
+commentRouter.post(
   "/",
   validate([
     body("comment", "comment - минимум 2 символа").isLength({ min: 2 }),
@@ -20,4 +20,4 @@ router.post(
   createComment
 );
 
-export default router;
+export default commentRouter;

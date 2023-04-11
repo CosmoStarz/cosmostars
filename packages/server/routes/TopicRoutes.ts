@@ -11,9 +11,9 @@ import {
 import { numberParameter } from "../middlewares/numberParameter";
 import { validate } from "../middlewares/validation";
 
-const router = Router();
+const topicRouter = Router();
 
-router.post(
+topicRouter.post(
   "/",
   validate([
     body("title", "title - минимум 2 символа").isLength({ min: 2 }),
@@ -24,10 +24,10 @@ router.post(
   createTopic
 );
 
-router.get("/", getAllTopic);
+topicRouter.get("/", getAllTopic);
 
-router.get("/:id", numberParameter("id"), getTopicById);
+topicRouter.get("/:id", numberParameter("id"), getTopicById);
 
-router.get("/:id/comments", numberParameter("id"), getByTopicId);
+topicRouter.get("/:id/comments", numberParameter("id"), getByTopicId);
 
-export default router;
+export default topicRouter;
