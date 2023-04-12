@@ -6,13 +6,13 @@ dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
+  define: {
+    __SERVER_PORT__: process.env.SERVER_PORT || 8000,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  define: {
-    __SERVER_PORT__: process.env.SERVER_PORT || 8000,
   },
   ssr: {
     format: "cjs",
