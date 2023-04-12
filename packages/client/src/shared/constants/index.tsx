@@ -24,12 +24,10 @@ export const BasePerPage = [3, 5, 10];
 
 export const baseSpeed = 10;
 
-export const maxPlayerLives = 3;
-
-export enum EnemyDamage {
-  MAX = maxPlayerLives,
-  MEDIUM = 2,
+export enum PlayerLives {
   MIN = 1,
+  MEDIUM = 2,
+  MAX = 3,
 }
 
 export enum ProjectileSizes {
@@ -57,6 +55,12 @@ export enum BaseGameColors {
   WHITE = "#ffffff",
 }
 
+export const hitEffectOpacity = 0.2;
+
+export const hitEffectDuration = 15;
+
+export const gameBorderWidth = 2;
+
 export const maxStarsCount = 100;
 
 export const StarVelocity: basicVelocity = {
@@ -68,9 +72,6 @@ export enum StarRadius {
   MIN = 1,
   MAX = 3,
 }
-
-export const canvasTextWidth = 50;
-export const canvasTextFont = "bold 32px Arial";
 
 export const EnemyPoints = {
   BASIC: 100,

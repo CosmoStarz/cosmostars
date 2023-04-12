@@ -3,9 +3,11 @@ import { Sound } from "@/entities/game/ui/Sound/Sound";
 import {
   BaseGameColors,
   baseSpeed,
-  EnemyDamage,
   framesPerShoot,
+  hitEffectDuration,
+  hitEffectOpacity,
   maxStarsCount,
+  PlayerLives,
   randomInterval,
   StarRadius,
   StarVelocity,
@@ -29,6 +31,7 @@ import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 import {
   initialExplosionSize,
+  initialPlayerSize,
   SpriteConstants,
 } from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
@@ -37,6 +40,7 @@ import { GameControllerType } from "./types";
 export class GameController {
   private scene: Canvas;
   public player: Player;
+  public framePlayerHit = 0;
   private frames = 0;
   private enemyGrids: EnemyGrid[] = [];
   private stars: Star[] = [];
@@ -61,6 +65,7 @@ export class GameController {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       type: SpriteConstants.PLAYER,
+      size: initialPlayerSize,
       projectileType: SpriteConstants.PLAYER_PROJECTILE,
     });
   }
@@ -177,6 +182,17 @@ export class GameController {
     });
   }
 
+  private drawHitEffect() {
+    if (
+      this.framePlayerHit &&
+      this.frames <= this.framePlayerHit + hitEffectDuration
+    ) {
+      this.scene.fillCanvas(BaseGameColors.RED, hitEffectOpacity);
+    } else {
+      this.framePlayerHit = 0;
+    }
+  }
+
   private isIntersect(object: BaseObject, projectile: BaseObject) {
     return (
       object.position.x < projectile.position.x + projectile.size.width &&
@@ -219,13 +235,13 @@ export class GameController {
 
   private checkAllCollisions() {
     this.checkCollision(this.asteroids, this.player, () => {
-      store.dispatch(decrementLives(EnemyDamage.MAX));
+      store.dispatch(decrementLives(PlayerLives.MAX));
       this.end();
     });
 
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
-        store.dispatch(decrementLives(EnemyDamage.MAX));
+        store.dispatch(decrementLives(PlayerLives.MAX));
         this.end();
       }
 
@@ -252,10 +268,12 @@ export class GameController {
           enemy.projectiles,
           this.player,
           () => {
-            this.sound.playExplosion();
-            store.dispatch(decrementLives(EnemyDamage.MIN));
-            if (store.getState().game.lives <= 0) {
+            store.dispatch(decrementLives(PlayerLives.MIN));
+            if (this.player.lives <= 0) {
               this.end();
+            } else {
+              this.sound.playExplosion();
+              this.framePlayerHit = this.frames;
             }
           },
           true
@@ -290,6 +308,7 @@ export class GameController {
     this.watchEnemiesGone();
     this.watchAsteroidsGone();
     this.generateEnemies();
+    this.drawHitEffect();
   }
 
   public clearGameState() {
@@ -299,5 +318,6 @@ export class GameController {
     this.explosions = [];
     this.asteroids = [];
     this.frames = 0;
+    this.framePlayerHit = 0;
   }
 }

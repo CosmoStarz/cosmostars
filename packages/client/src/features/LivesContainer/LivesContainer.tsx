@@ -4,21 +4,34 @@ import { List, ListItem, ListItemIcon } from "@mui/material";
 import { FC, useMemo } from "react";
 
 import { playerLivesSelector } from "@/entities/game/model/store";
-import { maxPlayerLives } from "@/shared/constants";
+import {
+  BaseGameColors,
+  gameBorderWidth,
+  PlayerLives,
+} from "@/shared/constants";
 import { useAppSelector } from "@/shared/hooks/store";
+
+import { GameBlock } from "../GameBlock/GameBlock";
+import { GameBlockPosition } from "../GameBlock/types";
 
 export const LivesContainer: FC = () => {
   const lives = useAppSelector(playerLivesSelector);
-  const array = [...Array(maxPlayerLives).keys()];
+  const array = [...Array(PlayerLives.MAX).keys()];
 
   const healthArray = useMemo(() => {
     return array.map(item => (
-      <ListItem key={item} sx={{ pl: 0 }}>
+      <ListItem key={item} sx={{ px: 1 }}>
         <ListItemIcon sx={{ minWidth: "auto" }}>
           {item + 1 <= lives ? (
-            <FavoriteIcon color="error" sx={{ fontSize: 30 }} />
+            <FavoriteIcon
+              color="error"
+              sx={{
+                stroke: BaseGameColors.WHITE,
+                strokeWidth: gameBorderWidth,
+              }}
+            />
           ) : (
-            <FavoriteBorderIcon color="disabled" sx={{ fontSize: 30 }} />
+            <FavoriteBorderIcon color="disabled" />
           )}
         </ListItemIcon>
       </ListItem>
@@ -26,14 +39,14 @@ export const LivesContainer: FC = () => {
   }, [lives]);
 
   return (
-    <List
-      sx={{
-        display: "flex",
-        position: "fixed",
-        top: "10px",
-        right: "5px",
-      }}>
-      {healthArray}
-    </List>
+    <GameBlock position={GameBlockPosition.RIGHT}>
+      <List
+        sx={{
+          display: "flex",
+          p: "0 4px",
+        }}>
+        {healthArray}
+      </List>
+    </GameBlock>
   );
 };

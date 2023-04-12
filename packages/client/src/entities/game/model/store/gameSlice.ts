@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import {
-  EnemyDamage,
-  EnemyPoints,
-  GameStatuses,
-  maxPlayerLives,
-} from "@/shared/constants";
+import { EnemyPoints, GameStatuses, PlayerLives } from "@/shared/constants";
 
 import { GameState } from "./types";
 
@@ -14,7 +9,7 @@ const initialState: GameState = {
   isModalOpened: false,
   isMutedSound: false,
   score: 0,
-  lives: maxPlayerLives,
+  lives: PlayerLives.MAX,
 };
 
 export const gameSlice = createSlice({
@@ -34,12 +29,12 @@ export const gameSlice = createSlice({
     ) => {
       state.score += EnemyPoints[payload];
     },
-    decrementLives: (state, { payload }: PayloadAction<EnemyDamage>) => {
+    decrementLives: (state, { payload }: PayloadAction<PlayerLives>) => {
       state.lives -= payload;
     },
     resetGameState: state => {
       state.score = 0;
-      state.lives = maxPlayerLives;
+      state.lives = PlayerLives.MAX;
     },
   },
 });
