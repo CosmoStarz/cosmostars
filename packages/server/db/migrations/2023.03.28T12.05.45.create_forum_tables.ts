@@ -80,6 +80,7 @@ export const up: Migration = async ({ context: sequelize }) => {
         {
           id: {
             type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
           },

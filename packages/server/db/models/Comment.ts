@@ -53,6 +53,11 @@ export class Comment extends Model {
   @CreatedAt
   creation_date!: Date;
 
+  @Column({
+    type: DataTypes.INTEGER,
+  })
+  likes_count!: number;
+
   @AfterCreate
   static async addIncrementCommentsCount(instance: Comment) {
     const topic: Topic | null = await Topic.findByPk(instance.topic_id);
