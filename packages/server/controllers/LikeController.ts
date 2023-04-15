@@ -9,12 +9,12 @@ export const createLike: RequestHandler = async (req, res) => {
 };
 
 export const deleteLike: RequestHandler = async (req, res) => {
-  const { comment_id } = req.params;
+  const { comment_id } = req.body;
   await Like.destroy({
     where: {
       user_id: req.user.id,
       comment_id: comment_id,
     },
   });
-  return res.status(BaseStatuses.OK);
+  return res.status(BaseStatuses.OK).json();
 };
