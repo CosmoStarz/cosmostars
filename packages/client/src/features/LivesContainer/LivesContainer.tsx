@@ -16,10 +16,9 @@ import { GameBlockPosition } from "../GameBlock/types";
 
 export const LivesContainer: FC = () => {
   const lives = useAppSelector(playerLivesSelector);
-  const array = [...Array(PlayerLives.MAX).keys()];
 
   const healthArray = useMemo(() => {
-    return array.map(item => (
+    return [...Array(PlayerLives.MAX).keys()].map(item => (
       <ListItem key={item} sx={{ px: 1 }}>
         <ListItemIcon sx={{ minWidth: "auto" }}>
           {item + 1 <= lives ? (
