@@ -1,6 +1,6 @@
 import {
   initialCoords,
-  initialObjectSize,
+  InitialSizes,
   initialVelocity,
 } from "@/shared/constants";
 
@@ -24,7 +24,7 @@ export class BaseObject {
     this.type = baseProps.type;
     this.velocity = baseProps.velocity ?? this.initialVelocity;
     this.position = baseProps.position ?? this.initialPosition;
-    this.size = baseProps.size ?? initialObjectSize;
+    this.size = baseProps.size ?? InitialSizes.DEFAULT;
 
     this.sprite = this.type ? this.generateSprite(this.type) : undefined;
   }

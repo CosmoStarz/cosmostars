@@ -6,6 +6,7 @@ import {
   framesPerShoot,
   hitEffectDuration,
   hitEffectOpacity,
+  InitialSizes,
   maxStarsCount,
   PlayerLives,
   randomInterval,
@@ -29,11 +30,7 @@ import {
 } from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
-import {
-  initialExplosionSize,
-  initialPlayerSize,
-  SpriteConstants,
-} from "../../ui/Sprite/SpriteConfig";
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
@@ -65,7 +62,7 @@ export class GameController {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       type: SpriteConstants.PLAYER,
-      size: initialPlayerSize,
+      size: InitialSizes[SpriteConstants.PLAYER],
       projectileType: SpriteConstants.PLAYER_PROJECTILE,
     });
   }
@@ -130,7 +127,7 @@ export class GameController {
       scene: this.scene,
       position: position,
       type: SpriteConstants.EXPLOSION,
-      size: initialExplosionSize,
+      size: InitialSizes[SpriteConstants.EXPLOSION],
     });
   }
 
