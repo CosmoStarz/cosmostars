@@ -3,6 +3,8 @@ import EnemyImage from "@/assets/images/game-model-enemy.png";
 import EnemyProjectileImage from "@/assets/images/game-model-enemy-projectile.png";
 import ExplosionSprite from "@/assets/images/game-model-explosion.png";
 import PlayerImage from "@/assets/images/game-model-player.png";
+import PlayerDamagedImage from "@/assets/images/game-model-player-damaged.png";
+import PlayerDestroyedImage from "@/assets/images/game-model-player-destroyed.png";
 import PlayerProjectileImage from "@/assets/images/game-model-player-projectile.png";
 
 import { basicSize } from "../../model/BaseObject/types";
@@ -20,6 +22,11 @@ export const initialExplosionSize: basicSize = {
   height: 96,
 };
 
+export const initialPlayerSize: basicSize = {
+  height: 70,
+  width: 55,
+};
+
 export enum SpriteConstants {
   PLAYER = 1,
   ENEMY_DEFAULT = 2,
@@ -29,10 +36,22 @@ export enum SpriteConstants {
   ASTEROID = 6,
 }
 
+export enum PlayerSkinsTypes {
+  DESTROYED = 1,
+  DAMAGED = 2,
+  BASE = 3,
+}
+
+export const PlayerSkins: Record<PlayerSkinsTypes, string> = {
+  [PlayerSkinsTypes.BASE]: PlayerImage,
+  [PlayerSkinsTypes.DAMAGED]: PlayerDamagedImage,
+  [PlayerSkinsTypes.DESTROYED]: PlayerDestroyedImage,
+};
+
 export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
   [SpriteConstants.PLAYER]: {
-    src: PlayerImage,
-    ratio: 8,
+    src: PlayerSkins[PlayerSkinsTypes.BASE],
+    frames: 7,
   },
   [SpriteConstants.ENEMY_DEFAULT]: {
     src: EnemyImage,
