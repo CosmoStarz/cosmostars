@@ -274,15 +274,11 @@ exports[`Forum Topic Page should match snapshot 1`] = `
           </button>
         </div>
       </form>
-      <ul
-        class="MuiList-root MuiList-padding css-1by5a8o-MuiList-root"
+      <h6
+        class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
       >
-        <h6
-          class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
-        >
-          No comments yet...
-        </h6>
-      </ul>
+        No comments yet...
+      </h6>
     </div>
   </div>
 </div>
