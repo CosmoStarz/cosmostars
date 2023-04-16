@@ -15,6 +15,7 @@ export const deleteLike: RequestHandler = async (req, res) => {
       user_id: req.user.id,
       comment_id: comment_id,
     },
+    individualHooks: true,
   });
   return res.status(BaseStatuses.OK).json();
 };

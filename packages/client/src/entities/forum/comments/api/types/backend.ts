@@ -13,4 +13,6 @@ export type CommentDataRequest = {
   author_id: number;
   creation_date: Date;
   replies: CommentDataRequest[];
+  likes_count: number;
+  "likes.user_id": number | null;
 };
