@@ -2,7 +2,7 @@ import {
   baseSpeed,
   basicGridSpeed,
   EnemyGridSizes,
-  initialObjectSize,
+  InitialSizes,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
@@ -35,8 +35,8 @@ export class EnemyGrid extends BaseObject {
 
   private get gridSize() {
     return {
-      width: this.columns * initialObjectSize.width,
-      height: this.rows * initialObjectSize.height,
+      width: this.columns * InitialSizes[SpriteConstants.ENEMY_1].width,
+      height: this.rows * InitialSizes[SpriteConstants.ENEMY_1].height,
     };
   }
 
@@ -56,18 +56,28 @@ export class EnemyGrid extends BaseObject {
 
   protected draw() {
     for (let x = 0; x < this.columns; x++) {
+      const type = getRandomNumber(
+        SpriteConstants.ENEMY_1,
+        SpriteConstants.UFO_2
+      );
+      const projectileType =
+        type < SpriteConstants.UFO_1
+          ? SpriteConstants.ENEMY_PROJECTILE
+          : SpriteConstants.UFO_PROJECTILE;
+
       for (let y = 0; y < this.rows; y++) {
         this.enemies.push(
           new ShootingObject({
             scene: this.scene,
             position: {
-              x: x * initialObjectSize.width,
-              y: y * initialObjectSize.width,
+              x: x * InitialSizes[SpriteConstants.ENEMY_1].width,
+              y: y * InitialSizes[SpriteConstants.ENEMY_1].height,
             },
+            size: InitialSizes[SpriteConstants.ENEMY_1],
             velocity: this.velocity,
             projectileSpeed: baseSpeed,
-            type: SpriteConstants.ENEMY_DEFAULT,
-            projectileType: SpriteConstants.ENEMY_PROJECTILE,
+            type,
+            projectileType,
           })
         );
       }
@@ -91,7 +101,7 @@ export class EnemyGrid extends BaseObject {
       this.position.x <= 0
     ) {
       this.velocity.dx = -this.velocity.dx;
-      this.velocity.dy = initialObjectSize.height;
+      this.velocity.dy = InitialSizes[SpriteConstants.ENEMY_1].height;
     }
   }
 

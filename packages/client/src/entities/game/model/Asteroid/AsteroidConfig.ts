@@ -1,11 +1,8 @@
+import { InitialSizes } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
 import { Canvas } from "../../ui/Canvas/Canvas";
-import {
-  initialExplosionSize,
-  SpinTypes,
-  SpriteConstants,
-} from "../../ui/Sprite/SpriteConfig";
+import { SpinTypes, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 
 export const asteroidFrequency = 200;
 
@@ -25,10 +22,14 @@ export enum AsteroidAligns {
 }
 
 export const generateAsteroidConfig = (canvas: Canvas) => {
+  const asteroidType = getRandomNumber(
+    SpriteConstants.ASTEROID_1,
+    SpriteConstants.ASTEROID_3
+  );
   const baseAsteroidProps = {
     scene: canvas,
-    type: SpriteConstants.ASTEROID,
-    size: initialExplosionSize,
+    type: asteroidType,
+    size: InitialSizes[SpriteConstants.EXPLOSION],
   };
   const yBasePosition = getRandomNumber(1, canvas.height / 2);
   const type = getRandomNumber(AsteroidAligns.RIGHT, AsteroidAligns.LEFT);
@@ -45,7 +46,7 @@ export const generateAsteroidConfig = (canvas: Canvas) => {
           dy: -velocity,
         },
         position: {
-          x: canvas.width - initialExplosionSize.width,
+          x: canvas.width - InitialSizes[SpriteConstants.EXPLOSION].width,
           y: yBasePosition,
         },
         angle: -angle,
