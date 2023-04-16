@@ -26,12 +26,14 @@ import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
 import {
   decrementLives,
+  incrementLives,
   incrementScoreByEnemy,
 } from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
-import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
+import { PlayerState, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
+import { BonusController } from "../BonusController/BonusController";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
 export class GameController {
@@ -46,6 +48,7 @@ export class GameController {
   private randomInterval: number;
   private sound: Sound;
   private end: () => void;
+  private bonusController: BonusController;
 
   constructor(props: GameControllerType) {
     this.scene = props.scene;
@@ -53,6 +56,10 @@ export class GameController {
     this.end = props.end;
     this.player = this.initialPlayer;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
+    this.bonusController = new BonusController({
+      scene: this.scene,
+      player: this.player,
+    });
 
     this.generateStars();
   }
@@ -110,6 +117,12 @@ export class GameController {
       this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
     }
     this.frames += 1;
+  }
+
+  private generateBonuses() {
+    if (this.frames > 500 && this.bonusController.bonuses.length !== 1) {
+      this.bonusController.createBonus();
+    }
   }
 
   private watchAsteroidsGone() {
@@ -236,6 +249,26 @@ export class GameController {
       this.end();
     });
 
+    this.bonusController.bonuses = this.bonusController.bonuses.filter((bonus) => {
+      if (this.isIntersect(bonus, this.player)) {
+        switch (bonus.type) {
+          case SpriteConstants.BONUS_LIVE: {
+            store.dispatch(incrementLives(PlayerLives.MIN));
+            return false;
+          }
+          case SpriteConstants.BONUS_POWER: {
+            this.player.updateBonusState(PlayerState.POWER);
+            return false;
+          }
+          case SpriteConstants.BONUS_SHIELD: {
+            this.player.updateBonusState(PlayerState.SHIELD);
+            return false;
+          }
+        }
+      }
+      return true;
+    })
+
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
         store.dispatch(decrementLives(PlayerLives.MAX));
@@ -298,18 +331,23 @@ export class GameController {
   }
 
   public update() {
+    console.log(this.player);
+    console.log(this.bonusController.bonuses);
     this.watchStarsGone();
     this.watchExplosionsDone();
+    this.bonusController.watchBonusGone();
     this.player.update();
     this.checkAllCollisions();
     this.watchEnemiesGone();
     this.watchAsteroidsGone();
     this.generateEnemies();
+    this.generateBonuses();
     this.drawHitEffect();
   }
 
   public clearGameState() {
     this.player.clear();
+    this.bonusController.clear();
     this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
     this.explosions = [];

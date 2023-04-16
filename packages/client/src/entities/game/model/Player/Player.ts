@@ -1,10 +1,12 @@
 import { store } from "@/app/store";
 
-import { PlayerSkins, PlayerSkinsTypes } from "../../ui/Sprite/SpriteConfig";
+import { PlayerSkins, PlayerSkinsTypes, PlayerState } from "../../ui/Sprite/SpriteConfig";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
 import { shootingObjectProps } from "../ShootingObject/types";
 
 export class Player extends ShootingObject {
+  public bonusState = PlayerState.DEFAULT;
+
   constructor(props: shootingObjectProps) {
     super(props);
     this.position = this.startPosition;
@@ -28,8 +30,8 @@ export class Player extends ShootingObject {
       this.sprite.image.src = Object.values(PlayerSkinsTypes).includes(
         this.lives
       )
-        ? PlayerSkins[this.lives as PlayerSkinsTypes]
-        : PlayerSkins[PlayerSkinsTypes.BASE];
+        ? PlayerSkins[this.bonusState][this.lives as PlayerSkinsTypes]
+        : PlayerSkins[this.bonusState][PlayerSkinsTypes.BASE];
     }
   }
 
@@ -43,6 +45,14 @@ export class Player extends ShootingObject {
     }
   }
 
+  public updateBonusState(newBonusState: PlayerState) {
+    this.bonusState = newBonusState;
+    const powerTimeout = setTimeout(() => {
+      this.bonusState = PlayerState.DEFAULT;
+    }, 5000);
+    clearTimeout(powerTimeout);
+  }
+
   public update() {
     super.update();
     this.updateSkin();
@@ -51,6 +61,7 @@ export class Player extends ShootingObject {
 
   public clear() {
     super.clear();
+    this.bonusState = PlayerState.DEFAULT;
     this.position = this.startPosition;
     this.velocity.dx = 0;
   }

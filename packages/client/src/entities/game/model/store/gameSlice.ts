@@ -32,6 +32,9 @@ export const gameSlice = createSlice({
     decrementLives: (state, { payload }: PayloadAction<PlayerLives>) => {
       state.lives -= payload;
     },
+    incrementLives: (state, { payload }: PayloadAction<PlayerLives>) => {
+      state.lives += payload;
+    },
     resetGameState: state => {
       state.score = 0;
       state.lives = PlayerLives.MAX;
@@ -45,6 +48,7 @@ export const {
   incrementScoreByEnemy,
   resetGameState,
   decrementLives,
+  incrementLives,
 } = gameSlice.actions;
 
 export const gameReducer = gameSlice.reducer;

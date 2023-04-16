@@ -239,6 +239,18 @@ export const InitialSizes: Record<string | number, basicSize> = {
     width: 24,
     height: 17,
   },
+  [SpriteConstants.BONUS_LIVE]: {
+    width: 40,
+    height: 36,
+  },
+  [SpriteConstants.BONUS_SHIELD]: {
+    width: 40,
+    height: 36,
+  },
+  [SpriteConstants.BONUS_POWER]: {
+    width: 40,
+    height: 41,
+  },
 };
 
 export const basicGridSpeed = 3;

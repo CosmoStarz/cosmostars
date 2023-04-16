@@ -16,7 +16,7 @@ export class BaseObject {
   public velocity: basicVelocity;
   public position: elementCoords;
   public size: basicSize;
-  private type: SpriteConstants | undefined;
+  public type: SpriteConstants | undefined;
   public sprite: Sprite | undefined;
 
   constructor(baseProps: baseObjectProps) {
