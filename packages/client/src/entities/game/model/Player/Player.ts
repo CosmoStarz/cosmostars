@@ -1,3 +1,6 @@
+import { store } from "@/app/store";
+
+import { PlayerSkins, PlayerSkinsTypes } from "../../ui/Sprite/SpriteConfig";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
 import { shootingObjectProps } from "../ShootingObject/types";
 
@@ -16,9 +19,18 @@ export class Player extends ShootingObject {
     };
   }
 
-  public update() {
-    super.update();
-    this.watchWallsProtection();
+  public get lives() {
+    return store.getState().game.lives;
+  }
+
+  private updateSkin() {
+    if (this.sprite) {
+      this.sprite.image.src = Object.values(PlayerSkinsTypes).includes(
+        this.lives
+      )
+        ? PlayerSkins[this.lives as PlayerSkinsTypes]
+        : PlayerSkins[PlayerSkinsTypes.BASE];
+    }
   }
 
   private watchWallsProtection() {
@@ -29,6 +41,12 @@ export class Player extends ShootingObject {
     if (this.position.x > this.scene.width - this.size.width) {
       this.position.x = this.scene.width - this.size.width;
     }
+  }
+
+  public update() {
+    super.update();
+    this.updateSkin();
+    this.watchWallsProtection();
   }
 
   public clear() {

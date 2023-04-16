@@ -7,7 +7,7 @@ import { SpriteConfigType, SpriteType } from "./types";
 // класс для отрисовки анимированной картинки
 export class Sprite {
   private canvas: Canvas;
-  private image: HTMLImageElement;
+  public image: HTMLImageElement;
   private objectSize: basicSize;
   private objectPosition: elementCoords;
   private spriteSize: basicSize;

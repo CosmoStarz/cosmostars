@@ -4,7 +4,10 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
+  hitEffectDuration,
+  hitEffectOpacity,
   maxStarsCount,
+  PlayerLives,
   randomInterval,
   StarRadius,
   StarVelocity,
@@ -20,11 +23,15 @@ import { BaseObject } from "../../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
 import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
-import { incrementScoreByEnemy } from "../../model/store/gameSlice";
+import {
+  decrementLives,
+  incrementScoreByEnemy,
+} from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
 import {
   initialExplosionSize,
+  initialPlayerSize,
   SpriteConstants,
 } from "../../ui/Sprite/SpriteConfig";
 import { GameControllerType } from "./types";
@@ -33,6 +40,7 @@ import { GameControllerType } from "./types";
 export class GameController {
   private scene: Canvas;
   public player: Player;
+  public framePlayerHit = 0;
   private frames = 0;
   private enemyGrids: EnemyGrid[] = [];
   private stars: Star[] = [];
@@ -57,6 +65,7 @@ export class GameController {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       type: SpriteConstants.PLAYER,
+      size: initialPlayerSize,
       projectileType: SpriteConstants.PLAYER_PROJECTILE,
     });
   }
@@ -173,6 +182,17 @@ export class GameController {
     });
   }
 
+  private drawHitEffect() {
+    if (
+      this.framePlayerHit &&
+      this.frames <= this.framePlayerHit + hitEffectDuration
+    ) {
+      this.scene.fillCanvas(BaseGameColors.RED, hitEffectOpacity);
+    } else {
+      this.framePlayerHit = 0;
+    }
+  }
+
   private isIntersect(object: BaseObject, projectile: BaseObject) {
     return (
       object.position.x < projectile.position.x + projectile.size.width &&
@@ -194,12 +214,15 @@ export class GameController {
   private checkCollision(
     projectiles: BaseObject[],
     collidingObject: BaseObject,
-    collidingMethod: () => void
+    collidingMethod: () => void,
+    disableExplosion?: boolean
   ) {
     let isAlive = true;
     const newProjectiles = projectiles.filter(projectile => {
       if (this.isIntersect(collidingObject, projectile)) {
-        this.explosions.push(this.createExplosion(collidingObject.position));
+        if (!disableExplosion) {
+          this.explosions.push(this.createExplosion(collidingObject.position));
+        }
         collidingMethod();
         isAlive = false;
         return false;
@@ -212,11 +235,13 @@ export class GameController {
 
   private checkAllCollisions() {
     this.checkCollision(this.asteroids, this.player, () => {
+      store.dispatch(decrementLives(PlayerLives.MAX));
       this.end();
     });
 
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
+        store.dispatch(decrementLives(PlayerLives.MAX));
         this.end();
       }
 
@@ -243,8 +268,15 @@ export class GameController {
           enemy.projectiles,
           this.player,
           () => {
-            this.end();
-          }
+            store.dispatch(decrementLives(PlayerLives.MIN));
+            if (this.player.lives <= 0) {
+              this.end();
+            } else {
+              this.sound.playExplosion();
+              this.framePlayerHit = this.frames;
+            }
+          },
+          true
         );
         enemy.projectiles = hitPlayer.newProjectiles;
 
@@ -276,6 +308,7 @@ export class GameController {
     this.watchEnemiesGone();
     this.watchAsteroidsGone();
     this.generateEnemies();
+    this.drawHitEffect();
   }
 
   public clearGameState() {
@@ -285,5 +318,6 @@ export class GameController {
     this.explosions = [];
     this.asteroids = [];
     this.frames = 0;
+    this.framePlayerHit = 0;
   }
 }
