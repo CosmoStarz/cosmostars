@@ -2,6 +2,7 @@ import type { RequestHandler } from "express";
 
 import { BaseStatuses } from "../constants";
 import { Comment } from "../db/models/Comment";
+import { Like } from "../db/models/Like";
 
 export const createComment: RequestHandler = async (req, res) => {
   const comment = await Comment.create({ ...req.body });
@@ -12,12 +13,21 @@ export const getByTopicId: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const comments: Comment[] = await Comment.findAll({
     raw: true,
+    include: {
+      model: Like,
+      attributes: ["user_id"],
+      where: {
+        user_id: req.user.id,
+      },
+      required: false,
+    },
     where: { topic_id: id },
     order: [
       ["id", "ASC"],
       ["parent_id", "ASC NULLS FIRST"],
     ],
   });
+
   return res.status(BaseStatuses.OK).json(commentsToTree2(comments));
 };
 

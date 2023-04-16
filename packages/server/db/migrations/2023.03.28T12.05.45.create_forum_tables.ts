@@ -80,6 +80,7 @@ export const up: Migration = async ({ context: sequelize }) => {
         {
           id: {
             type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
           },
@@ -95,11 +96,6 @@ export const up: Migration = async ({ context: sequelize }) => {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
           },
-          status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-            allowNull: false,
-          },
         },
         { transaction: t }
       ),
@@ -108,6 +104,7 @@ export const up: Migration = async ({ context: sequelize }) => {
         {
           id: {
             type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true,
           },

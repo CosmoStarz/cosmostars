@@ -19,7 +19,8 @@ export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
         Cookie: req.headers.cookie,
       },
     })
-    .then(() => {
+    .then(res => {
+      req.user = res.data;
       next();
     })
     .catch(() => {
