@@ -21,6 +21,13 @@ export const SERVER_URL = `http://localhost:${__SERVER_PORT__}`;
 
 export const NOT_FOUND_STATUS = 404;
 
+export const MinimizeWidth = 2;
+
+export enum CommentFrameWidth {
+  MIN = 40,
+  MAX = 100,
+}
+
 export const BasePerPage = [3, 5, 10];
 
 export const baseSpeed = 10;

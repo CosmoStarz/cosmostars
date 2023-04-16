@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import {
+  AfterCreate,
+  AfterDestroy,
   BelongsTo,
   Column,
   ForeignKey,
@@ -27,8 +29,15 @@ export class Like extends Model {
   })
   user_id!: number;
 
-  @Column({
-    type: DataTypes.BOOLEAN,
-  })
-  status!: boolean;
+  @AfterCreate
+  static async addIncrementLikesCount(instance: Like) {
+    const comment: Comment | null = await Comment.findByPk(instance.comment_id);
+    await comment?.increment("likes_count");
+  }
+
+  @AfterDestroy
+  static async decrementLikesCount(instance: Like) {
+    const comment: Comment | null = await Comment.findByPk(instance.comment_id);
+    await comment?.decrement("likes_count");
+  }
 }
