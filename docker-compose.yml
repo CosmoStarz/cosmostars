@@ -17,7 +17,7 @@ services:
           - SERVER_PORT=${SERVER_PORT}
     server:
         container_name: prakticum-server
-        image: prackicum-server
+        image: prakticum-server
         build:
             context: .
             dockerfile: Dockerfile.server
@@ -39,4 +39,3 @@ services:
         POSTGRES_DB: ${POSTGRES_DB}
       volumes:
         - ./tmp/pgdata:/var/lib/postgresql/data
-
