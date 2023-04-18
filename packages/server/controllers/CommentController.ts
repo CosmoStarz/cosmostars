@@ -3,9 +3,15 @@ import type { RequestHandler } from "express";
 import { BaseStatuses } from "../constants";
 import { Comment } from "../db/models/Comment";
 import { Like } from "../db/models/Like";
+import { User } from "../db/models/User";
 
 export const createComment: RequestHandler = async (req, res) => {
-  const comment = await Comment.create({ ...req.body });
+  // Comment.belongsTo(User);
+  const comment = await Comment.create({
+    ...req.body,
+    author_id: req.user.ya_id,
+  });
+  await comment.reload({ include: User });
   return res.status(BaseStatuses.CREATED).json(comment);
 };
 
@@ -13,14 +19,20 @@ export const getByTopicId: RequestHandler = async (req, res) => {
   const { id } = req.params;
   const comments: Comment[] = await Comment.findAll({
     raw: true,
-    include: {
-      model: Like,
-      attributes: ["user_id"],
-      where: {
-        user_id: req.user.id,
+    nest: true,
+    include: [
+      {
+        model: Like,
+        attributes: ["user_id"],
+        where: {
+          user_id: req.user.ya_id,
+        },
+        required: false,
       },
-      required: false,
-    },
+      {
+        model: User,
+      },
+    ],
     where: { topic_id: id },
     order: [
       ["id", "ASC"],
