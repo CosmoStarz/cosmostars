@@ -12,6 +12,7 @@ import {
 
 import { Like } from "./Like";
 import { Topic } from "./Topic";
+import { User } from "./User";
 
 @Table({
   tableName: "comments",
@@ -44,11 +45,12 @@ export class Comment extends Model {
   @HasMany(() => Like)
   likes!: Like[];
 
-  @Column({
-    type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
+  @ForeignKey(() => User)
+  @Column(DataTypes.INTEGER)
   author_id!: string;
+
+  @BelongsTo(() => User)
+  author!: User;
 
   @CreatedAt
   creation_date!: Date;

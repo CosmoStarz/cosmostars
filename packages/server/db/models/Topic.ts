@@ -1,7 +1,16 @@
 import { DataTypes } from "sequelize";
-import { Column, CreatedAt, HasMany, Model, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  Column,
+  CreatedAt,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+} from "sequelize-typescript";
 
 import { Comment } from "./Comment";
+import { User } from "./User";
 
 @Table({
   tableName: "topics",
@@ -28,11 +37,12 @@ export class Topic extends Model {
   })
   comments_count!: number;
 
-  @Column({
-    type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
+  @ForeignKey(() => User)
+  @Column(DataTypes.INTEGER)
   author_id!: string;
+
+  @BelongsTo(() => User)
+  author!: User;
 
   @CreatedAt
   creation_date!: Date;
