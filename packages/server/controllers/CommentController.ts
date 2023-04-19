@@ -6,12 +6,16 @@ import { Like } from "../db/models/Like";
 import { User } from "../db/models/User";
 
 export const createComment: RequestHandler = async (req, res) => {
-  // Comment.belongsTo(User);
   const comment = await Comment.create({
     ...req.body,
     author_id: req.user.ya_id,
   });
-  await comment.reload({ include: User });
+  await comment.reload({
+    include: {
+      model: User,
+      attributes: ["ya_id", "login", "display_name", "avatar"],
+    },
+  });
   return res.status(BaseStatuses.CREATED).json(comment);
 };
 
@@ -31,6 +35,7 @@ export const getByTopicId: RequestHandler = async (req, res) => {
       },
       {
         model: User,
+        attributes: ["ya_id", "login", "display_name", "avatar"],
       },
     ],
     where: { topic_id: id },
