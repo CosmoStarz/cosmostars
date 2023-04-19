@@ -2,7 +2,7 @@
   "name": "cosmostars",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn && node init.js && lerna clean --yes && yarn && lerna bootstrap",
+    "bootstrap": "yarn --network-timeout 100000 && node init.js && lerna clean --yes && yarn && lerna bootstrap",
     "build": "lerna run build",
     "dev:client": "lerna run dev  --scope=client",
     "dev:server": "lerna run dev --scope=server",
