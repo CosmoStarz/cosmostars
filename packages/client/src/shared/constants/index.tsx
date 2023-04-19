@@ -13,7 +13,7 @@ import {
   basicVelocity,
 } from "@/entities/game/model/BaseObject/types";
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
-import { SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
+import { PlayerState, SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
@@ -58,6 +58,13 @@ export const hitEffectDuration = 15;
 export const gameBorderWidth = 2;
 
 export const maxStarsCount = 100;
+
+export const PoweredShootingInterval = 80;
+
+export const BonusTimeouts: Record<PlayerState.POWER | PlayerState.SHIELD, number> = {
+  [PlayerState.POWER]: 4000,
+  [PlayerState.SHIELD]: 10000,
+};
 
 export const StarVelocity: basicVelocity = {
   dx: 0,

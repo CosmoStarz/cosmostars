@@ -1,39 +1,17 @@
 import { store } from "@/app/store";
-import { Sound } from "@/entities/game/ui/Sound/Sound";
 import {
-  BaseGameColors,
-  baseSpeed,
-  framesPerShoot,
-  hitEffectDuration,
-  hitEffectOpacity,
   InitialSizes,
-  maxStarsCount,
   PlayerLives,
-  randomInterval,
-  StarRadius,
-  StarVelocity,
 } from "@/shared/constants";
 import { getRandomNumber } from "@/shared/utils/functions";
 
-import { Asteroid } from "../../model/Asteroid/Asteroid";
-import {
-  asteroidFrequency,
-  generateAsteroidConfig,
-} from "../../model/Asteroid/AsteroidConfig";
 import { BaseObject } from "../../model/BaseObject/BaseObject";
-import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
 import { Player } from "../../model/Player/Player";
-import { Star } from "../../model/Star/Star";
-import {
-  decrementLives,
-  incrementScoreByEnemy,
-} from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
-import { elementCoords } from "../../ui/Canvas/types";
-import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
+import { PlayerState, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { BonusControllerType } from "./types";
+import { incrementLives } from "../../model/store";
 
-// класс игрового контроллера: включает в себя работу над игровыми объектами
 export class BonusController {
   private scene: Canvas;
   private player: Player;
@@ -47,7 +25,7 @@ export class BonusController {
   private get randomBonusType() {
     const minBonusType = this.player.lives < PlayerLives.MAX ? SpriteConstants.BONUS_LIVE : SpriteConstants.BONUS_POWER;
 
-    return getRandomNumber(minBonusType, SpriteConstants.BONUS_POWER)
+    return getRandomNumber(minBonusType, SpriteConstants.BONUS_SHIELD);
   }
 
   private get randomBonus(): BaseObject {
@@ -59,7 +37,7 @@ export class BonusController {
       type,
       velocity: {
         dx: 0,
-        dy: 2,
+        dy: 2, //TODO
       },
       position: {
         x: getRandomNumber(0, this.scene.width - size.width),
@@ -71,6 +49,23 @@ export class BonusController {
 
   public createBonus() {
     this.bonuses.push(this.randomBonus);
+  }
+
+  public getBonusResult(bonus: BaseObject) {
+    switch (bonus.type) {
+      case SpriteConstants.BONUS_LIVE: {
+        store.dispatch(incrementLives(PlayerLives.MIN));
+        return false;
+      }
+      case SpriteConstants.BONUS_POWER: {
+        this.player.updateBonusState(PlayerState.POWER);
+        return false;
+      }
+      case SpriteConstants.BONUS_SHIELD: {
+        this.player.updateBonusState(PlayerState.SHIELD);
+        return false;
+      }
+    }
   }
 
   public watchBonusGone() {

@@ -251,20 +251,7 @@ export class GameController {
 
     this.bonusController.bonuses = this.bonusController.bonuses.filter((bonus) => {
       if (this.isIntersect(bonus, this.player)) {
-        switch (bonus.type) {
-          case SpriteConstants.BONUS_LIVE: {
-            store.dispatch(incrementLives(PlayerLives.MIN));
-            return false;
-          }
-          case SpriteConstants.BONUS_POWER: {
-            this.player.updateBonusState(PlayerState.POWER);
-            return false;
-          }
-          case SpriteConstants.BONUS_SHIELD: {
-            this.player.updateBonusState(PlayerState.SHIELD);
-            return false;
-          }
-        }
+        this.bonusController.getBonusResult(bonus);
       }
       return true;
     })
@@ -298,12 +285,14 @@ export class GameController {
           enemy.projectiles,
           this.player,
           () => {
-            store.dispatch(decrementLives(PlayerLives.MIN));
-            if (this.player.lives <= 0) {
-              this.end();
-            } else {
-              this.sound.playExplosion();
-              this.framePlayerHit = this.frames;
+            if (this.player.bonusState !== PlayerState.SHIELD) {
+              store.dispatch(decrementLives(PlayerLives.MIN));
+              if (this.player.lives <= 0) {
+                this.end();
+              } else {
+                this.sound.playExplosion();
+                this.framePlayerHit = this.frames;
+              }
             }
           },
           true
@@ -331,8 +320,6 @@ export class GameController {
   }
 
   public update() {
-    console.log(this.player);
-    console.log(this.bonusController.bonuses);
     this.watchStarsGone();
     this.watchExplosionsDone();
     this.bonusController.watchBonusGone();

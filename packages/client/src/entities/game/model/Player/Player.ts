@@ -1,11 +1,16 @@
 import { store } from "@/app/store";
 
-import { PlayerSkins, PlayerSkinsTypes, PlayerState } from "../../ui/Sprite/SpriteConfig";
+import { PlayerSkins, PlayerSkinsTypes, PlayerState, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
 import { shootingObjectProps } from "../ShootingObject/types";
+import { TimeoutId } from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import { BonusTimeouts, PoweredShootingInterval } from "@/shared/constants";
+import { Sprite } from "../../ui/Sprite/Sprite";
 
 export class Player extends ShootingObject {
   public bonusState = PlayerState.DEFAULT;
+  private bonusTimeout: TimeoutId | null = null;
+  private shootInterval: TimeoutId | null = null;
 
   constructor(props: shootingObjectProps) {
     super(props);
@@ -45,22 +50,71 @@ export class Player extends ShootingObject {
     }
   }
 
-  public updateBonusState(newBonusState: PlayerState) {
+  private clearBonusInterval() {
+    if (this.shootInterval) {
+      clearInterval(this.shootInterval);
+    }
+  }
+
+  private clearBonusTimeout() {
+    if (this.bonusTimeout) {
+      clearTimeout(this.bonusTimeout);
+    }
+  }
+
+  public updateBonusState(newBonusState: PlayerState.POWER | PlayerState.SHIELD) {
     this.bonusState = newBonusState;
-    const powerTimeout = setTimeout(() => {
+    this.clearBonusTimeout();
+    this.clearBonusInterval();
+
+    if (this.bonusState === PlayerState.POWER) {
+      this.shootInterval = setInterval(() => {
+        this.shoot();
+      }, PoweredShootingInterval);
+    }
+
+    this.bonusTimeout = setTimeout(() => {
       this.bonusState = PlayerState.DEFAULT;
-    }, 5000);
-    clearTimeout(powerTimeout);
+      this.clearBonusInterval();
+    }, BonusTimeouts[this.bonusState]);
+  }
+
+  private get shieldSprite() {
+    const shieldSize = {
+      height: this.size.height,
+      width: this.size.height,
+    };
+    return new Sprite({
+      canvas: this.scene,
+      objectSize: shieldSize,
+      spriteType: SpriteConstants.SHIELD,
+      objectPosition: this.position,
+    });
+  }
+
+  protected draw() {
+    super.draw();
+    if (this.bonusState === PlayerState.SHIELD) {
+      const shieldPosition = {
+        x: this.position.x - 7, //TODO
+        y: this.position.y,
+      };
+      this.shieldSprite.draw(shieldPosition);
+    }
   }
 
   public update() {
-    super.update();
+    this.draw();
+    this.watchProjectilesGone();
+    this.position.x += this.velocity.dx;
     this.updateSkin();
     this.watchWallsProtection();
   }
 
   public clear() {
     super.clear();
+    this.clearBonusInterval();
+    this.clearBonusTimeout();
     this.bonusState = PlayerState.DEFAULT;
     this.position = this.startPosition;
     this.velocity.dx = 0;

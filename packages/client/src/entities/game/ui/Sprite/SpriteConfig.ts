@@ -13,6 +13,7 @@ import PlayerImage from "@/assets/images/game-model-player.png";
 import PlayerDamagedImage from "@/assets/images/game-model-player-damaged.png";
 import PlayerDestroyedImage from "@/assets/images/game-model-player-destroyed.png";
 import PlayerProjectileImage from "@/assets/images/game-model-player-projectile.png";
+import ShieldImage from "@/assets/images/game-model-shield.png";
 import UfoImage1 from "@/assets/images/game-model-ufo-1.png";
 import UfoImage2 from "@/assets/images/game-model-ufo-2.png";
 import UfoProjectileImage from "@/assets/images/game-model-ufo-projectile.png";
@@ -51,6 +52,7 @@ export enum SpriteConstants {
   BONUS_LIVE = 15,
   BONUS_POWER = 16,
   BONUS_SHIELD = 17,
+  SHIELD = 18,
 }
 
 export enum PlayerSkinsTypes {
@@ -151,5 +153,9 @@ export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
   [SpriteConstants.BONUS_SHIELD]: {
     src: BonusLiveImage,
     frames: 8,
+  },
+  [SpriteConstants.SHIELD]: {
+    src: ShieldImage,
+    ratio: 8,
   },
 };
