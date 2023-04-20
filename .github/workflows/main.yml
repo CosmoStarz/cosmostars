@@ -17,14 +17,14 @@ jobs:
   # Но нам хватит одного
   build:
     # Для построение проекта от вас не требуется сервер или что-либо подобное, 
-		# GitHub выполнит построение, используя собственный runner - такую
-		# общедоступную 'виртуальную машину'
+    # GitHub выполнит построение, используя собственный runner - такую
+    # общедоступную 'виртуальную машину'
     runs-on: ubuntu-latest
 
     # Определяем шаги процесса
     steps:
       # Запускает предварительную проверку 
-			# Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       # Авторизация в Яндекс.Облаке (здесь ничего не меняем)
@@ -33,24 +33,24 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-			# Построение образа и отправка его в Container Registry
+      # Построение образа и отправка его в Container Registry
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
-					# Здесь указываем идентификатор регистра (о нём позднее)
+      # Здесь указываем идентификатор регистра (о нём позднее)
           CR_REGISTRY: crpuco7u3q2j3oiiacdj
-					# Здесь указываем название репозитория (впрочем оно далее не используется)
+      # Здесь указываем название репозитория (впрочем оно далее не используется)
           CR_REPOSITORY: cosmostarz
-					# Здесь ничего не меняем (формирует уникальное название для образа)
+      # Здесь ничего не меняем (формирует уникальное название для образа)
           IMAGE_TAG: ${{ github.sha }}
-					# Далее указываем все прочие нужные нам перееменные среды
+      # Далее указываем все прочие нужные нам перееменные среды
           CLIENT_PORT: 3000
           SERVER_PORT: 8000
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
           POSTGRES_PORT: 5432
-				# Всё описание выше было лишь подготовкой
-				# Тем не менее, оставшиеся шаги более не должны вызывать вопросы
+     # Всё описание выше было лишь подготовкой
+     # Тем не менее, оставшиеся шаги более не должны вызывать вопросы
         run: |
           docker-compose build
           docker tag practicum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
