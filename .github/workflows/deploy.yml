@@ -5,10 +5,10 @@ name: Push To Yandex Cloud CR
 # Подробнее см. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 on:
   # Позволяет запускать при push в main (и при commit и при merge)
-  push:
-        branches:
-          - deploy
-          - main
+  # push:
+  #       branches:
+  #         - deploy
+  #         - main
  
   
   # Позволяет запускать вручную из GitHub
