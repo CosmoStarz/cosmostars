@@ -13,6 +13,7 @@ import {
   basicVelocity,
 } from "@/entities/game/model/BaseObject/types";
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
+import { SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
@@ -20,13 +21,21 @@ export const SERVER_URL = `http://localhost:${__SERVER_PORT__}`;
 
 export const NOT_FOUND_STATUS = 404;
 
+export const MinimizeWidth = 2;
+
+export enum CommentFrameWidth {
+  MIN = 40,
+  MAX = 100,
+}
+
 export const BasePerPage = [3, 5, 10];
 
 export const baseSpeed = 10;
 
-export enum ProjectileSizes {
-  WIDTH = 5,
-  HEIGHT = 20,
+export enum PlayerLives {
+  MIN = 1,
+  MEDIUM = 2,
+  MAX = 3,
 }
 
 export enum GameStatuses {
@@ -49,6 +58,12 @@ export enum BaseGameColors {
   WHITE = "#ffffff",
 }
 
+export const hitEffectOpacity = 0.2;
+
+export const hitEffectDuration = 15;
+
+export const gameBorderWidth = 2;
+
 export const maxStarsCount = 100;
 
 export const StarVelocity: basicVelocity = {
@@ -61,9 +76,6 @@ export enum StarRadius {
   MAX = 3,
 }
 
-export const canvasTextWidth = 50;
-export const canvasTextFont = "bold 32px Arial";
-
 export const EnemyPoints = {
   BASIC: 100,
 } as const;
@@ -75,7 +87,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     title: "Start",
     startButton: "Start",
     rulesVisibility: true,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.LOOSE]: {
     title: "Looser!",
@@ -83,7 +95,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: LooseRight,
     leftImg: LooseLeft,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.WIN]: {
     title: "Winner!",
@@ -91,7 +103,7 @@ export const GameModalConfig: Record<GameStatuses, GameModalProps | null> = {
     scoreVisibility: true,
     rightImg: WinRight,
     leftImg: WinLeft,
-    clearScoreOnStart: true,
+    clearStateOnStart: true,
   },
   [GameStatuses.PAUSED]: {
     title: "Pause",
@@ -205,9 +217,35 @@ export const initialCoords: elementCoords = {
   y: 0,
 };
 
-export const initialObjectSize: basicSize = {
-  width: 50,
-  height: 50,
+export const InitialSizes: Record<string | number, basicSize> = {
+  DEFAULT: {
+    width: 50,
+    height: 50,
+  },
+  [SpriteConstants.PLAYER]: {
+    height: 70,
+    width: 55,
+  },
+  [SpriteConstants.ENEMY_1]: {
+    height: 47,
+    width: 82,
+  },
+  [SpriteConstants.EXPLOSION]: {
+    width: 96,
+    height: 96,
+  },
+  [SpriteConstants.PLAYER_PROJECTILE]: {
+    width: 18,
+    height: 24,
+  },
+  [SpriteConstants.ENEMY_PROJECTILE]: {
+    width: 19,
+    height: 25,
+  },
+  [SpriteConstants.UFO_PROJECTILE]: {
+    width: 24,
+    height: 17,
+  },
 };
 
 export const basicGridSpeed = 3;

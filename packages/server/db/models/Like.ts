@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import {
+  AfterCreate,
+  AfterDestroy,
   BelongsTo,
   Column,
   ForeignKey,
@@ -8,6 +10,7 @@ import {
 } from "sequelize-typescript";
 
 import { Comment } from "./Comment";
+import { User } from "./User";
 
 @Table({
   tableName: "likes",
@@ -21,14 +24,22 @@ export class Like extends Model {
   @BelongsTo(() => Comment)
   comment!: Comment;
 
-  @Column({
-    type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  user_id!: number;
+  @ForeignKey(() => User)
+  @Column(DataTypes.INTEGER)
+  user_id!: string;
 
-  @Column({
-    type: DataTypes.BOOLEAN,
-  })
-  status!: boolean;
+  @BelongsTo(() => User)
+  user!: User;
+
+  @AfterCreate
+  static async addIncrementLikesCount(instance: Like) {
+    const comment: Comment | null = await Comment.findByPk(instance.comment_id);
+    await comment?.increment("likes_count");
+  }
+
+  @AfterDestroy
+  static async decrementLikesCount(instance: Like) {
+    const comment: Comment | null = await Comment.findByPk(instance.comment_id);
+    await comment?.decrement("likes_count");
+  }
 }

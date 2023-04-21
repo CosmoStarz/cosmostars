@@ -1,9 +1,4 @@
-import {
-  BaseGameColors,
-  canvasTextFont,
-  canvasTextWidth,
-  initialCoords,
-} from "@/shared/constants";
+import { BaseGameColors, initialCoords } from "@/shared/constants";
 
 import { basicSize } from "../../model/BaseObject/types";
 import { elementCoords } from "./types";
@@ -69,19 +64,15 @@ export class Canvas {
     );
   }
 
-  public drawText(text: string) {
-    this.context.fillStyle = BaseGameColors.WHITE;
-    this.context.font = canvasTextFont;
-    this.context.fillText(text, canvasTextWidth, canvasTextWidth);
-  }
-
-  public fillCanvas(color: BaseGameColors) {
+  public fillCanvas(color: BaseGameColors, opacity?: number) {
     const size = {
       width: this.width,
       height: this.height,
     };
 
+    this.context.globalAlpha = opacity ?? 1;
     this.drawRect(color, initialCoords, size);
+    this.context.globalAlpha = 1;
   }
 
   public clearCanvas() {
