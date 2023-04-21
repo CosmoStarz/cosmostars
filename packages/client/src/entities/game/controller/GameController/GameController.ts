@@ -9,6 +9,7 @@ import {
   InitialSizes,
   maxStarsCount,
   PlayerLives,
+  PlayerState,
   randomInterval,
   StarRadius,
   StarVelocity,
@@ -26,14 +27,13 @@ import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
 import {
   decrementLives,
-  incrementLives,
   incrementScoreByEnemy,
 } from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
-import { PlayerState, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
-import { GameControllerType } from "./types";
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
 import { BonusController } from "../BonusController/BonusController";
+import { GameControllerType } from "./types";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
 export class GameController {
@@ -56,10 +56,7 @@ export class GameController {
     this.end = props.end;
     this.player = this.initialPlayer;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
-    this.bonusController = new BonusController({
-      scene: this.scene,
-      player: this.player,
-    });
+    this.bonusController = this.initialBonusController;
 
     this.generateStars();
   }
@@ -71,6 +68,13 @@ export class GameController {
       type: SpriteConstants.PLAYER,
       size: InitialSizes[SpriteConstants.PLAYER],
       projectileType: SpriteConstants.PLAYER_PROJECTILE,
+    });
+  }
+
+  private get initialBonusController() {
+    return new BonusController({
+      scene: this.scene,
+      player: this.player,
     });
   }
 
@@ -120,7 +124,7 @@ export class GameController {
   }
 
   private generateBonuses() {
-    if (this.frames > 500 && this.bonusController.bonuses.length !== 1) {
+    if (this.frames > randomInterval) {
       this.bonusController.createBonus();
     }
   }
@@ -249,12 +253,16 @@ export class GameController {
       this.end();
     });
 
-    this.bonusController.bonuses = this.bonusController.bonuses.filter((bonus) => {
-      if (this.isIntersect(bonus, this.player)) {
-        this.bonusController.getBonusResult(bonus);
+    this.bonusController.bonuses = this.bonusController.bonuses.filter(
+      bonus => {
+        if (this.isIntersect(bonus, this.player)) {
+          this.bonusController.getBonusResult(bonus);
+          this.sound.playBonus();
+          return false;
+        }
+        return true;
       }
-      return true;
-    })
+    );
 
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {

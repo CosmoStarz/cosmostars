@@ -1,11 +1,20 @@
-import { store } from "@/app/store";
+import { TimeoutId } from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
-import { PlayerSkins, PlayerSkinsTypes, PlayerState, SpriteConstants } from "../../ui/Sprite/SpriteConfig";
+import { store } from "@/app/store";
+import {
+  BonusTimeouts,
+  PlayerState,
+  PoweredShootingInterval,
+} from "@/shared/constants";
+
+import { Sprite } from "../../ui/Sprite/Sprite";
+import {
+  PlayerSkins,
+  PlayerSkinsTypes,
+  SpriteConstants,
+} from "../../ui/Sprite/SpriteConfig";
 import { ShootingObject } from "../ShootingObject/ShootingObject";
 import { shootingObjectProps } from "../ShootingObject/types";
-import { TimeoutId } from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import { BonusTimeouts, PoweredShootingInterval } from "@/shared/constants";
-import { Sprite } from "../../ui/Sprite/Sprite";
 
 export class Player extends ShootingObject {
   public bonusState = PlayerState.DEFAULT;
@@ -30,13 +39,50 @@ export class Player extends ShootingObject {
     return store.getState().game.lives;
   }
 
+  public get shieldSize() {
+    const shieldRoundSize = Math.max(this.size.height, this.size.width);
+
+    return {
+      width: shieldRoundSize,
+      height: shieldRoundSize,
+    };
+  }
+
+  private calculateShieldPosition(
+    objectSize: number,
+    shieldSize: number,
+    objectPosition: number
+  ) {
+    if (objectSize !== shieldSize) {
+      const deviation = Math.round((shieldSize - objectSize) / 2);
+      return objectPosition - deviation;
+    }
+
+    return objectPosition;
+  }
+
+  public get shieldPosition() {
+    return {
+      x: this.calculateShieldPosition(
+        this.size.width,
+        this.shieldSize.width,
+        this.position.x
+      ),
+      y: this.calculateShieldPosition(
+        this.size.height,
+        this.shieldSize.height,
+        this.position.y
+      ),
+    };
+  }
+
   private updateSkin() {
     if (this.sprite) {
       this.sprite.image.src = Object.values(PlayerSkinsTypes).includes(
         this.lives
       )
-        ? PlayerSkins[this.bonusState][this.lives as PlayerSkinsTypes]
-        : PlayerSkins[this.bonusState][PlayerSkinsTypes.BASE];
+        ? PlayerSkins[this.lives as PlayerSkinsTypes]
+        : PlayerSkins[PlayerSkinsTypes.BASE];
     }
   }
 
@@ -62,7 +108,9 @@ export class Player extends ShootingObject {
     }
   }
 
-  public updateBonusState(newBonusState: PlayerState.POWER | PlayerState.SHIELD) {
+  public updateBonusState(
+    newBonusState: PlayerState.POWER | PlayerState.SHIELD
+  ) {
     this.bonusState = newBonusState;
     this.clearBonusTimeout();
     this.clearBonusInterval();
@@ -80,13 +128,9 @@ export class Player extends ShootingObject {
   }
 
   private get shieldSprite() {
-    const shieldSize = {
-      height: this.size.height,
-      width: this.size.height,
-    };
     return new Sprite({
       canvas: this.scene,
-      objectSize: shieldSize,
+      objectSize: this.shieldSize,
       spriteType: SpriteConstants.SHIELD,
       objectPosition: this.position,
     });
@@ -95,11 +139,7 @@ export class Player extends ShootingObject {
   protected draw() {
     super.draw();
     if (this.bonusState === PlayerState.SHIELD) {
-      const shieldPosition = {
-        x: this.position.x - 7, //TODO
-        y: this.position.y,
-      };
-      this.shieldSprite.draw(shieldPosition);
+      this.shieldSprite.draw(this.shieldPosition);
     }
   }
 

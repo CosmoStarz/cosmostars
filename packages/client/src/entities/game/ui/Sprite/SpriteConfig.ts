@@ -1,8 +1,10 @@
 import AsteroidImage1 from "@/assets/images/game-model-asteroid-1.png";
 import AsteroidImage2 from "@/assets/images/game-model-asteroid-2.png";
 import AsteroidImage3 from "@/assets/images/game-model-asteroid-3.png";
-import BonusLiveImage from "@/assets/images/game-model-bonus-live.png";
+import BonusHealthImage from "@/assets/images/game-model-bonus-health.png";
+import BonusLifeImage from "@/assets/images/game-model-bonus-life.png";
 import BonusPowerImage from "@/assets/images/game-model-bonus-power.png";
+import BonusShieldImage from "@/assets/images/game-model-bonus-shield.png";
 import EnemyImage1 from "@/assets/images/game-model-enemy-1.png";
 import EnemyImage2 from "@/assets/images/game-model-enemy-2.png";
 import EnemyImage3 from "@/assets/images/game-model-enemy-3.png";
@@ -19,13 +21,6 @@ import UfoImage2 from "@/assets/images/game-model-ufo-2.png";
 import UfoProjectileImage from "@/assets/images/game-model-ufo-projectile.png";
 
 import { SpriteConfigType } from "./types";
-// import { PlayerState } from "@/shared/constants";
-
-export enum PlayerState {
-  DEFAULT = 0,
-  POWER = 1,
-  SHIELD = 2,
-}
 
 export const SpriteSpeedLimit = 4;
 
@@ -49,10 +44,11 @@ export enum SpriteConstants {
   ASTEROID_1 = 12,
   ASTEROID_2 = 13,
   ASTEROID_3 = 14,
-  BONUS_LIVE = 15,
-  BONUS_POWER = 16,
-  BONUS_SHIELD = 17,
-  SHIELD = 18,
+  BONUS_LIFE = 15,
+  BONUS_HEALTH = 16,
+  BONUS_POWER = 17,
+  BONUS_SHIELD = 18,
+  SHIELD = 19,
 }
 
 export enum PlayerSkinsTypes {
@@ -61,33 +57,15 @@ export enum PlayerSkinsTypes {
   BASE = 3,
 }
 
-export const PlayerSkinsDefault: Record<PlayerSkinsTypes, string> = {
-  [PlayerSkinsTypes.BASE]: PlayerImage,
-  [PlayerSkinsTypes.DAMAGED]: PlayerDamagedImage,
-  [PlayerSkinsTypes.DESTROYED]: PlayerDestroyedImage,
-};
-
-export const PlayerSkinsShield: Record<PlayerSkinsTypes, string> = {
-  [PlayerSkinsTypes.BASE]: PlayerImage,
-  [PlayerSkinsTypes.DAMAGED]: PlayerDamagedImage,
-  [PlayerSkinsTypes.DESTROYED]: PlayerDestroyedImage,
-};
-
-export const PlayerSkinsPower: Record<PlayerSkinsTypes, string> = {
-  [PlayerSkinsTypes.BASE]: PlayerImage,
-  [PlayerSkinsTypes.DAMAGED]: PlayerDamagedImage,
-  [PlayerSkinsTypes.DESTROYED]: PlayerDestroyedImage,
-};
-
 export const PlayerSkins = {
-  [PlayerState.DEFAULT]: PlayerSkinsDefault,
-  [PlayerState.POWER]: PlayerSkinsPower,
-  [PlayerState.SHIELD]: PlayerSkinsShield,
-}
+  [PlayerSkinsTypes.BASE]: PlayerImage,
+  [PlayerSkinsTypes.DAMAGED]: PlayerDamagedImage,
+  [PlayerSkinsTypes.DESTROYED]: PlayerDestroyedImage,
+};
 
 export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
   [SpriteConstants.PLAYER]: {
-    src: PlayerSkinsDefault[PlayerSkinsTypes.BASE],
+    src: PlayerSkins[PlayerSkinsTypes.BASE],
     frames: 7,
   },
   [SpriteConstants.ENEMY_1]: {
@@ -142,17 +120,21 @@ export const SpriteConfig: Record<SpriteConstants, SpriteConfigType> = {
     src: AsteroidImage3,
     ratio: 3,
   },
-  [SpriteConstants.BONUS_LIVE]: {
-    src: BonusLiveImage,
-    frames: 8,
+  [SpriteConstants.BONUS_LIFE]: {
+    src: BonusLifeImage,
+    frames: 6,
+  },
+  [SpriteConstants.BONUS_HEALTH]: {
+    src: BonusHealthImage,
+    frames: 6,
   },
   [SpriteConstants.BONUS_POWER]: {
     src: BonusPowerImage,
-    frames: 10,
+    frames: 6,
   },
   [SpriteConstants.BONUS_SHIELD]: {
-    src: BonusLiveImage,
-    frames: 8,
+    src: BonusShieldImage,
+    frames: 6,
   },
   [SpriteConstants.SHIELD]: {
     src: ShieldImage,

@@ -13,7 +13,7 @@ import {
   basicVelocity,
 } from "@/entities/game/model/BaseObject/types";
 import { elementCoords } from "@/entities/game/ui/Canvas/types";
-import { PlayerState, SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
+import { SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
@@ -61,7 +61,16 @@ export const maxStarsCount = 100;
 
 export const PoweredShootingInterval = 80;
 
-export const BonusTimeouts: Record<PlayerState.POWER | PlayerState.SHIELD, number> = {
+export enum PlayerState {
+  DEFAULT = 0,
+  POWER = 1,
+  SHIELD = 2,
+}
+
+export const BonusTimeouts: Record<
+  PlayerState.POWER | PlayerState.SHIELD,
+  number
+> = {
   [PlayerState.POWER]: 4000,
   [PlayerState.SHIELD]: 10000,
 };
@@ -69,6 +78,11 @@ export const BonusTimeouts: Record<PlayerState.POWER | PlayerState.SHIELD, numbe
 export const StarVelocity: basicVelocity = {
   dx: 0,
   dy: 1,
+};
+
+export const BonusVelocity: basicVelocity = {
+  dx: 0,
+  dy: 2,
 };
 
 export enum StarRadius {
@@ -246,17 +260,9 @@ export const InitialSizes: Record<string | number, basicSize> = {
     width: 24,
     height: 17,
   },
-  [SpriteConstants.BONUS_LIVE]: {
-    width: 40,
-    height: 36,
-  },
-  [SpriteConstants.BONUS_SHIELD]: {
-    width: 40,
-    height: 36,
-  },
   [SpriteConstants.BONUS_POWER]: {
-    width: 40,
-    height: 41,
+    width: 55,
+    height: 55,
   },
 };
 

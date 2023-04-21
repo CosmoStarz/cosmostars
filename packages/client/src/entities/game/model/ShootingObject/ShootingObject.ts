@@ -30,7 +30,11 @@ export class ShootingObject extends BaseObject {
       position: {
         x:
           this.position.x + this.size.width / 2 - this.projectileSize.width / 2,
-        y: this.position.y + (this.projectileSpeed > 0 ? this.size.height : -this.projectileSize.height),
+        y:
+          this.position.y +
+          (this.projectileSpeed > 0
+            ? this.size.height
+            : -this.projectileSize.height),
       },
       velocity: {
         dx: 0,
