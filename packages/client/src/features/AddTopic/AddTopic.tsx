@@ -11,6 +11,7 @@ import { FC, useState } from "react";
 
 import { AddTopicMutation } from "@/entities/forum/topics/api/types";
 import { addTopicValidation } from "@/shared/constants/validationShemas";
+import { clean } from "@/shared/utils/clean";
 
 type AddTopicProps = {
   onSubmit: (data: AddTopicMutation) => unknown;
@@ -28,7 +29,11 @@ export const AddTopic: FC<AddTopicProps> = ({ onSubmit, authorId }) => {
     },
     validationSchema: addTopicValidation,
     onSubmit: ({ topicName, topicDescription }) => {
-      onSubmit({ title: topicName, description: topicDescription, authorId });
+      onSubmit({
+        title: clean(topicName),
+        description: clean(topicDescription),
+        authorId,
+      });
       handleClose();
     },
     onReset: () => {

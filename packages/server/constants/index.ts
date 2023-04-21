@@ -24,3 +24,14 @@ export enum ThemeModes {
   LIGHT = "light",
   DARK = "dark",
 }
+
+export const cspConfig = {
+  useDefaults: true,
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    connectSrc: ["'self'", "ws:", "fonts.googleapis.com"],
+    styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
+    imgSrc: ["'self'", "data:", "blob:"],
+  },
+};
