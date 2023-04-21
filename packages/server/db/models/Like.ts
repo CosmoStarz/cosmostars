@@ -10,6 +10,7 @@ import {
 } from "sequelize-typescript";
 
 import { Comment } from "./Comment";
+import { User } from "./User";
 
 @Table({
   tableName: "likes",
@@ -23,11 +24,12 @@ export class Like extends Model {
   @BelongsTo(() => Comment)
   comment!: Comment;
 
-  @Column({
-    type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  user_id!: number;
+  @ForeignKey(() => User)
+  @Column(DataTypes.INTEGER)
+  user_id!: string;
+
+  @BelongsTo(() => User)
+  user!: User;
 
   @AfterCreate
   static async addIncrementLikesCount(instance: Like) {
