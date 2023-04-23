@@ -25,6 +25,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           CLIENT_PORT: 3000
           SERVER_PORT: 8000
+          SERVER_HOST: 'cosmostarz-cosmostarz-22.ya-praktikum.tech'
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
