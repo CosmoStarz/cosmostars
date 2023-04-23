@@ -1,7 +1,11 @@
 name: Push To Yandex Cloud CR
 
 on:
-  workflow_dispatch
+   workflow_dispatch:
+   push:
+     branches:
+       - 'deploy'
+       - 'deploy/**'
 
 jobs:
   build:
@@ -29,5 +33,5 @@ jobs:
 
         run: |
           docker-compose build
-          docker tag practicum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
+          docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
           docker push cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
