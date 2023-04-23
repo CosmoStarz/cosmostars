@@ -5,7 +5,7 @@ on:
    push:
      branches:
        - 'deploy'
-       - 'deploy/**'
+       - 'deploy_**'
 
 jobs:
   build:
