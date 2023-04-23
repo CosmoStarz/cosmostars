@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react()],
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT || 8000,
+    __SERVER_HOST__: process.env.SERVER_HOST || "localhost",
   },
   resolve: {
     alias: {

@@ -16,7 +16,7 @@ import { elementCoords } from "@/entities/game/ui/Canvas/types";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
-export const SERVER_URL = `http://localhost:${__SERVER_PORT__}`;
+export const SERVER_URL = `http://${__SERVER_HOST__}:${__SERVER_PORT__}`;
 
 export const NOT_FOUND_STATUS = 404;
 
