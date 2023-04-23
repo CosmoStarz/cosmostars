@@ -5,7 +5,6 @@ on:
    push:
      branches:
        - 'deploy'
-       - 'deploy_**'
 
 jobs:
   build:
@@ -33,5 +32,5 @@ jobs:
 
         run: |
           docker-compose build
-          docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
-          docker push cr.yandex/crpuco7u3q2j3oiiacdj/practicum-server:latest
+          docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
+          docker push cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
