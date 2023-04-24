@@ -16,6 +16,10 @@ import {
 import { FC, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import {
+  useAddLikeMutation,
+  useDeleteLikeMutation,
+} from "@/entities/forum/likes";
 import { forumApi } from "@/shared/constants/mocks";
 import { configurePluralString } from "@/shared/utils/configurePluralString";
 
@@ -40,14 +44,16 @@ export const TopicItem: FC<TopicItemType> = props => {
     onExpand = () => null,
   } = props;
 
-  const [favourite, setFavourite] = useState<boolean>(is_liked ?? false);
-  const [likesNumber, setLikesCount] = useState<number>(likes_count ?? 0);
+  const [addLike] = useAddLikeMutation();
+  const [deleteLike] = useDeleteLikeMutation();
   const [showForm, setShowForm] = useState<boolean>(false);
   const { display_name, login, avatar } = author;
 
   const handleChangeIsLike = () => {
-    setFavourite(!favourite);
-    setLikesCount(favourite ? likesNumber - 1 : likesNumber + 1);
+    if (!is_liked) {
+      return addLike(id);
+    }
+    return deleteLike(id);
   };
 
   const handleChangeFormVisible = () => {
@@ -137,8 +143,8 @@ export const TopicItem: FC<TopicItemType> = props => {
         />
         {canBeLiked && (
           <TypographyButton
-            icon={<FavoriteIcon color={favourite ? "error" : "disabled"} />}
-            title={configurePluralString("Like", likesNumber)}
+            icon={<FavoriteIcon color={is_liked ? "error" : "disabled"} />}
+            title={configurePluralString("Like", likes_count ?? 0)}
             onClick={handleChangeIsLike}
           />
         )}

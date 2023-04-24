@@ -3,6 +3,7 @@ import type { RequestHandler } from "express";
 
 import { BaseStatuses, ErrorMessages, YANDEX_URL } from "../constants";
 import type { YandexUserType } from "../constants/types";
+import { User } from "../db/models/User";
 import { configureError } from "../utils/configureError";
 
 export const axiosInstance = axios.create({
@@ -19,8 +20,17 @@ export const checkAuthMiddleware: RequestHandler = async (req, res, next) => {
         Cookie: req.headers.cookie,
       },
     })
-    .then(res => {
-      req.user = res.data;
+    .then(async res => {
+      const [user] = await User.findOrCreate({
+        where: { ya_id: res.data.id },
+        defaults: {
+          login: res.data.login,
+          display_name: res.data.display_name,
+          avatar: res.data.avatar,
+        },
+      });
+
+      req.user = user;
       next();
     })
     .catch(() => {
