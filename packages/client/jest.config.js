@@ -7,7 +7,7 @@ export default {
   testMatch: ["<rootDir>/src/**/*.test.{ts,tsx}"],
   globals: {
     __SERVER_PORT__: process.env.SERVER_PORT || 8000,
-    __SERVER_HOST__: process.env.SERVER_HOST || "localhost",
+    __SERVER_HOST__: JSON.stringify(process.env.SERVER_HOST || "localhost"),
   },
   setupFiles: ["./setupTests.ts"],
   moduleNameMapper: {
