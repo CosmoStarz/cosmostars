@@ -30,7 +30,11 @@ export class ShootingObject extends BaseObject {
       position: {
         x:
           this.position.x + this.size.width / 2 - this.projectileSize.width / 2,
-        y: this.position.y,
+        y:
+          this.position.y +
+          (this.projectileSpeed > 0
+            ? this.size.height
+            : -this.projectileSize.height),
       },
       velocity: {
         dx: 0,
@@ -42,7 +46,7 @@ export class ShootingObject extends BaseObject {
     this.projectiles.push(projectile);
   }
 
-  private watchProjectilesGone() {
+  protected watchProjectilesGone() {
     this.projectiles.forEach((proj, index) => {
       if (proj.position.y >= this.scene.height) {
         setTimeout(() => {

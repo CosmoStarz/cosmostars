@@ -66,9 +66,30 @@ export const gameBorderWidth = 2;
 
 export const maxStarsCount = 100;
 
+export const PoweredShootingInterval = 80;
+
+export enum PlayerState {
+  DEFAULT = 0,
+  POWER = 1,
+  SHIELD = 2,
+}
+
+export const BonusTimeouts: Record<
+  PlayerState.POWER | PlayerState.SHIELD,
+  number
+> = {
+  [PlayerState.POWER]: 4000,
+  [PlayerState.SHIELD]: 10000,
+};
+
 export const StarVelocity: basicVelocity = {
   dx: 0,
   dy: 1,
+};
+
+export const BonusVelocity: basicVelocity = {
+  dx: 0,
+  dy: 2,
 };
 
 export enum StarRadius {
@@ -245,6 +266,10 @@ export const InitialSizes: Record<string | number, basicSize> = {
   [SpriteConstants.UFO_PROJECTILE]: {
     width: 24,
     height: 17,
+  },
+  [SpriteConstants.BONUS_POWER]: {
+    width: 55,
+    height: 55,
   },
 };
 
