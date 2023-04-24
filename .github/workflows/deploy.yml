@@ -32,6 +32,7 @@ jobs:
           POSTGRES_PORT: 5432
 
         run: |
+          docker-compose config
           docker-compose build
           docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
           docker push cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
