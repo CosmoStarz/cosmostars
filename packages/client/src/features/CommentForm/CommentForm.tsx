@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useAddCommentMutation } from "@/entities/forum/comments/api";
 import { useGetUserQuery } from "@/entities/user/model/api";
 import { commentValidation } from "@/shared/constants/validationShemas";
+import { clean } from "@/shared/utils/clean";
 
 import { CommentFormType } from "./types";
 
@@ -33,7 +34,7 @@ export const CommentForm: FC<CommentFormType> = ({ parentId }) => {
     onSubmit: ({ comment }, helpers) => {
       if (userData && forumId) {
         addComment({
-          comment,
+          comment: clean(comment),
           topicId: forumId,
           authorId: userData.id,
           parentId,

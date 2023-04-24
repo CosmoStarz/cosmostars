@@ -7,6 +7,7 @@ import { authTypes } from "@/shared/api";
 import { SignInRequest } from "@/shared/api/auth/models";
 import { RoutesName } from "@/shared/constants";
 import { CardView } from "@/shared/ui";
+import { cleanForm } from "@/shared/utils/clean";
 
 import { signInSchema } from "../schemas/sign-in";
 
@@ -22,10 +23,7 @@ export const SignIn = ({ handleSignIn }: SignInProps) => {
     },
     validationSchema: signInSchema,
     onSubmit: () => {
-      const userForm: SignInRequest = {
-        login: values.login,
-        password: values.password,
-      };
+      const userForm = cleanForm(values);
       handleSignIn(userForm);
     },
   });

@@ -7,6 +7,7 @@ import {
 } from "@/entities/user/model/api";
 import { UserProfile } from "@/entities/user/model/types";
 import { initialProfileForm } from "@/shared/constants/formInitials";
+import { cleanForm } from "@/shared/utils/clean";
 
 import { CardView } from "../../../shared/ui";
 import { ChangeProfileSchema } from "../schemas/change-profile";
@@ -27,7 +28,8 @@ export const ChangeProfileForm = () => {
     initialValues: initValues,
     validationSchema: ChangeProfileSchema,
     onSubmit: values => {
-      changeProfile(values);
+      const form = cleanForm(values);
+      changeProfile(form);
     },
   });
 
