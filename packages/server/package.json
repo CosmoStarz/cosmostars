@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rimraf dist && tsc --p ./tsconfig.prod.json",
     "preview": "node ./dist/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon index.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --files index.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest ."
@@ -25,7 +25,8 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.29.3",
     "sequelize-typescript": "^2.1.5",
-    "umzug": "^3.2.1"
+    "umzug": "^3.2.1",
+    "vite": "^3.0.7"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

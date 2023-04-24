@@ -1,3 +1,5 @@
+import { AuthorOfTopicData } from "./frontend";
+
 export type AddTopicRequest = {
   title: string;
   description: string;
@@ -13,6 +15,7 @@ export type TopicItemDataRequest = {
   id: number;
   title: string;
   description: string;
+  author?: AuthorOfTopicData;
   author_id: number;
   creation_date: Date;
   comments_count: number;
