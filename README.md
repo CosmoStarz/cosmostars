@@ -1,5 +1,60 @@
-### Как запускать SSR?
+## О проекте GALAXY SPACESHIP
 
+Учебный командный проект, разработанный в рамках курса Мидл фронтенд разработчик
+Реализация веб-игры, похожей на Space Invaders или Arkanoid
+
+### Стек технологий
+
+* TypeScript
+* React
+* React Router
+* Material UI
+* Formik
+* Yup
+* RTK Query
+* Redux Toolkit
+* Redux Persist
+* Express
+* Postgres
+* Sequelize
+* Axios
+* Jest
+* OAuth
+* Docker
+* Yandex Cloud
+* Prettier
+* Eslint
+* Vite
+* Service Workers
+* SSR
+
+### Используемые Web API
+* `Canvas API` - основа игры
+* `Web Audio API` - для звукового сопровождения игры
+* `Fullscreen API` - для возможности играть в FullScreen режиме
+* `Drag and Drop API` - для удобства загрузки аватара в профиль
+* `Cache API` - кэширование файлов для работы offline
+
+### Реализованный функционал
+
+* Игра с ее механикой
+* Бэкенд и фронтенд форума, возможность создавать топики и комментарии к ним, оставлять реакции
+* Бэкенд и фронтенд темизации, возможность переключения темы и сохранение ее на сервере
+* Авторизация и регистрация пользователя через backend Яндекса
+* Возможность просмотра и извменения профиля через бэкенд Яндекса
+* Просмотр и обновление рейтинга игроков
+* Возможность играть offline
+
+## Запуск проекта
+### Как запускать через docker?
+
+1. Убедитесь что у вас установлен `node` больше 16 версии и `docker`
+2. Выполните команду `yarn bootstrap`
+3. Выполните команду `docker compose build`
+3. Выполните команду `docker compose up`
+4. Вы великолепны!
+
+### Как запускать SSR вручную?
 Для development:
 1. `cd packages/client`
 2. `yarn build:ssr`
@@ -17,45 +72,28 @@
 6. `yarn preview`
 Открыть в браузере http://localhost:8000/
 
-### Как запускать Backend?
+### Как запускать Backend вручную?
 
 После 3 пункта верхних инструкций делаем следующее:
-1. В корне проекта вызываем `docker composer up postgres`
+1. В корне проекта вызываем `docker compose up postgres`
 2. Переходим в папку сервера `cd packages/server`
 3. Накатываем миграции `node migrate up`
 4. Далее следуем по верхним инструкциям
 
-### Как запускать?
 
-1. Убедитесь что у вас установлен `node` и `docker`
-2. Выполните команду `yarn bootstrap` - это обязательный шаг, без него ничего работать не будет :)
-3. Выполните команду `yarn dev`
-3. Выполните команду `yarn dev --scope=client` чтобы запустить только клиент
-4. Выполните команду `yarn dev --scope=server` чтобы запустить только server
-
-
-### Как добавить зависимости?
-В этом проекте используется `monorepo` на основе [`lerna`](https://github.com/lerna/lerna)
-
-Чтобы добавить зависимость для клиента 
-```yarn lerna add {your_dep} --scope client```
-
-Для сервера
-```yarn lerna add {your_dep} --scope server```
-
-И для клиента и для сервера
-```yarn lerna add {your_dep}```
-
-
-Если вы хотите добавить dev зависимость, проделайте то же самое, но с флагом `dev`
-```yarn lerna add {your_dep} --dev --scope server```
-
-
-### Тесты
+### Запуск тестов
 
 Для клиента используется [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro/)
 
-```yarn test```
+Для тестирования введите команду ```yarn test```
+
+Наши тесты написаны на снапшотах, поэтому если написано что-то новое (обычно в верстке) - необходимо обновить нужный снапшот.
+Есть два варианта:
+```cd packages/client```
+```yarn test:file **/{название файла с тестом} -u```
+Или в интерактивном режиме:
+```cd packages/client```
+```yarn test --watch```
 
 ### Линтинг
 
@@ -64,40 +102,3 @@
 ### Форматирование prettier
 
 ```yarn format```
-
-### Production build
-
-```yarn build```
-
-И чтобы посмотреть что получилось
-
-
-`yarn preview --scope client`
-`yarn preview --scope server`
-
-## Хуки
-В проекте используется [lefthook](https://github.com/evilmartians/lefthook)
-Если очень-очень нужно пропустить проверки, используйте `--no-verify` (но не злоупотребляйте :)
-
-## Ой, ничего не работает :(
-
-Откройте issue, я приду :)
-
-## Автодеплой статики на vercel
-Зарегистрируйте аккаунт на [vercel](https://vercel.com/)
-Следуйте [инструкции](https://vitejs.dev/guide/static-deploy.html#vercel-for-git)
-В качестве `root directory` укажите `packages/client`
-
-Все ваши PR будут автоматически деплоиться на vercel. URL вам предоставит деплоящий бот
-
-## Production окружение в докере
-Перед первым запуском выполните `node init.js`
-
-
-`docker compose up` - запустит три сервиса
-1. nginx, раздающий клиентскую статику (client)
-2. node, ваш сервер (server)
-3. postgres, вашу базу данных (postgres)
-
-Если вам понадобится только один сервис, просто уточните какой в команде
-`docker compose up {sevice_name}`, например `docker compose up server`
