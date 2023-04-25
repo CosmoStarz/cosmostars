@@ -20,7 +20,7 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
   app.use(helmet.xssFilter());
-  app.use(function(_, res, next) {
+  app.use(function (_, res, next) {
     res.setHeader("X-XSS-Protection", "1; mode=block");
     next();
   });
@@ -37,7 +37,7 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
     vite = await createViteServer({
       server: { middlewareMode: true },
       root: srcPath,
-      appType: "custom"
+      appType: "custom",
     });
 
     app.use(vite.middlewares);
@@ -106,10 +106,12 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
     }
   });
 
-  app.use(pinoHttp({
-    logger: pino({ level: process.env.LOG_LEVEL || "info" }),
-    useLevel: "info"
-  }));
+  app.use(
+    pinoHttp({
+      logger: pino({ level: process.env.LOG_LEVEL || "info" }),
+      useLevel: "info",
+    })
+  );
 
   try {
     await sequelize.sync();

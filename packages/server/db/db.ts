@@ -9,7 +9,7 @@ const {
   POSTGRES_PASSWORD,
   POSTGRES_DB,
   POSTGRES_PORT,
-  POSTGRES_HOST
+  POSTGRES_HOST,
 } = process.env;
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 export const sequelize = new Sequelize(
@@ -21,6 +21,6 @@ export const sequelize = new Sequelize(
     port: Number(POSTGRES_PORT ?? 5432),
     dialect: "postgres",
     models: [__dirname + "/models"],
-    logging: sql => logger.info(sql)
+    logging: sql => logger.info(sql),
   }
 );
