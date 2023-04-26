@@ -11,8 +11,8 @@ commentRouter.post(
   "/",
   validate([
     body("comment", "comment - минимум 2 символа").isLength({ min: 2 }),
-    body(["topic_id", "author_id"], ErrorMessages.NOT_EMPTY).exists(),
-    body(["topic_id", "author_id"], ErrorMessages.IS_NUMERIC).isNumeric(),
+    body(["topic_id"], ErrorMessages.NOT_EMPTY).exists(),
+    body(["topic_id"], ErrorMessages.IS_NUMERIC).isNumeric(),
     body("parent_id", ErrorMessages.IS_NUMERIC)
       .isNumeric()
       .optional({ nullable: true }),

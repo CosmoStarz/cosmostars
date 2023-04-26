@@ -5,6 +5,7 @@ import { PropsWithChildren } from "react";
 
 import { authTypes } from "@/shared/api";
 import { CardView } from "@/shared/ui";
+import { cleanForm } from "@/shared/utils/clean";
 
 import { signUpSchema } from "../schemas/sign-up";
 
@@ -25,15 +26,15 @@ export const SignUp = ({ handleSignUp }: SignUpProps) => {
     },
     validationSchema: signUpSchema,
     onSubmit: () => {
-      //TODO мне не нравится как это выглядит, принимаю предложение на улучшение
-      const userForm: authTypes.SignUpRequest = {
+      const userForm = cleanForm({
         first_name: values.name,
         second_name: values.second_name,
         login: values.login,
         email: values.email,
         password: values.password,
         phone: values.phone,
-      };
+      });
+
       handleSignUp(userForm);
     },
   });

@@ -9,7 +9,7 @@ export type GameModalProps = {
   canBeResumed?: boolean;
   rulesVisibility?: boolean;
   scoreVisibility?: boolean;
-  clearScoreOnStart?: boolean;
+  clearStateOnStart?: boolean;
   rightImg?: string;
   leftImg?: string;
 };

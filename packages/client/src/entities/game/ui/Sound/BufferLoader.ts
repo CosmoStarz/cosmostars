@@ -10,6 +10,7 @@ class BufferLoader {
     shot: null,
     explosion: null,
     win: null,
+    bonus: null,
   };
   private readonly onload: (buffer: BufferListType) => void;
 

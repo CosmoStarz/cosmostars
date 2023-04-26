@@ -10,7 +10,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
-  resetScore,
+  resetGameState,
   setGameStatus,
 } from "@/entities/game/model/store/gameSlice";
 import {
@@ -49,8 +49,8 @@ export const GameModal: FC<GameModalType> = props => {
   const score = useAppSelector(gameScoreSelector);
 
   const handleStart = () => {
-    if (config?.clearScoreOnStart) {
-      dispatch(resetScore());
+    if (config?.clearStateOnStart) {
+      dispatch(resetGameState());
     }
     onStart();
   };

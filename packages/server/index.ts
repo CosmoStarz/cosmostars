@@ -2,18 +2,29 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import * as fs from "fs";
+import helmet from "helmet";
 import * as path from "path";
+import pino from "pino";
+import { pinoHttp } from "pino-http";
 import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 
+import { cspConfig } from "./constants";
 import { sequelize } from "./db/db";
 import { proxyMiddleware } from "./middlewares";
 import { ApiRouter } from "./routes";
+
 dotenv.config();
 
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
   app.use(cors());
+  app.use(helmet.xssFilter());
+  app.use(function (_, res, next) {
+    res.setHeader("X-XSS-Protection", "1; mode=block");
+    next();
+  });
+  app.use(helmet.contentSecurityPolicy(cspConfig));
   app.use(express.json());
   const port = Number(process.env.SERVER_PORT) || 8000;
 
@@ -94,6 +105,13 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
       next(error);
     }
   });
+
+  app.use(
+    pinoHttp({
+      logger: pino({ level: process.env.LOG_LEVEL || "info" }),
+      useLevel: "info",
+    })
+  );
 
   try {
     await sequelize.sync();
