@@ -25,6 +25,7 @@ export const proxyMiddleware: RequestHandler = (req, res, next) => {
     },
     selfHandleResponse: true,
     logLevel: "error",
+    secure: false,
     onProxyReq: modifyBodyReStreamCb,
     onProxyRes: responseInterceptor(
       async (responseBuffer, _proxyRes, _req, _res) => {
