@@ -1,10 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+import App from "./app";
+import { persistor, store } from "./app/store";
+import { ErrorBoundary } from "./shared/utils/ErrorBoundary/ErrorBoundary";
+import { initServiceWorker } from "./shared/utils/initServiceWorker";
+
+ReactDOM.hydrateRoot(
+  document.getElementById("root") as HTMLElement,
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
+
+initServiceWorker();

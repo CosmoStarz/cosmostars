@@ -2,5 +2,8 @@ pre-commit:
   parallel: true
   commands:
     lint:
-      glob: '*.{ts,tsx}'
+      glob: "*.{ts,tsx}"
       run: yarn eslint {staged_files}
+    format:
+      glob: "*.{ts,tsx}"
+      run: yarn format

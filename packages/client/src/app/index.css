@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: "Bubblegum Sans, cursive";
+}
+
+.game-canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.emoji-picker-react {
+  position: absolute !important;
+  z-index: 1;
+  right: 12%;
+}
+
+.MuiPaper-root.form-paper {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 595px;
+  width: 100%;
+}
+
+.MuiTypography-root.main-page__name {
+  font-size: 144px;
+  letter-spacing: 0.01em;
+  color: transparent;
+  text-shadow: 5px 4px 6px #011133, 0px 0px 0px #ff00008c, 5px 4px 6px #ff00008c;
+  margin-bottom: 16px;
+  -webkit-text-stroke: 4px white;
+  pointer-events: none;
+}

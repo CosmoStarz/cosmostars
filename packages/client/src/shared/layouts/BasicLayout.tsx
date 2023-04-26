@@ -1,8 +1,12 @@
-import { FC, PropsWithChildren, useMemo } from "react";
 import { Box, useTheme } from "@mui/material";
+import { FC, PropsWithChildren, useMemo } from "react";
+
+import BackgroundDark from "@/assets/images/bg-dark.png";
+import BackgroundLight from "@/assets/images/bg-light.png";
+import { AdditionalMenu } from "@/widgets/AdditionalMenu/AdditionalMenu";
+import { Notification } from "@/widgets/Notification";
+
 import { ThemeNames } from "../constants";
-import BackgroundDark from "../../assets/images/bg-dark.png";
-import BackgroundLight from "../../assets/images/bg-light.jpg";
 
 export const BasicLayout: FC<PropsWithChildren> = props => {
   const theme = useTheme();
@@ -17,12 +21,14 @@ export const BasicLayout: FC<PropsWithChildren> = props => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "100vh",
+        minHeight: "100vh",
         width: "100%",
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: "repeat",
+        background: `url(${background}) repeat`,
+        backgroundSize: "contain",
       }}>
+      <AdditionalMenu />
       {props.children}
+      <Notification />
     </Box>
   );
 };
