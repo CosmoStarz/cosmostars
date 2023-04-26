@@ -1,6 +1,6 @@
 import {
   initialCoords,
-  initialObjectSize,
+  InitialSizes,
   initialVelocity,
 } from "@/shared/constants";
 
@@ -16,7 +16,7 @@ export class BaseObject {
   public velocity: basicVelocity;
   public position: elementCoords;
   public size: basicSize;
-  private type: SpriteConstants | undefined;
+  public type: SpriteConstants | undefined;
   public sprite: Sprite | undefined;
 
   constructor(baseProps: baseObjectProps) {
@@ -24,7 +24,7 @@ export class BaseObject {
     this.type = baseProps.type;
     this.velocity = baseProps.velocity ?? this.initialVelocity;
     this.position = baseProps.position ?? this.initialPosition;
-    this.size = baseProps.size ?? initialObjectSize;
+    this.size = baseProps.size ?? InitialSizes.DEFAULT;
 
     this.sprite = this.type ? this.generateSprite(this.type) : undefined;
   }

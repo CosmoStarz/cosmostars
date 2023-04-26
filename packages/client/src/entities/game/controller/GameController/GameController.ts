@@ -4,7 +4,12 @@ import {
   BaseGameColors,
   baseSpeed,
   framesPerShoot,
+  hitEffectDuration,
+  hitEffectOpacity,
+  InitialSizes,
   maxStarsCount,
+  PlayerLives,
+  PlayerState,
   randomInterval,
   StarRadius,
   StarVelocity,
@@ -20,19 +25,21 @@ import { BaseObject } from "../../model/BaseObject/BaseObject";
 import { EnemyGrid } from "../../model/EnemyGrid/EnemyGrid";
 import { Player } from "../../model/Player/Player";
 import { Star } from "../../model/Star/Star";
-import { incrementScoreByEnemy } from "../../model/store/gameSlice";
+import {
+  decrementLives,
+  incrementScoreByEnemy,
+} from "../../model/store/gameSlice";
 import { Canvas } from "../../ui/Canvas/Canvas";
 import { elementCoords } from "../../ui/Canvas/types";
-import {
-  initialExplosionSize,
-  SpriteConstants,
-} from "../../ui/Sprite/SpriteConfig";
+import { SpriteConstants } from "../../ui/Sprite/SpriteConfig";
+import { BonusController } from "../BonusController/BonusController";
 import { GameControllerType } from "./types";
 
 // класс игрового контроллера: включает в себя работу над игровыми объектами
 export class GameController {
   private scene: Canvas;
   public player: Player;
+  public framePlayerHit = 0;
   private frames = 0;
   private enemyGrids: EnemyGrid[] = [];
   private stars: Star[] = [];
@@ -41,6 +48,7 @@ export class GameController {
   private randomInterval: number;
   private sound: Sound;
   private end: () => void;
+  private bonusController: BonusController;
 
   constructor(props: GameControllerType) {
     this.scene = props.scene;
@@ -48,6 +56,7 @@ export class GameController {
     this.end = props.end;
     this.player = this.initialPlayer;
     this.randomInterval = getRandomNumber(randomInterval, randomInterval * 2);
+    this.bonusController = this.initialBonusController;
 
     this.generateStars();
   }
@@ -57,7 +66,15 @@ export class GameController {
       scene: this.scene,
       projectileSpeed: -baseSpeed,
       type: SpriteConstants.PLAYER,
+      size: InitialSizes[SpriteConstants.PLAYER],
       projectileType: SpriteConstants.PLAYER_PROJECTILE,
+    });
+  }
+
+  private get initialBonusController() {
+    return new BonusController({
+      scene: this.scene,
+      player: this.player,
     });
   }
 
@@ -106,6 +123,12 @@ export class GameController {
     this.frames += 1;
   }
 
+  private generateBonuses() {
+    if (this.frames > randomInterval) {
+      this.bonusController.createBonus();
+    }
+  }
+
   private watchAsteroidsGone() {
     this.asteroids.forEach((asteroid, index) => {
       if (asteroid.position.y >= this.scene.height) {
@@ -121,7 +144,7 @@ export class GameController {
       scene: this.scene,
       position: position,
       type: SpriteConstants.EXPLOSION,
-      size: initialExplosionSize,
+      size: InitialSizes[SpriteConstants.EXPLOSION],
     });
   }
 
@@ -173,6 +196,17 @@ export class GameController {
     });
   }
 
+  private drawHitEffect() {
+    if (
+      this.framePlayerHit &&
+      this.frames <= this.framePlayerHit + hitEffectDuration
+    ) {
+      this.scene.fillCanvas(BaseGameColors.RED, hitEffectOpacity);
+    } else {
+      this.framePlayerHit = 0;
+    }
+  }
+
   private isIntersect(object: BaseObject, projectile: BaseObject) {
     return (
       object.position.x < projectile.position.x + projectile.size.width &&
@@ -194,12 +228,15 @@ export class GameController {
   private checkCollision(
     projectiles: BaseObject[],
     collidingObject: BaseObject,
-    collidingMethod: () => void
+    collidingMethod: () => void,
+    disableExplosion?: boolean
   ) {
     let isAlive = true;
     const newProjectiles = projectiles.filter(projectile => {
       if (this.isIntersect(collidingObject, projectile)) {
-        this.explosions.push(this.createExplosion(collidingObject.position));
+        if (!disableExplosion) {
+          this.explosions.push(this.createExplosion(collidingObject.position));
+        }
         collidingMethod();
         isAlive = false;
         return false;
@@ -212,11 +249,24 @@ export class GameController {
 
   private checkAllCollisions() {
     this.checkCollision(this.asteroids, this.player, () => {
+      store.dispatch(decrementLives(PlayerLives.MAX));
       this.end();
     });
 
+    this.bonusController.bonuses = this.bonusController.bonuses.filter(
+      bonus => {
+        if (this.isIntersect(bonus, this.player)) {
+          this.bonusController.getBonusResult(bonus);
+          this.sound.playBonus();
+          return false;
+        }
+        return true;
+      }
+    );
+
     this.enemyGrids.forEach(enemyGrid => {
       if (this.isIntersect(this.player, enemyGrid)) {
+        store.dispatch(decrementLives(PlayerLives.MAX));
         this.end();
       }
 
@@ -243,8 +293,17 @@ export class GameController {
           enemy.projectiles,
           this.player,
           () => {
-            this.end();
-          }
+            if (this.player.bonusState !== PlayerState.SHIELD) {
+              store.dispatch(decrementLives(PlayerLives.MIN));
+              if (this.player.lives <= 0) {
+                this.end();
+              } else {
+                this.sound.playExplosion();
+                this.framePlayerHit = this.frames;
+              }
+            }
+          },
+          true
         );
         enemy.projectiles = hitPlayer.newProjectiles;
 
@@ -271,19 +330,24 @@ export class GameController {
   public update() {
     this.watchStarsGone();
     this.watchExplosionsDone();
+    this.bonusController.watchBonusGone();
     this.player.update();
     this.checkAllCollisions();
     this.watchEnemiesGone();
     this.watchAsteroidsGone();
     this.generateEnemies();
+    this.generateBonuses();
+    this.drawHitEffect();
   }
 
   public clearGameState() {
     this.player.clear();
+    this.bonusController.clear();
     this.enemyGrids.forEach(grid => grid.clear());
     this.enemyGrids = [];
     this.explosions = [];
     this.asteroids = [];
     this.frames = 0;
+    this.framePlayerHit = 0;
   }
 }

@@ -27,7 +27,7 @@ const URLS = Object.assign({
   "/src/assets/images/game-model-enemy-projectile.png": () =>
     import("/src/assets/images/game-model-enemy-projectile.png?import"),
   "/src/assets/images/game-model-enemy.png": () =>
-    import("/src/assets/images/game-model-enemy.png?import"),
+    import("/src/assets/images/game-model-enemy-1.png?import"),
   "/src/assets/images/game-model-explosion.png": () =>
     import("/src/assets/images/game-model-explosion.png?import"),
   "/src/assets/images/game-model-player-projectile.png": () =>

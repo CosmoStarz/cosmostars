@@ -1,4 +1,5 @@
 import Background from "@/assets/sounds/background.ogg";
+import Bonus from "@/assets/sounds/bonus.wav";
 import Explosion from "@/assets/sounds/explosion.wav";
 import Gameover from "@/assets/sounds/gameover.wav";
 import Shot from "@/assets/sounds/shot.wav";
@@ -24,6 +25,7 @@ export class Sound {
     shot: null,
     explosion: null,
     win: null,
+    bonus: null,
   };
   private static defaultVolume = 0.1;
   private static gameSounds: GameSounds = {
@@ -32,6 +34,7 @@ export class Sound {
     gameover: Gameover,
     win: Win,
     shot: Shot,
+    bonus: Bonus,
   };
 
   constructor() {
@@ -82,6 +85,10 @@ export class Sound {
 
   playWin() {
     this.playSound(Sounds.WIN);
+  }
+
+  playBonus() {
+    this.playSound(Sounds.BONUS);
   }
 
   startSound() {
