@@ -33,5 +33,7 @@ jobs:
 
         run: |
           docker-compose build
+          docker tag prakticum-client:latest cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-client:latest
+          docker push cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-client:latest
           docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
           docker push cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
