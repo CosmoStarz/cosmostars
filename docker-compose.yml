@@ -34,6 +34,25 @@ services:
         POSTGRES_USER: ${POSTGRES_USER}
         POSTGRES_DB: ${POSTGRES_DB}
         POSTGRES_HOST: 'postgres'
+      networks:
+        - mynet
+
+    nginx-proxy:
+      image: nginxproxy/nginx-proxy
+      container_name: nginx-proxy
+      restart: always
+      ports:
+        - 80:80
+        - 443:443
+      volumes:
+        - conf:/etc/nginx/conf.d
+        - vhost:/etc/nginx/vhost.d
+        - html:/usr/share/nginx/html
+        - certs:/etc/nginx/certs:ro
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+      networks:
+        - mynet
+
 
     postgres:
       image: postgres:14     
@@ -46,5 +65,28 @@ services:
       volumes:
         - ./tmp/pgdata:/var/lib/postgresql/data
 
+    
+    acme-companion:
+      image: nginxproxy/acme-companion
+      container_name: nginx-proxy-acme
+      restart: always
+      environment:
+        - DEFAULT_EMAIL=mail@${APP_HOSTNAME}
+      volumes_from:
+        - nginx-proxy
+      volumes:
+        - certs:/etc/nginx/certs:rw
+        - acme:/etc/acme.sh
+        - /var/run/docker.sock:/var/run/docker.sock:ro
 
+volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
 
+networks:
+  mynet:
+    name: cosmostars_default
+    external: true
