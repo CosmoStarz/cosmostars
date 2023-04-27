@@ -30,8 +30,8 @@ export const cspConfig = {
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    connectSrc: ["'self'", "ws:", "fonts.googleapis.com"],
+    connectSrc: ["'self'", "ws:", "fonts.googleapis.com", "ya-praktikum.tech", "cdn.jsdelivr.net"],
     styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
-    imgSrc: ["'self'", "data:", "blob:"],
+    imgSrc: ["'self'", "data:", "blob:", "ya-praktikum.tech", "cdn.jsdelivr.net"],
   },
 };
