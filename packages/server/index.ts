@@ -9,7 +9,7 @@ import { pinoHttp } from "pino-http";
 import type { ViteDevServer } from "vite";
 import { createServer as createViteServer } from "vite";
 
-import { cspConfig } from "./constants";
+// import { cspConfig } from "./constants";
 import { sequelize } from "./db/db";
 import { proxyMiddleware } from "./middlewares";
 import { ApiRouter } from "./routes";
@@ -24,7 +24,7 @@ const startServer = async (isDev = process.env.NODE_ENV === "development") => {
     res.setHeader("X-XSS-Protection", "1; mode=block");
     next();
   });
-  app.use(helmet.contentSecurityPolicy(cspConfig));
+  // app.use(helmet.contentSecurityPolicy(cspConfig));
   app.use(express.json());
   app.use((_, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
