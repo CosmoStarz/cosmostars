@@ -18,7 +18,11 @@ dotenv.config();
 
 const startServer = async (isDev = process.env.NODE_ENV === "development") => {
   const app = express();
-  app.use(cors());
+  app.disable("x-powered-by").enable("trust proxy");
+  app.use(cors({
+    credentials: true,
+    origin: "*",
+  }));
   app.use(helmet.xssFilter());
   app.use(function (_, res, next) {
     res.setHeader("X-XSS-Protection", "1; mode=block");

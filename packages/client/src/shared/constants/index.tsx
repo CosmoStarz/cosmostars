@@ -17,7 +17,7 @@ import { SpriteConstants } from "@/entities/game/ui/Sprite/SpriteConfig";
 import { MenuLinkType } from "@/features/MenuLink/types";
 import { GameModalProps } from "@/widgets/GameModal/types";
 
-export const SERVER_URL = `http://${__SERVER_HOST__}:${__SERVER_PORT__}`;
+export const SERVER_URL = `https://${__SERVER_HOST__}:443`;
 
 export const NOT_FOUND_STATUS = 404;
 
