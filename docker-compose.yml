@@ -3,7 +3,7 @@ version: "3.9"
 services:
     server:
       container_name: prakticum-server
-      image: prackicum-server
+      image: prakticum-server
       build:
           context: .
           dockerfile: Dockerfile.server
@@ -20,6 +20,9 @@ services:
         POSTGRES_USER: ${POSTGRES_USER}
         POSTGRES_DB: ${POSTGRES_DB}
         POSTGRES_HOST: 'postgres'
+        VIRTUAL_HOST: cosmostarz-cosmostarz-22.ya-praktikum.tech
+        VIRTUAL_PORT: 8000
+        LETSENCRYPT_HOST: cosmostarz-cosmostarz-22.ya-praktikum.tech
       networks:
         - mynet
 
@@ -60,7 +63,6 @@ services:
       container_name: nginx-proxy-acme
       restart: always
       environment:
-        - DEFAULT_EMAIL=mail@${APP_HOSTNAME}
         - VIRTUAL_HOST=cosmostarz-cosmostarz-22.ya-praktikum.tech
         - VIRTUAL_PORT=8000
         - LETSENCRYPT_HOST=cosmostarz-cosmostarz-22.ya-praktikum.tech
