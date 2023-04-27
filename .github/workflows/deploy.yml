@@ -35,5 +35,3 @@ jobs:
           docker-compose build
           docker tag prakticum-server:latest cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
           docker push cr.yandex/crpuco7u3q2j3oiiacdj/prakticum-server:latest
-          docker tag practicum-client:latest cr.yandex/crpuco7u3q2j3oiiacdj/practicum-client:latest
-          docker push cr.yandex/crpuco7u3q2j3oiiacdj/practicum-client:latest
